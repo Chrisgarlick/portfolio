@@ -2651,13 +2651,19 @@ config serves both. CLS is 0 and blocking time 0 ms on both sides. The one SEO f
 
 ### The cutover runbook (section 8, made concrete)
 
+> Naming, clarified 8 October 2026: "Kritano" in this plan's older sections means the old
+> chrisgarlick.com CMS (a Bun app at `/var/www/chrisgarlick`, systemd service `chrisgarlick`, with
+> Redis), not Kritano the auditing product, which is hosted elsewhere. The Docker containers on
+> the droplet are Typeset (typeset.chrisgarlick.com), which the new site keeps using to render
+> downloads; `rota.chrisgarlick.com` is also on the box. Neither is touched by the cutover.
+
 1. **Snapshot the droplet** in the DigitalOcean panel. The real rollback.
 2. `scp -r deploy/server` to the box; `provision.sh`. Installs PHP 8.3 FPM with `pgsql` and
    `intl`, and git, clones the repository into `/var/www/site`,
    creates the `site` database and role, installs configs, stages nginx. Nothing live changes.
 3. Fill `/var/www/site/.env`: the generated DB password, and the live `RESEND_API_KEY`,
    `CONTACT_EMAIL`, `TYPESET_API_KEY` and `KRITANO_API`. The first deploy generates `APP_KEY`.
-4. Quiet hour. `systemctl disable --now chrisgarlick redis-server`. The public site keeps
+4. Quiet hour. Stop the old CMS: `systemctl disable --now chrisgarlick redis-server`. The public site keeps
    serving from `dist/client`; forms, admin and downloads are down from here to step 8.
 5. `site-deploy` on the box (or `deploy/ship.sh` from the Mac).
 6. `sudo -u www-data php /var/www/site/artisan site:import-legacy --media=/var/www/chrisgarlick/media --verify`,
@@ -2666,7 +2672,8 @@ config serves both. CLS is 0 and blocking time 0 ms on both sides. The one SEO f
 8. Switch: `ln -sfn ../sites-available/chrisgarlick.com.laravel /etc/nginx/sites-enabled/chrisgarlick.com`,
    `nginx -t && systemctl reload nginx`. Then `site:url-parity --base=https://chrisgarlick.com`.
 9. Resubmit `sitemap.xml` in Search Console; watch coverage and the 404 log daily for two weeks.
-10. After the fortnight: rename `cms` to `cms_legacy`, then remove Bun and the old app.
+10. After the fortnight: rename `cms` to `cms_legacy`, then remove the old CMS
+   (`/var/www/chrisgarlick`, its nginx file `chrisgarlick.com.kritano`), Bun and Redis.
 
 Rollback before step 10: point the `sites-enabled` link back at `chrisgarlick.com.kritano` and
 reload nginx (seconds; static site back), re-enable `chrisgarlick` for forms (minutes), or
