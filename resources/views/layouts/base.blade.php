@@ -45,7 +45,7 @@
         @include('partials.nav')
     @endunless
 
-    <main id="main" class="{{ ($bare ?? false) ? '' : 'pt-16' }}">
+    <main id="main" tabindex="-1" class="{{ ($bare ?? false) ? '' : 'pt-16' }}">
         @yield('content')
     </main>
 

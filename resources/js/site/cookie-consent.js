@@ -70,8 +70,23 @@ export function initCookieConsent() {
     const accept = document.getElementById('cookie-accept');
     const reject = document.getElementById('cookie-reject');
 
-    const show = () => banner?.classList.remove('hidden');
-    const hide = () => banner?.classList.add('hidden');
+    // While the banner is up it is fixed over the bottom of the page. Reserve
+    // that space, so the browser scrolls a focused link clear of it and the
+    // footer can still scroll out from underneath (WCAG 2.4.11).
+    const reserve = () => {
+        const space = banner && !banner.classList.contains('hidden') ? `${banner.offsetHeight + 16}px` : '';
+        document.documentElement.style.scrollPaddingBottom = space;
+        document.body.style.paddingBottom = space;
+    };
+    const show = () => {
+        banner?.classList.remove('hidden');
+        reserve();
+    };
+    const hide = () => {
+        banner?.classList.add('hidden');
+        reserve();
+    };
+    window.addEventListener('resize', reserve);
 
     const current = getConsent();
 

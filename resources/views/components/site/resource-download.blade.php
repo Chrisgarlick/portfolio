@@ -18,7 +18,7 @@
     $formats = $hasDocx ? 'PDF, DOCX or markdown' : 'PDF or markdown';
     $summary = (string) $resource->value('summary', '');
     $guardFields = app(Cg\Cms\Forms\FormGuard::class)->hiddenFields('resource-gate');
-    $field = 'w-full rounded-md border border-border bg-bg-primary px-3.5 py-2.5 text-[15px] text-text-primary placeholder:text-text-tertiary focus:border-accent focus:outline-none';
+    $field = 'w-full rounded-md border border-[var(--color-field-border)] bg-bg-primary px-3.5 py-2.5 text-[15px] text-text-primary placeholder:text-text-tertiary focus:border-accent focus:outline-none';
     $label = 'mb-1.5 block text-[13px] font-medium text-text-secondary';
 @endphp
 

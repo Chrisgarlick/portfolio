@@ -14,6 +14,7 @@
   <form id="audit-form" class="audit-form" novalidate>
     <div class="audit-input-row">
       <div class="audit-input-wrap">
+        <label for="audit-url" class="sr-only">Website address</label>
         <input
           type="url"
           id="audit-url"
@@ -143,7 +144,7 @@
     width: 100%;
     box-sizing: border-box;
     padding: 0.75rem 1rem;
-    border: 1px solid var(--color-border);
+    border: 1px solid var(--color-field-border);
     border-radius: 3px;
     background-color: var(--color-bg-surface);
     font-family: var(--font-body);

@@ -45,21 +45,35 @@ export function initNav() {
             return;
         }
 
+        // Hover opens it for a mouse; the chevron button opens it for a
+        // keyboard. Focus alone never does (WCAG 3.2.1).
+        const toggle = element.querySelector('.nav-dropdown-toggle');
         let timeout;
         const show = () => {
             clearTimeout(timeout);
             menu.classList.remove('hidden');
+            toggle?.setAttribute('aria-expanded', 'true');
         };
-        const hide = () => {
-            timeout = setTimeout(() => menu.classList.add('hidden'), 150);
+        const hide = (delay = 150) => {
+            clearTimeout(timeout);
+            timeout = setTimeout(() => {
+                menu.classList.add('hidden');
+                toggle?.setAttribute('aria-expanded', 'false');
+            }, delay);
         };
 
         element.addEventListener('mouseenter', show);
-        element.addEventListener('mouseleave', hide);
-        element.addEventListener('focusin', show);
+        element.addEventListener('mouseleave', () => hide());
+        toggle?.addEventListener('click', () => (menu.classList.contains('hidden') ? show() : hide(0)));
         element.addEventListener('focusout', (event) => {
             if (!element.contains(event.relatedTarget)) {
-                hide();
+                hide(0);
+            }
+        });
+        element.addEventListener('keydown', (event) => {
+            if (event.key === 'Escape' && !menu.classList.contains('hidden')) {
+                hide(0);
+                toggle?.focus();
             }
         });
     });

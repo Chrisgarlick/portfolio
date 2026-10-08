@@ -43,6 +43,7 @@
 
   --color-border:           #DAD5CA;  /* rule */
   --color-border-hover:     #C4BDB0;  /* rule, hovered */
+  --color-field-border:     #857F74;  /* form field edges, 3.7:1 on paper (WCAG 1.4.11) */
   --color-border-dark:      #252820;  /* dark section dividers */
 
   --color-destructive:      #C0392B;
@@ -183,6 +184,7 @@
   --color-text-secondary: var(--color-text-dark-muted);
   --color-text-tertiary:  var(--color-text-dark-muted);
   --color-border:         var(--color-border-dark);
+  --color-field-border:   #8A8D80;
   /* Lighter than --color-border-dark so hover state is visible against the oxide bg */
   --color-border-hover:   #3D4036;
   /* Accent on monochrome dark sections: light cream so labels + links read.
@@ -343,11 +345,7 @@ nav, footer, [data-monochrome] {
     text-decoration-color: var(--color-accent);
   }
 
-  :focus-visible {
-    outline: 2px solid var(--color-accent);
-    outline-offset: 3px;
-    border-radius: 2px;
-  }
+  /* Focus: see the unlayered rule near the end of this file. */
 
   /* Subtle noise texture */
   body::before {
@@ -502,10 +500,14 @@ nav, footer, [data-monochrome] {
   color: white;
   font-size: 0.875rem;
   border-radius: 3px;
-  transition: top var(--duration-default);
 }
 
+/* No transition: a keyboard user must see the first tab stop at once. */
 .skip-to-content:focus { top: 1rem; }
+
+/* The skip link's target takes focus (tabindex="-1") so the next Tab starts
+   inside the content; it needs no ring of its own. */
+#main:focus { outline: none; }
 
 /* ── Animations ── */
 @keyframes fadeUp {
@@ -715,7 +717,7 @@ nav, footer, [data-monochrome] {
     width: 100%;
     box-sizing: border-box;
     padding: 0.8rem 0.95rem;
-    border: 1px solid var(--color-border);
+    border: 1px solid var(--color-field-border);
     border-radius: 8px;
     background-color: var(--color-bg-surface);
     font-family: var(--font-body);
@@ -1068,7 +1070,7 @@ nav, footer, [data-monochrome] {
   font-size: 16px;
   color: var(--color-text-primary);
   background: var(--color-bg-surface);
-  border: 1px solid var(--color-border);
+  border: 1px solid var(--color-field-border);
   border-radius: 8px;
   transition: border-color var(--duration-fast) var(--ease-default), box-shadow var(--duration-fast) var(--ease-default);
 }
@@ -1110,4 +1112,23 @@ nav, footer, [data-monochrome] {
 }
 .service-cell:hover {
   background-color: color-mix(in srgb, var(--color-accent-light) 55%, transparent);
+}
+
+/* ── Focus ──
+   Unlayered, so no component or utility can quietly remove it (WCAG 2.4.7).
+   Two tones: an ink outline with a paper ring inside it, so the focus shows
+   on paper, on the accent bands and on the dark footer alike. */
+:where(a, button, summary, [tabindex]:not([tabindex="-1"])):focus-visible {
+  outline: 2px solid var(--color-text-primary);
+  outline-offset: 2px;
+  box-shadow: 0 0 0 2px var(--color-bg-primary);
+  border-radius: 4px;
+}
+:where(footer, .bg-accent, [data-theme="dark"]) :where(a, button, summary):focus-visible {
+  outline-color: #FAF8F3;
+  box-shadow: 0 0 0 2px #151513;
+}
+:where(input, select, textarea):focus-visible {
+  outline: 2px solid var(--color-text-primary);
+  outline-offset: 2px;
 }

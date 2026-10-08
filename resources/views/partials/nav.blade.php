@@ -13,6 +13,9 @@
 
 <a href="#main" class="skip-to-content">Skip to content</a>
 
+{{-- The banner landmark, so help links sit in the same place on every page (WCAG 3.2.6). --}}
+<header>
+
 <nav class="fixed top-0 right-0 left-0 z-50 h-16 border-b border-text-primary"
      style="background: rgba(250,248,243,0.94); backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px);"
      aria-label="Main navigation">
@@ -26,12 +29,15 @@
                 @php($linkClasses = 'nav-link text-[14px] font-medium no-underline transition-colors duration-150 '.($isActive($link['href']) ? 'text-text-primary active' : 'text-text-secondary hover:text-text-primary'))
 
                 @if (! empty($link['children']))
-                    <div class="nav-dropdown relative">
-                        <a href="{{ $link['href'] }}" class="{{ $linkClasses }}" aria-haspopup="true">
-                            {{ $link['label'] }}
-                            <svg class="ml-1 inline-block h-3 w-3 opacity-50" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M3 5l3 3 3-3"/></svg>
-                        </a>
-                        <div class="nav-dropdown-menu absolute top-full left-0 hidden pt-3">
+                    {{-- The link goes to the section; the chevron is its own button that
+                         opens the menu, so focus alone never changes the page (WCAG 3.2.1). --}}
+                    <div class="nav-dropdown relative flex items-center">
+                        <a href="{{ $link['href'] }}" class="{{ $linkClasses }}">{{ $link['label'] }}</a>
+                        <button type="button" class="nav-dropdown-toggle ml-0.5 flex h-6 w-6 items-center justify-center text-text-secondary hover:text-text-primary"
+                                aria-expanded="false" aria-controls="nav-menu-{{ $loop->index }}" aria-label="Show {{ $link['label'] }} menu">
+                            <svg class="h-3 w-3" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M3 5l3 3 3-3"/></svg>
+                        </button>
+                        <div id="nav-menu-{{ $loop->index }}" class="nav-dropdown-menu absolute top-full left-0 hidden pt-3">
                             <div class="min-w-[240px] rounded-md border border-border bg-bg-surface py-2 shadow-lg">
                                 @foreach ($link['children'] as $child)
                                     <a href="{{ $child['href'] }}"
@@ -105,3 +111,4 @@
         </div>
     </div>
 </div>
+</header>
