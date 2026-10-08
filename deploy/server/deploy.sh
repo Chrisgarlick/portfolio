@@ -22,7 +22,7 @@
 set -euo pipefail
 
 SITE=/var/www/site
-PHP_FPM=php8.4-fpm
+PHP_FPM=php8.3-fpm
 BRANCH=main
 PREVIOUS_FILE="$SITE/storage/app/deploy-previous"
 

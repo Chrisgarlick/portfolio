@@ -9,11 +9,11 @@
     ],
     "license": "MIT",
     "require": {
-        "php": "^8.4",
+        "php": "^8.3",
         "chrisgarlick/cg-cms": "dev-main",
         "laravel/framework": "^13.17",
         "laravel/tinker": "^3.0",
-        "symfony/yaml": "^8.1"
+        "symfony/yaml": "^7.4|^8.1"
     },
     "require-dev": {
         "fakerphp/faker": "^1.23",
@@ -23,9 +23,9 @@
         "laravel/pint": "^1.27",
         "mockery/mockery": "^1.6",
         "nunomaduro/collision": "^8.6",
-        "pestphp/pest": "^5.1",
-        "pestphp/pest-plugin-drift": "^5.0",
-        "pestphp/pest-plugin-laravel": "^5.0"
+        "pestphp/pest": "^4.0|^5.1",
+        "pestphp/pest-plugin-drift": "^4.0|^5.0",
+        "pestphp/pest-plugin-laravel": "^4.0|^5.0"
     },
     "autoload": {
         "psr-4": {
@@ -82,7 +82,7 @@
     },
     "config": {
         "platform": {
-            "php": "8.4.1"
+            "php": "8.3.11"
         },
         "optimize-autoloader": true,
         "preferred-install": "dist",

@@ -44,9 +44,14 @@ if [[ -d "$LOCAL_CMS/.git" ]] && [[ -n "$(git -C "$LOCAL_CMS" status --porcelain
     echo "  WARNING: ~/dev/cg-cms differs from the locked commit; its changes will not ship."
 fi
 
+# The tests run on the server's PHP version: Herd's `php` follows the site's
+# isolated version (8.3), the plain one does not.
+PHP_BIN=(php)
+command -v herd >/dev/null && PHP_BIN=(herd php)
+
 if [[ "${1:-}" != "--no-tests" ]]; then
-    echo "Running the test suite"
-    php artisan test --compact
+    echo "Running the test suite on $("${PHP_BIN[@]}" -r 'echo PHP_VERSION;')"
+    "${PHP_BIN[@]}" artisan test --compact
 fi
 
 echo "Building front-end assets"

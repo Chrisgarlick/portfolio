@@ -2,7 +2,7 @@
 #
 # Prepare the box for the Laravel site. Idempotent: safe to run again.
 #
-# Changes nothing the live site depends on. It installs PHP 8.4 with the
+# Changes nothing the live site depends on. It installs PHP 8.3 FPM with the
 # extensions Laravel needs, git and Composer, clones the site into
 # /var/www/site, creates a new `site` database, and installs the PHP, systemd
 # and Postgres config, but it does NOT switch nginx, stop Kritano, or start
@@ -11,29 +11,26 @@
 #
 #   provision.sh            from deploy/server/ on the box, as root
 #
-# Assumes Ubuntu 24.04 with nginx and Postgres 16 already present. PHP 8.4
-# comes from Ondřej Surý's PPA and sits alongside the system's 8.3 without
-# touching it: the lock file needs 8.4 (Symfony 8), and it is what the site is
-# developed and tested on.
+# Assumes Ubuntu with nginx and Postgres 16 already present. The droplet runs
+# 24.10, which is past end of life (its packages come from old-releases), and
+# no PHP 8.4 build exists for it, so the site runs on the system PHP 8.3.
+# composer.json pins the platform to 8.3.11 to match, and Herd serves the site
+# on 8.3 locally. Moving to an LTS droplet and PHP 8.4 is planned maintenance.
 
 set -euo pipefail
 
 cd "$(dirname "$0")"
 SITE=/var/www/site
 REPO=https://github.com/Chrisgarlick/portfolio.git
-PHP=8.4
+PHP=8.3
 
 echo "== Packages"
-if ! grep -rqs "ondrej/php" /etc/apt/sources.list.d/; then
-    DEBIAN_FRONTEND=noninteractive apt-get install -y -qq software-properties-common >/dev/null
-    add-apt-repository -y ppa:ondrej/php >/dev/null
-fi
 apt-get update -qq
-DEBIAN_FRONTEND=noninteractive apt-get install -y -qq git unzip composer \
+DEBIAN_FRONTEND=noninteractive apt-get install -y -qq git unzip \
     "php$PHP-fpm" "php$PHP-cli" "php$PHP-pgsql" "php$PHP-intl" "php$PHP-gd" "php$PHP-curl" \
     "php$PHP-xml" "php$PHP-mbstring" "php$PHP-zip" "php$PHP-bcmath" >/dev/null
-# `php` on the command line, the queue worker and the scheduler use 8.4 too.
-update-alternatives --set php "/usr/bin/php$PHP" >/dev/null
+# The droplet already has Composer in /usr/local/bin; only fall back to apt's.
+command -v composer >/dev/null || DEBIAN_FRONTEND=noninteractive apt-get install -y -qq composer >/dev/null
 
 echo "== PHP-FPM pool"
 # The default `www` pool would hold its own workers for nothing.

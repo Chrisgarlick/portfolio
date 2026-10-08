@@ -993,8 +993,11 @@ server:
 - **The front-end build is committed** (`public/build`, about 400KB), so npm never runs there.
 - **The server only runs `composer install`** from `composer.lock`, which installs exact versions
   and needs a fraction of the memory. Resolving new versions (`composer update`) happens on the
-  Mac only. `composer.json` pins the platform to PHP 8.4.1 so the lock never needs more than the
-  server has.
+  Mac only. `composer.json` pins the platform to PHP 8.3.11, the server's version, so the lock
+  never needs more than the server has, and Herd serves the site on 8.3 locally (`herd isolate
+  8.3`) so development matches. The droplet runs Ubuntu 24.10, past end of life, with no PHP 8.4
+  build available; moving to an LTS droplet and PHP 8.4 is planned maintenance (drop the pin,
+  `composer update`, `herd isolate 8.4`).
 
 1. On the Mac: `deploy/ship.sh`. Refuses to run off `main` or with uncommitted changes, warns if
    cg-cms on GitHub or in `~/dev/cg-cms` differs from the locked commit, runs the test suite,
@@ -2649,8 +2652,8 @@ config serves both. CLS is 0 and blocking time 0 ms on both sides. The one SEO f
 ### The cutover runbook (section 8, made concrete)
 
 1. **Snapshot the droplet** in the DigitalOcean panel. The real rollback.
-2. `scp -r deploy/server` to the box; `provision.sh`. Installs PHP 8.4 (Ondřej Surý's PPA,
-   alongside the system 8.3), git and Composer, clones the repository into `/var/www/site`,
+2. `scp -r deploy/server` to the box; `provision.sh`. Installs PHP 8.3 FPM with `pgsql` and
+   `intl`, and git, clones the repository into `/var/www/site`,
    creates the `site` database and role, installs configs, stages nginx. Nothing live changes.
 3. Fill `/var/www/site/.env`: the generated DB password, and the live `RESEND_API_KEY`,
    `CONTACT_EMAIL`, `TYPESET_API_KEY` and `KRITANO_API`. The first deploy generates `APP_KEY`.
