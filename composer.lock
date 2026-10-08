@@ -145,12 +145,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/Chrisgarlick/laravel-cms.git",
-                "reference": "ff10ed08fee56363a0083c8d804b76833b4e0ea5"
+                "reference": "11a0a29b51a62675472d28b8902b0adfcbe0ff7d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Chrisgarlick/laravel-cms/zipball/ff10ed08fee56363a0083c8d804b76833b4e0ea5",
-                "reference": "ff10ed08fee56363a0083c8d804b76833b4e0ea5",
+                "url": "https://api.github.com/repos/Chrisgarlick/laravel-cms/zipball/11a0a29b51a62675472d28b8902b0adfcbe0ff7d",
+                "reference": "11a0a29b51a62675472d28b8902b0adfcbe0ff7d",
                 "shasum": ""
             },
             "require": {
@@ -211,7 +211,7 @@
                 "source": "https://github.com/Chrisgarlick/laravel-cms/tree/main",
                 "issues": "https://github.com/Chrisgarlick/laravel-cms/issues"
             },
-            "time": "2026-10-08T15:22:44+00:00"
+            "time": "2026-10-08T15:29:12+00:00"
         },
         {
             "name": "dflydev/dot-access-data",
