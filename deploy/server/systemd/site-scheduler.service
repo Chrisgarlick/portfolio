@@ -7,5 +7,5 @@ Description=chrisgarlick.com scheduler
 Type=oneshot
 User=www-data
 Group=www-data
-WorkingDirectory=/var/www/site/current
-ExecStart=/usr/bin/php /var/www/site/current/artisan schedule:run
+WorkingDirectory=/var/www/site
+ExecStart=/usr/bin/php /var/www/site/artisan schedule:run

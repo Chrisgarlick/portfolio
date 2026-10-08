@@ -1,81 +1,93 @@
 #!/usr/bin/env bash
 #
-# Activate a release on the server. Plan section 9.4.
+# Update the site in place. Plan section 9.4, revised 8 October 2026.
 #
-#   deploy.sh /tmp/<id>.tar.gz          unpack, migrate, switch, reload, warm
-#   deploy.sh --rollback                point `current` at the previous release
+#   site-deploy              pull main, install, migrate, reload, warm
+#   site-deploy --rollback   return to the commit before the last deploy
 #
-# Nothing is compiled or resolved here, so peak memory is a few tens of
-# megabytes. Layout:
+# The site is one folder, /var/www/site: a git checkout of
+# Chrisgarlick/portfolio, owned by www-data. No releases directory and no
+# symlinks. Two things keep the 1GB box safe:
 #
-#   /var/www/site/releases/<id>/   one directory per release, kept: last 5
-#   /var/www/site/shared/          .env, storage/, public/media, public/page-cache
-#   /var/www/site/current          symlink to the live release
+#   - The front-end build (public/build) is committed, so npm never runs here.
+#   - `composer install` only installs the versions in composer.lock. It is
+#     resolving new versions (`composer update`) that needs 500MB or more, and
+#     that only ever happens on the Mac.
 #
-# Run as root; files end up owned by www-data.
+# Visitors keep getting pages throughout: nginx serves the page cache straight
+# from disk, so maintenance mode only affects uncached pages and the admin.
+#
+# Run as root, normally through deploy/ship.sh on the Mac.
 
 set -euo pipefail
 
 SITE=/var/www/site
-RELEASES="$SITE/releases"
-SHARED="$SITE/shared"
-PHP_FPM=php8.3-fpm
-KEEP=5
+PHP_FPM=php8.4-fpm
+BRANCH=main
+PREVIOUS_FILE="$SITE/storage/app/deploy-previous"
 
-as_web() { sudo -u www-data "$@"; }
-artisan() { as_web php "$1/artisan" "${@:2}"; }
+as_web() { sudo -u www-data -H "$@"; }
+artisan() { as_web php "$SITE/artisan" "$@"; }
 
-if [[ "${1:-}" == "--rollback" ]]; then
-    current="$(readlink -f "$SITE/current")"
-    previous="$(ls -1dt "$RELEASES"/*/ | sed 's#/$##' | grep -vx "$current" | head -1)"
-    [[ -n "$previous" ]] || { echo "No previous release to roll back to."; exit 1; }
-    ln -sfn "$previous" "$SITE/current.tmp" && mv -Tf "$SITE/current.tmp" "$SITE/current"
-    systemctl reload "$PHP_FPM"
-    artisan "$SITE/current" queue:restart
-    echo "Rolled back to $(basename "$previous")"
-    exit 0
+cd "$SITE"
+[[ -f .env ]] || { echo "Missing $SITE/.env. Run provision.sh and fill it in first."; exit 1; }
+
+current="$(as_web git rev-parse HEAD)"
+
+# The very first deploy has no vendor/ yet, so artisan cannot run until
+# Composer has, and no app key until one is generated.
+if [[ ! -f vendor/autoload.php ]]; then
+    echo "First deploy: installing dependencies"
+    as_web composer install --no-dev --no-interaction --no-progress --prefer-dist --optimize-autoloader --quiet
+fi
+if ! grep -qE '^APP_KEY=.+' .env; then
+    artisan key:generate --force
 fi
 
-TARBALL="${1:?Usage: deploy.sh <release.tar.gz> | --rollback}"
-ID="$(basename "$TARBALL" .tar.gz)"
-RELEASE="$RELEASES/$ID"
+if [[ "${1:-}" == "--rollback" ]]; then
+    [[ -s "$PREVIOUS_FILE" ]] || { echo "No previous deploy recorded to roll back to."; exit 1; }
+    target="$(cat "$PREVIOUS_FILE")"
+    echo "Rolling back from ${current:0:7} to ${target:0:7}"
+else
+    as_web git fetch --quiet origin "$BRANCH"
+    target="$(as_web git rev-parse "origin/$BRANCH")"
 
-[[ -f "$SHARED/.env" ]] || { echo "Missing $SHARED/.env. Run provision.sh first."; exit 1; }
+    if [[ "$target" == "$current" ]]; then
+        echo "Already on ${current:0:7}; reinstalling and reloading anyway."
+    else
+        echo "Deploying ${current:0:7} -> ${target:0:7}"
+        as_web git --no-pager log --oneline "$current..$target" | sed 's/^/  /'
+    fi
+fi
 
-echo "Unpacking $ID"
-mkdir -p "$RELEASE"
-tar -xzf "$TARBALL" -C "$RELEASE"
+# If anything below fails, the site stays in maintenance mode on purpose:
+# half-updated code is worse than a holding page. Fix forward, or roll back.
+trap 'echo; echo "Deploy FAILED. The site is in maintenance mode (cached pages are still served)."; echo "Roll back with: site-deploy --rollback"' ERR
 
-# Shared state, linked into the release so it survives every deploy.
-ln -sfn "$SHARED/.env" "$RELEASE/.env"
-rm -rf "$RELEASE/storage" && ln -sfn "$SHARED/storage" "$RELEASE/storage"
-ln -sfn "$SHARED/public/media" "$RELEASE/public/media"
-ln -sfn "$SHARED/public/page-cache" "$RELEASE/public/page-cache"
-for file in sitemap.xml robots.txt llms.txt; do
-    [[ -e "$SHARED/public/$file" ]] && ln -sfn "$SHARED/public/$file" "$RELEASE/public/$file"
-done
-chown -R www-data:www-data "$RELEASE"
+artisan down --retry=15 >/dev/null
 
-echo "Migrating"
-artisan "$RELEASE" migrate --force
+as_web git reset --quiet --hard "$target"
+[[ "$target" != "$current" ]] && echo "$current" > "$PREVIOUS_FILE" && chown www-data:www-data "$PREVIOUS_FILE"
 
-echo "Caching config, routes, views and events"
-artisan "$RELEASE" optimize
+echo "Installing PHP dependencies (from composer.lock, nothing resolved)"
+as_web composer install --no-dev --no-interaction --no-progress --prefer-dist \
+    --optimize-autoloader --classmap-authoritative --quiet
 
-echo "Switching current to $ID"
-ln -sfn "$RELEASE" "$SITE/current.tmp" && mv -Tf "$SITE/current.tmp" "$SITE/current"
+echo "Publishing the admin assets, migrating, caching"
+artisan vendor:publish --tag=cg-cms-assets --force >/dev/null
+artisan migrate --force
+artisan optimize >/dev/null
 
 # opcache.validate_timestamps is off, so PHP-FPM must reload to see new code.
 systemctl reload "$PHP_FPM"
-artisan "$SITE/current" queue:restart
+artisan queue:restart >/dev/null
+artisan up >/dev/null
+trap - ERR
 
 # Templates may have changed, so cached pages are stale. Flush, then warm at
 # concurrency 1: on one vCPU, warming must never compete with visitors.
-artisan "$SITE/current" cms:flush
-artisan "$SITE/current" cms:seo-files
-artisan "$SITE/current" cms:warm --concurrency=1 || echo "Some pages failed to warm; see above."
+artisan cms:flush-cache >/dev/null
+artisan cms:seo-files >/dev/null
+artisan cms:warm --concurrency=1 >/dev/null || echo "Some pages failed to warm; they render on their first visit."
 
-echo "Pruning old releases"
-ls -1dt "$RELEASES"/*/ | tail -n +$((KEEP + 1)) | xargs -r rm -rf
-
-echo "Live: $ID"
+echo "Live: $(as_web git --no-pager log -1 --format='%h %s')"

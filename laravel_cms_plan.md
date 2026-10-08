@@ -940,7 +940,7 @@ map $request_uri $cg_redirect {
 }
 
 server {
-    root /var/www/site/current/public;
+    root /var/www/site/public;
 
     if ($cg_redirect != "") { return 301 $cg_redirect; }
 
@@ -984,21 +984,29 @@ nginx serves `.br` with `brotli_static on`.
 
 ### 9.4 Deploy
 
-Atomic releases, no build step on the server.
+**Revised 8 October 2026: one folder, updated from git.** The original design (atomic releases
+unpacked from a tarball into `releases/<sha>/` behind a `current` symlink) was replaced at the
+user's request: the site is a single git checkout at `/var/www/site`, and `php artisan` always
+runs from there. The 1GB rules in 9.2 still hold, because nothing is built or resolved on the
+server:
 
-Atomic releases. **Nothing is compiled or resolved on the server**, per the two hard rules in
-9.2.
+- **The front-end build is committed** (`public/build`, about 400KB), so npm never runs there.
+- **The server only runs `composer install`** from `composer.lock`, which installs exact versions
+  and needs a fraction of the memory. Resolving new versions (`composer update`) happens on the
+  Mac only. `composer.json` pins the platform to PHP 8.4.1 so the lock never needs more than the
+  server has.
 
-1. CI (GitHub Actions) runs Pest, PHPStan level 6, Pint, `tsc --noEmit`, Vitest, then
-   `npm run build` for front-end assets and `composer install --no-dev -o --classmap-authoritative`.
-   It packs `vendor/`, `public/build/` and `public/vendor/cg-cms/` into a release tarball.
-2. Deploy script on the server: unpack the tarball into `releases/<sha>/`, link `shared/`
-   (`.env`, `storage`, `media`, `page-cache`), `artisan migrate --force`, `artisan optimize`,
-   swap the `current` symlink, `artisan queue:restart`, reload PHP-FPM. No Composer, no npm,
-   peak memory a few tens of megabytes.
-3. Post-deploy: `artisan cms:warm --from=sitemap --concurrency=1`. Concurrency 1 on a single
-   vCPU, deliberately. Warming should never compete with live traffic.
-4. Rollback: repoint `current` at the previous release, reload. Under 10 seconds.
+1. On the Mac: `deploy/ship.sh`. Refuses to run off `main` or with uncommitted changes, warns if
+   cg-cms on GitHub or in `~/dev/cg-cms` differs from the locked commit, runs the test suite,
+   builds the front end and commits the build if it changed, pushes, then runs `site-deploy`
+   on the server over SSH (host from `$SITE_SERVER` or `deploy/.server`).
+2. `site-deploy` (`deploy/server/deploy.sh`): maintenance mode, `git reset --hard origin/main`,
+   `composer install --no-dev`, publish the cg-cms admin assets, `migrate --force`, `optimize`,
+   reload PHP-FPM, `queue:restart`, back up. Visitors keep getting cached pages throughout,
+   because nginx serves the page cache without PHP. A failure leaves maintenance mode on.
+3. Post-deploy: flush the page cache, rewrite the SEO files, `cms:warm --concurrency=1`.
+4. Rollback: `deploy/ship.sh --rollback` (or `site-deploy --rollback` on the box) checks out the
+   commit before the last deploy and runs the same steps. Seconds, not instant.
 
 systemd units (not Supervisor, one less dependency) for the queue worker and a timer for
 `schedule:run`. Nightly `pg_dump` plus media rsync to Backblaze B2, with a monthly restore
@@ -2641,15 +2649,15 @@ config serves both. CLS is 0 and blocking time 0 ms on both sides. The one SEO f
 ### The cutover runbook (section 8, made concrete)
 
 1. **Snapshot the droplet** in the DigitalOcean panel. The real rollback.
-2. `scp deploy/server` to the box; `provision.sh`. Installs PHP-FPM, `php8.3-pgsql` and
-   `php8.3-intl`, creates the `site` database and role, installs configs, stages nginx.
-   Nothing live changes.
-3. Fill `/var/www/site/shared/.env`: a new `APP_KEY`, the generated DB password, and the live
-   `RESEND_API_KEY`, `CONTACT_EMAIL`, `TYPESET_API_KEY` and `KRITANO_API`.
+2. `scp -r deploy/server` to the box; `provision.sh`. Installs PHP 8.4 (Ondřej Surý's PPA,
+   alongside the system 8.3), git and Composer, clones the repository into `/var/www/site`,
+   creates the `site` database and role, installs configs, stages nginx. Nothing live changes.
+3. Fill `/var/www/site/.env`: the generated DB password, and the live `RESEND_API_KEY`,
+   `CONTACT_EMAIL`, `TYPESET_API_KEY` and `KRITANO_API`. The first deploy generates `APP_KEY`.
 4. Quiet hour. `systemctl disable --now chrisgarlick redis-server`. The public site keeps
    serving from `dist/client`; forms, admin and downloads are down from here to step 8.
-5. `scp` the release tarball; `site-deploy /tmp/<id>.tar.gz`.
-6. `php /var/www/site/current/artisan site:import-legacy --media=/var/www/chrisgarlick/media --verify`,
+5. `site-deploy` on the box (or `deploy/ship.sh` from the Mac).
+6. `sudo -u www-data php /var/www/site/artisan site:import-legacy --media=/var/www/chrisgarlick/media --verify`,
    then `site:url-parity` in-process on the box.
 7. `systemctl enable --now site-queue site-scheduler.timer`; restart Postgres for the tuning.
 8. Switch: `ln -sfn ../sites-available/chrisgarlick.com.laravel /etc/nginx/sites-enabled/chrisgarlick.com`,

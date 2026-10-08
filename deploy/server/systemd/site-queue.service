@@ -8,8 +8,8 @@ After=network.target postgresql.service
 [Service]
 User=www-data
 Group=www-data
-WorkingDirectory=/var/www/site/current
-ExecStart=/usr/bin/php -d memory_limit=96M /var/www/site/current/artisan queue:work --sleep=3 --tries=2 --max-jobs=100 --max-time=1800
+WorkingDirectory=/var/www/site
+ExecStart=/usr/bin/php -d memory_limit=96M /var/www/site/artisan queue:work --sleep=3 --tries=2 --max-jobs=100 --max-time=1800
 Restart=always
 RestartSec=5
 

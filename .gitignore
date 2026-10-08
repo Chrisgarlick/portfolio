@@ -14,7 +14,6 @@
 /.zed
 /auth.json
 /node_modules
-/public/build
 /public/fonts-manifest.dev.json
 /public/hot
 /public/media
@@ -48,3 +47,5 @@ Thumbs.db
 /public/vendor
 
 chrisgarlick.com-Performance-on-Search-2026-10-06/*
+# The production server's SSH host, for deploy/ship.sh
+/deploy/.server
