@@ -2664,14 +2664,14 @@ restore the snapshot.
 **Step 6b, added 6 October 2026: the redesign and consolidation**, between the import (6) and the
 switch (8). The import brings the live content; these put the new site on top of it.
 
-1. The new content, from the repo: `php artisan cms:entry:create service --from=database/content/services/laravel.md`
-   (and `wordpress.md`, `ai.md`, `software-development.md`, `website-building.md`; each carries its
-   colour and sort order), `project` for `database/content/work/kritano.md`, `cg-cms.md` and
-   `chrisgarlick-com.md`, `article` for `database/content/articles/ai-client-intake-law-firms.md`,
-   and the home page hero (`database/content/pages/home-hero.json`).
+1. The new content, from the repo, in one command: `php artisan site:install-content --dry-run`
+   to read the list, then `php artisan site:install-content --publish`. It creates or updates the
+   five services, the three projects, the law firm article and the home, About and Contact pages
+   from `database/content/`, and publishes them through the admin's publish gate. Without
+   `--publish` it leaves drafts and proposals to review in the admin instead. Safe to run twice.
 2. (Removed 6 October 2026: topics were folded into services, so there is no topic seeding.
    Articles are filed under services; `site:consolidate` files the live ones under AI.)
-3. In the admin: review and **publish** those drafts and apply the home page proposal.
+3. (Folded into step 1 on 8 October 2026.)
 4. `php artisan site:consolidate --dry-run`, read it, then `php artisan site:consolidate`. It
    refuses until every redirect target answers, adds the forced redirects, unpublishes the
    retired pages, files every article with no service under AI, empties the page cache and
