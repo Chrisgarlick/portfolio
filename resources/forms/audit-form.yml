@@ -1,0 +1,143 @@
+# AI Readiness Audit — intake form schema.
+#
+# Source of truth for the /audit form (Phase A of conditional.md), copied from
+# the Astro site's config/audit-form.yml. Read at runtime by App\Support\AuditForm:
+# the page renders from it and the controller validates against it, so there is
+# no build step and no JSON twin to keep in step. Edit and deploy.
+
+version: 1
+privacy_notice_version: "2026-05-14"
+
+# Sectors drive the conditional logic on step 3.
+sectors:
+  - { value: law-firm,     label: "Law firm / solicitors" }
+  - { value: accountancy,  label: "Accountancy practice" }
+  - { value: agency,       label: "Creative / marketing agency" }
+  - { value: consultancy,  label: "Consultancy" }
+  - { value: recruitment,  label: "Recruitment agency" }
+  - { value: architecture, label: "Architecture / engineering" }
+  - { value: other,        label: "Other professional services" }
+
+steps:
+
+  # ─── Step 1: About your business ─────────────────────────────────
+  - id: about
+    title: "About your business"
+    fields:
+      - { name: name,        type: text,   label: "Your name",        required: true,  maxLength: 100 }
+      - { name: email,       type: email,  label: "Email",            required: true,  maxLength: 200 }
+      - { name: companyName, type: text,   label: "Company name",     required: true,  maxLength: 200 }
+      - { name: website,     type: url,    label: "Company website",  required: true,  placeholder: "https://" }
+      - { name: referrer,    type: select, label: "How did you find me?", required: false,
+          options: [LinkedIn, Google, Referral, Other] }
+
+  # ─── Step 2: Sector ──────────────────────────────────────────────
+  - id: sector
+    title: "Your sector"
+    fields:
+      - { name: sector, type: select, required: true, label: "What best describes your business?",
+          optionsFrom: sectors }
+
+  # ─── Step 3: Sector-specific (conditional) ──────────────────────
+  - id: sectorDetail
+    title: "How you operate"
+    conditional: { on: sector }
+    fieldsBySector:
+
+      law-firm:
+        - { name: caseManagementSoftware, type: text,        label: "Case management software", placeholder: "e.g. Clio, Osprey, LEAP, or none" }
+        - { name: monthlyMatters,         type: select,      label: "New matters per month",
+            options: ["<10", "10-30", "30-60", "60+"] }
+        - { name: enquirySources,         type: multiselect, label: "How enquiries arrive",
+            options: [Phone, Email, "Web form", Referral, "Walk-in"] }
+        - { name: bottleneckAreas,        type: multiselect, label: "Where the team spends the most manual time",
+            options: ["Client intake", "Document drafting", "Document review", Billing, Reporting, Compliance] }
+        - { name: usesAI,                 type: select,      label: "Currently using any AI or automation tools?",
+            options: [Yes, No, "Not sure"] }
+        - { name: aiToolsList,            type: text,        label: "Which ones?",
+            showIf: { field: usesAI, equals: Yes } }
+
+      accountancy:
+        - { name: accountingSoftware, type: text,        label: "Accounting software", placeholder: "e.g. Xero, QuickBooks, Sage, FreeAgent" }
+        - { name: dataArrival,        type: multiselect, label: "How client data typically arrives",
+            options: ["Email attachments", "Client portal", Post, "Bank feed", Spreadsheets] }
+        - { name: clientCount,        type: select,      label: "Active clients you manage",
+            options: ["<25", "25-100", "100-250", "250+"] }
+        - { name: bottleneckAreas,    type: multiselect, label: "Where the team spends the most manual time",
+            options: ["Data entry", Reconciliation, "Report generation", "Client onboarding", "VAT returns", "Chasing clients"] }
+        - { name: usesAI,             type: select,      label: "Currently using any AI or automation tools?",
+            options: [Yes, No, "Not sure"] }
+        - { name: aiToolsList,        type: text,        label: "Which ones?",
+            showIf: { field: usesAI, equals: Yes } }
+
+      agency:
+        - { name: projectTool,     type: text,        label: "Project management tool", placeholder: "e.g. Notion, ClickUp, Asana, Linear, Monday" }
+        - { name: briefArrival,    type: multiselect, label: "How briefs arrive",
+            options: [Email, "Brief form", Call, Slack, Meeting] }
+        - { name: accountCount,    type: select,      label: "Active client accounts",
+            options: ["1-5", "5-15", "15-30", "30+"] }
+        - { name: bottleneckAreas, type: multiselect, label: "Where the team spends the most manual time",
+            options: ["Brief processing", "Content creation", Reporting, "Client communication", Invoicing, Research] }
+        - { name: clientReporting, type: select,      label: "Regular client reports?",
+            options: ["Yes, manually", "Yes, semi-automated", "No"] }
+        - { name: usesAI,          type: select,      label: "Currently using any AI or automation tools?",
+            options: [Yes, No, "Not sure"] }
+        - { name: aiToolsList,     type: text,        label: "Which ones?",
+            showIf: { field: usesAI, equals: Yes } }
+
+      consultancy:
+        - { name: consultancyType,    type: text,        label: "Type of consultancy", placeholder: "e.g. management, HR, IT, strategy" }
+        - { name: engagementStart,    type: multiselect, label: "How new engagements typically start",
+            options: [RFP, Referral, "Direct outreach", Inbound, Tender] }
+        - { name: bottleneckAreas,    type: multiselect, label: "Where the team spends the most manual time",
+            options: ["Proposal writing", Research, "Report generation", "Client communication", Billing, "Data analysis"] }
+        - { name: deliverableCadence, type: select,      label: "Regular client deliverables?",
+            options: ["Yes, weekly", "Yes, monthly", "Yes, per project", "No"] }
+        - { name: usesAI,             type: select,      label: "Currently using any AI or automation tools?",
+            options: [Yes, No, "Not sure"] }
+        - { name: aiToolsList,        type: text,        label: "Which ones?",
+            showIf: { field: usesAI, equals: Yes } }
+
+      recruitment:
+        - { name: ats,             type: text,        label: "ATS used", placeholder: "e.g. Bullhorn, Vincere, or none" }
+        - { name: openRoles,       type: select,      label: "Roles open at any time",
+            options: ["<10", "10-30", "30-60", "60+"] }
+        - { name: bottleneckAreas, type: multiselect, label: "Where the team spends the most manual time",
+            options: ["CV screening", "Candidate outreach", "Job posting", "Client reporting", "Interview scheduling", "Reference checks"] }
+        - { name: usesAI,          type: select,      label: "Currently using any AI or automation tools?",
+            options: [Yes, No, "Not sure"] }
+        - { name: aiToolsList,     type: text,        label: "Which ones?",
+            showIf: { field: usesAI, equals: Yes } }
+
+      architecture:
+        - { name: tooling,         type: text,        label: "Project management or CAD tooling" }
+        - { name: bottleneckAreas, type: multiselect, label: "Where the team spends the most manual time",
+            options: ["Client briefing", "Specification writing", "Compliance documentation", Reporting, Invoicing, "Tender preparation"] }
+        - { name: usesAI,          type: select,      label: "Currently using any AI or automation tools?",
+            options: [Yes, No, "Not sure"] }
+        - { name: aiToolsList,     type: text,        label: "Which ones?",
+            showIf: { field: usesAI, equals: Yes } }
+
+      other:
+        - { name: businessDescription, type: textarea, label: "Briefly describe what your business does", required: true }
+        - { name: bottleneckFreeform,  type: textarea, label: "Where does your team spend the most manual time?" }
+        - { name: usesAI,              type: select,   label: "Currently using any AI or automation tools?",
+            options: [Yes, No, "Not sure"] }
+        - { name: aiToolsList,         type: text,     label: "Which ones?",
+            showIf: { field: usesAI, equals: Yes } }
+
+  # ─── Step 4: Universal (all sectors) ─────────────────────────────
+  - id: universal
+    title: "A few final questions"
+    fields:
+      - { name: teamSize,          type: select,   required: true, label: "Team size",
+          options: ["Just me", "2-5", "6-15", "16-50", "50+"] }
+      - { name: biggestBottleneck, type: textarea, required: true, minLength: 50, maxLength: 1000,
+          label: "Your biggest manual bottleneck right now",
+          help: "2 to 3 sentences. Specific is better than general." }
+      - { name: budgetRange,       type: select,   required: false, label: "Rough budget for this kind of work",
+          options: ["£500-2k", "£2-5k", "£5-15k", "£15k+", "Not sure yet"] }
+      - { name: sixMonthWin,       type: textarea, required: false, maxLength: 500,
+          label: "What does a win look like in six months?" }
+      - { name: notes,             type: textarea, required: false, maxLength: 1000,
+          label: "Anything else I should know?" }

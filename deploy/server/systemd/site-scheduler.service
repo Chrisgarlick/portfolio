@@ -1,0 +1,11 @@
+# One run of Laravel's scheduler: nightly SEO audit, daily cache prune,
+# quarterly GDPR sweep. Fired every minute by site-scheduler.timer.
+[Unit]
+Description=chrisgarlick.com scheduler
+
+[Service]
+Type=oneshot
+User=www-data
+Group=www-data
+WorkingDirectory=/var/www/site/current
+ExecStart=/usr/bin/php /var/www/site/current/artisan schedule:run

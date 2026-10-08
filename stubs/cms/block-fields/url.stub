@@ -1,0 +1,3 @@
+        @if (filled($data['[[name]]'] ?? null))
+            <a href="{{ $data['[[name]]'] }}" class="inline-block border border-text-primary px-6 py-3 font-body text-[13px] font-medium tracking-wider text-text-primary uppercase no-underline hover:opacity-80" style="border-radius: 3px;">[[label]]</a>
+        @endif

@@ -1,0 +1,90 @@
+# Every URL the live site published, harvested from https://chrisgarlick.com/sitemap-index.xml
+# on 5 October 2026, plus every live redirect. The cutover gate (plan section 7):
+# site:url-parity checks each one, locally and on the box.
+#
+# Format: <path> <expected status> [<expected Location>]
+# Add Search Console's indexed pages here when exported; anything indexed must resolve.
+#
+/ 200
+/about 200
+/article 200
+/article/5-ai-tools-tradespeople-2026 200
+/article/51-of-code-on-github-is-ai-generated-that-should-worry-you 200
+/article/agency-workflows-automate-first 200
+/article/ai-adoption-disappointment-why-companies-fail 200
+/article/ai-client-onboarding-accountancy-uk 200
+/article/ai-consultant-vs-agency-uk 200
+/article/ai-data-extraction-uk-guide 200
+/article/ai-implementation-cost-uk 200
+/article/ai-proposal-pack-freelancers 200
+/article/ai-reporting-automation-agencies 200
+/article/ai-vs-hiring-accountancy 200
+/article/automate-client-intake-without-custom-software 200
+/article/how-to-choose-an-llm-for-business-use-uk-2026 200
+/article/replacing-manual-data-entry-with-ai-agents 200
+/article/solo-operator-ai-stack 200
+/article/the-ai-implementation-playbook-for-service-businesses 200
+/article/what-ai-implementation-means-law-firm 200
+/article/what-is-rag-retrieval-augmented-generation-explained-uk-edition 200
+/article/why-79-of-enterprises-are-failing-at-ai-adoption 200
+/article/zapier-vs-custom-ai 200
+/audit 200
+/contact 200
+/data/delete 403
+/diagnostic 200
+/for 200
+/for/agency-starters 200
+/for/consultants 200
+/for/freelancers 200
+/for/solo-operators 200
+/for/tradespeople 200
+/industries 200
+/industries/ai-for-accountancy-firms 200
+/industries/ai-for-agencies 200
+/industries/ai-for-law-firms 200
+/privacy 200
+/resources 200
+/resources/5-ai-tools-tradespeople-2026 200
+/resources/ai-stack-under-two-hours-a-day 200
+/resources/freelancers-ai-proposal-pack 200
+/resources/llm-cheat-sheet-2026 200
+/resources/one-framework-six-months-of-content 200
+/resources/prompt-library-for-professional-services 200
+/resources/zero-team-agency-playbook 200
+/services 200
+/services/ai-agents 200
+/services/ai-engineering 200
+/services/ai-implementation 200
+/services/data-extraction 200
+/services/workflow-automation 200
+/studio/audits 302 /admin/signin
+/terms 200
+/tools 200
+/tools/site-audit 200
+/work 200
+/work/ai-integrated-delivery-how-one-operator-delivers-like-a-team 200
+/work/kritano-cms 200
+#
+# Live redirects (Kritano redirects table, identical to its nginx snippet)
+/apply 301 /contact
+/blog 301 /article
+/blog/how-to-optimise-your-page-load-speed 301 /article
+/blog/ui-ux-for-conversions 301 /article
+/blog/website-builders-vs-custom-code-which-is-right-for-you 301 /article
+/blog/what-is-the-best-cms-for-websites 301 /article
+/homepage 301 /
+/privacy-policy 301 /privacy
+/services/ai-for-accountancy-firms 301 /industries/ai-for-accountancy-firms
+/services/ai-for-agencies 301 /industries/ai-for-agencies
+/services/ai-for-law-firms 301 /industries/ai-for-law-firms
+/start 301 /audit
+/terms-and-conditions 301 /terms
+/work/agma 301 /work
+/work/coffee-design 301 /work
+/work/hancock-gallery 301 /work
+/work/intelygenz 301 /work
+/work/technology-in-motion 301 /work
+#
+# Rules the live nginx config enforced outside the table
+/blog/what-ai-implementation-means-law-firm 301 /article/what-ai-implementation-means-law-firm
+/media/ed2cb887-b648-45a4-aab7-827f5ac94acf.webp 301 /media/ed2cb887-b648-45a4-aab7-827f5ac94acf/full.webp

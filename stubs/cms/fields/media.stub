@@ -1,0 +1,1 @@
+            <x-cms-image :value="$entry->value('[[name]]')" preset="article-hero" class="mb-10 w-full" />

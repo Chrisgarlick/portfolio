@@ -1,0 +1,3 @@
+            @if (filled($entry->value('[[name]]')))
+                <p class="mb-6 text-[15px] text-text-secondary"><span class="font-body text-xs font-medium tracking-widest uppercase">[[label]]</span><br>{{ $entry->value('[[name]]') }}</p>
+            @endif

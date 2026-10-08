@@ -1,0 +1,50 @@
+*.log
+.DS_Store
+.env
+.env.backup
+.env.production
+.phpactor.json
+.phpunit.result.cache
+/.codex
+/.cursor/
+/.idea
+/.nova
+/.phpunit.cache
+/.vscode
+/.zed
+/auth.json
+/node_modules
+/public/build
+/public/fonts-manifest.dev.json
+/public/hot
+/public/media
+/public/media-test
+/public/page-cache
+/public/page-cache-test
+/public/storage
+/storage/*.key
+/storage/pail
+/vendor
+_ide_helper.php
+Homestead.json
+Homestead.yaml
+Thumbs.db
+/build
+
+# Local-only data and tooling
+/chrisgarlick.com-Performance-on-Search-*/
+/.claude/settings.local.json
+/storage/inertia-devtools
+
+# The gated downloads: public here would bypass the email gate. Releases are
+# built from the working copy (deploy/build-release.sh), not from git.
+/resources/content/resources/
+
+# Written by `php artisan cms:seo-files` and the package's published assets
+/public/sitemap*.xml
+/public/robots.txt
+/public/llms.txt
+/public/article/rss.xml
+/public/vendor
+
+chrisgarlick.com-Performance-on-Search-2026-10-06/*

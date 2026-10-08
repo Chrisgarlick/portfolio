@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<phpunit xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:noNamespaceSchemaLocation="vendor/phpunit/phpunit/phpunit.xsd"
+         bootstrap="vendor/autoload.php"
+         colors="true"
+>
+    <testsuites>
+        <testsuite name="Unit">
+            <directory>tests/Unit</directory>
+        </testsuite>
+        <testsuite name="Feature">
+            <directory>tests/Feature</directory>
+        </testsuite>
+    </testsuites>
+    <source>
+        <include>
+            <directory>app</directory>
+        </include>
+    </source>
+    <php>
+        <env name="APP_ENV" value="testing"/>
+        <env name="APP_MAINTENANCE_DRIVER" value="file"/>
+        <env name="BCRYPT_ROUNDS" value="4"/>
+        <env name="BROADCAST_CONNECTION" value="null"/>
+        <env name="CACHE_STORE" value="array"/>
+        <!--
+            Postgres, not sqlite. The entries table uses jsonb, a jsonb_path_ops
+            GIN index and generated columns, none of which sqlite has. Testing
+            against a different engine than production would make the storage
+            design untested where it matters most.
+        -->
+        <env name="DB_CONNECTION" value="pgsql"/>
+        <env name="DB_HOST" value="127.0.0.1"/>
+        <env name="DB_PORT" value="55432"/>
+        <env name="DB_DATABASE" value="portfolio_test"/>
+        <env name="DB_USERNAME" value="cms"/>
+        <env name="DB_PASSWORD" value="secret"/>
+        <env name="DB_URL" value=""/>
+        <env name="MAIL_MAILER" value="array"/>
+        <env name="QUEUE_CONNECTION" value="sync"/>
+        <env name="SESSION_DRIVER" value="array"/>
+        <!-- Page cache writes go to a throwaway directory during tests. -->
+        <env name="CG_PAGE_CACHE_ENABLED" value="true"/>
+        <env name="CG_PAGE_CACHE_PATH" value="page-cache-test"/>
+        <!--
+            Warming is off in tests. QUEUE_CONNECTION=sync would otherwise run
+            the warm job inline, re-render the URLs we just purged, and quietly
+            defeat every invalidation assertion.
+        -->
+        <env name="CG_PAGE_CACHE_WARM" value="false"/>
+        <env name="CG_MEDIA_PATH" value="media-test"/>
+        <!--
+            Same reason, one layer up. QUEUE_CONNECTION=sync would run the SEO
+            file rebuild inline on every entry save, writing a real sitemap.xml,
+            llms.txt and feed into public/ during the test run. The tests that
+            care about those files construct their own writer against a
+            throwaway directory.
+        -->
+        <env name="CG_SEO_REGENERATE" value="false"/>
+        <env name="PULSE_ENABLED" value="false"/>
+        <env name="TELESCOPE_ENABLED" value="false"/>
+        <env name="NIGHTWATCH_ENABLED" value="false"/>
+    </php>
+</phpunit>

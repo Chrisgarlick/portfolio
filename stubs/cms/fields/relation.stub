@@ -1,0 +1,10 @@
+            @if ($related['[[name]]']->isNotEmpty())
+                <section class="mt-12 border-t border-border pt-8">
+                    <h2 class="mb-4 font-display text-[24px] text-text-primary">[[label]]</h2>
+                    <ul class="space-y-2">
+                        @foreach ($related['[[name]]'] as $item)
+                            <li><a href="{{ $item->url() }}" class="text-text-primary hover:text-accent">{{ $item->title }}</a></li>
+                        @endforeach
+                    </ul>
+                </section>
+            @endif

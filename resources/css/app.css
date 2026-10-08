@@ -1,0 +1,1113 @@
+/*
+    Ported verbatim from the Astro site (src/styles/global.css), Phase 4.
+
+    The first part is that file unchanged, so the two can be diffed while both
+    sites exist. Everything after "Component styles" was scoped <style> inside
+    individual Astro components, and is global here because Blade has no
+    scoped styles; each block is prefixed with the component it came from.
+
+    Sources are the app's views and the package's, so classes used in either
+    are generated. Fonts are self-hosted by the Vite plugin (vite.config.js),
+    not loaded from Google at request time.
+*/
+
+@import "tailwindcss";
+
+@source "../views";
+@source "../../vendor/chrisgarlick/cg-cms/resources/views";
+
+/* ═══════════════════════════════════════════════
+   CHRIS GARLICK — PARCHMENT / OXIDE + SERVICE COLOURS
+   Decision log: see colour_pallete.md (2026-05-18)
+   - Services are the colour classification axis.
+   - Industries, AI Implementation pillar, Audit form,
+     About, Contact, Footer all stay monochrome.
+   - --color-accent defaults to text-primary (ink).
+     Service pages override via [data-service="X"].
+   ═══════════════════════════════════════════════ */
+
+@theme {
+  /* ── Base palette (parchment + oxide) ── */
+  --color-bg-primary:       #FAF8F3;  /* paper */
+  --color-bg-surface:       #FFFFFF;  /* pure white for cards, dropdowns, popovers */
+  --color-bg-muted:         #F2EEE6;  /* deeper paper, dividers, subtle bgs */
+  --color-bg-dark:          #151513;  /* ink */
+  --color-bg-dark-surface:  #1F1F1C;  /* elevated dark surface */
+  --color-bg-dark-deeper:   #0E0E0D;  /* deeper dark for gaps, footer */
+
+  --color-text-primary:     #151513;  /* ink: headlines, body, primary buttons (17.2:1) */
+  --color-text-secondary:   #5B5852;  /* muted: captions, meta (6.7:1) */
+  --color-text-tertiary:    #625F58;  /* labels / timestamps, 5.6:1 on bg-muted */
+  --color-text-dark:        #E4E0D8;  /* primary text on dark sections */
+  --color-text-dark-muted:  #888078;  /* secondary text on dark sections */
+
+  --color-border:           #DAD5CA;  /* rule */
+  --color-border-hover:     #C4BDB0;  /* rule, hovered */
+  --color-border-dark:      #252820;  /* dark section dividers */
+
+  --color-destructive:      #C0392B;
+  --color-error-bg:         #F8E8E3;
+
+  /* ── Service colours (neon) ──
+     Light variants are electric and saturated but stay WCAG AA on parchment
+     (≥4.5:1 on bg-primary) so labels remain readable.
+     Dark variants go full neon — bright, glowing, used on oxide sections via
+     the [data-theme="dark"][data-service="X"] cascade. Pair with a glow
+     box-shadow on stat numbers / hero accents to push the neon feel further. */
+  /* Legacy service colours: the five AI service pages merge into one
+     (site_consolidation_plan.md), so until then they share the AI violet. */
+  --color-workflow:         #6B3FB8;
+  --color-workflow-dark:    #39FF8C;  /* neon mint */
+  --color-workflow-bg:      #E8DFF6;
+
+  --color-agents:           #6B3FB8;
+  --color-agents-dark:      #39C6FF;  /* neon cyan */
+  --color-agents-bg:        #E8DFF6;
+
+  --color-data:             #6B3FB8;
+  --color-data-dark:        #FF9F40;  /* neon tangerine */
+  --color-data-bg:          #E8DFF6;
+
+  --color-engineering:      #6B3FB8;
+  --color-engineering-dark: #C97FFF;  /* neon purple */
+  --color-engineering-bg:   #E8DFF6;
+
+  /* ── Page accent — defaults to ink (monochrome) ──
+     Service templates set [data-service="..."] on <html> which re-points
+     these via the cascade below. Components read --color-accent and
+     just work. Defaults match text-primary / text-secondary / bg-muted. */
+  --color-accent:           #1F5C45;
+  --color-accent-hover:     #151513;
+  --color-accent-light:     #DDE7DF;
+
+  /* ── Topic accents (ui_revamp_plan.md section 10) ──
+     One base, a colour per topic. Each pair is a strong colour that is
+     text-safe on paper and a soft tint for panels and tags; the strong
+     colour on its tint passes too. Topics pick one in the CMS (tag.colour,
+     service.colour); [data-accent] below re-points --color-accent to it. */
+  --color-green:            #1F5C45;  /* house: pages with no topic, 7.4:1 */
+  --color-green-soft:       #DDE7DF;
+  --color-red:              #B12F1C;  /* Laravel, 6.0:1 */
+  --color-red-soft:         #F8DED8;
+  --color-blue:             #1D5E8C;  /* WordPress, 6.5:1 */
+  --color-blue-soft:        #DCE8F2;
+  --color-violet:           #6B3FB8;  /* AI, 6.5:1 */
+  --color-violet-soft:      #E8DFF6;
+  --color-amber:            #925600;  /* Performance, 5.6:1 */
+  --color-amber-soft:       #F6E6CC;
+
+  /* ── Typography ── */
+  --font-display: 'Instrument Serif', 'Iowan Old Style', 'Georgia', serif;
+  --font-body: 'Instrument Sans', ui-sans-serif, system-ui, sans-serif;
+  --font-mono: 'JetBrains Mono', ui-monospace, 'SFMono-Regular', monospace;
+
+  /* ── Radius ── */
+  --radius-sm: 2px;
+  --radius-default: 3px;
+  --radius-full: 9999px;
+
+  /* ── Shadows ── */
+  --shadow-sm: 0 1px 2px rgba(26,23,21,0.04);
+  --shadow-card: 0 2px 12px rgba(26,23,21,0.06);
+  --shadow-nav: 0 1px 0 rgba(232,228,222,1);
+  --shadow-elevated: 0 8px 30px rgba(26,23,21,0.08);
+
+  /* ── Layout ── */
+  /* Note: Tailwind v4 generates utilities from --container-* tokens. Defining
+     --container-full here shadowed the built-in w-full utility (forcing every
+     w-full element to width:1080px instead of 100%). Removed 2026-05-27.
+     If you need named max-width tokens, use a non-keyword name like
+     --container-page to avoid collisions with w-full / w-screen / etc. */
+  --breakpoint-xl: 1200px;
+
+  /* ── Motion ── */
+  --duration-fast: 120ms;
+  --duration-default: 200ms;
+  --duration-slow: 400ms;
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-default: cubic-bezier(0.25, 0.1, 0.25, 1);
+}
+
+/* ── Per-service accent overrides ──
+   Service templates render <html data-service="workflow"> etc. The cascade
+   re-points --color-accent to the service hue without any utility classes
+   needing to change. Industry pages, AI Implementation pillar, Audit form,
+   About, Contact and Home omit data-service entirely and stay monochrome.
+
+   Industry pages can still spotlight service colours per-card by wrapping
+   the card in [data-service-card="workflow"] — see the .service-tinted
+   helper below.
+*/
+[data-service="workflow"] {
+  --color-accent:       var(--color-workflow);
+  --color-accent-hover: var(--color-workflow-dark);
+  --color-accent-light: var(--color-workflow-bg);
+}
+[data-service="agents"] {
+  --color-accent:       var(--color-agents);
+  --color-accent-hover: var(--color-agents-dark);
+  --color-accent-light: var(--color-agents-bg);
+}
+[data-service="data"] {
+  --color-accent:       var(--color-data);
+  --color-accent-hover: var(--color-data-dark);
+  --color-accent-light: var(--color-data-bg);
+}
+[data-service="engineering"] {
+  --color-accent:       var(--color-engineering);
+  --color-accent-hover: var(--color-engineering-dark);
+  --color-accent-light: var(--color-engineering-bg);
+}
+
+/* ── Topic accents ──
+   <html data-accent="red"> (or any element) re-points the accent to that
+   topic's colour, so every link, tag, italic and feature band underneath it
+   follows. Set from App\Content\Accent: an article takes its first topic's
+   colour, a service its own, anything else stays house green. */
+[data-accent="green"]  { --color-accent: var(--color-green);  --color-accent-light: var(--color-green-soft); }
+[data-accent="red"]    { --color-accent: var(--color-red);    --color-accent-light: var(--color-red-soft); }
+[data-accent="blue"]   { --color-accent: var(--color-blue);   --color-accent-light: var(--color-blue-soft); }
+[data-accent="violet"] { --color-accent: var(--color-violet); --color-accent-light: var(--color-violet-soft); }
+[data-accent="amber"]  { --color-accent: var(--color-amber);  --color-accent-light: var(--color-amber-soft); }
+
+/* Per-section dark theme. Any block can opt in by rendering its outermost
+   <section data-theme="dark">. This re-points the base bg/text/border tokens
+   inside that subtree, so every utility class (bg-bg-primary, text-text-primary,
+   border-border etc.) auto-flips without touching the block's markup. The page
+   itself stays parchment; only the sections that opt in go dark. */
+[data-theme="dark"] {
+  --color-bg-primary:     var(--color-bg-dark);
+  --color-bg-surface:     var(--color-bg-dark-surface);
+  --color-bg-muted:       var(--color-bg-dark-deeper);
+  --color-text-primary:   var(--color-text-dark);
+  --color-text-secondary: var(--color-text-dark-muted);
+  --color-text-tertiary:  var(--color-text-dark-muted);
+  --color-border:         var(--color-border-dark);
+  /* Lighter than --color-border-dark so hover state is visible against the oxide bg */
+  --color-border-hover:   #3D4036;
+  /* Accent on monochrome dark sections: light cream so labels + links read.
+     Per-service rules above (e.g. [data-theme="dark"][data-service="workflow"])
+     are more specific and override this for service pages. */
+  --color-accent:         var(--color-text-dark);
+  --color-accent-hover:   #F0EDE8;
+  --color-accent-light:   var(--color-bg-dark-deeper);
+  /* Drop shadow on dark needs to be DEEPER not lighter to register against
+     the oxide background. Adds a subtle bright ring + a deep shadow underneath. */
+  --shadow-elevated:      0 0 0 1px rgba(228, 224, 216, 0.08), 0 12px 40px rgba(0, 0, 0, 0.45);
+  background-color:       var(--color-bg-dark);
+  color:                  var(--color-text-dark);
+}
+
+/* Card hover on dark sections also lifts the border to the bright variant
+   so the hover state is clearly distinguishable from rest. */
+[data-theme="dark"] .card-hover:hover {
+  border-color: var(--color-border-hover);
+}
+
+/* Subtle neon glow on accent-coloured large text inside dark sections.
+   Only applies to elements with the .neon-glow opt-in class so we don't
+   accidentally glow every label. Use on big stat numbers, hero accents,
+   case-study stripes that should feel electric. */
+[data-theme="dark"] .neon-glow {
+  text-shadow:
+    0 0 18px color-mix(in srgb, var(--color-accent) 45%, transparent),
+    0 0 48px color-mix(in srgb, var(--color-accent) 20%, transparent);
+}
+[data-theme="dark"] .neon-glow-bg {
+  box-shadow:
+    0 0 24px color-mix(in srgb, var(--color-accent) 30%, transparent),
+    0 0 64px color-mix(in srgb, var(--color-accent) 12%, transparent);
+}
+
+/* On service pages, the per-service accent uses the *-dark variant inside
+   dark sections so the colour reads on the dark background. */
+[data-theme="dark"][data-service="workflow"],
+[data-theme="dark"] [data-service-card="workflow"] {
+  --color-accent: var(--color-workflow-dark);
+}
+[data-theme="dark"][data-service="agents"],
+[data-theme="dark"] [data-service-card="agents"] {
+  --color-accent: var(--color-agents-dark);
+}
+[data-theme="dark"][data-service="data"],
+[data-theme="dark"] [data-service-card="data"] {
+  --color-accent: var(--color-data-dark);
+}
+[data-theme="dark"][data-service="engineering"],
+[data-theme="dark"] [data-service-card="engineering"] {
+  --color-accent: var(--color-engineering-dark);
+}
+
+/* Nav + footer are always monochrome, regardless of the page's service.
+   Reset --color-accent back to ink within these regions so service colours
+   never bleed into the chrome. The opt-in [data-monochrome] attribute
+   does the same for any other component that needs to escape the page hue. */
+nav, footer, [data-monochrome] {
+  --color-accent:       #151513;
+  --color-accent-hover: #5B5852;
+  --color-accent-light: #F2EEE6;
+}
+
+/* Component-scoped tint. Any element with [data-service-card="X"] re-points
+   the accent variables to that service hue inside its own subtree. Used on
+   homepage service cards, industry page service cards, and nav dropdown links
+   so each one previews its destination's service colour. The attribute alone
+   is enough — no class needed. Specificity beats the nav/footer reset above. */
+[data-service-card="workflow"] {
+  --color-accent:       var(--color-workflow);
+  --color-accent-hover: var(--color-workflow-dark);
+  --color-accent-light: var(--color-workflow-bg);
+}
+[data-service-card="agents"] {
+  --color-accent:       var(--color-agents);
+  --color-accent-hover: var(--color-agents-dark);
+  --color-accent-light: var(--color-agents-bg);
+}
+[data-service-card="data"] {
+  --color-accent:       var(--color-data);
+  --color-accent-hover: var(--color-data-dark);
+  --color-accent-light: var(--color-data-bg);
+}
+[data-service-card="engineering"] {
+  --color-accent:       var(--color-engineering);
+  --color-accent-hover: var(--color-engineering-dark);
+  --color-accent-light: var(--color-engineering-bg);
+}
+
+/* ── Base ── */
+@layer base {
+  html {
+    background-color: var(--color-bg-primary);
+    color: var(--color-text-primary);
+    font-family: var(--font-body);
+    font-size: 16px;
+    line-height: 1.65;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    font-feature-settings: 'liga' 1, 'kern' 1;
+  }
+
+  body {
+    min-height: 100dvh;
+  }
+
+  ::selection {
+    background-color: var(--color-accent);
+    color: #fff;
+  }
+
+  h1, h2, h3 {
+    font-family: var(--font-display);
+    font-weight: 400;
+    color: var(--color-text-primary);
+    letter-spacing: -0.015em;
+    line-height: 1.02;
+  }
+
+  /* The magazine italic: an <em> in a headline takes the page's accent. */
+  h1 em, h2 em, h3 em {
+    color: var(--color-accent);
+  }
+
+  code, kbd, pre {
+    font-family: var(--font-mono);
+  }
+
+  h4 {
+    font-family: var(--font-body);
+    font-weight: 500;
+    font-size: 0.8125rem;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--color-text-tertiary);
+  }
+
+  a {
+    color: var(--color-accent);
+    text-decoration: none;
+    transition: color var(--duration-fast) var(--ease-default);
+  }
+
+  a:hover {
+    color: var(--color-accent-hover);
+  }
+
+  /* Ensure links in body text are distinguishable */
+  p a, li a, span a, td a {
+    text-decoration: underline;
+    text-decoration-color: color-mix(in srgb, var(--color-accent) 30%, transparent);
+    text-underline-offset: 3px;
+  }
+
+  p a:hover, li a:hover, span a:hover, td a:hover {
+    text-decoration-color: var(--color-accent);
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--color-accent);
+    outline-offset: 3px;
+    border-radius: 2px;
+  }
+
+  /* Subtle noise texture */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 9999;
+    opacity: 0.018;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='256' height='256' filter='url(%23n)' opacity='1'/%3E%3C/svg%3E");
+  }
+}
+
+/* ── Prose (rich text) ── */
+.prose-custom {
+  color: var(--color-text-secondary);
+  font-size: 0.9375rem;
+  line-height: 1.8;
+}
+
+.prose-custom h2 {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 1.5rem;
+  color: var(--color-text-primary);
+  margin-top: 2.5rem;
+  margin-bottom: 0.75rem;
+  letter-spacing: -0.02em;
+}
+
+.prose-custom h3 {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 1.2rem;
+  color: var(--color-text-primary);
+  margin-top: 2rem;
+  margin-bottom: 0.5rem;
+}
+
+.prose-custom p { margin-bottom: 1.25rem; }
+.prose-custom ul, .prose-custom ol { margin-bottom: 1.25rem; padding-left: 1.25rem; }
+.prose-custom li { margin-bottom: 0.5rem; }
+.prose-custom li::marker { color: var(--color-accent); }
+
+.prose-custom blockquote {
+  border-left: 2px solid var(--color-accent);
+  padding-left: 1.25rem;
+  color: var(--color-text-secondary);
+  font-style: italic;
+  margin: 1.5rem 0;
+}
+
+.prose-custom code {
+  background: var(--color-bg-muted);
+  padding: 0.15em 0.4em;
+  border-radius: 2px;
+  font-size: 0.875em;
+}
+
+.prose-custom pre {
+  background: var(--color-bg-dark);
+  color: #F0EDE8;
+  padding: 1.5rem;
+  border-radius: 3px;
+  overflow-x: auto;
+  margin: 1.5rem 0;
+}
+
+.prose-custom pre code { background: none; padding: 0; color: inherit; }
+
+.prose-custom a {
+  color: var(--color-accent);
+  text-decoration: underline;
+  text-decoration-color: color-mix(in srgb, var(--color-accent) 30%, transparent);
+  text-underline-offset: 3px;
+  transition: text-decoration-color var(--duration-fast);
+}
+
+.prose-custom a:hover { text-decoration-color: var(--color-accent); }
+.prose-custom strong { color: var(--color-text-primary); font-weight: 500; }
+
+.prose-custom hr {
+  border: none;
+  height: 1px;
+  background: var(--color-border);
+  margin: 2.5rem 0;
+}
+
+.prose-custom .prose-table-wrap {
+  margin: 2rem 0;
+  overflow-x: auto;
+}
+
+.prose-custom table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.95em;
+  line-height: 1.5;
+}
+
+.prose-custom thead th,
+.prose-custom tr:first-child th {
+  text-align: left;
+  font-weight: 500;
+  color: var(--color-text-primary);
+  border-bottom: 1px solid var(--color-border);
+  padding: 0.75rem 1rem 0.75rem 0;
+  font-size: 0.85em;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+.prose-custom td {
+  padding: 0.85rem 1rem 0.85rem 0;
+  border-bottom: 1px solid color-mix(in srgb, var(--color-border) 60%, transparent);
+  vertical-align: top;
+}
+
+.prose-custom tr:last-child td { border-bottom: none; }
+
+.prose-custom table p { margin: 0; }
+
+/* ── Marquee ── */
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+
+.marquee-track {
+  animation: marquee 40s linear infinite;
+}
+
+.marquee-track:hover { animation-play-state: paused; }
+
+@media (prefers-reduced-motion: reduce) {
+  .marquee-track { animation: none; }
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* ── Skip link ── */
+.skip-to-content {
+  position: fixed;
+  top: -100%;
+  left: 1rem;
+  z-index: 100;
+  padding: 0.5rem 1rem;
+  background: var(--color-accent);
+  color: white;
+  font-size: 0.875rem;
+  border-radius: 3px;
+  transition: top var(--duration-default);
+}
+
+.skip-to-content:focus { top: 1rem; }
+
+/* ── Animations ── */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(12px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.animate-in { animation: fadeUp 0.6s var(--ease-out) both; }
+.animate-delay-1 { animation-delay: 80ms; }
+.animate-delay-2 { animation-delay: 160ms; }
+.animate-delay-3 { animation-delay: 240ms; }
+.animate-delay-4 { animation-delay: 320ms; }
+.animate-delay-5 { animation-delay: 400ms; }
+
+/* ── Nav link underline ── */
+.nav-link {
+  position: relative;
+}
+
+.nav-link::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 0;
+  height: 1.5px;
+  background: var(--color-accent);
+  transition: width var(--duration-default) var(--ease-out);
+}
+
+.nav-link:hover::after,
+.nav-link.active::after {
+  width: 100%;
+}
+
+/* ── Card hover ── */
+.card-hover {
+  transition: transform var(--duration-default) var(--ease-out),
+              box-shadow var(--duration-default) var(--ease-out),
+              border-color var(--duration-default);
+}
+
+.card-hover:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-elevated);
+  border-color: var(--color-border-hover);
+}
+
+
+/* ═══════════════════════════════════════════════
+   Component styles (were scoped in Astro components)
+   ═══════════════════════════════════════════════ */
+
+/* ── CookieBanner.astro ── */
+.cookie-banner {
+    position: fixed;
+    bottom: 1rem;
+    left: 1rem;
+    right: 1rem;
+    z-index: 60;
+    border: 1px solid var(--color-border);
+    border-radius: 3px;
+    background: var(--color-bg-surface);
+    box-shadow: 0 8px 30px rgba(26, 23, 21, 0.12);
+    padding: 1rem 1.25rem;
+    max-width: 720px;
+    margin: 0 auto;
+  }
+
+  .cookie-banner-inner {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  @media (min-width: 720px) {
+    .cookie-banner { padding: 1.25rem 1.5rem; }
+    .cookie-banner-inner {
+      flex-direction: row;
+      align-items: center;
+      gap: 1.5rem;
+    }
+  }
+
+  .cookie-banner-text {
+    flex: 1;
+    margin: 0;
+    font-family: var(--font-body);
+    font-size: 13px;
+    line-height: 1.6;
+    color: var(--color-text-secondary);
+  }
+
+  .cookie-banner-link {
+    color: var(--color-accent);
+    text-decoration: underline;
+    text-underline-offset: 2px;
+  }
+  .cookie-banner-link:hover { color: var(--color-accent-hover); }
+
+  .cookie-banner-actions {
+    display: flex;
+    gap: 0.5rem;
+    flex-shrink: 0;
+  }
+
+  .cookie-btn {
+    padding: 0.625rem 1.25rem;
+    border-radius: 3px;
+    font-family: var(--font-body);
+    font-size: 12px;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    cursor: pointer;
+    transition: all 0.15s;
+    border: 1px solid;
+    flex: 1;
+  }
+
+  @media (min-width: 720px) {
+    .cookie-btn { flex: initial; min-width: 110px; }
+  }
+
+  .cookie-btn-primary {
+    background: var(--color-accent);
+    border-color: var(--color-accent);
+    color: #fff;
+  }
+  .cookie-btn-primary:hover {
+    background: var(--color-accent-hover);
+    border-color: var(--color-accent-hover);
+  }
+
+  .cookie-btn-secondary {
+    background: transparent;
+    border-color: var(--color-border);
+    color: var(--color-text-secondary);
+  }
+  .cookie-btn-secondary:hover {
+    border-color: var(--color-border-hover);
+    color: var(--color-text-primary);
+  }
+
+  .cookie-banner.hidden { display: none; }
+
+/* ── blocks/Columns.astro ── */
+/* Tinted cards get a top accent stripe in their service colour, on top of
+     the regular hover lift. Untinted cards keep the existing minimal hover. */
+  .columns-card {
+    padding-top: 1.5rem;
+    border-top: 1px solid transparent;
+  }
+  .columns-card.service-tinted {
+    border-top: 2px solid var(--color-accent);
+  }
+  .columns-card-link {
+    transition: transform 0.18s ease, border-color 0.18s ease;
+  }
+  .columns-card-link:hover {
+    transform: translateY(-2px);
+  }
+  .columns-card-link:hover h3 {
+    color: var(--color-accent);
+  }
+
+/* ── blocks/ContactForm.astro ── */
+.cms-form-container {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 0 1.25rem;
+    box-sizing: border-box;
+  }
+
+  @media (min-width: 768px) {
+    .cms-form-container {
+      padding: 0 2rem;
+    }
+  }
+
+  .cms-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+    width: 100%;
+  }
+
+  .cms-form-group {
+    width: 100%;
+  }
+
+  .cms-form-label {
+    display: block;
+    margin-bottom: 0.4rem;
+    font-family: var(--font-body);
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--color-text-primary);
+  }
+
+  .cms-form-required {
+    color: var(--color-destructive);
+  }
+
+  .cms-form-input {
+    display: block;
+    width: 100%;
+    box-sizing: border-box;
+    padding: 0.8rem 0.95rem;
+    border: 1px solid var(--color-border);
+    border-radius: 8px;
+    background-color: var(--color-bg-surface);
+    font-family: var(--font-body);
+    font-size: 16px;
+    color: var(--color-text-primary);
+    transition: border-color 0.2s;
+    outline: none;
+    -webkit-appearance: none;
+    appearance: none;
+  }
+
+  .cms-form-input::placeholder {
+    color: var(--color-text-tertiary);
+  }
+
+  .cms-form-input:hover {
+    border-color: var(--color-border-hover);
+  }
+
+  .cms-form-input:focus {
+    border-color: var(--color-accent);
+    box-shadow: 0 0 0 3px color-mix(in srgb, var(--color-accent) 25%, transparent);
+  }
+
+  textarea.cms-form-input {
+    resize: vertical;
+  }
+
+  .cms-form-radio-group {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+
+  .cms-form-radio-label {
+    cursor: pointer;
+  }
+
+  .cms-form-radio-pill {
+    display: inline-block;
+    padding: 0.625rem 1rem;
+    border: 1px solid var(--color-border);
+    border-radius: 3px;
+    background-color: var(--color-bg-surface);
+    font-size: 0.875rem;
+    color: var(--color-text-secondary);
+    transition: all 0.2s;
+  }
+
+  .cms-form-radio-pill:hover {
+    border-color: var(--color-border-hover);
+  }
+
+  .peer:checked + .cms-form-radio-pill {
+    border-color: var(--color-accent);
+    background-color: var(--color-bg-muted);
+    color: var(--color-text-primary);
+  }
+
+  .cms-form-checkbox {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.75rem;
+    cursor: pointer;
+  }
+
+  .cms-form-checkbox input {
+    margin-top: 0.25rem;
+    width: 1rem;
+    height: 1rem;
+  }
+
+  .cms-form-checkbox span {
+    font-family: var(--font-body);
+    font-size: 15px;
+    color: var(--color-text-secondary);
+  }
+
+  .cms-form-error {
+    display: none;
+    margin-top: 0.25rem;
+    font-size: 0.875rem;
+    color: var(--color-destructive);
+  }
+
+  .cms-form-submit {
+    display: inline-block;
+    padding: 0.85rem 1.6rem;
+    border: 0;
+    border-radius: 9999px;
+    background-color: var(--color-text-primary);
+    font-family: var(--font-body);
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--color-bg-primary);
+    cursor: pointer;
+    transition: opacity 0.2s;
+  }
+
+  .cms-form-submit:hover {
+    opacity: 0.85;
+  }
+
+  .cms-form-submit:disabled {
+    opacity: 0.5;
+    transform: none;
+    cursor: default;
+  }
+
+  .cms-form-footer {
+    margin-top: 1rem;
+    font-size: 0.875rem;
+    color: var(--color-text-tertiary);
+  }
+
+  .cms-form-footer a {
+    color: var(--color-text-secondary);
+    text-decoration: underline;
+  }
+
+  .cms-form-footer a:hover {
+    color: var(--color-accent);
+  }
+
+  .cms-form-message {
+    border-radius: 10px;
+    padding: 1.5rem;
+    font-size: 1rem;
+    color: var(--color-text-primary);
+  }
+
+  .cms-form-message--error {
+    border: 1px solid var(--color-destructive);
+    background-color: var(--color-accent-light);
+  }
+
+  .cms-form-message--error a {
+    color: var(--color-accent);
+    text-decoration: underline;
+  }
+
+  .cms-form-message--success {
+    border: 1px solid var(--color-accent);
+    background-color: var(--color-bg-surface);
+  }
+
+/* ── `hidden` that always wins ──
+   Tailwind v4 puts utilities in a cascade layer, and any unlayered rule beats a
+   layered one whatever the order. So a component class that sets display
+   (`.audit-primary-btn { display: inline-flex }` in a page's own <style>)
+   silently overrides `hidden`, and a button meant to appear on the last step
+   shows on the first. The live site carried this same rule in ContactForm's
+   styles; dropping it in the Phase 4 port is what broke /audit. Unlayered and
+   !important, so script-toggled `hidden` means hidden everywhere. */
+.hidden {
+  display: none !important;
+}
+
+/* ...but `hidden md:flex` still means "hidden on small screens". The rule
+   above beat Tailwind's responsive display utilities too, which hid the
+   desktop navigation everywhere. These restore the responsive pairs, at the
+   same strength, for the breakpoints in use. */
+@media (width >= 40rem) {
+  .hidden.sm\:flex { display: flex !important; }
+  .hidden.sm\:block { display: block !important; }
+  .hidden.sm\:grid { display: grid !important; }
+  .hidden.sm\:inline-flex { display: inline-flex !important; }
+  .hidden.sm\:inline { display: inline !important; }
+}
+@media (width >= 48rem) {
+  .hidden.md\:flex { display: flex !important; }
+  .hidden.md\:block { display: block !important; }
+  .hidden.md\:grid { display: grid !important; }
+  .hidden.md\:inline-flex { display: inline-flex !important; }
+  .hidden.md\:inline-block { display: inline-block !important; }
+  .hidden.md\:table-cell { display: table-cell !important; }
+}
+@media (width >= 64rem) {
+  .hidden.lg\:flex { display: flex !important; }
+  .hidden.lg\:block { display: block !important; }
+  .hidden.lg\:grid { display: grid !important; }
+}
+
+/* ── Forms: honeypot, visually hidden rather than display:none ── */
+.hp {
+  position: absolute;
+  left: -9999px;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+}
+
+/* ═══════════════════════════════════════════════
+   Magazine components (ui_revamp_plan.md section 10)
+   ═══════════════════════════════════════════════ */
+
+/* A card that tints in its topic colour on hover. Put data-accent on it. */
+.topic-card {
+  transition: background-color var(--duration-default) var(--ease-default),
+              border-color var(--duration-default) var(--ease-default),
+              transform var(--duration-default) var(--ease-default);
+}
+.topic-card:hover {
+  background-color: var(--color-accent-light);
+  border-color: var(--color-accent);
+  transform: translateY(-2px);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .topic-card, .topic-card:hover { transform: none; }
+}
+
+/* Long-form reading: articles and case studies. Serif headings, a drop cap,
+   pull quotes and code edged in the topic colour. */
+.prose-mag {
+  color: #2B2A27;
+  font-size: 19px;
+  line-height: 1.75;
+}
+.prose-mag > * + * { margin-top: 1.25em; }
+.prose-mag:not(.no-drop-cap) > p:first-of-type::first-letter {
+  float: left;
+  font-family: var(--font-display);
+  font-size: 4.6em;
+  line-height: 0.8;
+  padding: 0.08em 0.12em 0 0;
+  color: var(--color-accent);
+}
+.prose-mag h2, .prose-mag h3, .prose-mag h4 {
+  font-family: var(--font-display);
+  font-weight: 400;
+  color: var(--color-text-primary);
+  letter-spacing: -0.01em;
+  margin-top: 2em;
+}
+.prose-mag h2 { font-size: 2.05em; line-height: 1.08; }
+.prose-mag h3 { font-size: 1.6em; line-height: 1.12; }
+.prose-mag h4 { font-size: 1.3em; line-height: 1.2; text-transform: none; letter-spacing: 0; }
+.prose-mag h2 + *, .prose-mag h3 + *, .prose-mag h4 + * { margin-top: 0.6em; }
+.prose-mag a {
+  color: var(--color-accent);
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 3px;
+}
+.prose-mag a:hover { color: var(--color-text-primary); }
+.prose-mag strong { color: var(--color-text-primary); font-weight: 600; }
+.prose-mag ul, .prose-mag ol { padding-left: 1.3em; }
+.prose-mag ul { list-style: disc; }
+.prose-mag ol { list-style: decimal; }
+.prose-mag li + li { margin-top: 0.4em; }
+.prose-mag li::marker { color: var(--color-accent); }
+.prose-mag blockquote {
+  margin: 1.8em 0;
+  padding: 0.1em 0 0.1em 1em;
+  border-left: 3px solid var(--color-accent);
+  font-family: var(--font-display);
+  font-size: 1.6em;
+  line-height: 1.2;
+  color: var(--color-text-primary);
+}
+.prose-mag blockquote p { margin: 0; }
+.prose-mag code {
+  font-size: 0.82em;
+  background: var(--color-accent-light);
+  color: var(--color-text-primary);
+  padding: 0.12em 0.35em;
+  border-radius: 4px;
+}
+.prose-mag pre {
+  margin: 1.6em 0;
+  padding: 1.1em 1.25em;
+  overflow-x: auto;
+  border-radius: 8px;
+  border-left: 3px solid var(--color-accent);
+  background: var(--color-text-primary);
+  color: #EDE9E1;
+  font-size: 0.74em;
+  line-height: 1.65;
+}
+.prose-mag pre code { background: none; padding: 0; color: inherit; font-size: inherit; }
+.prose-mag img { border-radius: 6px; }
+.prose-mag hr { border: 0; border-top: 4px double var(--color-text-primary); margin: 2.5em 0; }
+.prose-mag table { width: 100%; border-collapse: collapse; font-size: 0.85em; }
+.prose-mag th, .prose-mag td { border-bottom: 1px solid var(--color-border); padding: 0.6em 0.5em; text-align: left; }
+.prose-mag th { font-weight: 600; color: var(--color-text-primary); }
+
+/* Reading progress, in the topic colour (resources/js/site/reading-progress.js). */
+.reading-progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 60;
+  height: 3px;
+  background: transparent;
+  pointer-events: none;
+}
+.reading-progress span {
+  display: block;
+  height: 100%;
+  width: 100%;
+  transform-origin: left;
+  transform: scaleX(var(--progress, 0));
+  background: var(--color-accent);
+}
+
+/* Topic filter chips. Each carries its own data-accent, so hover previews
+   that topic's colour; the pressed one fills with it. */
+.topic-chip {
+  cursor: pointer;
+  padding: 0.55rem 1rem;
+  border-radius: 9999px;
+  border: 1px solid var(--color-border);
+  background: transparent;
+  color: var(--color-text-primary);
+  font: inherit;
+  font-size: 14px;
+  font-weight: 600;
+  transition: background-color var(--duration-fast) var(--ease-default),
+              border-color var(--duration-fast) var(--ease-default),
+              color var(--duration-fast) var(--ease-default);
+}
+.topic-chip:hover {
+  background: var(--color-accent-light);
+  border-color: var(--color-accent);
+  color: var(--color-accent);
+}
+.topic-chip[aria-pressed="true"] {
+  background: var(--color-accent);
+  border-color: var(--color-accent);
+  color: var(--color-bg-primary);
+}
+
+/* The shared public form (partials/form.blade.php), in the magazine style
+   and the page's accent. */
+.form-block h2 {
+  font-size: 40px;
+  line-height: 1.05;
+  margin-bottom: 1.5rem;
+}
+.form-block form { display: grid; gap: 1.1rem; }
+.form-block .field { display: grid; gap: 0.4rem; margin: 0; }
+.form-block label { font-size: 14px; font-weight: 600; color: var(--color-text-primary); }
+.form-block input:not([type="hidden"]),
+.form-block textarea {
+  width: 100%;
+  padding: 0.8rem 0.95rem;
+  font: inherit;
+  font-size: 16px;
+  color: var(--color-text-primary);
+  background: var(--color-bg-surface);
+  border: 1px solid var(--color-border);
+  border-radius: 8px;
+  transition: border-color var(--duration-fast) var(--ease-default), box-shadow var(--duration-fast) var(--ease-default);
+}
+.form-block input:not([type="hidden"]):hover,
+.form-block textarea:hover { border-color: var(--color-border-hover); }
+.form-block input:not([type="hidden"]):focus,
+.form-block textarea:focus {
+  outline: none;
+  border-color: var(--color-accent);
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--color-accent) 25%, transparent);
+}
+.form-block .help { font-size: 13px; color: var(--color-text-secondary); }
+.form-block .error { font-size: 13px; color: var(--color-destructive); }
+.form-block button[type="submit"] {
+  justify-self: start;
+  cursor: pointer;
+  padding: 0.85rem 1.6rem;
+  border: 0;
+  border-radius: 9999px;
+  background: var(--color-text-primary);
+  color: var(--color-bg-primary);
+  font: inherit;
+  font-size: 15px;
+  font-weight: 600;
+  transition: opacity var(--duration-fast) var(--ease-default);
+}
+.form-block button[type="submit"]:hover { opacity: 0.85; }
+.form-block .form-success {
+  padding: 1.25rem 1.4rem;
+  border-radius: 10px;
+  background: var(--color-bg-surface);
+  border: 1px solid var(--color-accent);
+  font-size: 17px;
+}
+
+/* Home page service cells: a wash of the service's colour on hover. */
+.service-cell {
+  transition: background-color var(--duration-default) var(--ease-default);
+}
+.service-cell:hover {
+  background-color: color-mix(in srgb, var(--color-accent-light) 55%, transparent);
+}

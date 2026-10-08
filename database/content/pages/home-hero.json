@@ -1,0 +1,15 @@
+[
+  {
+    "type": "hero",
+    "data": {
+      "label": "Web developer, UK",
+      "heading": "Laravel and WordPress, built *properly*.",
+      "subtext": "I build fast, maintainable websites and web applications, add AI where it earns its keep, and run Kritano, a platform that audits websites against more than 500 rules. So I know what good looks like, and how to get there.",
+      "cta_label": "Start a project",
+      "cta_url": "/contact",
+      "cta_secondary_label": "Free site audit",
+      "cta_secondary_url": "/tools/site-audit",
+      "theme": "light"
+    }
+  }
+]

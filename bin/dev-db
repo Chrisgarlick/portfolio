@@ -1,0 +1,79 @@
+#!/usr/bin/env bash
+#
+# Bring the development database up, from nothing if necessary.
+#
+# Postgres runs in Docker, pinned to 16 to match the droplet rather than
+# whatever the local client happens to be. Docker Desktop restarting, or
+# anything that prunes volumes, takes the container and its data with it, and
+# rebuilding it by hand costs ten minutes of remembering flags. This is
+# idempotent: run it whenever `php artisan migrate` cannot connect.
+#
+# It does not touch portfolio_test beyond creating it. The test suite runs
+# migrations itself.
+
+set -euo pipefail
+
+CONTAINER=portfolio-pg
+VOLUME=portfolio-pg-data
+IMAGE=postgres:16-alpine
+PORT=55432
+
+cd "$(dirname "$0")/.."
+
+if ! docker info >/dev/null 2>&1; then
+    echo "Docker is not running. Start Docker Desktop and try again."
+    exit 1
+fi
+
+if ! docker ps --format '{{.Names}}' | grep -qx "$CONTAINER"; then
+    if docker ps -a --format '{{.Names}}' | grep -qx "$CONTAINER"; then
+        echo "Starting $CONTAINER"
+        docker start "$CONTAINER" >/dev/null
+    else
+        echo "Creating $CONTAINER"
+        docker run -d --name "$CONTAINER" \
+            -e POSTGRES_USER=cms \
+            -e POSTGRES_PASSWORD=secret \
+            -e POSTGRES_DB=portfolio \
+            -p "$PORT:5432" \
+            -v "$VOLUME:/var/lib/postgresql/data" \
+            --restart unless-stopped \
+            "$IMAGE" >/dev/null
+    fi
+fi
+
+printf 'Waiting for Postgres'
+for _ in $(seq 1 60); do
+    if docker exec "$CONTAINER" pg_isready -U cms -d portfolio >/dev/null 2>&1; then
+        echo ' ready'
+        break
+    fi
+    printf '.'
+    sleep 1
+done
+
+# The suite runs against its own database. Creating it here rather than in a
+# test bootstrap keeps the tests from needing permission to create databases.
+docker exec "$CONTAINER" psql -U cms -d postgres \
+    -c "SELECT 1 FROM pg_database WHERE datname = 'portfolio_test'" \
+    | grep -q '1 row' \
+    || docker exec "$CONTAINER" psql -U cms -d postgres -c "CREATE DATABASE portfolio_test OWNER cms" >/dev/null
+
+php artisan migrate --force
+
+# Seeding only when there is nothing to lose. Re-seeding a database somebody
+# has been editing would be a very unwelcome side effect of a script whose
+# name suggests it only starts things.
+COUNT=$(docker exec "$CONTAINER" psql -U cms -d portfolio -t -A -c 'SELECT count(*) FROM entries' 2>/dev/null || echo 0)
+
+if [ "$COUNT" = "0" ]; then
+    echo "Empty database, seeding"
+    # DatabaseSeeder loads the live site's content from its last build
+    # (LiveBuildSeeder) plus the project and service demo entries.
+    php artisan db:seed --force >/dev/null
+    php artisan cms:seo-files >/dev/null
+else
+    echo "$COUNT entries already present, not seeding"
+fi
+
+echo "Ready. Sign in at /admin as test@example.com / password"
