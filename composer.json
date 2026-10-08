@@ -10,7 +10,7 @@
     "license": "MIT",
     "require": {
         "php": "^8.3",
-        "chrisgarlick/cg-cms": "@dev",
+        "chrisgarlick/cg-cms": "dev-main",
         "laravel/framework": "^13.17",
         "laravel/tinker": "^3.0",
         "symfony/yaml": "^8.1"
@@ -93,7 +93,7 @@
     "prefer-stable": true,
     "repositories": [{
         "name": "cg-cms",
-        "type": "path",
-        "url": "../../dev/cg-cms"
+        "type": "vcs",
+        "url": "https://github.com/Chrisgarlick/laravel-cms"
     }]
 }

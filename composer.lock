@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "9d4e30d9865824461485af6520397c74",
+    "content-hash": "896edb37b573cd9f6e3bbb6b68c62592",
     "packages": [
         {
             "name": "brick/math",
@@ -142,10 +142,16 @@
         {
             "name": "chrisgarlick/cg-cms",
             "version": "dev-main",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/Chrisgarlick/laravel-cms.git",
+                "reference": "fa98b9039083d5b29ca2ba105cb90ee8959fe65d"
+            },
             "dist": {
-                "type": "path",
-                "url": "../../dev/cg-cms",
-                "reference": "a81cb450b59fa7386e383e25bedbab99f5a8964c"
+                "type": "zip",
+                "url": "https://api.github.com/repos/Chrisgarlick/laravel-cms/zipball/fa98b9039083d5b29ca2ba105cb90ee8959fe65d",
+                "reference": "fa98b9039083d5b29ca2ba105cb90ee8959fe65d",
+                "shasum": ""
             },
             "require": {
                 "illuminate/contracts": "^12.0|^13.0",
@@ -161,6 +167,7 @@
                 "pestphp/pest-plugin-laravel": "^4.0",
                 "phpstan/phpstan": "^2.0"
             },
+            "default-branch": true,
             "type": "library",
             "extra": {
                 "laravel": {
@@ -200,9 +207,11 @@
                 }
             ],
             "description": "A lightweight, SEO-first CMS for Laravel. Content in jsonb, HTML on disk, nginx does the serving.",
-            "transport-options": {
-                "relative": true
-            }
+            "support": {
+                "source": "https://github.com/Chrisgarlick/laravel-cms/tree/main",
+                "issues": "https://github.com/Chrisgarlick/laravel-cms/issues"
+            },
+            "time": "2026-10-08T15:00:23+00:00"
         },
         {
             "name": "dflydev/dot-access-data",

@@ -1,0 +1,31 @@
+#!/usr/bin/env bash
+#
+# Work on cg-cms and see the change here immediately.
+#
+# composer.json installs cg-cms from GitHub, pinned in composer.lock, which is
+# what releases ship. While editing the package, this swaps
+# vendor/chrisgarlick/cg-cms for a symlink to ~/dev/cg-cms, so the site runs
+# the working copy. `bin/link-cms --unlink` (or any `composer install`) puts
+# the locked GitHub copy back.
+#
+# To ship a package change: commit and push it in ~/dev/cg-cms, then run
+# `composer update chrisgarlick/cg-cms` here and commit composer.lock.
+
+set -euo pipefail
+
+cd "$(dirname "$0")/.."
+VENDOR="vendor/chrisgarlick/cg-cms"
+LOCAL="$(cd ../../dev/cg-cms && pwd)"
+
+if [[ "${1:-}" == "--unlink" ]]; then
+    [[ -L "$VENDOR" ]] && rm "$VENDOR"
+    composer install --no-interaction --quiet
+    echo "cg-cms: back on the locked GitHub copy."
+    exit 0
+fi
+
+rm -rf "$VENDOR"
+ln -s "$LOCAL" "$VENDOR"
+composer dump-autoload --quiet
+php artisan optimize:clear >/dev/null
+echo "cg-cms: $VENDOR -> $LOCAL"

@@ -17,7 +17,6 @@ set -euo pipefail
 
 cd "$(dirname "$0")/.."
 ROOT="$(pwd)"
-PACKAGE="$(cd "$ROOT/../../dev/cg-cms" && pwd)"
 
 ID="$(date -u +%Y%m%d%H%M%S)"
 if git -C "$ROOT" rev-parse --short HEAD >/dev/null 2>&1; then
@@ -29,15 +28,31 @@ STAGE="$(mktemp -d)/release"
 mkdir -p "$OUT" "$STAGE"
 trap 'rm -rf "$(dirname "$STAGE")"' EXIT
 
+# cg-cms installs from GitHub (Chrisgarlick/laravel-cms), pinned to the commit
+# in composer.lock. Say so loudly when that is not the latest pushed commit,
+# or when local changes to the package have not been pushed: the release
+# ships the locked commit, not what is in ~/dev/cg-cms.
+LOCKED="$(php -r '
+    foreach (json_decode(file_get_contents("composer.lock"), true)["packages"] as $p) {
+        if ($p["name"] === "chrisgarlick/cg-cms") { echo $p["source"]["reference"]; }
+    }')"
+REMOTE="$(git ls-remote https://github.com/Chrisgarlick/laravel-cms.git refs/heads/main 2>/dev/null | cut -f1 || true)"
+echo "cg-cms: shipping ${LOCKED:0:7}"
+if [[ -n "$REMOTE" && "$REMOTE" != "$LOCKED" ]]; then
+    echo "  WARNING: GitHub main is ${REMOTE:0:7}. Run 'composer update chrisgarlick/cg-cms' to ship it."
+fi
+LOCAL_CMS="$ROOT/../../dev/cg-cms"
+if [[ -d "$LOCAL_CMS/.git" ]] && [[ -n "$(git -C "$LOCAL_CMS" status --porcelain)" || "$(git -C "$LOCAL_CMS" rev-parse HEAD)" != "$LOCKED" ]]; then
+    echo "  WARNING: ~/dev/cg-cms differs from the locked commit; its changes will not ship."
+fi
+
 if [[ "${1:-}" != "--no-tests" ]]; then
     echo "Running the test suite"
     php artisan test --compact
-    (cd "$PACKAGE" && npm run check --silent)
 fi
 
 echo "Building front-end assets"
 npm run build --silent >/dev/null
-(cd "$PACKAGE" && npm run build --silent >/dev/null)
 
 echo "Staging the application"
 rsync -a --delete \
@@ -48,50 +63,13 @@ rsync -a --delete \
     --exclude='bootstrap/cache/*.php' \
     "$ROOT/" "$STAGE/"
 
-# The package, trimmed to what the server runs. Composer would otherwise copy
-# its node_modules (over 100MB) into vendor/ before anything could remove it.
-PKG_STAGE="$(dirname "$STAGE")/cg-cms"
-rsync -a --exclude='/node_modules' --exclude='/resources/js' --exclude='/scripts' \
-    --exclude='/package.json' --exclude='/package-lock.json' --exclude='/tsconfig.json' \
-    --exclude='/vite.admin.config.ts' --exclude='/.git' --exclude='/vendor' --exclude='/tests' \
-    "$PACKAGE/" "$PKG_STAGE/"
-
-# The package is a path repository relative to this checkout. Point it at the
-# trimmed copy, and mirror it (copy, not symlink) so the tarball carries it.
-php -r '
-    $file = $argv[1];
-    $json = json_decode(file_get_contents($file), true);
-    foreach ($json["repositories"] as &$repo) {
-        if (($repo["name"] ?? "") === "cg-cms") {
-            $repo["url"] = $argv[2];
-            $repo["options"] = ["symlink" => false];
-        }
-    }
-    file_put_contents($file, json_encode($json, JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES)."\n");
-' "$STAGE/composer.json" "$PKG_STAGE"
-
-# The lock file records the same relative path for the package's dist.
-php -r '
-    $file = $argv[1];
-    $lock = json_decode(file_get_contents($file), true);
-    foreach (["packages", "packages-dev"] as $section) {
-        foreach ($lock[$section] ?? [] as $i => $package) {
-            if ($package["name"] === "chrisgarlick/cg-cms") {
-                $lock[$section][$i]["dist"]["url"] = $argv[2];
-                $lock[$section][$i]["transport-options"] = ["symlink" => false, "relative" => false];
-            }
-        }
-    }
-    file_put_contents($file, json_encode($lock, JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES)."\n");
-' "$STAGE/composer.lock" "$PKG_STAGE"
-
 # Laravel's post-install package discovery needs a writable storage skeleton
 # and must not see this machine's cached provider list, which names dev-only
 # packages (Boost, Pail) that a --no-dev install does not have.
 mkdir -p "$STAGE"/storage/{app/private,framework/cache,framework/sessions,framework/views,logs} "$STAGE/bootstrap/cache"
 
 echo "Installing production dependencies"
-(cd "$STAGE" && COMPOSER_MIRROR_PATH_REPOS=1 composer install \
+(cd "$STAGE" && composer install \
     --no-dev --no-interaction --no-progress --prefer-dist \
     --optimize-autoloader --classmap-authoritative >/dev/null)
 
@@ -116,7 +94,7 @@ php -r '
 # The admin bundle, published as the server would, without the server
 # needing to do it.
 mkdir -p "$STAGE/public/vendor/cg-cms"
-cp -R "$PACKAGE/dist/." "$STAGE/public/vendor/cg-cms/"
+cp -R "$STAGE/vendor/chrisgarlick/cg-cms/dist/." "$STAGE/public/vendor/cg-cms/"
 
 # storage/ comes from shared/ on the server; ship it empty.
 rm -rf "$STAGE/storage" && mkdir -p "$STAGE/storage"
