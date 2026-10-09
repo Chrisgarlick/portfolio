@@ -2,8 +2,10 @@
 
 declare(strict_types=1);
 
+use App\Mail\FormSubmissionNotification;
 use Cg\Cms\Models\Entry;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Illuminate\Support\Facades\Mail;
 
 uses(RefreshDatabase::class);
 
@@ -132,6 +134,23 @@ it('answers a form submitted from script with JSON', function (): void {
         'project_type' => 'Laravel',
         'message' => 'Our booking system needs rebuilding before the summer.',
     ])->assertOk()->assertJson(['message' => config('cg-forms.contact.success')]);
+});
+
+it('queues the enquiry email to the contact address instead of sending it in the request', function (): void {
+    Mail::fake();
+    config(['cg-forms.contact.notify' => 'owner@example.com']);
+
+    $this->postJson('/forms/contact', [
+        'name' => 'A visitor',
+        'email' => 'visitor@example.com',
+        'message' => 'Our booking system needs rebuilding before the summer.',
+    ])->assertOk();
+
+    Mail::assertQueued(
+        FormSubmissionNotification::class,
+        fn (FormSubmissionNotification $mail): bool => $mail->hasTo('owner@example.com') && $mail->hasReplyTo('visitor@example.com'),
+    );
+    Mail::assertNothingSent();
 });
 
 it('gives the script field errors it can place, not a redirect', function (): void {

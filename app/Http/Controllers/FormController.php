@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Http\Controllers;
 
+use App\Mail\FormSubmissionNotification;
 use Cg\Cms\Forms\FormGuard;
 use Cg\Cms\Models\FormSubmission;
 use Illuminate\Http\JsonResponse;
@@ -124,21 +125,9 @@ final class FormController extends Controller
             return;
         }
 
-        $lines = ["Form: {$definition['name']}"];
-
-        if ($submission->context !== null) {
-            $lines[] = "Context: {$submission->context}";
-        }
-
-        foreach ($submission->data as $key => $value) {
-            $lines[] = ucfirst(str_replace('_', ' ', $key)).': '.(is_scalar($value) ? $value : json_encode($value));
-        }
-
         // Queued: a visitor should not wait on SMTP, and a mail outage should
         // not lose an enquiry that is already safely in the database.
-        Mail::raw(implode("\n", $lines), function ($message) use ($to, $definition): void {
-            $message->to($to)->subject('New '.mb_strtolower($definition['name']));
-        });
+        Mail::to($to)->queue(new FormSubmissionNotification($submission, $definition));
 
         $submission->update(['notified_at' => now()]);
     }
