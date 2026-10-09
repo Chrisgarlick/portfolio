@@ -26,7 +26,7 @@
             <ol class="m-0 list-none border-t-4 border-double border-text-primary p-0">
                 @foreach ($projects as $index => $project)
                     <li data-accent="{{ $project['accent'] }}" class="border-b border-border">
-                        <a href="{{ $project['url'] }}" class="service-cell group grid gap-6 py-10 text-text-primary no-underline md:grid-cols-[3rem_minmax(0,1.4fr)_minmax(0,1fr)] md:gap-10">
+                        <a href="{{ $project['url'] }}" class="service-cell group grid gap-6 py-10 text-text-primary no-underline md:px-8 md:grid-cols-[3rem_minmax(0,1.4fr)_minmax(0,1fr)] md:gap-10">
                             <span class="font-display text-[28px] leading-none text-text-tertiary tabular-nums transition-colors group-hover:text-accent">{{ str_pad((string) ($index + 1), 2, '0', STR_PAD_LEFT) }}</span>
                             <span class="block">
                                 <span class="mb-5 block h-1 w-10 rounded-full bg-accent transition-all duration-300 group-hover:w-20" aria-hidden="true"></span>

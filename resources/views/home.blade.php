@@ -83,7 +83,7 @@
             </div>
             <div class="grid md:grid-cols-[minmax(0,1.25fr)_minmax(0,1fr)_minmax(0,1fr)]">
                 <a href="{{ $lead['url'] }}" data-accent="{{ $lead['accent'] }}" style="grid-row: span {{ $rows }} / span {{ $rows }};"
-                   class="service-cell group flex flex-col border-b border-border py-10 text-text-primary no-underline md:border-r md:pr-10">
+                   class="service-cell group flex flex-col border-b border-border py-10 text-text-primary no-underline md:border-r md:px-10">
                     <span class="mb-6 block h-1 w-12 rounded-full bg-accent transition-all duration-300 group-hover:w-24" aria-hidden="true"></span>
                     <span class="text-[13px] font-semibold tracking-[0.06em] text-accent uppercase">Where most work starts</span>
                     <span class="mt-3 block font-display text-[48px] leading-[1] md:text-[60px]">{{ $lead['title'] }}</span>
