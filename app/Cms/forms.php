@@ -17,13 +17,16 @@ declare(strict_types=1);
 |
 | Keep these short. Every field is a reason not to send the message.
 |
+| Never read environment variables here: this file is outside config/, and
+| once production caches its config they come back null. Use config().
+|
 */
 
 return [
 
     'enquiry' => [
         'name' => 'Service enquiry',
-        'notify' => env('CONTACT_EMAIL'),
+        'notify' => config('cg-cms.site.contact_email'),
         'success' => 'Thanks. I read every message and will reply within a day or two.',
         'fields' => [
             'name' => [
@@ -62,7 +65,7 @@ return [
      */
     'contact' => [
         'name' => 'Contact',
-        'notify' => env('CONTACT_EMAIL'),
+        'notify' => config('cg-cms.site.contact_email'),
         'success' => 'Thanks. I read every message myself and will reply as soon as I can.',
         'fields' => [
             'name' => [
