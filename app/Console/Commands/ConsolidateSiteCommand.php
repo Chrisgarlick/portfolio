@@ -21,7 +21,7 @@ use Throwable;
  * unpublishing done by hand beforehand would be wiped. This runs straight
  * after the import instead, and running it again changes nothing.
  *
- * It does five things:
+ * It does six things:
  *   1. Checks every redirect target answers 200 (the new service pages and
  *      the new law firm article must be published first). Stops if not.
  *   2. Adds the redirects, forced, so they win over the old pages and
@@ -33,6 +33,9 @@ use Throwable;
  *   5. Moves each download onto its article (RESOURCE_HOMES) and redirects
  *      the resource page there. A pair whose article is not published yet
  *      is skipped with a warning, so its resource page keeps working.
+ *   6. Flattens redirect chains. The live site's own redirects (imported)
+ *      can point at a page this consolidation now redirects, so /start went
+ *      /audit then /tools/site-audit. Each now goes straight to the end.
  *
  * Resources stay published: the gate on the article posts the resource's
  * slug, and /resources/{slug}/thanks must keep working for links in emails
@@ -189,6 +192,7 @@ final class ConsolidateSiteCommand extends Command
         }
 
         $this->moveDownloads($dry);
+        $this->flattenChains($dry);
 
         if (! $dry) {
             // Cached copies of the old pages would be served by nginx before
@@ -199,6 +203,43 @@ final class ConsolidateSiteCommand extends Command
         }
 
         return self::SUCCESS;
+    }
+
+    /**
+     * Point every exact redirect straight at its final destination.
+     *
+     * Follows each target through the other exact redirects, stopping at a
+     * loop or after ten hops, and repoints the first redirect at the end.
+     */
+    private function flattenChains(bool $dry): void
+    {
+        $targets = Redirect::query()->where('match_type', 'exact')->pluck('to', 'from')->all();
+        $flattened = 0;
+
+        foreach (Redirect::query()->where('match_type', 'exact')->get() as $redirect) {
+            $final = $redirect->to;
+            $seen = [$redirect->from => true];
+
+            for ($hop = 0; $hop < 10 && isset($targets[$final]) && ! isset($seen[$final]); $hop++) {
+                $seen[$final] = true;
+                $final = $targets[$final];
+            }
+
+            if ($final === $redirect->to || $final === $redirect->from) {
+                continue;
+            }
+
+            $this->components->twoColumnDetail(($dry ? 'Would flatten ' : 'Flattening ').$redirect->from, $redirect->to.' → '.$final);
+            $flattened++;
+
+            if (! $dry) {
+                $redirect->update(['to' => $final]);
+            }
+        }
+
+        if ($flattened === 0) {
+            $this->components->info('No redirect chains.');
+        }
     }
 
     /**

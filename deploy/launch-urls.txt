@@ -1,0 +1,99 @@
+# Every URL the live site published (deploy/live-urls.txt), with what it should do once the
+# launch is complete: after site:import-legacy, site:install-content --publish and
+# site:consolidate (plan step 6b). Intended redirects are listed with their final target;
+# site:consolidate flattens chains, so none of these should take two hops.
+#
+#   php artisan site:url-parity --file=deploy/launch-urls.txt
+#
+# Format: <path> <expected status> [<expected Location>]
+#
+/ 200
+/about 200
+/article 200
+/article/5-ai-tools-tradespeople-2026 200
+/article/51-of-code-on-github-is-ai-generated-that-should-worry-you 200
+/article/agency-workflows-automate-first 200
+/article/ai-adoption-disappointment-why-companies-fail 200
+/article/ai-client-onboarding-accountancy-uk 200
+/article/ai-consultant-vs-agency-uk 200
+/article/ai-data-extraction-uk-guide 200
+/article/ai-implementation-cost-uk 200
+/article/ai-proposal-pack-freelancers 200
+/article/ai-reporting-automation-agencies 200
+/article/ai-vs-hiring-accountancy 200
+/article/automate-client-intake-without-custom-software 200
+/article/how-to-choose-an-llm-for-business-use-uk-2026 200
+/article/replacing-manual-data-entry-with-ai-agents 200
+/article/solo-operator-ai-stack 200
+/article/the-ai-implementation-playbook-for-service-businesses 200
+/article/what-ai-implementation-means-law-firm 200
+/article/what-is-rag-retrieval-augmented-generation-explained-uk-edition 200
+/article/why-79-of-enterprises-are-failing-at-ai-adoption 200
+/article/zapier-vs-custom-ai 200
+/audit 301 /tools/site-audit
+/contact 200
+/data/delete 403
+/diagnostic 301 /contact
+/for 301 /article
+/for/agency-starters 301 /article
+/for/consultants 301 /article
+/for/freelancers 301 /article/ai-proposal-pack-freelancers
+/for/solo-operators 301 /article/solo-operator-ai-stack
+/for/tradespeople 301 /article/5-ai-tools-tradespeople-2026
+/industries 301 /services/ai
+/industries/ai-for-accountancy-firms 301 /article/ai-client-onboarding-accountancy-uk
+/industries/ai-for-agencies 301 /article/agency-workflows-automate-first
+/industries/ai-for-law-firms 301 /article/ai-client-intake-law-firms
+/privacy 200
+/resources 301 /article
+/resources/5-ai-tools-tradespeople-2026 301 /article/5-ai-tools-tradespeople-2026
+/resources/ai-stack-under-two-hours-a-day 301 /article/solo-operator-ai-stack
+/resources/freelancers-ai-proposal-pack 301 /article/ai-proposal-pack-freelancers
+/resources/llm-cheat-sheet-2026 301 /article/how-to-choose-an-llm-for-business-use-uk-2026
+/resources/one-framework-six-months-of-content 301 /article
+/resources/prompt-library-for-professional-services 301 /article/the-ai-implementation-playbook-for-service-businesses
+/resources/zero-team-agency-playbook 301 /article/agency-workflows-automate-first
+/services 200
+/services/ai-agents 301 /services/ai
+/services/ai-engineering 301 /services/ai
+/services/ai-implementation 301 /services/ai
+/services/data-extraction 301 /services/ai
+/services/workflow-automation 301 /services/ai
+/studio/audits 302 /admin/signin
+/terms 200
+/tools 301 /tools/site-audit
+/tools/site-audit 200
+/work 200
+/work/ai-integrated-delivery-how-one-operator-delivers-like-a-team 301 /about
+/work/kritano-cms 301 /work/kritano-website-audits
+/apply 301 /contact
+/blog 301 /article
+/blog/how-to-optimise-your-page-load-speed 301 /article
+/blog/ui-ux-for-conversions 301 /article
+/blog/website-builders-vs-custom-code-which-is-right-for-you 301 /article
+/blog/what-is-the-best-cms-for-websites 301 /article
+/homepage 301 /
+/privacy-policy 301 /privacy
+/services/ai-for-accountancy-firms 301 /article/ai-client-onboarding-accountancy-uk
+/services/ai-for-agencies 301 /article/agency-workflows-automate-first
+/services/ai-for-law-firms 301 /article/ai-client-intake-law-firms
+/start 301 /tools/site-audit
+/terms-and-conditions 301 /terms
+/work/agma 301 /work
+/work/coffee-design 301 /work
+/work/hancock-gallery 301 /work
+/work/intelygenz 301 /work
+/work/technology-in-motion 301 /work
+/blog/what-ai-implementation-means-law-firm 301 /article/what-ai-implementation-means-law-firm
+/media/ed2cb887-b648-45a4-aab7-827f5ac94acf.webp 301 /media/ed2cb887-b648-45a4-aab7-827f5ac94acf/full.webp
+#
+# New pages the launch adds
+/services/laravel 200
+/services/wordpress 200
+/services/ai 200
+/services/software-development 200
+/services/website-building 200
+/work/kritano-website-audits 200
+/work/cg-cms 200
+/work/chrisgarlick-com 200
+/article/ai-client-intake-law-firms 200

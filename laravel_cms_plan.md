@@ -2670,7 +2670,7 @@ config serves both. CLS is 0 and blocking time 0 ms on both sides. The one SEO f
    then `site:url-parity` in-process on the box.
 7. `systemctl enable --now site-queue site-scheduler.timer`; restart Postgres for the tuning.
 8. Switch: `ln -sfn ../sites-available/chrisgarlick.com.laravel /etc/nginx/sites-enabled/chrisgarlick.com`,
-   `nginx -t && systemctl reload nginx`. Then `site:url-parity --base=https://chrisgarlick.com`.
+   `nginx -t && systemctl reload nginx`. Then `site:url-parity --file=deploy/launch-urls.txt --base=https://chrisgarlick.com`.
 9. Resubmit `sitemap.xml` in Search Console; watch coverage and the 404 log daily for two weeks.
 10. After the fortnight: rename `cms` to `cms_legacy`, then remove the old CMS
    (`/var/www/chrisgarlick`, its nginx file `chrisgarlick.com.kritano`), Bun and Redis.
@@ -2694,8 +2694,10 @@ switch (8). The import brings the live content; these put the new site on top of
    refuses until every redirect target answers, adds the forced redirects, unpublishes the
    retired pages, files every article with no service under AI, empties the page cache and
    rebuilds the sitemap. Case studies and proof metrics are no longer imported at step 6.
-5. Add the new URLs to `deploy/live-urls.txt` expectations (the retired ones now 301/302) and run
-   `site:url-parity` as in step 8.
+5. `php artisan site:url-parity --file=deploy/launch-urls.txt`. That list holds what every live
+   URL should do after launch (intended redirects at their final target, chains flattened by
+   `site:consolidate`) plus the new pages. `deploy/live-urls.txt` stays the before-picture for
+   step 6.
 
 ### Open, honest
 
