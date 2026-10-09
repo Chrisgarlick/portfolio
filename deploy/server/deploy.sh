@@ -40,7 +40,9 @@ if [[ ! -f vendor/autoload.php ]]; then
     echo "First deploy: installing dependencies"
     as_web composer install --no-dev --no-interaction --no-progress --prefer-dist --optimize-autoloader --quiet
 fi
-if ! grep -qE '^APP_KEY=.+' .env; then
+# Only a real key counts: a blank value, or one with just a comment after
+# it, still needs generating.
+if ! grep -qE '^APP_KEY=base64:' .env; then
     artisan key:generate --force
 fi
 
