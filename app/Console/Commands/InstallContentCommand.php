@@ -41,6 +41,7 @@ final class InstallContentCommand extends Command
         'services' => 'service',
         'work' => 'project',
         'articles' => 'article',
+        'tools' => 'tool',
         'pages' => 'page',
     ];
 

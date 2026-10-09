@@ -19,7 +19,7 @@
         :json-ld="[[
             '@type' => 'CollectionPage',
             'name' => 'Articles',
-            'description' => 'Practical articles on AI implementation for professional services. What works, what doesn\'t, and what it actually costs.',
+            'description' => 'Articles on Laravel, WordPress, AI and performance, written from the work itself. What works, what doesn\'t, and why.',
             'url' => 'https://chrisgarlick.com/article',
         ]]"
     />

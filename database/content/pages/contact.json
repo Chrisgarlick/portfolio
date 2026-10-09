@@ -1,88 +1,90 @@
 [
-  {
-    "type": "hero",
-    "data": {
-      "label": "Contact",
-      "heading": "Tell me what you are *building*.",
-      "subtext": "A new application, a WordPress site that needs work, or an idea you want to test. A few lines is plenty to start with, and I read every message myself.",
-      "theme": "light"
-    }
-  },
-  {
-    "type": "contact-form",
-    "data": {
-      "form_slug": "contact",
-      "theme": "light"
-    }
-  },
-  {
-    "type": "text-section",
-    "data": {
-      "label": "Not ready to talk?",
-      "heading": "Start with the free site audit.",
-      "theme": "light",
-      "body": {
-        "type": "doc",
-        "content": [
-          {
-            "type": "paragraph",
-            "content": [
-              {
-                "type": "text",
-                "text": "The "
-              },
-              {
-                "type": "text",
-                "text": "free site audit",
-                "marks": [
-                  {
-                    "type": "link",
-                    "attrs": {
-                      "href": "/tools/site-audit"
+    {
+        "type": "hero",
+        "data": {
+            "label": "Contact",
+            "heading": "Tell me what you're *building*.",
+            "subtext": "A new web app, a WordPress site that needs rescuing, or an idea you want to test. A few lines is plenty to start with, and I read every message myself.",
+            "theme": "light"
+        }
+    },
+    {
+        "type": "contact-form",
+        "data": {
+            "form_slug": "contact",
+            "label": "Message",
+            "heading": "Start with a few lines",
+            "theme": "light"
+        }
+    },
+    {
+        "type": "text-section",
+        "data": {
+            "label": "Not ready to talk?",
+            "heading": "Try the free site audit.",
+            "theme": "light",
+            "body": {
+                "type": "doc",
+                "content": [
+                    {
+                        "type": "paragraph",
+                        "content": [
+                            {
+                                "type": "text",
+                                "text": "The "
+                            },
+                            {
+                                "type": "text",
+                                "text": "free website audit",
+                                "marks": [
+                                    {
+                                        "type": "link",
+                                        "attrs": {
+                                            "href": "/tools/site-audit"
+                                        }
+                                    }
+                                ]
+                            },
+                            {
+                                "type": "text",
+                                "text": " checks your site's SEO, accessibility and performance in about thirty seconds, and gives us something concrete to talk about. Or have a look at "
+                            },
+                            {
+                                "type": "text",
+                                "text": "the work",
+                                "marks": [
+                                    {
+                                        "type": "link",
+                                        "attrs": {
+                                            "href": "/work"
+                                        }
+                                    }
+                                ]
+                            },
+                            {
+                                "type": "text",
+                                "text": " and "
+                            },
+                            {
+                                "type": "text",
+                                "text": "the articles",
+                                "marks": [
+                                    {
+                                        "type": "link",
+                                        "attrs": {
+                                            "href": "/article"
+                                        }
+                                    }
+                                ]
+                            },
+                            {
+                                "type": "text",
+                                "text": " first, and get in touch when you're ready."
+                            }
+                        ]
                     }
-                  }
                 ]
-              },
-              {
-                "type": "text",
-                "text": " checks your site for speed, SEO and security in a couple of minutes, and gives you something concrete to talk about. Or read "
-              },
-              {
-                "type": "text",
-                "text": "the articles",
-                "marks": [
-                  {
-                    "type": "link",
-                    "attrs": {
-                      "href": "/article"
-                    }
-                  }
-                ]
-              },
-              {
-                "type": "text",
-                "text": " and "
-              },
-              {
-                "type": "text",
-                "text": "the work",
-                "marks": [
-                  {
-                    "type": "link",
-                    "attrs": {
-                      "href": "/work"
-                    }
-                  }
-                ]
-              },
-              {
-                "type": "text",
-                "text": " first, and get in touch when you are ready."
-              }
-            ]
-          }
-        ]
-      }
+            }
+        }
     }
-  }
 ]

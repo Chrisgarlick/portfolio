@@ -35,15 +35,15 @@
     <!-- Segmentation field — optional, used to route post-audit follow-up to the right case study / service page -->
     <div class="audit-segmentation">
       <label for="audit-task" class="audit-segmentation-label">
-        What manual task do you wish you never had to do again?
-        <span class="audit-segmentation-optional">(optional, this is what we'll talk through if you book a call)</span>
+        What would you most like to improve about the site?
+        <span class="audit-segmentation-optional">(optional)</span>
       </label>
       <input
         type="text"
         id="audit-task"
         name="task"
         maxlength="200"
-        placeholder="e.g. client intake, monthly reports, contract review…"
+        placeholder="e.g. speed, enquiries, being able to edit it yourself"
         class="audit-input audit-segmentation-input"
         autocomplete="off"
       />
@@ -96,7 +96,7 @@
       <div class="audit-cta-inner">
         <h4 class="audit-cta-heading">Want the full breakdown?</h4>
         <p class="audit-cta-body">
-          I'll run a deep multi-page audit on your site and record a personalised walkthrough of the findings. No pitch, just value.
+          I'll run a deeper, multi-page audit on your site and walk you through what I would fix first. No pitch.
         </p>
         <a href="/contact" class="audit-cta-button" id="audit-cta-link">
           Get your free walkthrough

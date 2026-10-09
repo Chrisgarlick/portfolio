@@ -41,10 +41,10 @@
                 <p class="mb-4 text-[13px] font-semibold tracking-[0.08em] uppercase">In this issue</p>
                 @php
                     $issue = array_values(array_filter([
-                        ['Services', '/services', count($services).' ways I can help'],
-                        $kritano ? ['Kritano', $kritano, 'The auditing platform I built'] : null,
-                        ['Articles', '/article', 'On Laravel, WordPress and AI'],
-                        ['Free site audit', '/tools/site-audit', 'See how your site scores'],
+                        ['Services', '/services', 'What I build, and how'],
+                        ['The work', '/work', 'Products and sites I have built'],
+                        $kritano ? ['Kritano', $kritano, 'My website auditing platform'] : null,
+                        ['Free site audit', '/tools/site-audit', 'How does your site score?'],
                     ]));
                 @endphp
                 <ol class="m-0 list-none p-0">
@@ -85,7 +85,7 @@
                 <a href="{{ $lead['url'] }}" data-accent="{{ $lead['accent'] }}" style="grid-row: span {{ $rows }} / span {{ $rows }};"
                    class="service-cell group flex flex-col border-b border-border py-10 text-text-primary no-underline md:border-r md:pr-10">
                     <span class="mb-6 block h-1 w-12 rounded-full bg-accent transition-all duration-300 group-hover:w-24" aria-hidden="true"></span>
-                    <span class="text-[13px] font-semibold tracking-[0.06em] text-accent uppercase">Lead service</span>
+                    <span class="text-[13px] font-semibold tracking-[0.06em] text-accent uppercase">Where most work starts</span>
                     <span class="mt-3 block font-display text-[48px] leading-[1] md:text-[60px]">{{ $lead['title'] }}</span>
                     @if ($lead['summary'] !== '')
                         <span class="mt-5 block max-w-[440px] text-[18px] leading-[1.6] text-text-secondary">{{ $lead['summary'] }}</span>
@@ -120,7 +120,7 @@
         <section data-accent="{{ $feature['accent'] }}" class="bg-accent text-bg-primary">
             <div class="mx-auto grid max-w-[1200px] gap-12 px-6 py-20 md:grid-cols-[minmax(0,1.3fr)_minmax(0,1fr)] md:items-center">
                 <div>
-                    <p class="mb-4 text-[13px] font-semibold tracking-[0.08em] uppercase opacity-80">Feature</p>
+                    <p class="mb-4 text-[13px] font-semibold tracking-[0.08em] uppercase opacity-80">Featured work</p>
                     <h2 class="text-[48px] leading-[1] text-bg-primary md:text-[64px]">{{ $feature['title'] }}</h2>
                     @if ($feature['summary'] !== '')
                         <p class="mt-5 max-w-[560px] text-[18px] leading-[1.6] opacity-90">{{ $feature['summary'] }}</p>
@@ -138,7 +138,7 @@
         @if (count($projects) > 1)
             <section class="mx-auto max-w-[1200px] px-6 py-20">
                 <div class="mb-8 flex items-baseline justify-between gap-4 border-b border-text-primary pb-3">
-                    <h2 class="text-[44px]">Also built by me</h2>
+                    <h2 class="text-[44px]">More of my work</h2>
                 </div>
                 <div class="grid gap-10 md:grid-cols-2">
                     @foreach (array_slice($projects, 1) as $project)
@@ -161,7 +161,7 @@
     @if ($articles !== [])
         <section class="mx-auto max-w-[1200px] px-6 pb-24">
             <div class="mb-8 flex items-baseline justify-between gap-4 border-b border-text-primary pb-3">
-                <h2 class="text-[44px]">Latest articles</h2>
+                <h2 class="text-[44px]">From the articles</h2>
                 <a href="/article" class="text-[15px] font-semibold text-text-primary no-underline hover:text-accent">All articles &rarr;</a>
             </div>
             <div class="grid gap-6 md:grid-cols-3">
@@ -184,5 +184,5 @@
         </section>
     @endif
 
-    <x-site.cta-section heading="Have something in mind?" body="Tell me what you are trying to build or fix, and we can work out the best way to do it." />
+    <x-site.cta-section heading="Got something to build, or fix?" body="Tell me where it is now and where you want it to be. I will tell you honestly whether I am the right person for it." />
 @endsection

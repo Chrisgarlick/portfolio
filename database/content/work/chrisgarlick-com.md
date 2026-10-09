@@ -35,4 +35,4 @@ Pages are rendered once and served from disk, so they load faster than the stati
 
 ## What changed behind the scenes
 
-Lead capture, the free [site audit](/tools/site-audit), GDPR export and deletion, email tracking and the nightly SEO audit now all live in one application, covered by more than 480 automated tests, deployed to a 1GB server.
+Lead capture, the free [site audit](/tools/site-audit), GDPR export and deletion, email tracking and the nightly SEO audit now all live in one application, covered by more than 500 automated tests, deployed to a 1GB server.

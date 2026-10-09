@@ -4,8 +4,8 @@
     carries links only.
 --}}
 @props([
-    'heading' => 'Have something in mind?',
-    'body' => 'Tell me what you are trying to build or fix, and we can work out the best way to do it.',
+    'heading' => 'Got something to build, or fix?',
+    'body' => 'Tell me where it is now and where you want it to be. I will tell you honestly whether I am the right person for it.',
 ])
 
 <section class="bg-accent text-bg-primary">

@@ -1,18 +1,18 @@
 {{--
-    /services: the three services, each in its own colour. Shown when there is
+    /services: the services, each in its own colour. Shown when there is
     no block-built services page (the consolidation retires that page).
 --}}
 @extends('layouts.base')
 
 @section('head')
-    <x-cms-seo title="Services" description="Laravel development, WordPress development and AI implementation, by one UK developer." />
+    <x-cms-seo title="Services" description="Laravel and WordPress development, AI implementation, software and websites, by one UK developer from the first call to handover." />
 @endsection
 
 @section('content')
     <section class="mx-auto max-w-[1200px] px-6 pt-14 pb-10 md:pt-20">
         <p class="mb-5 text-[13px] font-semibold tracking-[0.08em] text-accent uppercase">Services</p>
         <h1 class="max-w-[900px] text-[56px] leading-[0.95] md:text-[92px]">What I can <em>build</em> for you</h1>
-        <p class="mt-6 max-w-[620px] text-[19px] leading-[1.6] text-text-secondary">Three services, one developer, no hand-offs. Every project starts with an audit, so the work goes where it matters.</p>
+        <p class="mt-6 max-w-[620px] text-[19px] leading-[1.6] text-text-secondary">One developer, no hand-offs. Every project starts with a proper look at what you have, so the work goes where it makes a difference.</p>
     </section>
 
     <section class="mx-auto max-w-[1200px] px-6 pb-24">
@@ -33,5 +33,5 @@
         </div>
     </section>
 
-    <x-site.cta-section heading="Not sure which you need?" body="Tell me what you are trying to do and I will point you at the right one, or tell you if you need none of them." />
+    <x-site.cta-section heading="Not sure which you need?" body="Tell me what you are trying to do. I will point you at the right one, or tell you if you need none of them." />
 @endsection

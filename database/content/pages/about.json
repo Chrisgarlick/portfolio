@@ -1,394 +1,394 @@
 [
-  {
-    "type": "hero",
-    "data": {
-      "label": "About",
-      "heading": "One developer, from the *first call* to handover.",
-      "subtext": "I am a web developer in the UK. I build Laravel applications and WordPress sites, add AI where it earns its keep, and run Kritano, the website auditing platform I founded. The person you talk to is the person who writes the code.",
-      "cta_label": "Start a project",
-      "cta_url": "/contact",
-      "cta_secondary_label": "See the work",
-      "cta_secondary_url": "/work",
-      "theme": "light"
-    }
-  },
-  {
-    "type": "text-section",
-    "data": {
-      "label": "Who I am",
-      "heading": "A developer who builds the whole thing.",
-      "theme": "light",
-      "body": {
-        "type": "doc",
-        "content": [
-          {
-            "type": "paragraph",
-            "content": [
-              {
-                "type": "text",
-                "text": "Most of my career has been building web platforms: Astro, Next.js, Node.js, Postgres and Redis, the kind of work where you have to ship something that holds up under real load. Today I build in "
-              },
-              {
-                "type": "text",
-                "text": "Laravel",
-                "marks": [
-                  {
-                    "type": "link",
-                    "attrs": {
-                      "href": "/services/laravel"
+    {
+        "type": "hero",
+        "data": {
+            "label": "About",
+            "heading": "One developer. No *middlemen*.",
+            "subtext": "I'm Chris, a web developer in the UK. I build Laravel applications and WordPress sites, add AI where it earns its place, and run Kritano, the website auditing platform I founded. The person you talk to is the person who writes the code.",
+            "cta_label": "Start a project",
+            "cta_url": "/contact",
+            "cta_secondary_label": "See the work",
+            "cta_secondary_url": "/work",
+            "theme": "light"
+        }
+    },
+    {
+        "type": "text-section",
+        "data": {
+            "label": "Who I am",
+            "heading": "I build the whole thing.",
+            "theme": "light",
+            "body": {
+                "type": "doc",
+                "content": [
+                    {
+                        "type": "paragraph",
+                        "content": [
+                            {
+                                "type": "text",
+                                "text": "Most of my career has been building web platforms. Astro, Next.js, Node.js, Postgres, Redis: the kind of work where you have to ship something that holds up under real load. Today most of it is "
+                            },
+                            {
+                                "type": "text",
+                                "text": "Laravel",
+                                "marks": [
+                                    {
+                                        "type": "link",
+                                        "attrs": {
+                                            "href": "/services/laravel"
+                                        }
+                                    }
+                                ]
+                            },
+                            {
+                                "type": "text",
+                                "text": " and "
+                            },
+                            {
+                                "type": "text",
+                                "text": "WordPress",
+                                "marks": [
+                                    {
+                                        "type": "link",
+                                        "attrs": {
+                                            "href": "/services/wordpress"
+                                        }
+                                    }
+                                ]
+                            },
+                            {
+                                "type": "text",
+                                "text": ". I started doing "
+                            },
+                            {
+                                "type": "text",
+                                "text": "AI work",
+                                "marks": [
+                                    {
+                                        "type": "link",
+                                        "attrs": {
+                                            "href": "/services/ai"
+                                        }
+                                    }
+                                ]
+                            },
+                            {
+                                "type": "text",
+                                "text": " in 2023, when the APIs got good enough to be the missing piece in systems I was already building."
+                            }
+                        ]
+                    },
+                    {
+                        "type": "paragraph",
+                        "content": [
+                            {
+                                "type": "text",
+                                "text": "When I say I'll integrate something with your CRM, I mean I'll build it. Not spec it for someone else. Not draw it on a slide. Build it, ship it, watch it, and fix it if it breaks."
+                            }
+                        ]
+                    },
+                    {
+                        "type": "paragraph",
+                        "content": [
+                            {
+                                "type": "text",
+                                "text": "I build my own products too. "
+                            },
+                            {
+                                "type": "text",
+                                "text": "Kritano",
+                                "marks": [
+                                    {
+                                        "type": "link",
+                                        "attrs": {
+                                            "href": "/work/kritano-website-audits"
+                                        }
+                                    }
+                                ]
+                            },
+                            {
+                                "type": "text",
+                                "text": " audits websites against more than 500 rules, and this site runs on "
+                            },
+                            {
+                                "type": "text",
+                                "text": "cg-cms",
+                                "marks": [
+                                    {
+                                        "type": "link",
+                                        "attrs": {
+                                            "href": "/work/cg-cms"
+                                        }
+                                    }
+                                ]
+                            },
+                            {
+                                "type": "text",
+                                "text": ", a CMS I wrote for Laravel. That shapes how I work for clients. I know what good looks like, because I check for it every day."
+                            }
+                        ]
                     }
-                  }
                 ]
-              },
-              {
-                "type": "text",
-                "text": " and "
-              },
-              {
-                "type": "text",
-                "text": "WordPress",
-                "marks": [
-                  {
-                    "type": "link",
-                    "attrs": {
-                      "href": "/services/wordpress"
+            }
+        }
+    },
+    {
+        "type": "text-section",
+        "data": {
+            "label": "Why one person",
+            "heading": "One person is the point.",
+            "theme": "light",
+            "body": {
+                "type": "doc",
+                "content": [
+                    {
+                        "type": "paragraph",
+                        "content": [
+                            {
+                                "type": "text",
+                                "text": "Agencies tend to run the same way. Someone senior sells it, a project manager translates it, someone junior builds it. By the time the work lands, three people have stood between you and whoever wrote the code."
+                            }
+                        ]
+                    },
+                    {
+                        "type": "paragraph",
+                        "content": [
+                            {
+                                "type": "text",
+                                "text": "Work with me and the person scoping the job is the person doing it. That means:"
+                            }
+                        ]
+                    },
+                    {
+                        "type": "bulletList",
+                        "content": [
+                            {
+                                "type": "listItem",
+                                "content": [
+                                    {
+                                        "type": "paragraph",
+                                        "content": [
+                                            {
+                                                "type": "text",
+                                                "text": "Faster decisions.",
+                                                "marks": [
+                                                    {
+                                                        "type": "bold"
+                                                    }
+                                                ]
+                                            },
+                                            {
+                                                "type": "text",
+                                                "text": " If a build choice needs your input, I ask you directly."
+                                            }
+                                        ]
+                                    }
+                                ]
+                            },
+                            {
+                                "type": "listItem",
+                                "content": [
+                                    {
+                                        "type": "paragraph",
+                                        "content": [
+                                            {
+                                                "type": "text",
+                                                "text": "Straight answers.",
+                                                "marks": [
+                                                    {
+                                                        "type": "bold"
+                                                    }
+                                                ]
+                                            },
+                                            {
+                                                "type": "text",
+                                                "text": " Ask what the system is doing and you'll get a real answer, in as much technical detail as you want."
+                                            }
+                                        ]
+                                    }
+                                ]
+                            },
+                            {
+                                "type": "listItem",
+                                "content": [
+                                    {
+                                        "type": "paragraph",
+                                        "content": [
+                                            {
+                                                "type": "text",
+                                                "text": "Consistent work.",
+                                                "marks": [
+                                                    {
+                                                        "type": "bold"
+                                                    }
+                                                ]
+                                            },
+                                            {
+                                                "type": "text",
+                                                "text": " One person writing the system means fewer places for quality to slip."
+                                            }
+                                        ]
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "type": "paragraph",
+                        "content": [
+                            {
+                                "type": "text",
+                                "text": "What you won't get is a 24/7 support desk or a team of twelve specialists. If you need those, you need an agency. For everything else, one person is faster and cleaner."
+                            }
+                        ]
                     }
-                  }
                 ]
-              },
-              {
-                "type": "text",
-                "text": ". I started doing "
-              },
-              {
-                "type": "text",
-                "text": "AI work",
-                "marks": [
-                  {
-                    "type": "link",
-                    "attrs": {
-                      "href": "/services/ai"
+            }
+        }
+    },
+    {
+        "type": "text-section",
+        "data": {
+            "label": "How I work",
+            "heading": "Four steps. No theatre.",
+            "theme": "light",
+            "body": {
+                "type": "doc",
+                "content": [
+                    {
+                        "type": "orderedList",
+                        "content": [
+                            {
+                                "type": "listItem",
+                                "content": [
+                                    {
+                                        "type": "paragraph",
+                                        "content": [
+                                            {
+                                                "type": "text",
+                                                "text": "Look.",
+                                                "marks": [
+                                                    {
+                                                        "type": "bold"
+                                                    }
+                                                ]
+                                            },
+                                            {
+                                                "type": "text",
+                                                "text": " I start with what you've got: the site, the code, the process. For a website that usually means an audit, so the work goes where it makes a difference."
+                                            }
+                                        ]
+                                    }
+                                ]
+                            },
+                            {
+                                "type": "listItem",
+                                "content": [
+                                    {
+                                        "type": "paragraph",
+                                        "content": [
+                                            {
+                                                "type": "text",
+                                                "text": "Scope.",
+                                                "marks": [
+                                                    {
+                                                        "type": "bold"
+                                                    }
+                                                ]
+                                            },
+                                            {
+                                                "type": "text",
+                                                "text": " We agree what to build first, and I write it down: what it does, what done looks like, and roughly how long it'll take."
+                                            }
+                                        ]
+                                    }
+                                ]
+                            },
+                            {
+                                "type": "listItem",
+                                "content": [
+                                    {
+                                        "type": "paragraph",
+                                        "content": [
+                                            {
+                                                "type": "text",
+                                                "text": "Build.",
+                                                "marks": [
+                                                    {
+                                                        "type": "bold"
+                                                    }
+                                                ]
+                                            },
+                                            {
+                                                "type": "text",
+                                                "text": " Direct work, with tests, in small releases you can try as they land. No status meetings for the sake of them."
+                                            }
+                                        ]
+                                    }
+                                ]
+                            },
+                            {
+                                "type": "listItem",
+                                "content": [
+                                    {
+                                        "type": "paragraph",
+                                        "content": [
+                                            {
+                                                "type": "text",
+                                                "text": "Hand over.",
+                                                "marks": [
+                                                    {
+                                                        "type": "bold"
+                                                    }
+                                                ]
+                                            },
+                                            {
+                                                "type": "text",
+                                                "text": " Deployed, documented and yours. Then we look at what changed and decide whether there's a next step."
+                                            }
+                                        ]
+                                    }
+                                ]
+                            }
+                        ]
                     }
-                  }
                 ]
-              },
-              {
-                "type": "text",
-                "text": " in 2023, because the APIs got good enough to be the missing piece in a lot of the systems I was already building."
-              }
-            ]
-          },
-          {
-            "type": "paragraph",
-            "content": [
-              {
-                "type": "text",
-                "text": "When I say I will integrate something with your CRM or your accounting tool, I mean I will build it. Not specify it for someone else, not draw it on a slide. Build it, ship it, monitor it, and fix it if it breaks."
-              }
-            ]
-          },
-          {
-            "type": "paragraph",
-            "content": [
-              {
-                "type": "text",
-                "text": "I also build my own products. "
-              },
-              {
-                "type": "text",
-                "text": "Kritano",
-                "marks": [
-                  {
-                    "type": "link",
-                    "attrs": {
-                      "href": "/work/kritano-website-audits"
-                    }
-                  }
-                ]
-              },
-              {
-                "type": "text",
-                "text": " audits websites against more than 500 rules, and this site runs on "
-              },
-              {
-                "type": "text",
-                "text": "cg-cms",
-                "marks": [
-                  {
-                    "type": "link",
-                    "attrs": {
-                      "href": "/work/cg-cms"
-                    }
-                  }
-                ]
-              },
-              {
-                "type": "text",
-                "text": ", a CMS I wrote for Laravel. Both shape how I work for clients: I know what good looks like, because I check for it every day."
-              }
-            ]
-          }
-        ]
-      }
+            }
+        }
+    },
+    {
+        "type": "columns",
+        "data": {
+            "label": "What I use",
+            "heading": "Tools I know well. No lock-in.",
+            "theme": "light",
+            "column1_heading": "Laravel",
+            "column1_body": "PHP and Laravel, Postgres, Inertia and React with TypeScript, Tailwind and nginx. Tested and deployed properly.",
+            "column1_url": "/services/laravel",
+            "column1_cta_label": "Laravel development",
+            "column1_tint": "red",
+            "column2_heading": "WordPress",
+            "column2_body": "Custom themes and plugins written for the job, speed work on caching, images and Core Web Vitals, and security hardening.",
+            "column2_url": "/services/wordpress",
+            "column2_cta_label": "WordPress development",
+            "column2_tint": "blue",
+            "column3_heading": "AI",
+            "column3_body": "Anthropic Claude, with structured outputs, versioned prompts and logging built in. UK and EU regions where data residency matters.",
+            "column3_url": "/services/ai",
+            "column3_cta_label": "AI implementation",
+            "column3_tint": "violet",
+            "column4_heading": "Integrations",
+            "column4_body": "Whatever your team already uses: Microsoft 365, Google Workspace, Xero, HubSpot, Notion and the rest. Direct API work, not no-code glue."
+        }
+    },
+    {
+        "type": "cta",
+        "data": {
+            "heading": "Got something to build, or fix?",
+            "body": "Tell me where it is now and where you want it to be. I'll tell you honestly whether I'm the right person for it.",
+            "cta_label": "Start a project",
+            "cta_url": "/contact",
+            "theme": "light"
+        }
     }
-  },
-  {
-    "type": "text-section",
-    "data": {
-      "label": "Why one person",
-      "heading": "The one-person model is the feature, not the limitation.",
-      "theme": "light",
-      "body": {
-        "type": "doc",
-        "content": [
-          {
-            "type": "paragraph",
-            "content": [
-              {
-                "type": "text",
-                "text": "Agencies tend to run on the same shape: a senior person sells, a project manager translates, a junior delivers. By the time the work lands, three people have stood between you and the person who built it."
-              }
-            ]
-          },
-          {
-            "type": "paragraph",
-            "content": [
-              {
-                "type": "text",
-                "text": "When you work with me, the person scoping the work is the person doing it. That has practical effects:"
-              }
-            ]
-          },
-          {
-            "type": "bulletList",
-            "content": [
-              {
-                "type": "listItem",
-                "content": [
-                  {
-                    "type": "paragraph",
-                    "content": [
-                      {
-                        "type": "text",
-                        "text": "Faster decisions.",
-                        "marks": [
-                          {
-                            "type": "bold"
-                          }
-                        ]
-                      },
-                      {
-                        "type": "text",
-                        "text": " If a build choice needs your input, I ask you directly."
-                      }
-                    ]
-                  }
-                ]
-              },
-              {
-                "type": "listItem",
-                "content": [
-                  {
-                    "type": "paragraph",
-                    "content": [
-                      {
-                        "type": "text",
-                        "text": "Direct access.",
-                        "marks": [
-                          {
-                            "type": "bold"
-                          }
-                        ]
-                      },
-                      {
-                        "type": "text",
-                        "text": " Ask me about something the system is doing and I will answer it, in technical detail if you want it."
-                      }
-                    ]
-                  }
-                ]
-              },
-              {
-                "type": "listItem",
-                "content": [
-                  {
-                    "type": "paragraph",
-                    "content": [
-                      {
-                        "type": "text",
-                        "text": "Fewer places for quality to leak.",
-                        "marks": [
-                          {
-                            "type": "bold"
-                          }
-                        ]
-                      },
-                      {
-                        "type": "text",
-                        "text": " One person writing the system means it is consistent from end to end."
-                      }
-                    ]
-                  }
-                ]
-              }
-            ]
-          },
-          {
-            "type": "paragraph",
-            "content": [
-              {
-                "type": "text",
-                "text": "What you do not get is a 24/7 support desk or a team of twelve specialisms. If you need those, you need an agency. For everything else, one person is faster and cleaner."
-              }
-            ]
-          }
-        ]
-      }
-    }
-  },
-  {
-    "type": "text-section",
-    "data": {
-      "label": "How I work",
-      "heading": "Four steps, no theatre.",
-      "theme": "light",
-      "body": {
-        "type": "doc",
-        "content": [
-          {
-            "type": "orderedList",
-            "content": [
-              {
-                "type": "listItem",
-                "content": [
-                  {
-                    "type": "paragraph",
-                    "content": [
-                      {
-                        "type": "text",
-                        "text": "Look.",
-                        "marks": [
-                          {
-                            "type": "bold"
-                          }
-                        ]
-                      },
-                      {
-                        "type": "text",
-                        "text": " I start with what you have: the site, the code, the process. For a website, that usually means an audit, so the work goes where it makes a difference."
-                      }
-                    ]
-                  }
-                ]
-              },
-              {
-                "type": "listItem",
-                "content": [
-                  {
-                    "type": "paragraph",
-                    "content": [
-                      {
-                        "type": "text",
-                        "text": "Scope.",
-                        "marks": [
-                          {
-                            "type": "bold"
-                          }
-                        ]
-                      },
-                      {
-                        "type": "text",
-                        "text": " We agree what to build first, and I write it down: what it does, what done looks like, and how long it should take."
-                      }
-                    ]
-                  }
-                ]
-              },
-              {
-                "type": "listItem",
-                "content": [
-                  {
-                    "type": "paragraph",
-                    "content": [
-                      {
-                        "type": "text",
-                        "text": "Build.",
-                        "marks": [
-                          {
-                            "type": "bold"
-                          }
-                        ]
-                      },
-                      {
-                        "type": "text",
-                        "text": " Direct work, with tests, and you can ask me anything at any point. No status meetings for the sake of them."
-                      }
-                    ]
-                  }
-                ]
-              },
-              {
-                "type": "listItem",
-                "content": [
-                  {
-                    "type": "paragraph",
-                    "content": [
-                      {
-                        "type": "text",
-                        "text": "Hand over.",
-                        "marks": [
-                          {
-                            "type": "bold"
-                          }
-                        ]
-                      },
-                      {
-                        "type": "text",
-                        "text": " Deployed, documented and yours. Then we look at what changed and decide whether there is a next step."
-                      }
-                    ]
-                  }
-                ]
-              }
-            ]
-          }
-        ]
-      }
-    }
-  },
-  {
-    "type": "columns",
-    "data": {
-      "label": "What I use",
-      "heading": "Tools I know well, and no lock-in.",
-      "theme": "light",
-      "column1_heading": "Laravel",
-      "column1_body": "PHP and Laravel, Postgres, Inertia and React with TypeScript, Tailwind, and nginx, tested and deployed properly.",
-      "column1_url": "/services/laravel",
-      "column1_cta_label": "Laravel development",
-      "column1_tint": "red",
-      "column2_heading": "WordPress",
-      "column2_body": "Custom themes and plugins written for the job, speed work on caching, images and Core Web Vitals, and security hardening.",
-      "column2_url": "/services/wordpress",
-      "column2_cta_label": "WordPress development",
-      "column2_tint": "blue",
-      "column3_heading": "AI",
-      "column3_body": "Anthropic Claude, with structured outputs, versioned prompts and logging built in. UK and EU regions where data residency matters.",
-      "column3_url": "/services/ai",
-      "column3_cta_label": "AI implementation",
-      "column3_tint": "violet",
-      "column4_heading": "Integrations",
-      "column4_body": "Whatever your team already uses: Microsoft 365, Google Workspace, Xero, HubSpot, Notion and the rest. Direct API work, not no-code glue."
-    }
-  },
-  {
-    "type": "cta",
-    "data": {
-      "heading": "Have something in mind?",
-      "body": "Tell me what you are trying to build or fix, and we can work out the best way to do it.",
-      "cta_label": "Start a project",
-      "cta_url": "/contact",
-      "theme": "light"
-    }
-  }
 ]

@@ -9,7 +9,7 @@
 @section('head')
     <x-cms-seo
         title="Work"
-        description="Products, tools and sites I have designed and built, from a website auditing platform to the CMS this site runs on."
+        description="Products, tools and sites I have designed and built myself, from a website auditing platform to the CMS this site runs on."
         :noindex="$projects === []"
     />
 @endsection
@@ -18,7 +18,7 @@
     <section class="mx-auto max-w-[1200px] px-6 pt-14 pb-10 md:pt-20">
         <p class="mb-5 text-[13px] font-semibold tracking-[0.08em] text-accent uppercase">Work</p>
         <h1 class="text-[56px] leading-[0.95] md:text-[92px]">Things I have <em>built</em></h1>
-        <p class="mt-7 max-w-[640px] text-[19px] leading-[1.6] text-text-secondary">Products, tools and sites I designed and built myself, each one written up: what it does and how it works.</p>
+        <p class="mt-7 max-w-[640px] text-[19px] leading-[1.6] text-text-secondary">Not mock-ups or concepts. Real products and sites, live and in use, each written up: the problem, how it works and what it changed.</p>
     </section>
 
     <section class="mx-auto max-w-[1200px] px-6 pb-24">
@@ -65,5 +65,5 @@
         @endif
     </section>
 
-    <x-site.cta-section heading="Have something in mind?" body="Tell me what you are trying to build or fix, and we can work out the best way to do it." />
+    <x-site.cta-section heading="Want something built like this?" body="Tell me where it is now and where you want it to be. I will tell you honestly whether I am the right person for it." />
 @endsection
