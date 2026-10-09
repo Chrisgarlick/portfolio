@@ -61,5 +61,10 @@
     @endif
 
     @include('partials.cookie-banner')
+
+    {{-- Try other typefaces on the real pages. Never in production. --}}
+    @if (app()->environment('local'))
+        @include('partials.font-lab')
+    @endif
 </body>
 </html>
