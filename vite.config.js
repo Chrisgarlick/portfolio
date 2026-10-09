@@ -21,12 +21,14 @@ export default defineConfig({
              * The mono face is only for code blocks in articles.
              */
             fonts: [
-                bunny('Instrument Serif', {
-                    weights: [400],
+                // Headings: Inter Tight, with an italic for the accent word.
+                bunny('Inter Tight', {
+                    weights: [500, 600],
                     styles: ['normal', 'italic'],
-                    preload: [{ weight: 400, style: 'normal' }],
+                    preload: [{ weight: 500, style: 'normal' }],
                 }),
-                bunny('Instrument Sans', {
+                // Body text.
+                bunny('Inter', {
                     weights: [400, 500, 600],
                     preload: [{ weight: 400, style: 'normal' }],
                 }),

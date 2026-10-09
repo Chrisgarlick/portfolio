@@ -89,7 +89,8 @@
     ];
     // Curated pairings: [label, display, body].
     const pairings = [
-        ['Current: Instrument Serif + Instrument Sans', 'Instrument Serif', 'Instrument Sans'],
+        ['Current: Inter Tight + Inter', 'Inter Tight', 'Inter'],
+        ['Previous: Instrument Serif + Instrument Sans', 'Instrument Serif', 'Instrument Sans'],
         ['Fraunces + Inter (warm, editorial)', 'Fraunces', 'Inter'],
         ['Newsreader + Inter (calm newspaper)', 'Newsreader', 'Inter'],
         ['Playfair Display + Source Sans 3 (classic magazine)', 'Playfair Display', 'Source Sans 3'],
@@ -103,7 +104,6 @@
         ['Bricolage Grotesque + Inter (modern studio)', 'Bricolage Grotesque', 'Inter'],
         ['Space Grotesk + IBM Plex Sans (developer)', 'Space Grotesk', 'IBM Plex Sans'],
         ['Syne + DM Sans (designery)', 'Syne', 'DM Sans'],
-        ['Inter Tight + Inter (clean, product)', 'Inter Tight', 'Inter'],
         ['Manrope + Manrope (geometric, minimal)', 'Manrope', 'Manrope'],
     ];
 
@@ -161,7 +161,7 @@
     fill($('font-lab-display'), display, false);
     fill($('font-lab-body'), body, false);
 
-    let state = read() ?? { display: 'Instrument Serif', body: 'Instrument Sans', size: 100 };
+    let state = read() ?? { display: 'Inter Tight', body: 'Inter', size: 100 };
     apply(state);
 
     const set = (patch) => { state = { ...state, ...patch }; apply(state); };
@@ -177,7 +177,7 @@
     $('font-lab-size').addEventListener('input', (e) => set({ size: Number(e.target.value) }));
     $('font-lab-prev').addEventListener('click', () => step(-1));
     $('font-lab-next').addEventListener('click', () => step(1));
-    $('font-lab-reset').addEventListener('click', () => set({ display: 'Instrument Serif', body: 'Instrument Sans', size: 100 }));
+    $('font-lab-reset').addEventListener('click', () => set({ display: 'Inter Tight', body: 'Inter', size: 100 }));
 
     const toggle = document.querySelector('.font-lab-toggle');
     const panel = $('font-lab-panel');

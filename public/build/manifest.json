@@ -1,47 +1,63 @@
 {
-  "_fonts-C2cnTkk2.css": {
-    "file": "assets/fonts-C2cnTkk2.css",
-    "src": "_fonts-C2cnTkk2.css"
+  "_fonts-D9fVVExM.css": {
+    "file": "assets/fonts-D9fVVExM.css",
+    "src": "_fonts-D9fVVExM.css"
   },
-  "_instrument-sans-400-normal-D1W7dsQl.woff": {
-    "file": "assets/instrument-sans-400-normal-D1W7dsQl.woff",
-    "src": "_instrument-sans-400-normal-D1W7dsQl.woff"
+  "_inter-400-normal-C38fXH4l.woff2": {
+    "file": "assets/inter-400-normal-C38fXH4l.woff2",
+    "src": "_inter-400-normal-C38fXH4l.woff2"
   },
-  "_instrument-sans-400-normal-DRC__1Mx.woff2": {
-    "file": "assets/instrument-sans-400-normal-DRC__1Mx.woff2",
-    "src": "_instrument-sans-400-normal-DRC__1Mx.woff2"
+  "_inter-400-normal-CyCys3Eg.woff": {
+    "file": "assets/inter-400-normal-CyCys3Eg.woff",
+    "src": "_inter-400-normal-CyCys3Eg.woff"
   },
-  "_instrument-sans-500-normal-Dk9ku72i.woff2": {
-    "file": "assets/instrument-sans-500-normal-Dk9ku72i.woff2",
-    "src": "_instrument-sans-500-normal-Dk9ku72i.woff2"
+  "_inter-500-normal-BL9OpVg8.woff": {
+    "file": "assets/inter-500-normal-BL9OpVg8.woff",
+    "src": "_inter-500-normal-BL9OpVg8.woff"
   },
-  "_instrument-sans-500-normal-Z6ESRlEs.woff": {
-    "file": "assets/instrument-sans-500-normal-Z6ESRlEs.woff",
-    "src": "_instrument-sans-500-normal-Z6ESRlEs.woff"
+  "_inter-500-normal-Cerq10X2.woff2": {
+    "file": "assets/inter-500-normal-Cerq10X2.woff2",
+    "src": "_inter-500-normal-Cerq10X2.woff2"
   },
-  "_instrument-sans-600-normal-B7fBEWYG.woff2": {
-    "file": "assets/instrument-sans-600-normal-B7fBEWYG.woff2",
-    "src": "_instrument-sans-600-normal-B7fBEWYG.woff2"
+  "_inter-600-normal-CiBQ2DWP.woff": {
+    "file": "assets/inter-600-normal-CiBQ2DWP.woff",
+    "src": "_inter-600-normal-CiBQ2DWP.woff"
   },
-  "_instrument-sans-600-normal-B9e8oLYv.woff": {
-    "file": "assets/instrument-sans-600-normal-B9e8oLYv.woff",
-    "src": "_instrument-sans-600-normal-B9e8oLYv.woff"
+  "_inter-600-normal-LgqL8muc.woff2": {
+    "file": "assets/inter-600-normal-LgqL8muc.woff2",
+    "src": "_inter-600-normal-LgqL8muc.woff2"
   },
-  "_instrument-serif-400-italic-DKMiL14s.woff2": {
-    "file": "assets/instrument-serif-400-italic-DKMiL14s.woff2",
-    "src": "_instrument-serif-400-italic-DKMiL14s.woff2"
+  "_inter-tight-500-italic-CxI2IgtH.woff2": {
+    "file": "assets/inter-tight-500-italic-CxI2IgtH.woff2",
+    "src": "_inter-tight-500-italic-CxI2IgtH.woff2"
   },
-  "_instrument-serif-400-italic-u__WvvIK.woff": {
-    "file": "assets/instrument-serif-400-italic-u__WvvIK.woff",
-    "src": "_instrument-serif-400-italic-u__WvvIK.woff"
+  "_inter-tight-500-italic-Dt-E4eg3.woff": {
+    "file": "assets/inter-tight-500-italic-Dt-E4eg3.woff",
+    "src": "_inter-tight-500-italic-Dt-E4eg3.woff"
   },
-  "_instrument-serif-400-normal-BVbkICAY.woff": {
-    "file": "assets/instrument-serif-400-normal-BVbkICAY.woff",
-    "src": "_instrument-serif-400-normal-BVbkICAY.woff"
+  "_inter-tight-500-normal-BFXNXuvF.woff2": {
+    "file": "assets/inter-tight-500-normal-BFXNXuvF.woff2",
+    "src": "_inter-tight-500-normal-BFXNXuvF.woff2"
   },
-  "_instrument-serif-400-normal-DnYpCC2O.woff2": {
-    "file": "assets/instrument-serif-400-normal-DnYpCC2O.woff2",
-    "src": "_instrument-serif-400-normal-DnYpCC2O.woff2"
+  "_inter-tight-500-normal-pobXraBK.woff": {
+    "file": "assets/inter-tight-500-normal-pobXraBK.woff",
+    "src": "_inter-tight-500-normal-pobXraBK.woff"
+  },
+  "_inter-tight-600-italic-BGtuFzIn.woff2": {
+    "file": "assets/inter-tight-600-italic-BGtuFzIn.woff2",
+    "src": "_inter-tight-600-italic-BGtuFzIn.woff2"
+  },
+  "_inter-tight-600-italic-D1lWoNJC.woff": {
+    "file": "assets/inter-tight-600-italic-D1lWoNJC.woff",
+    "src": "_inter-tight-600-italic-D1lWoNJC.woff"
+  },
+  "_inter-tight-600-normal-BgSTtRxb.woff2": {
+    "file": "assets/inter-tight-600-normal-BgSTtRxb.woff2",
+    "src": "_inter-tight-600-normal-BgSTtRxb.woff2"
+  },
+  "_inter-tight-600-normal-D7bG6gX1.woff": {
+    "file": "assets/inter-tight-600-normal-D7bG6gX1.woff",
+    "src": "_inter-tight-600-normal-D7bG6gX1.woff"
   },
   "_jetbrains-mono-400-normal-6-qcROiO.woff": {
     "file": "assets/jetbrains-mono-400-normal-6-qcROiO.woff",
@@ -52,7 +68,7 @@
     "src": "_jetbrains-mono-400-normal-V6pRDFza.woff2"
   },
   "resources/css/app.css": {
-    "file": "assets/app-DfCZvmot.css",
+    "file": "assets/app-DbdqSAHQ.css",
     "name": "app",
     "names": [
       "app.css"
