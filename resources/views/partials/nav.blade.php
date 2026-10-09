@@ -8,7 +8,14 @@
 --}}
 @php
     $currentPath = '/'.ltrim(request()->getPathInfo(), '/');
-    $isActive = fn (string $href): bool => $href === '/' ? $currentPath === '/' : str_starts_with($currentPath, $href);
+    // Only the most specific link is active: on /work/kritano-website-audits
+    // that is Kritano, not Work as well. Matches whole path segments, so
+    // /work never claims /workshop.
+    $matches = fn (string $href): bool => $href === '/'
+        ? $currentPath === '/'
+        : $currentPath === $href || str_starts_with($currentPath, rtrim($href, '/').'/');
+    $activeHref = collect(config('site.nav'))->pluck('href')->filter($matches)->sortByDesc(fn (string $href): int => strlen($href))->first();
+    $isActive = fn (string $href): bool => $href === $activeHref;
 @endphp
 
 <a href="#main" class="skip-to-content">Skip to content</a>
@@ -32,7 +39,7 @@
                     {{-- The link goes to the section; the chevron is its own button that
                          opens the menu, so focus alone never changes the page (WCAG 3.2.1). --}}
                     <div class="nav-dropdown relative flex items-center">
-                        <a href="{{ $link['href'] }}" class="{{ $linkClasses }}">{{ $link['label'] }}</a>
+                        <a href="{{ $link['href'] }}" class="{{ $linkClasses }}" @if ($isActive($link['href'])) aria-current="page" @endif>{{ $link['label'] }}</a>
                         <button type="button" class="nav-dropdown-toggle ml-0.5 flex h-6 w-6 items-center justify-center text-text-secondary hover:text-text-primary"
                                 aria-expanded="false" aria-controls="nav-menu-{{ $loop->index }}" aria-label="Show {{ $link['label'] }} menu">
                             <svg class="h-3 w-3" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M3 5l3 3 3-3"/></svg>
@@ -51,7 +58,7 @@
                         </div>
                     </div>
                 @else
-                    <a href="{{ $link['href'] }}" class="{{ $linkClasses }}">{{ $link['label'] }}</a>
+                    <a href="{{ $link['href'] }}" class="{{ $linkClasses }}" @if ($isActive($link['href'])) aria-current="page" @endif>{{ $link['label'] }}</a>
                 @endif
             @endforeach
 
