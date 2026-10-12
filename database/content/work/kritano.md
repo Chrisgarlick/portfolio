@@ -6,7 +6,7 @@ summary: A SaaS I founded, built and run. It audits a website across SEO, access
 kind: personal
 disclosure: named
 role: Founder, designer and developer
-outcome: Live at kritano.com, with a free plan and paying founding members.
+outcome: More than 500 checks in under two minutes, across SEO, accessibility, security and performance.
 year: 2026
 live_url: https://kritano.com
 featured: true
