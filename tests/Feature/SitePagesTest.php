@@ -3,6 +3,7 @@
 declare(strict_types=1);
 
 use App\Mail\FormSubmissionNotification;
+use Cg\Cms\Forms\FormGuard;
 use Cg\Cms\Models\Entry;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Facades\Mail;
@@ -140,7 +141,13 @@ it('queues the enquiry email to the contact address instead of sending it in the
     Mail::fake();
     config(['cg-forms.contact.notify' => 'owner@example.com']);
 
+    // Submitted as a real visitor would: with the guard's fields, a few
+    // seconds after the page rendered. Without them it is quietly rejected.
+    $guard = app(FormGuard::class)->hiddenFields('contact');
+    $guard[FormGuard::TIMESTAMP] = (string) (time() - 30);
+
     $this->postJson('/forms/contact', [
+        ...$guard,
         'name' => 'A visitor',
         'email' => 'visitor@example.com',
         'message' => 'Our booking system needs rebuilding before the summer.',
