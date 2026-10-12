@@ -11,10 +11,9 @@
 
 @section('head')
     <x-cms-seo
-        title="AI Implementation Blog | Guides for Law Firms, Agencies & Accountancies"
-        :exact-title="true"
-        description="Practical articles on AI implementation for professional services. What works, what doesn't, and what it actually costs. No hype, real numbers."
-        keywords="ai implementation blog, ai for law firms, ai for agencies, ai for accountancy firms, ai workflow automation, ai adoption"
+        title="Articles"
+        description="Notes on building for the web: Laravel, WordPress, AI and performance, written from the work itself. What works, what doesn't, and why."
+        keywords="laravel, wordpress, ai implementation, web performance, web development articles"
         image="/og/article.png"
         :json-ld="[[
             '@type' => 'CollectionPage',

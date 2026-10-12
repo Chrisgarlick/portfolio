@@ -296,7 +296,7 @@ it('gives a listing page a full head', function (): void {
 
     expect($head)
         // The live listing title, through the site title template.
-        ->toContain('<title>AI Implementation Blog | Guides for Law Firms, Agencies &amp; Accountancies</title>')
+        ->toContain('<title>Articles | Chris Garlick</title>')
         ->toContain('<link rel="canonical" href="'.config('cg-cms.site.domain').'/article">')
         ->toContain('application/ld+json');
 });
