@@ -18,8 +18,9 @@ uses(RefreshDatabase::class);
 |
 | The rules from claude_integration_plan.md: everything goes through the same
 | validation, brand voice and SEO checks as the admin; new entries are always
-| drafts; nothing here publishes; a live entry is never changed, only given a
-| proposal to review.
+| drafts; creating and updating never publish; a live entry is never changed,
+| only given a proposal to review. cms:entry:publish is the one deliberate
+| step, and it asks first.
 |
 */
 
@@ -189,4 +190,64 @@ it('exits non-zero from cms:check when something would block publishing', functi
 
     expect(Artisan::call('cms:check', ['reference' => 'article/clean']))->toBe(0)
         ->and(Artisan::call('cms:check', ['reference' => 'article/dirty']))->toBe(1);
+});
+
+it('keeps the other SEO fields when the CLI sets one', function (): void {
+    $live = makeArticle('seo-merge', 'Live title');
+    $live->forceFill(['seo' => ['title' => 'Kept title', 'description' => 'Kept description.']])->saveQuietly();
+
+    cliJson('cms:entry:update', ['reference' => 'article/seo-merge', '--set' => ['seo.keywords=caching, nginx']]);
+
+    $seo = data_get(app(ContentService::class)->proposal($live)->snapshot, 'seo');
+    expect($seo['title'])->toBe('Kept title')
+        ->and($seo['description'])->toBe('Kept description.')
+        ->and($seo['keywords'])->toBe('caching, nginx');
+});
+
+it('applies a proposal to a live entry with cms:entry:publish, after showing the change', function (): void {
+    $user = User::factory()->create(['email' => 'chris@example.com']);
+    $live = makeArticle('live-three', 'Live title');
+    cliJson('cms:entry:update', ['reference' => 'article/live-three', '--set' => ['title=The proposed title']]);
+
+    $this->artisan('cms:entry:publish', ['reference' => 'article/live-three', '--as' => 'chris@example.com'])
+        ->expectsOutputToContain('The proposed title')
+        ->expectsConfirmation('Apply this change to the live page?', 'yes')
+        ->assertSuccessful();
+
+    expect($live->refresh()->title)->toBe('The proposed title')
+        ->and($live->status)->toBe('published')
+        ->and($live->updated_by)->toBe($user->id)
+        ->and(app(ContentService::class)->proposal($live))->toBeNull();
+});
+
+it('changes nothing when the confirmation is declined', function (): void {
+    $live = makeArticle('live-four', 'Live title');
+    cliJson('cms:entry:update', ['reference' => 'article/live-four', '--set' => ['title=Maybe later']]);
+
+    $this->artisan('cms:entry:publish', ['reference' => 'article/live-four'])
+        ->expectsConfirmation('Apply this change to the live page?', 'no')
+        ->expectsOutputToContain('Nothing published')
+        ->assertSuccessful();
+
+    expect($live->refresh()->title)->toBe('Live title')
+        ->and(app(ContentService::class)->proposal($live))->not->toBeNull();
+});
+
+it('publishes a draft with --yes', function (): void {
+    $draft = makeArticle('draft-to-publish', 'Ready now', ['status' => 'draft']);
+
+    $result = cliJson('cms:entry:publish', ['reference' => 'article/draft-to-publish', '--yes' => true]);
+
+    expect($result['action'])->toBe('published')
+        ->and($draft->refresh()->status)->toBe('published')
+        ->and($draft->published_at)->not->toBeNull();
+});
+
+it('refuses to publish without --yes when it cannot ask, or when nothing is waiting', function (): void {
+    makeArticle('draft-json', 'Draft', ['status' => 'draft']);
+    makeArticle('live-nothing', 'Live');
+
+    expect(cliJson('cms:entry:publish', ['reference' => 'article/draft-json'])['error'])->toContain('--yes')
+        ->and(Entry::query()->where('slug', 'draft-json')->value('status'))->toBe('draft')
+        ->and(cliJson('cms:entry:publish', ['reference' => 'article/live-nothing', '--yes' => true])['error'])->toContain('Nothing to publish');
 });
