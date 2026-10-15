@@ -97,11 +97,11 @@
                 </div>
 
                 <div class="cms-form-message cms-form-message--error hidden" data-form-error>
-                    <p>Something went wrong. Please try again, or email <a href="mailto:chris@chrisgarlick.com">chris@chrisgarlick.com</a> directly.</p>
+                    <p>Something went wrong. Please try again, or email <a href="mailto:{{ config('cg-cms.site.contact_email') }}">{{ config('cg-cms.site.contact_email') }}</a> directly.</p>
                 </div>
 
                 <noscript>
-                    <p class="cms-form-footer">Without JavaScript the form still sends, and the page reloads afterwards. You can also email <a href="mailto:chris@chrisgarlick.com">chris@chrisgarlick.com</a> directly.</p>
+                    <p class="cms-form-footer">Without JavaScript the form still sends, and the page reloads afterwards. You can also email <a href="mailto:{{ config('cg-cms.site.contact_email') }}">{{ config('cg-cms.site.contact_email') }}</a> directly.</p>
                 </noscript>
             </form>
 

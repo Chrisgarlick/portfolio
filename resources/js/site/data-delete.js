@@ -17,6 +17,7 @@ export function initDataDelete() {
     const success = document.querySelector('[data-delete-success]');
     const error = document.querySelector('[data-delete-error]');
     const button = form.querySelector('button[type="submit"]');
+    const contact = form.dataset.contactEmail ? ` or email ${form.dataset.contactEmail}` : '';
 
     form.addEventListener('submit', async (event) => {
         event.preventDefault();
@@ -42,7 +43,7 @@ export function initDataDelete() {
             const body = await response.json().catch(() => ({}));
 
             if (!response.ok) {
-                fail(body.error || 'Could not complete deletion. Please email privacy@chrisgarlick.com.');
+                fail(body.error || `Could not complete deletion. Please try again${contact}.`);
 
                 return;
             }
@@ -52,7 +53,7 @@ export function initDataDelete() {
             success?.focus();
             window.scrollTo({ top: 0, behavior: 'smooth' });
         } catch {
-            fail('Network error. Please try again or email privacy@chrisgarlick.com.');
+            fail(`Network error. Please try again${contact}.`);
         }
     });
 }

@@ -27,8 +27,8 @@
 
           <div>
             <h2 class="mb-4 font-display text-2xl text-text-primary">Who I am</h2>
-            <p>This site is operated by Chris Garlick, an AI implementation partner based in the United Kingdom. I am the sole data controller for the personal data described here.</p>
-            <p class="mt-2">Website: <a href="https://chrisgarlick.com" class="text-accent hover:text-accent-hover">chrisgarlick.com</a> · General contact: <a href="mailto:chris@chrisgarlick.com" class="text-accent hover:text-accent-hover">chris@chrisgarlick.com</a> · Privacy enquiries and data-subject requests: <a href="mailto:privacy@chrisgarlick.com" class="text-accent hover:text-accent-hover">privacy@chrisgarlick.com</a></p>
+            <p>This site is operated by Chris Garlick, a web developer based in the United Kingdom. I am the sole data controller for the personal data described here.</p>
+            <p class="mt-2">Website: <a href="https://chrisgarlick.com" class="text-accent hover:text-accent-hover">chrisgarlick.com</a> · Contact, including privacy enquiries and data-subject requests: <a href="mailto:{{ config('cg-cms.site.contact_email') }}" class="text-accent hover:text-accent-hover">{{ config('cg-cms.site.contact_email') }}</a></p>
           </div>
 
           <div>
@@ -81,7 +81,7 @@
             <h2 class="mb-4 font-display text-2xl text-text-primary">Your rights</h2>
             <p>Under UK GDPR you have the right to access, rectify, erase, restrict, object to processing of, and port your data, as well as the right to withdraw consent for any processing that relies on consent.</p>
             <p class="mt-2"><strong class="text-text-primary">The fastest way to remove your audit data</strong> is the deletion link in the bottom of the audit-delivery email I send you. One click, no login, no need to email me first.</p>
-            <p class="mt-2">For any other rights request, or if you have lost the deletion link, email <a href="mailto:privacy@chrisgarlick.com" class="text-accent hover:text-accent-hover">privacy@chrisgarlick.com</a> from the email address you submitted with. I will action your request within 30 days.</p>
+            <p class="mt-2">For any other rights request, or if you have lost the deletion link, email <a href="mailto:{{ config('cg-cms.site.contact_email') }}" class="text-accent hover:text-accent-hover">{{ config('cg-cms.site.contact_email') }}</a> from the email address you submitted with. I will action your request within 30 days.</p>
             <p class="mt-2">If you are not satisfied with my response, you can complain to the Information Commissioner's Office (ICO): <a href="https://ico.org.uk" class="text-accent hover:text-accent-hover" target="_blank" rel="noopener">ico.org.uk</a></p>
           </div>
 

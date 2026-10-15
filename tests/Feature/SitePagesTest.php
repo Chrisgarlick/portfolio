@@ -170,3 +170,12 @@ it('gives the script field errors it can place, not a redirect', function (): vo
 it('renders the 404 page in the site layout', function (): void {
     $this->get('/no-such-page')->assertNotFound()->assertSee('Page not found');
 });
+
+it('gives the one real contact address on the legal pages, never a dead chrisgarlick.com one', function (string $url): void {
+    config(['cg-cms.site.contact_email' => 'owner@example.com']);
+
+    $html = (string) $this->get($url)->getContent();
+
+    expect($html)->toContain('mailto:owner@example.com')
+        ->not->toContain('@chrisgarlick.com');
+})->with(['/privacy', '/terms']);

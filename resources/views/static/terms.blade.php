@@ -57,7 +57,7 @@
 
           <div>
             <h2 class="mb-4 font-display text-2xl text-text-primary">Contact</h2>
-            <p>Questions about these terms: <a href="mailto:chris@chrisgarlick.com" class="text-accent hover:text-accent-hover">chris@chrisgarlick.com</a></p>
+            <p>Questions about these terms: <a href="mailto:{{ config('cg-cms.site.contact_email') }}" class="text-accent hover:text-accent-hover">{{ config('cg-cms.site.contact_email') }}</a></p>
           </div>
 
         </div>

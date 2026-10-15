@@ -25,7 +25,7 @@
                         This link is invalid, expired, or doesn&rsquo;t match a submission.
                     </p>
                     <p class="text-[15px] leading-[1.7] text-text-secondary">
-                        If you&rsquo;d like your data removed and the link isn&rsquo;t working, email <a href="mailto:privacy@chrisgarlick.com" class="text-accent hover:text-accent-hover">privacy@chrisgarlick.com</a> with the email address you used and I&rsquo;ll action it within 30 days.
+                        If you&rsquo;d like your data removed and the link isn&rsquo;t working, email <a href="mailto:{{ config('cg-cms.site.contact_email') }}" class="text-accent hover:text-accent-hover">{{ config('cg-cms.site.contact_email') }}</a> with the email address you used and I&rsquo;ll action it within 30 days.
                     </p>
                 </div>
             @endif
@@ -63,7 +63,7 @@
                         This deletes the submission, the generated audit PDF (if any), and all associated personal data. It can&rsquo;t be undone.
                     </p>
 
-                    <form method="POST" action="{{ route('data-delete.confirm') }}" class="flex flex-wrap items-center gap-3" data-delete-form>
+                    <form method="POST" action="{{ route('data-delete.confirm') }}" class="flex flex-wrap items-center gap-3" data-delete-form data-contact-email="{{ config('cg-cms.site.contact_email') }}">
                         <input type="hidden" name="link" value="{{ $link }}">
                         <button type="submit" class="delete-primary-btn">Yes, delete my data</button>
                         <a href="/" class="font-body text-[13px] tracking-wider text-text-secondary uppercase no-underline hover:text-text-primary">Cancel</a>
