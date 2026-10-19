@@ -1,83 +1,32 @@
 {
-  "_fonts-D9fVVExM.css": {
-    "file": "assets/fonts-D9fVVExM.css",
-    "src": "_fonts-D9fVVExM.css"
-  },
-  "_inter-400-normal-C38fXH4l.woff2": {
-    "file": "assets/inter-400-normal-C38fXH4l.woff2",
-    "src": "_inter-400-normal-C38fXH4l.woff2"
-  },
-  "_inter-400-normal-CyCys3Eg.woff": {
-    "file": "assets/inter-400-normal-CyCys3Eg.woff",
-    "src": "_inter-400-normal-CyCys3Eg.woff"
-  },
-  "_inter-500-normal-BL9OpVg8.woff": {
-    "file": "assets/inter-500-normal-BL9OpVg8.woff",
-    "src": "_inter-500-normal-BL9OpVg8.woff"
-  },
-  "_inter-500-normal-Cerq10X2.woff2": {
-    "file": "assets/inter-500-normal-Cerq10X2.woff2",
-    "src": "_inter-500-normal-Cerq10X2.woff2"
-  },
-  "_inter-600-normal-CiBQ2DWP.woff": {
-    "file": "assets/inter-600-normal-CiBQ2DWP.woff",
-    "src": "_inter-600-normal-CiBQ2DWP.woff"
-  },
-  "_inter-600-normal-LgqL8muc.woff2": {
-    "file": "assets/inter-600-normal-LgqL8muc.woff2",
-    "src": "_inter-600-normal-LgqL8muc.woff2"
-  },
-  "_inter-tight-500-italic-CxI2IgtH.woff2": {
-    "file": "assets/inter-tight-500-italic-CxI2IgtH.woff2",
-    "src": "_inter-tight-500-italic-CxI2IgtH.woff2"
-  },
-  "_inter-tight-500-italic-Dt-E4eg3.woff": {
-    "file": "assets/inter-tight-500-italic-Dt-E4eg3.woff",
-    "src": "_inter-tight-500-italic-Dt-E4eg3.woff"
-  },
-  "_inter-tight-500-normal-BFXNXuvF.woff2": {
-    "file": "assets/inter-tight-500-normal-BFXNXuvF.woff2",
-    "src": "_inter-tight-500-normal-BFXNXuvF.woff2"
-  },
-  "_inter-tight-500-normal-pobXraBK.woff": {
-    "file": "assets/inter-tight-500-normal-pobXraBK.woff",
-    "src": "_inter-tight-500-normal-pobXraBK.woff"
-  },
-  "_inter-tight-600-italic-BGtuFzIn.woff2": {
-    "file": "assets/inter-tight-600-italic-BGtuFzIn.woff2",
-    "src": "_inter-tight-600-italic-BGtuFzIn.woff2"
-  },
-  "_inter-tight-600-italic-D1lWoNJC.woff": {
-    "file": "assets/inter-tight-600-italic-D1lWoNJC.woff",
-    "src": "_inter-tight-600-italic-D1lWoNJC.woff"
-  },
-  "_inter-tight-600-normal-BgSTtRxb.woff2": {
-    "file": "assets/inter-tight-600-normal-BgSTtRxb.woff2",
-    "src": "_inter-tight-600-normal-BgSTtRxb.woff2"
-  },
-  "_inter-tight-600-normal-D7bG6gX1.woff": {
-    "file": "assets/inter-tight-600-normal-D7bG6gX1.woff",
-    "src": "_inter-tight-600-normal-D7bG6gX1.woff"
-  },
-  "_jetbrains-mono-400-normal-6-qcROiO.woff": {
-    "file": "assets/jetbrains-mono-400-normal-6-qcROiO.woff",
-    "src": "_jetbrains-mono-400-normal-6-qcROiO.woff"
-  },
-  "_jetbrains-mono-400-normal-V6pRDFza.woff2": {
-    "file": "assets/jetbrains-mono-400-normal-V6pRDFza.woff2",
-    "src": "_jetbrains-mono-400-normal-V6pRDFza.woff2"
-  },
   "resources/css/app.css": {
-    "file": "assets/app-DbdqSAHQ.css",
+    "file": "assets/app-Cxlgev7s.css",
     "name": "app",
     "names": [
       "app.css"
     ],
     "src": "resources/css/app.css",
-    "isEntry": true
+    "isEntry": true,
+    "assets": [
+      "assets/inter-latin-wght-normal-Dx4kXJAl.woff2",
+      "assets/inter-tight-latin-wght-normal-DX-nOvPD.woff2",
+      "assets/inter-tight-latin-wght-italic-DiXukCDG.woff2"
+    ]
+  },
+  "resources/fonts/inter-latin-wght-normal.woff2": {
+    "file": "assets/inter-latin-wght-normal-Dx4kXJAl.woff2",
+    "src": "resources/fonts/inter-latin-wght-normal.woff2"
+  },
+  "resources/fonts/inter-tight-latin-wght-italic.woff2": {
+    "file": "assets/inter-tight-latin-wght-italic-DiXukCDG.woff2",
+    "src": "resources/fonts/inter-tight-latin-wght-italic.woff2"
+  },
+  "resources/fonts/inter-tight-latin-wght-normal.woff2": {
+    "file": "assets/inter-tight-latin-wght-normal-DX-nOvPD.woff2",
+    "src": "resources/fonts/inter-tight-latin-wght-normal.woff2"
   },
   "resources/js/app.js": {
-    "file": "assets/app-BKeFzQud.js",
+    "file": "assets/app-UQgb5WE5.js",
     "name": "app",
     "src": "resources/js/app.js",
     "isEntry": true
