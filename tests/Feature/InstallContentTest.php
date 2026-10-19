@@ -64,3 +64,13 @@ it('changes nothing on a dry run', function (): void {
 
     expect(Entry::query()->count())->toBe(0);
 });
+
+it('limits itself to the folders given with --only', function (): void {
+    $this->artisan('site:install-content', ['--only' => ['services']])->assertSuccessful();
+
+    expect(Entry::query()->where('collection', 'service')->count())->toBeGreaterThan(0)
+        ->and(Entry::query()->where('collection', 'project')->count())->toBe(0)
+        ->and(Entry::query()->where('collection', 'page')->count())->toBe(0);
+
+    $this->artisan('site:install-content', ['--only' => ['nope']])->assertFailed();
+});

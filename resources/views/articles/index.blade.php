@@ -11,7 +11,7 @@
 
 @section('head')
     <x-cms-seo
-        title="Articles"
+        title="Articles on Laravel, WordPress and AI"
         description="Notes on building for the web: Laravel, WordPress, AI and performance, written from the work itself. What works, what doesn't, and why."
         keywords="laravel, wordpress, ai implementation, web performance, web development articles"
         image="/og/article.png"

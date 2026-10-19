@@ -17,22 +17,48 @@ featured: true
 seo_title: Rebuilding chrisgarlick.com on Laravel
 seo_description: How I moved my own site from Astro and a custom Bun CMS to Laravel without losing a single URL, and made it faster on the same small server.
 ---
-## Starting point
+## The starting point
 
-The previous version of this site was a static Astro front end fed by a CMS I had built on Bun. It worked, but every content change meant a rebuild, forms and lead capture lived in separate services, and the CMS had reached the limits of its design.
+The old version of this site had two parts. The front end was built with Astro, a tool that turns content into static pages. The content came from a CMS I had built on Bun, a JavaScript runtime.
 
-## The move
+It worked, but it had three problems. Every content change meant rebuilding the whole site. Forms and lead capture lived in separate services. And the CMS had reached the limits of its design.
 
-The new site runs on Laravel with [cg-cms](/work/cg-cms), the CMS I built for it. The migration was planned so nothing would break:
+## What I built
 
-- an importer that moves every entry, user and form submission from the old database in one transaction, and can be run again safely
-- a parity check that requests all 79 live URLs and compares them before cutover
-- redirects for every URL that changed, managed in the CMS
+The new site runs on Laravel with [cg-cms](/work/cg-cms), the CMS I built for it. Content lives in Postgres, and the editor runs in the browser.
+
+The hard part was the move itself. A live site has pages that are indexed, linked and bookmarked. If those URLs break, visitors hit dead ends and search rankings suffer. So I planned the migration so that nothing would break:
+
+- **An importer.** It moves every entry, user and form submission from the old database in one transaction. That means it either all goes across or none of it does. It is also safe to run again.
+- **A parity check.** Before cutover, it requests all 79 live URLs and compares them.
+- **Redirects.** Every URL that changed has a redirect, managed in the CMS.
+
+## How it works
+
+When I save a page, cg-cms renders its HTML once and writes it to disk. nginx, the web server, sends that file straight to the visitor. PHP never runs and the database is never touched on a page view.
+
+On a 1GB server, a cached page comes back in 4.4 milliseconds. The same setup handles 3,900 requests a second on one vCPU (a single virtual processor).
+
+Publishing is targeted too. Each page records what content it used. When I publish an article, only that article and the pages that list it are cleared. The rest of the site stays cached.
 
 ## What changed for visitors
 
-Pages are rendered once and served from disk, so they load faster than the static build did. In lab tests before launch, Lighthouse performance went from the high 80s to 99 or 100, and largest contentful paint dropped from about 3 seconds to under 2.
+Pages now load faster than the old static build did. In lab tests before launch, the Lighthouse performance score went from the high 80s to 99 or 100. Largest contentful paint dropped from about 3 seconds to under 2. That is the time it takes for the main content of a page to appear.
+
+Every one of the 79 live URLs still works. Old links and search results still land in the right place.
 
 ## What changed behind the scenes
 
-Lead capture, the free [site audit](/tools/site-audit), GDPR export and deletion, email tracking and the nightly SEO audit now all live in one application, covered by more than 500 automated tests, deployed to a 1GB server.
+Everything now lives in one Laravel application:
+
+- lead capture and form handling
+- the free [site audit](/tools/site-audit)
+- GDPR export and deletion, so a person can get or remove their data
+- email tracking
+- a nightly SEO audit of every page
+
+More than 500 automated tests cover it. It is deployed to a single 1GB server. Every save also runs brand voice and SEO checks, so problems show up before a page goes live.
+
+## What I would point out
+
+If you are hiring me for a rebuild, this is the part that matters. I moved a live site to a new stack without losing a single URL. I checked that with a test, not by hand. The data moved in one safe step that could be repeated. The result is faster and simpler to run. It is the same approach I take with [Laravel](/services/laravel) work for clients.

@@ -8,7 +8,7 @@
 
 @section('head')
     <x-cms-seo
-        title="Work"
+        title="Work: products and sites I've built"
         description="Products, tools and sites I have designed and built myself, from a website auditing platform to the CMS this site runs on."
         :noindex="$projects === []"
     />

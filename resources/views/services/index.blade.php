@@ -5,7 +5,7 @@
 @extends('layouts.base')
 
 @section('head')
-    <x-cms-seo title="Services" description="Laravel and WordPress development, AI implementation, software and websites, by one UK developer from the first call to handover." />
+    <x-cms-seo title="Laravel and WordPress development services" description="Laravel and WordPress development, AI implementation, software and websites, by one UK developer from the first call to handover." />
 @endsection
 
 @section('content')

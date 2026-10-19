@@ -1,42 +1,35 @@
 {{--
-    FAQ. No Astro equivalent, so it takes the text-section look.
-
-    Still <details>, as the package view decided: it works with no script, is
-    keyboard accessible without ARIA, and a closed answer is still in the
-    document for a crawler. The summary is styled like a text-section h3
-    from the parent, so the element stays a plain <summary>.
-
-    Answers are pre-rendered at content.<block>.items.<row>.answer.
+    Questions and answers, in the magazine layout of the text sections: the
+    heading in the margin, the questions in the reading column. Native
+    <details>, so it works with no script, a screen reader announces it, and a
+    search engine reads every answer. The block also feeds the page's FAQPage
+    structured data (cg-cms FaqPageBuilder). Answers were rendered on save.
 --}}
 @php
-    $questions = array_values(array_filter(
+    $items = array_values(array_filter(
         (array) ($data['items'] ?? []),
         fn ($item): bool => is_array($item) && filled($item['question'] ?? null),
     ));
 @endphp
 
-@if ($questions !== [])
-    <section class="py-20 md:py-28" data-theme="{{ $theme }}">
-        <div class="mx-auto max-w-[680px] px-6 md:px-8">
-            @if (filled($data['label'] ?? null))
-                <p class="mb-3 font-body text-[0.8125rem] font-medium tracking-[0.12em] text-text-tertiary uppercase">{{ $data['label'] }}</p>
-            @endif
-            @if (filled($data['heading'] ?? null))
-                <h2 class="mb-6 font-display text-[1.75rem] text-text-primary md:text-[2.25rem]">{{ $data['heading'] }}</h2>
-            @endif
+@if ($items !== [])
+    <section class="mx-auto max-w-[1200px] px-6 pb-16 md:pb-20">
+        <div class="grid gap-8 border-t-4 border-double border-text-primary pt-8 md:grid-cols-[minmax(0,1fr)_minmax(0,1.6fr)] md:gap-14">
+            <div>
+                <p class="mb-3 text-[13px] font-semibold tracking-[0.08em] text-accent uppercase">Questions</p>
+                <h2 class="text-[34px] leading-[1.05] md:text-[44px]">{{ $data['heading'] ?? 'Common questions' }}</h2>
+            </div>
             <div class="divide-y divide-border border-y border-border">
-                @foreach ($questions as $index => $item)
-                    <details class="group py-5 [&>summary]:cursor-pointer [&>summary]:font-display [&>summary]:text-[1.2rem] [&>summary]:font-bold [&>summary]:text-text-primary [&>summary]:marker:text-accent">
-                        <summary>{{ $item['question'] }}</summary>
-                        <div class="prose-custom mt-4">
-                            {!! data_get($html, "items.{$index}.answer", '') !!}
-                        </div>
+                @foreach ($items as $index => $item)
+                    <details class="group py-5">
+                        <summary class="flex cursor-pointer list-none items-start justify-between gap-6 text-[19px] font-semibold leading-snug text-text-primary [&::-webkit-details-marker]:hidden">
+                            <span>{{ $item['question'] }}</span>
+                            <span class="mt-0.5 shrink-0 text-accent transition-transform duration-200 group-open:rotate-45" aria-hidden="true">+</span>
+                        </summary>
+                        <div class="prose-mag no-drop-cap mt-3">{!! data_get($html, "items.{$index}.answer", '') !!}</div>
                     </details>
                 @endforeach
             </div>
-        </div>
-        <div class="mx-auto mt-20 max-w-[1080px] px-6 md:mt-28 md:px-8">
-            <div class="h-px bg-border"></div>
         </div>
     </section>
 @endif

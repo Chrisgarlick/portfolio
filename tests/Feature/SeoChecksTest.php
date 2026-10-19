@@ -379,3 +379,12 @@ it('measures a title in characters, not in mis-decoded bytes', function (): void
 
     expect(mb_strlen((string) $page->title()))->toBe(11);
 });
+
+it('leaves a published entry that now redirects out of the audit', function (): void {
+    makeArticle('moved-on', 'An article that was consolidated');
+    Redirect::query()->create(['from' => '/article/moved-on', 'to' => '/article', 'status' => 301, 'match_type' => 'exact']);
+
+    $this->artisan('cms:seo-audit')->assertSuccessful();
+
+    expect(SeoIssue::query()->where('url', '/article/moved-on')->exists())->toBeFalse();
+});

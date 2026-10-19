@@ -64,7 +64,7 @@
   <!-- Results -->
   <div id="audit-results" class="hidden">
     <div class="audit-results-header">
-      <h3 class="audit-results-title">Results</h3>
+      <h2 class="audit-results-title">Results</h2>
       <p class="audit-results-url" id="audit-results-url"></p>
     </div>
 

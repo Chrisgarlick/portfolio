@@ -32,7 +32,8 @@ final class InstallContentCommand extends Command
 {
     protected $signature = 'site:install-content
         {--publish : Apply and publish everything, rather than leaving drafts and proposals}
-        {--dry-run : List what would be created or changed}';
+        {--dry-run : List what would be created or changed}
+        {--only=* : Limit to these folders (services, work, articles, tools, pages)}';
 
     protected $description = 'Create or update the redesign content from database/content';
 
@@ -51,8 +52,20 @@ final class InstallContentCommand extends Command
         $dry = (bool) $this->option('dry-run');
         $failed = 0;
         $rows = [];
+        $only = array_filter((array) $this->option('only'));
+        $unknown = array_diff($only, array_keys(self::FOLDERS));
+
+        if ($unknown !== []) {
+            $this->components->error('Unknown folder: '.implode(', ', $unknown).'. Folders: '.implode(', ', array_keys(self::FOLDERS)).'.');
+
+            return self::FAILURE;
+        }
 
         foreach (self::FOLDERS as $folder => $collection) {
+            if ($only !== [] && ! in_array($folder, $only, true)) {
+                continue;
+            }
+
             foreach ($this->files(database_path("content/{$folder}")) as $file) {
                 $label = "{$folder}/".basename($file);
 
