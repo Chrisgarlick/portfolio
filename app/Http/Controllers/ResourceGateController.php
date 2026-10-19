@@ -161,7 +161,7 @@ final class ResourceGateController extends Controller
         ]), $leadId);
     }
 
-    public function download(Request $request, TypesetClient $typeset, string $slug): SymfonyResponse
+    public function download(Request $request, TypesetClient $typeset, CacheContext $cache, string $slug): SymfonyResponse
     {
         $format = mb_strtolower((string) $request->query('format', 'md'));
 
@@ -170,6 +170,14 @@ final class ResourceGateController extends Controller
             : LeadToken::verify($request->cookies->get(LeadToken::COOKIE));
 
         if ($leadId === null || $leadId === '' || ResourceLead::query()->whereKey($leadId)->doesntExist()) {
+            // A person who opened an old or shared link gets the expired page
+            // with a way to ask again; scripts still get JSON.
+            if (! $request->wantsJson() && ($resource = $this->resource($slug)) !== null) {
+                $cache->doNotCache();
+
+                return response()->view('resources.thanks', ['resource' => $resource, 'expired' => true, 'links' => []], 401);
+            }
+
             return response()->json(['error' => 'This download link has expired or is invalid. Request a new one.'], 401);
         }
 

@@ -30,7 +30,7 @@
                 <div></div>
             @endif
 
-            <aside class="space-y-6">
+            <div class="space-y-6">
                 @if ($includes !== [])
                     <div class="border-t-4 border-double border-text-primary pt-5">
                         <h2 class="mb-4 text-[32px]">What that involves</h2>
@@ -48,7 +48,7 @@
                 @if ($timeline = $service->value('typical_timeline'))
                     <p class="text-[14px] text-text-secondary">Projects like this typically take <span class="font-semibold text-text-primary">{{ $timeline }}</span>.</p>
                 @endif
-            </aside>
+            </div>
         </div>
 
         {{-- Evidence. A service page with no work behind it is a claim. --}}

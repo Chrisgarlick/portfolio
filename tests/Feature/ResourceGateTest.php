@@ -322,3 +322,16 @@ it('syncs layout JSON from disk, byte for byte, and reports invalid files', func
 
     exec('rm -rf '.escapeshellarg($dir));
 });
+
+it('shows a person the expired page with a way to ask again, and gives scripts JSON', function (): void {
+    gatedResource();
+
+    $this->get('/api/resources/prompt-library/download?format=pdf', ['Accept' => 'text/html'])
+        ->assertUnauthorized()
+        ->assertSee('Link expired')
+        ->assertSee('Request it again');
+
+    $this->getJson('/api/resources/prompt-library/download?format=pdf')
+        ->assertUnauthorized()
+        ->assertJsonPath('error', 'This download link has expired or is invalid. Request a new one.');
+});

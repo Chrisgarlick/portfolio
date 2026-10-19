@@ -1,0 +1,4 @@
+Contact: mailto:cgarlick94@gmail.com
+Expires: 2027-10-19T00:00:00.000Z
+Preferred-Languages: en
+Canonical: https://chrisgarlick.com/.well-known/security.txt

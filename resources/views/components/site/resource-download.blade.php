@@ -22,7 +22,7 @@
     $label = 'mb-1.5 block text-[13px] font-medium text-text-secondary';
 @endphp
 
-<aside {{ $attributes->merge(['class' => 'rounded-[10px] border border-border bg-bg-surface p-7 md:p-9']) }} aria-label="Free download">
+<section {{ $attributes->merge(['class' => 'rounded-[10px] border border-border bg-bg-surface p-7 md:p-9']) }} aria-label="Free download">
     <div id="gate-container">
         <div id="resource-gate" data-slug="{{ $resource->slug }}" class="grid gap-8 md:grid-cols-[minmax(0,1fr)_minmax(0,1.15fr)]">
             <div>
@@ -92,4 +92,4 @@
     <div id="picker-container" class="hidden">
         <x-site.format-picker :slug="$resource->slug" />
     </div>
-</aside>
+</section>

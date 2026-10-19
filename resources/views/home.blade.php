@@ -37,7 +37,7 @@
             </div>
 
             {{-- In this issue: the table of contents a magazine cover has. --}}
-            <aside class="border-t-4 border-double border-text-primary pt-5" aria-label="In this issue">
+            <section class="border-t-4 border-double border-text-primary pt-5" aria-label="In this issue">
                 <p class="mb-4 text-[13px] font-semibold tracking-[0.08em] uppercase">In this issue</p>
                 @php
                     $issue = array_values(array_filter([
@@ -61,7 +61,7 @@
                         </li>
                     @endforeach
                 </ol>
-            </aside>
+            </section>
         </div>
     </section>
 
