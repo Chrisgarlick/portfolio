@@ -299,7 +299,7 @@ it('renders the FAQ block with its answers', function (): void {
     $html = $this->get('/page/faq-render')->assertOk()->getContent();
 
     expect($html)
-        ->toContain('<summary>What does it cost?</summary>')
+        ->toMatch('#<summary[^>]*>\s*<span>What does it cost\?</span>#')
         ->toContain('<p>It starts at 500 pounds.</p>')
         // <details> works with no JavaScript, is keyboard accessible without
         // ARIA, and keeps every answer in the document for a crawler.
