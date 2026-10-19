@@ -94,7 +94,7 @@
     <!-- Email gate / CTA -->
     <div class="audit-cta">
       <div class="audit-cta-inner">
-        <h4 class="audit-cta-heading">Want the full breakdown?</h4>
+        <h3 class="audit-cta-heading">Want the full breakdown?</h3>
         <p class="audit-cta-body">
           I'll run a deeper, multi-page audit on your site and walk you through what I would fix first. No pitch.
         </p>
