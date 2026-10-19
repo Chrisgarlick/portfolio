@@ -52,6 +52,8 @@
         @if ($article->html('body') !== '')
             <div class="prose-mag mx-auto max-w-[680px] px-6 pb-16">{!! $article->html('body') !!}</div>
         @endif
+
+        <x-site.author-bio class="mx-auto max-w-[680px] px-6 pb-16" />
     </article>
 
     @if ($download)

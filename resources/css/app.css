@@ -7,14 +7,44 @@
     scoped styles; each block is prefixed with the component it came from.
 
     Sources are the app's views and the package's, so classes used in either
-    are generated. Fonts are self-hosted by the Vite plugin (vite.config.js),
-    not loaded from Google at request time.
+    are generated. Fonts are self-hosted from resources/fonts (the @font-face
+    rules below), not loaded from Google at request time.
 */
 
 @import "tailwindcss";
 
 @source "../views";
 @source "../../vendor/chrisgarlick/cg-cms/resources/views";
+
+/*
+ * Two typefaces, three files: variable Inter for body text, variable Inter
+ * Tight for headings plus its italic for the accent word. One variable file
+ * covers every weight the design uses (400 to 700), where static files needed
+ * one each. Self-hosted (Fontsource, OFL 1.1), latin subset. Code blocks use
+ * the system's monospace font.
+ */
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+  src: url('../fonts/inter-latin-wght-normal.woff2') format('woff2-variations');
+}
+@font-face {
+  font-family: 'Inter Tight';
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+  src: url('../fonts/inter-tight-latin-wght-normal.woff2') format('woff2-variations');
+}
+@font-face {
+  font-family: 'Inter Tight';
+  font-style: italic;
+  font-weight: 100 900;
+  font-display: swap;
+  src: url('../fonts/inter-tight-latin-wght-italic.woff2') format('woff2-variations');
+}
+
 
 /* ═══════════════════════════════════════════════
    CHRIS GARLICK — PARCHMENT / OXIDE + SERVICE COLOURS
@@ -100,7 +130,7 @@
   /* ── Typography ── */
   --font-display: 'Inter Tight', 'Inter', ui-sans-serif, system-ui, sans-serif;
   --font-body: 'Inter', ui-sans-serif, system-ui, sans-serif;
-  --font-mono: 'JetBrains Mono', ui-monospace, 'SFMono-Regular', monospace;
+  --font-mono: ui-monospace, 'SF Mono', SFMono-Regular, Menlo, Consolas, monospace;
 
   /* ── Radius ── */
   --radius-sm: 2px;

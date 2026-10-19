@@ -37,7 +37,7 @@
           title="{{ config('cg-cms.site.name') }}"
           href="/{{ ltrim((string) config('cg-cms.seo.files.rss', 'article/rss.xml'), '/') }}">
 
-    {{ Vite::fonts() }}
+    @include('partials.font-preload')
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
 <body class="min-h-screen bg-bg-primary text-text-primary">

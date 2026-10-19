@@ -179,3 +179,14 @@ it('gives the one real contact address on the legal pages, never a dead chrisgar
     expect($html)->toContain('mailto:owner@example.com')
         ->not->toContain('@chrisgarlick.com');
 })->with(['/privacy', '/terms']);
+
+it('signs each article with an author bio whose links match the Person schema', function (): void {
+    config(['cg-cms.seo.person.same_as' => ['https://github.com/example']]);
+    makeArticle('signed', 'A signed article');
+
+    $html = (string) $this->get('/article/signed')->getContent();
+
+    expect($html)->toContain('About the author')
+        ->toContain('href="https://github.com/example" rel="me noopener"')
+        ->toContain('href="/about"');
+});

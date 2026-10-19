@@ -8,7 +8,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="robots" content="noindex">
-    {{ Vite::fonts() }}
+    @include('partials.font-preload')
     @vite(['resources/css/app.css'])
 </head>
 <body class="bg-bg-primary text-text-primary">{!! $body !!}</body>

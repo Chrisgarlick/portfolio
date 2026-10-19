@@ -148,11 +148,6 @@
                     </form>
                 </div>
 
-                <script>
-                    document.querySelector('[data-render-form]')?.addEventListener('submit', (event) => {
-                        event.currentTarget.elements.markdown.value = document.getElementById('audit_markdown').value;
-                    });
-                </script>
             @endif
 
             <p class="text-[12px] text-text-tertiary">

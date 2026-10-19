@@ -16,6 +16,7 @@ import { initDiagnostic } from './site/diagnostic';
 import { initSiteAudit } from './site/site-audit';
 import { initTopicFilter } from './site/topic-filter';
 import { initReadingProgress } from './site/reading-progress';
+import { initStudioAudit } from './site/studio-audit';
 
 initNav();
 initCookieConsent();
@@ -28,3 +29,4 @@ initDiagnostic();
 initSiteAudit();
 initTopicFilter();
 initReadingProgress();
+initStudioAudit();
