@@ -19,6 +19,9 @@ class AppServiceProvider extends ServiceProvider
     public function register(): void
     {
         config(['cg-cms.block_tints' => Accent::COLOURS]);
+
+        // Static pages outside any collection, so the sitemap lists them.
+        config(['cg-cms.seo.sitemap_paths' => ['/privacy', '/terms']]);
     }
 
     /**

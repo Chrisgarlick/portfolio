@@ -272,3 +272,25 @@ it('escapes XML metacharacters in a title', function (): void {
     expect($xml)->not->toBeFalse()
         ->and((string) $xml->channel->item[0]->title)->toBe('Tom & Jerry <b>go</b> to work');
 });
+
+it('lists configured static pages, and the home page once', function (): void {
+    config(['cg-cms.seo.sitemap_paths' => ['/privacy', '/terms', '/nowhere']]);
+    app()->forgetInstance(SeoFileWriter::class);
+    app()->singleton(SeoFileWriter::class, fn (): SeoFileWriter => new SeoFileWriter(
+        app(CollectionRegistry::class),
+        [...(array) config('cg-cms.site'), ...(array) config('cg-cms.seo')],
+        $this->seoPath,
+    ));
+    Entry::query()->create(['collection' => 'page', 'slug' => 'home', 'title' => 'Home', 'status' => 'published', 'published_at' => now()->subDay(), 'data' => []]);
+
+    app(SeoFileWriter::class)->sitemap();
+    $domain = config('cg-cms.site.domain');
+    $all = collect(glob($this->seoPath.'/sitemap-*.xml'))->map(fn (string $f): string => (string) file_get_contents($f))->implode('');
+
+    expect(generated('sitemap-pages.xml'))
+        ->toContain("<loc>{$domain}/privacy</loc>")
+        ->toContain("<loc>{$domain}/terms</loc>")
+        ->not->toContain('/nowhere'); // no route, so never listed
+
+    expect(substr_count($all, "<loc>{$domain}/</loc>"))->toBe(1);
+});
