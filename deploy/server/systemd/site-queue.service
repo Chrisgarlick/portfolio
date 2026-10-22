@@ -1,3 +1,5 @@
+# Replaced by the queue service in php-docker/compose.yml (October 2026), so the
+# worker runs on patched PHP. Kept, disabled, for rollback.
 # The queue worker: media variants, mail, cache warming, SEO files, audits.
 # One process with its own memory ceiling, so a bad image kills a job, not the
 # box. Restarted by `artisan queue:restart` on every deploy. Plan section 9.2.

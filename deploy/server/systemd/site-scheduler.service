@@ -5,7 +5,5 @@ Description=chrisgarlick.com scheduler
 
 [Service]
 Type=oneshot
-User=www-data
-Group=www-data
 WorkingDirectory=/var/www/site
-ExecStart=/usr/bin/php /var/www/site/artisan schedule:run
+ExecStart=/usr/bin/docker exec -u www-data -w /var/www/site site-php php artisan schedule:run

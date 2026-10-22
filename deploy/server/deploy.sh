@@ -22,12 +22,13 @@
 set -euo pipefail
 
 SITE=/var/www/site
-PHP_FPM=php8.3-fpm
+# PHP runs in the site-php container (php-docker/compose.yml); see the Dockerfile for why.
+PHP_CONTAINER=site-php
 BRANCH=main
 PREVIOUS_FILE="$SITE/storage/app/deploy-previous"
 
 as_web() { sudo -u www-data -H "$@"; }
-artisan() { as_web php "$SITE/artisan" "$@"; }
+artisan() { docker exec -u www-data -w "$SITE" "$PHP_CONTAINER" php artisan "$@"; }
 
 cd "$SITE"
 [[ -f .env ]] || { echo "Missing $SITE/.env. Run provision.sh and fill it in first."; exit 1; }
@@ -81,7 +82,8 @@ artisan migrate --force
 artisan optimize >/dev/null
 
 # opcache.validate_timestamps is off, so PHP-FPM must reload to see new code.
-systemctl reload "$PHP_FPM"
+# USR2 is FPM's graceful reload: workers finish their requests, then restart.
+docker kill --signal=USR2 "$PHP_CONTAINER" >/dev/null
 artisan queue:restart >/dev/null
 artisan up >/dev/null
 trap - ERR

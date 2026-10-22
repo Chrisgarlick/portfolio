@@ -1,0 +1,24 @@
+# PHP for chrisgarlick.com: FPM for nginx, and the queue worker, both on the
+# patched image. Lives at /opt/site-php/compose.yml on the server.
+#
+# Host networking keeps 127.0.0.1 meaning the host, for Postgres, SMTP and
+# nginx's fastcgi_pass 127.0.0.1:9083.
+services:
+  php:
+    image: site-php:8.3.36
+    container_name: site-php
+    network_mode: host
+    restart: unless-stopped
+    volumes:
+      - /var/www/site:/var/www/site
+
+  queue:
+    image: site-php:8.3.36
+    container_name: site-queue
+    network_mode: host
+    restart: unless-stopped
+    user: www-data
+    working_dir: /var/www/site
+    volumes:
+      - /var/www/site:/var/www/site
+    command: php -d memory_limit=96M artisan queue:work --sleep=3 --tries=2 --max-jobs=100 --max-time=1800
