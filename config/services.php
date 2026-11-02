@@ -50,10 +50,11 @@ return [
     /*
     | The Kritano platform API behind the free site-audit tool. Without a key
     | the tool returns clearly-labelled mock scores, as the live site did, so
-    | the page works in development.
+    | the page works in development. The key comes from app.kritano.com →
+    | Settings → API keys and needs the scans:run scope.
     */
     'kritano' => [
-        'url' => env('KRITANO_PLATFORM_API_URL', 'https://kritano.com/api/v1'),
+        'url' => env('KRITANO_PLATFORM_API_URL', 'https://app.kritano.com/api/v1'),
         'key' => env('KRITANO_API'),
     ],
 

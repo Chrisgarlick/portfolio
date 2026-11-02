@@ -34,12 +34,16 @@ function runAudit(array $body = ['url' => 'https://example.com']): TestResponse
     return test()->postJson('/api/tools/audit', $body);
 }
 
-it('queues a run, then stores the completed scores with the live overall', function (): void {
+it('queues a run, then stores the completed scan\'s scores and findings', function (): void {
     Http::fake([
-        'kritano.test/api/v1/audits' => Http::response(['id' => 'k-1']),
-        'kritano.test/api/v1/audits/k-1' => Http::sequence()
-            ->push(['status' => 'running'])
-            ->push(['status' => 'completed', 'scores' => ['seo' => 90, 'accessibility' => 80, 'performance' => 70, 'security' => 60], 'issues' => [['rule' => 'title']]]),
+        'kritano.test/api/v1/scans' => Http::response(['id' => 'k-1', 'status' => 'queued'], 201),
+        'kritano.test/api/v1/scans/k-1' => Http::sequence()
+            ->push(['id' => 'k-1', 'status' => 'running', 'result' => null])
+            ->push(['id' => 'k-1', 'status' => 'completed', 'result' => [
+                'finalUrl' => 'https://example.com/', 'httpStatus' => 200, 'overall' => 72,
+                'scores' => ['seo' => 90, 'accessibility' => 80, 'performance' => 70, 'security' => 60, 'content' => 60],
+                'findings' => [['rule' => 'seo/title-missing', 'severity' => 'serious']],
+            ]]),
     ]);
 
     $response = runAudit(['url' => 'https://example.com', 'task' => 'client intake'])->assertStatus(202);
@@ -48,19 +52,23 @@ it('queues a run, then stores the completed scores with the live overall', funct
 
     expect($response->json('poll'))->toBe('/api/tools/audit/'.$audit->id)
         ->and($audit->status)->toBe('completed')
-        ->and($audit->scores)->toEqual(['overall' => 75, 'seo' => 90, 'accessibility' => 80, 'performance' => 70])
+        ->and($audit->scores)->toEqual(['overall' => 72, 'seo' => 90, 'accessibility' => 80, 'performance' => 70])
+        ->and($audit->issues)->toEqual([['rule' => 'seo/title-missing', 'severity' => 'serious']])
         ->and($audit->task)->toBe('client intake')
         ->and($audit->kritano_audit_id)->toBe('k-1');
 
-    Http::assertSent(fn ($request) => $request->url() === 'https://kritano.test/api/v1/audits'
-        && $request['options'] === ['maxPages' => 1, 'maxDepth' => 1]
+    // A scan, so the visitor's domain is never added as a site in the account.
+    Http::assertSent(fn ($request) => $request->url() === 'https://kritano.test/api/v1/scans'
+        && $request->data() === ['url' => 'https://example.com']
         && $request->hasHeader('Authorization', 'Bearer test-key'));
+    Http::assertNotSent(fn ($request) => str_contains($request->url(), '/audits'));
 });
 
 it('records a failed audit with the live message', function (): void {
     Http::fake([
-        'kritano.test/api/v1/audits' => Http::response(['id' => 'k-2']),
-        'kritano.test/api/v1/audits/k-2' => Http::response(['status' => 'failed']),
+        'kritano.test/api/v1/scans' => Http::response(['id' => 'k-2', 'status' => 'queued'], 201),
+        'kritano.test/api/v1/scans/k-2' => Http::response(['id' => 'k-2', 'status' => 'failed', 'result' => null,
+            'error' => ['code' => 'fetch_failed', 'message' => 'The page could not be loaded']]),
     ]);
 
     $id = runAudit()->json('id');
@@ -73,8 +81,8 @@ it('records a failed audit with the live message', function (): void {
 
 it('gives up after thirty polls with the live timeout message', function (): void {
     Http::fake([
-        'kritano.test/api/v1/audits' => Http::response(['id' => 'k-3']),
-        'kritano.test/api/v1/audits/k-3' => Http::response(['status' => 'running']),
+        'kritano.test/api/v1/scans' => Http::response(['id' => 'k-3', 'status' => 'queued'], 201),
+        'kritano.test/api/v1/scans/k-3' => Http::response(['id' => 'k-3', 'status' => 'running', 'result' => null]),
     ]);
 
     $id = runAudit()->json('id');

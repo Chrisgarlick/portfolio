@@ -17,6 +17,10 @@ use Illuminate\Support\Sleep;
 /**
  * Run one free site audit against the Kritano platform API.
  *
+ * It is a one-page scan (POST /scans on app.kritano.com): scored like an
+ * audit, but without adding the visitor's domain as a site in the Kritano
+ * account. The key needs the scans:run scope.
+ *
  * Ported from POST /api/tools/audit in server.ts, which did this inside the
  * request: create, then poll every two seconds for up to a minute while a
  * visitor's connection and a server process waited. With four PHP-FPM workers
@@ -66,10 +70,9 @@ final class RunSiteAudit implements ShouldQueue
         $base = rtrim((string) config('services.kritano.url'), '/');
 
         try {
-            $created = $api->post("{$base}/audits", [
-                'url' => $audit->url,
-                'options' => ['maxPages' => 1, 'maxDepth' => 1],
-            ]);
+            // 201 for a new scan; 200 when the same URL was scanned in the
+            // last hour and that scan is returned instead.
+            $created = $api->post("{$base}/scans", ['url' => $audit->url]);
 
             if (! $created->successful()) {
                 Log::error('Site audit create failed', ['status' => $created->status()]);
@@ -84,14 +87,14 @@ final class RunSiteAudit implements ShouldQueue
             for ($attempt = 0; $attempt < self::MAX_POLLS; $attempt++) {
                 Sleep::for(self::POLL_SECONDS)->seconds();
 
-                $poll = $api->get("{$base}/audits/{$kritanoId}");
+                $poll = $api->get("{$base}/scans/{$kritanoId}");
 
                 if (! $poll->successful()) {
                     continue;
                 }
 
                 if ($poll->json('status') === 'completed') {
-                    $this->complete($audit, (array) $poll->json('scores', []), $poll->json('issues'));
+                    $this->complete($audit, (array) $poll->json('result', []));
 
                     return;
                 }
@@ -111,24 +114,26 @@ final class RunSiteAudit implements ShouldQueue
     }
 
     /**
-     * @param  array<string, mixed>  $scores
+     * A completed scan's result: an overall score (Kritano's own, the mean of
+     * every category it scored), a score per category, and the findings,
+     * worst first.
+     *
+     * @param  array<string, mixed>  $result
      */
-    private function complete(SiteAudit $audit, array $scores, mixed $issues): void
+    private function complete(SiteAudit $audit, array $result): void
     {
-        $available = array_values(array_filter(
-            [$scores['seo'] ?? null, $scores['accessibility'] ?? null, $scores['performance'] ?? null, $scores['security'] ?? null],
-            fn ($score): bool => $score !== null,
-        ));
+        $scores = (array) ($result['scores'] ?? []);
+        $findings = $result['findings'] ?? null;
 
         $audit->update([
             'status' => 'completed',
             'scores' => [
-                'overall' => $available === [] ? null : (int) round(array_sum($available) / count($available)),
+                'overall' => isset($result['overall']) ? (int) $result['overall'] : null,
                 'seo' => $scores['seo'] ?? null,
                 'accessibility' => $scores['accessibility'] ?? null,
                 'performance' => $scores['performance'] ?? null,
             ],
-            'issues' => is_array($issues) ? $issues : null,
+            'issues' => is_array($findings) ? $findings : null,
             'completed_at' => now(),
         ]);
     }
