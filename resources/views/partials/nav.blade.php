@@ -27,8 +27,10 @@
      style="background: rgba(250,248,243,0.94); backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px);"
      aria-label="Main navigation">
     <div class="mx-auto flex h-full max-w-[1200px] items-center justify-between gap-6 px-6">
-        <a href="/" class="font-display text-[30px] leading-none tracking-tight text-text-primary no-underline" aria-label="Chris Garlick, home">
-            Chris Garlick
+        {{-- The lockup for light backgrounds (the nav is always cream). Its dark
+             twin, for dark backgrounds, is /images/brand/logo-dark.svg. --}}
+        <a href="/" class="-ml-[5px] shrink-0 no-underline" aria-label="Chris Garlick, home">
+            <img src="/images/brand/logo-light.svg" alt="" width="152" height="44" class="block h-11 w-auto">
         </a>
 
         <div class="hidden items-center gap-7 md:flex">

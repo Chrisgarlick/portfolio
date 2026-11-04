@@ -31,6 +31,7 @@
     @endif
 
     <link rel="icon" href="/favicon.ico" sizes="32x32">
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml">
     <link rel="icon" href="/favicon-512.png" type="image/png" sizes="512x512">
     <link rel="apple-touch-icon" href="/apple-touch-icon.png">
     <link rel="alternate" type="application/rss+xml"
