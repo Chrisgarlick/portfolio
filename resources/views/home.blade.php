@@ -19,7 +19,7 @@
 @section('content')
     {{-- Cover --}}
     <section class="mx-auto max-w-[1200px] px-6 pt-14 pb-16 md:pt-20">
-        <div class="grid gap-12 md:grid-cols-[minmax(0,1.55fr)_minmax(0,1fr)] md:items-end">
+        <div class="grid gap-12 md:grid-cols-[minmax(0,1.55fr)_minmax(0,1fr)] md:items-center">
             <div>
                 @if ($cover['label'] !== '')
                     <p class="mb-5 text-[13px] font-semibold tracking-[0.08em] text-accent uppercase">{{ $cover['label'] }}</p>
@@ -36,33 +36,38 @@
                 </div>
             </div>
 
-            {{-- In this issue: the table of contents a magazine cover has. --}}
-            <section class="border-t-4 border-double border-text-primary pt-5" aria-label="In this issue">
-                <p class="mb-4 text-[13px] font-semibold tracking-[0.08em] uppercase">In this issue</p>
-                @php
-                    $issue = array_values(array_filter([
-                        ['Services', '/services', 'What I build, and how'],
-                        ['The work', '/work', 'Products and sites I have built'],
-                        $kritano ? ['Kritano', $kritano, 'My website auditing platform'] : null,
-                        ['Free site audit', '/tools/site-audit', 'How does your site score?'],
-                    ]));
-                @endphp
-                <ol class="m-0 list-none p-0">
-                    @foreach ($issue as $index => [$label, $href, $note])
-                        <li class="border-b border-border">
-                            <a href="{{ $href }}" class="group flex items-baseline gap-4 py-3.5 text-text-primary no-underline">
-                                <span class="w-6 text-[13px] text-text-tertiary tabular-nums">{{ str_pad((string) ($index + 1), 2, '0', STR_PAD_LEFT) }}</span>
-                                <span class="min-w-0 flex-1">
-                                    <span class="block font-display text-[26px] leading-tight transition-colors group-hover:text-accent">{{ $label }}</span>
-                                    <span class="block text-[13px] text-text-tertiary">{{ $note }}</span>
-                                </span>
-                                <span class="text-text-tertiary transition-transform group-hover:translate-x-1 group-hover:text-accent" aria-hidden="true">&rarr;</span>
-                            </a>
-                        </li>
-                    @endforeach
-                </ol>
-            </section>
+            {{-- The orbit: the services as dots, animated (components/site/orbit). --}}
+            <div class="mx-auto w-full max-w-[440px] md:max-w-none">
+                <x-site.orbit />
+            </div>
         </div>
+
+        {{-- In this issue: the table of contents a magazine cover has, under the cover. --}}
+        <section class="mt-14 border-t-4 border-double border-text-primary pt-5" aria-label="In this issue">
+            <p class="mb-2 text-[13px] font-semibold tracking-[0.08em] uppercase">In this issue</p>
+            @php
+                $issue = array_values(array_filter([
+                    ['Services', '/services', 'What I build, and how'],
+                    ['The work', '/work', 'Products and sites I have built'],
+                    $kritano ? ['Kritano', $kritano, 'My website auditing platform'] : null,
+                    ['Free site audit', '/tools/site-audit', 'How does your site score?'],
+                ]));
+            @endphp
+            <ol class="m-0 grid list-none gap-x-8 p-0 sm:grid-cols-2 md:grid-cols-4">
+                @foreach ($issue as $index => [$label, $href, $note])
+                    <li class="border-b border-border">
+                        <a href="{{ $href }}" class="group flex items-baseline gap-4 py-3.5 text-text-primary no-underline">
+                            <span class="w-6 text-[13px] text-text-tertiary tabular-nums">{{ str_pad((string) ($index + 1), 2, '0', STR_PAD_LEFT) }}</span>
+                            <span class="min-w-0 flex-1">
+                                <span class="block font-display text-[26px] leading-tight transition-colors group-hover:text-accent">{{ $label }}</span>
+                                <span class="block text-[13px] text-text-tertiary">{{ $note }}</span>
+                            </span>
+                            <span class="text-text-tertiary transition-transform group-hover:translate-x-1 group-hover:text-accent" aria-hidden="true">&rarr;</span>
+                        </a>
+                    </li>
+                @endforeach
+            </ol>
+        </section>
     </section>
 
     {{--

@@ -1159,6 +1159,50 @@ nav, footer, [data-monochrome] {
   background-color: color-mix(in srgb, var(--color-accent-light) 55%, transparent);
 }
 
+/* ── Hero orbit (components/site/orbit) ──
+   Links over the service dots of the cover's orbit animation, each with a
+   tooltip on hover and keyboard focus. Colours are the theme's tokens, so a
+   dark section flips them; it also swaps in the dark artwork. */
+.orbit { position: relative; }
+.orbit-art { display: block; width: 100%; height: auto; }
+.orbit-art--dark { display: none; }
+[data-theme="dark"] .orbit-art--light { display: none; }
+[data-theme="dark"] .orbit-art--dark { display: block; }
+.orbit-spot {
+  position: absolute;
+  left: var(--x);
+  top: var(--y);
+  width: 48px;
+  height: 48px;
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+}
+.orbit-tip {
+  position: absolute;
+  bottom: calc(100% + 6px);
+  left: 50%;
+  transform: translate(-50%, 6px);
+  white-space: nowrap;
+  padding: 9px 14px;
+  border-radius: 999px;
+  background: var(--color-text-primary);
+  color: var(--color-bg-primary);
+  font: 600 14px/1 var(--font-body);
+  letter-spacing: -0.01em;
+  box-shadow: 0 10px 30px rgb(21 21 19 / 0.18);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.18s ease, transform 0.22s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.orbit-spot--start .orbit-tip { left: 0; transform: translate(-8px, 6px); }
+.orbit-spot:hover .orbit-tip,
+.orbit-spot:focus-visible .orbit-tip { opacity: 1; transform: translate(-50%, 0); }
+.orbit-spot--start:hover .orbit-tip,
+.orbit-spot--start:focus-visible .orbit-tip { transform: translate(-8px, 0); }
+@media (prefers-reduced-motion: reduce) {
+  .orbit-tip { transition: none; }
+}
+
 /* ── Focus ──
    Unlayered, so no component or utility can quietly remove it (WCAG 2.4.7).
    Two tones: an ink outline with a paper ring inside it, so the focus shows
