@@ -74,3 +74,24 @@ it('limits itself to the folders given with --only', function (): void {
 
     $this->artisan('site:install-content', ['--only' => ['nope']])->assertFailed();
 });
+
+it('proposes the kit home page for a live home page, with its mode, rather than replacing it', function (): void {
+    $home = Entry::query()->create([
+        'collection' => 'page',
+        'slug' => 'home',
+        'title' => 'Home',
+        'status' => 'published',
+        'published_at' => now()->subYear(),
+        'data' => ['content' => [['type' => 'hero', 'data' => ['heading' => 'The old home page', 'theme' => 'light']]]],
+    ]);
+
+    $this->artisan('site:install-content', ['--only' => ['pages']])->assertSuccessful();
+
+    $proposal = EntryRevision::query()->where('entry_id', $home->id)->where('label', 'proposed')->sole();
+    $snapshot = json_decode((string) json_encode($proposal->snapshot), true);
+    $snapshot = is_string($snapshot) ? json_decode($snapshot, true) : $snapshot;
+
+    expect($home->refresh()->data['content'][0]['data']['heading'])->toBe('The old home page')
+        ->and($snapshot['data']['mode'])->toBe('night')
+        ->and($snapshot['data']['content'][0]['type'])->toBe('kit-header');
+});

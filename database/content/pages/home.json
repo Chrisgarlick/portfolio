@@ -1,15 +1,314 @@
-[
-  {
-    "type": "hero",
-    "data": {
-      "label": "Web developer, UK",
-      "heading": "Websites and web apps that *stay* fast.",
-      "subtext": "I build in Laravel and WordPress, and add AI where it actually earns its place. One developer from the first call to handover. No account managers, no junior hand-offs, and nothing locked to me when it is done.",
-      "cta_label": "Start a project",
-      "cta_url": "/contact",
-      "cta_secondary_label": "See the work",
-      "cta_secondary_url": "/work",
-      "theme": "light"
-    }
-  }
-]
+{
+    "title": "Home",
+    "mode": "night",
+    "seo_title": "Chris Garlick | Laravel, WordPress and AI implementation, UK",
+    "seo_description": "One developer from the first call to handover: a written scope, automated tests and documentation you keep.",
+    "content": [
+        {
+            "type": "kit-header",
+            "data": {
+                "brand_name": "Chris Garlick",
+                "home_url": "/",
+                "numbered": true,
+                "links": [
+                    {
+                        "label": "Services",
+                        "url": "/services"
+                    },
+                    {
+                        "label": "Work",
+                        "url": "/work"
+                    },
+                    {
+                        "label": "How I work",
+                        "url": "/how-i-work"
+                    },
+                    {
+                        "label": "Writing",
+                        "url": "/article"
+                    },
+                    {
+                        "label": "About",
+                        "url": "/about"
+                    }
+                ],
+                "action_label": "Start a project",
+                "action_url": "/start",
+                "tone": "plain"
+            }
+        },
+        {
+            "type": "kit-hero",
+            "data": {
+                "variant": "default",
+                "eyebrow": "Issue 01 · Laravel, WordPress and AI implementation · UK",
+                "title": "WEBSITES AND\nWEB APPS THAT\n*stay fast.*",
+                "title_size": "large",
+                "lede": "One developer from the first call to handover: a written scope, automated tests and documentation you keep.",
+                "actions": [
+                    {
+                        "label": "Start a project",
+                        "url": "/start",
+                        "style": "primary"
+                    },
+                    {
+                        "label": "See the Kritano story",
+                        "url": "/work/kritano-website-audits",
+                        "style": "secondary"
+                    }
+                ],
+                "proof": "0.4 ms · A cached page on cg-cms, live 1GB server",
+                "image": null,
+                "heading_level": "1"
+            }
+        },
+        {
+            "type": "kit-split",
+            "data": {
+                "eyebrow": "Edit 01 · my product",
+                "title": "KRITANO.\n*Audits a small site in about two minutes.*",
+                "heading_level": "2",
+                "body": "270 checks across SEO, accessibility, security, performance, content and structured data. It finds the problems; my Laravel and WordPress work fixes them.",
+                "link_label": "Read the story",
+                "link_url": "/work/kritano-website-audits",
+                "media": "image",
+                "image": null,
+                "background": "plain",
+                "swap": true
+            }
+        },
+        {
+            "type": "kit-services",
+            "data": {
+                "title": "WHAT I *build*",
+                "heading_level": "2",
+                "lede": "Three kinds of work, each priced from a written scope.",
+                "rule": true,
+                "columns": "3",
+                "services": [
+                    {
+                        "number": "01 · Laravel",
+                        "title": "Apps that are",
+                        "subtitle": "*easy to change*",
+                        "text": "Web apps, admin panels and APIs, with tests from day one.",
+                        "link_label": "Laravel development",
+                        "link_url": "/services/laravel"
+                    },
+                    {
+                        "number": "02 · WordPress",
+                        "title": "Fast, safe and",
+                        "subtitle": "*yours to edit*",
+                        "text": "Custom themes and plugins, speed and security work, rescues.",
+                        "link_label": "WordPress development",
+                        "link_url": "/services/wordpress"
+                    },
+                    {
+                        "number": "03 · AI implementation",
+                        "title": "Manual work,",
+                        "subtitle": "*done for you*",
+                        "text": "Intake, onboarding and reporting, inside the tools you already use.",
+                        "link_label": "AI implementation",
+                        "link_url": "/services/ai"
+                    }
+                ],
+                "background": "tinted"
+            }
+        },
+        {
+            "type": "kit-stats",
+            "data": {
+                "stats": [
+                    {
+                        "value": "0.4 ms",
+                        "label": "To serve a cached page on cg-cms, live 1GB server",
+                        "link_label": "How I measured",
+                        "link_url": "/article/caching-pages-to-disk-laravel"
+                    },
+                    {
+                        "value": "270",
+                        "label": "Checks in a full Kritano audit"
+                    },
+                    {
+                        "value": "79",
+                        "label": "URLs kept when I moved this site to Laravel"
+                    },
+                    {
+                        "value": "99",
+                        "label": "Lighthouse performance, 99 or 100 in lab tests"
+                    }
+                ],
+                "tone": "tinted"
+            }
+        },
+        {
+            "type": "kit-quote-stats",
+            "data": {
+                "quote": "*“You'll deal with me from the first call to the handover, and see something working every week.”*",
+                "attribution": "Chris Garlick, how every project runs",
+                "stats": [],
+                "background": "plain"
+            }
+        },
+        {
+            "type": "kit-process",
+            "data": {
+                "eyebrow": "Edit 02 · how I work",
+                "title": "AI DOES THE TYPING.\n*I do the thinking.*",
+                "heading_level": "2",
+                "steps": [
+                    {
+                        "title": "Audit and plan"
+                    },
+                    {
+                        "title": "Scope in writing"
+                    },
+                    {
+                        "title": "Design, then build"
+                    },
+                    {
+                        "title": "Tested and handed over"
+                    }
+                ],
+                "link_label": "How I work",
+                "link_url": "/how-i-work",
+                "cards": [
+                    {
+                        "label": "Time to first byte · cg-cms, 1GB server",
+                        "title": "0.4 ms a page, 6,300 a second",
+                        "points": []
+                    }
+                ],
+                "background": "plain"
+            }
+        },
+        {
+            "type": "kit-product-grid",
+            "data": {
+                "title": "Latest writing",
+                "heading_level": "2",
+                "link_label": "All writing",
+                "link_url": "/article",
+                "columns": "3",
+                "crumbs": [],
+                "categories": [],
+                "sort_options": [],
+                "products": [
+                    {
+                        "name": "Caching pages to disk: how cg-cms serves pages in under a millisecond",
+                        "url": "/article/caching-pages-to-disk-laravel",
+                        "image": null,
+                        "label": "01 · Laravel"
+                    },
+                    {
+                        "name": "How chrisgarlick.com's LCP went from 3 seconds to under 2",
+                        "url": "/article/chrisgarlick-com-lcp-3-seconds-to-under-2",
+                        "image": null,
+                        "label": "02 · Performance"
+                    },
+                    {
+                        "name": "Taking over a WordPress site: what I check in the first hour",
+                        "url": "/article/taking-over-a-wordpress-site",
+                        "image": null,
+                        "label": "03 · WordPress"
+                    }
+                ]
+            }
+        },
+        {
+            "type": "kit-marquee",
+            "data": {
+                "phrases": [
+                    {
+                        "text": "Laravel"
+                    },
+                    {
+                        "text": "WordPress"
+                    },
+                    {
+                        "text": "*AI implementation*"
+                    },
+                    {
+                        "text": "Kritano"
+                    },
+                    {
+                        "text": "cg-cms"
+                    },
+                    {
+                        "text": "*written scopes*"
+                    },
+                    {
+                        "text": "Tests on every change"
+                    }
+                ],
+                "separator": "·",
+                "speed": "slow",
+                "tone": "plain"
+            }
+        },
+        {
+            "type": "kit-footer",
+            "data": {
+                "brand_name": "Chris Garlick",
+                "blurb": "Got something to build, or fix?",
+                "columns": [
+                    {
+                        "heading": "Work with me",
+                        "links": [
+                            {
+                                "label": "Services",
+                                "url": "/services"
+                            },
+                            {
+                                "label": "Work",
+                                "url": "/work"
+                            },
+                            {
+                                "label": "How I work",
+                                "url": "/how-i-work"
+                            },
+                            {
+                                "label": "Writing",
+                                "url": "/article"
+                            }
+                        ]
+                    },
+                    {
+                        "heading": "More",
+                        "links": [
+                            {
+                                "label": "About",
+                                "url": "/about"
+                            },
+                            {
+                                "label": "Free site audit",
+                                "url": "/tools/site-audit"
+                            },
+                            {
+                                "label": "Start a project",
+                                "url": "/start"
+                            }
+                        ]
+                    }
+                ],
+                "social": [
+                    {
+                        "network": "linkedin",
+                        "url": "https://www.linkedin.com/in/chrisgarlick"
+                    }
+                ],
+                "small_print": "© 2026 Chris Garlick",
+                "legal": [
+                    {
+                        "label": "Privacy",
+                        "url": "/privacy"
+                    },
+                    {
+                        "label": "Terms",
+                        "url": "/terms"
+                    }
+                ],
+                "wordmark": "CHRIS GARLICK"
+            }
+        }
+    ]
+}
