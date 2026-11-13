@@ -1,0 +1,210 @@
+{
+  "mode": "night",
+  "content": [
+    {
+      "type": "kit-header",
+      "data": {
+        "brand_name": "Chris Garlick",
+        "home_url": "/",
+        "numbered": true,
+        "links": [
+          {
+            "label": "Services",
+            "url": "/services"
+          },
+          {
+            "label": "Work",
+            "url": "/work"
+          },
+          {
+            "label": "How I work",
+            "url": "/how-i-work"
+          },
+          {
+            "label": "Writing",
+            "url": "/article"
+          },
+          {
+            "label": "About",
+            "url": "/about"
+          }
+        ],
+        "secondary_label": "Free site audit",
+        "secondary_url": "/tools/site-audit",
+        "action_label": "Start a project",
+        "action_url": "/start",
+        "tone": "plain"
+      }
+    },
+    {
+      "type": "kit-hero",
+      "data": {
+        "variant": "text",
+        "eyebrow": "Case study 04 · Typeset, my product",
+        "title": "PRINT-QUALITY PDFS\n*from plain text.*",
+        "title_size": "large",
+        "heading_level": "1",
+        "lede": "My Rust service that turns Markdown or structured content into branded PDFs: proposals, scopes, audit reports and guides. It makes the planning PDFs and proposals I send."
+      }
+    },
+    {
+      "type": "kit-stats",
+      "data": {
+        "tone": "plain",
+        "stats": [
+          {
+            "value": "Role",
+            "label": "Sole designer and developer"
+          },
+          {
+            "value": "Stack",
+            "label": "Rust · Axum · Typst · Postgres · nginx"
+          },
+          {
+            "value": "Live",
+            "label": "Private, behind an IP allowlist"
+          }
+        ]
+      }
+    },
+    {
+      "type": "kit-figure",
+      "data": {
+        "caption_left": "Fig. 01 · Typeset, Markdown in, PDF out",
+        "caption_right": "Screenshot to come: Typeset editor",
+        "tone": "plain"
+      }
+    },
+    {
+      "type": "kit-text-block",
+      "data": {
+        "title": "01\nTHE *problem*",
+        "heading_level": "2",
+        "body": "Proposals and reports matter, but laying them out by hand takes hours, and word processors make them look the same as everyone else's.",
+        "background": "tinted"
+      }
+    },
+    {
+      "type": "kit-text-block",
+      "data": {
+        "title": "02\nHOW IT *works*",
+        "heading_level": "2",
+        "body": "Typeset is a small Rust service with one job. It takes Markdown, or a structured JSON document, and sets it with Typst in the right brand: fonts, colours and logo, read from the same brand record my other studio tools use. A title becomes a cover page, each top-level heading opens a numbered section, headings never get left at the foot of a page, and tables, code and callouts stay whole. My planning boards and page designs export through it, so a plan, a scope and a proposal all arrive as the same kind of document.",
+        "background": "tinted",
+        "eyebrow": "Markdown in, PDF out"
+      }
+    },
+    {
+      "type": "kit-text-block",
+      "data": {
+        "title": "03\nKEPT *private*",
+        "heading_level": "2",
+        "body": "Typeset isn't public. It sits behind an IP allowlist I built into my own server tools: nginx refuses every address that isn't on the list, before a request reaches the app, and the API is rate-limited on top. Any change to the list is checked and tested by nginx before it goes live, so a bad edit can't open it up or take it down.",
+        "background": "tinted",
+        "eyebrow": "Security"
+      }
+    },
+    {
+      "type": "kit-text-block",
+      "data": {
+        "eyebrow": "04 · What it makes",
+        "title": "PROPOSALS, SCOPES AND *audit reports.*",
+        "title_size": "large",
+        "heading_level": "2",
+        "body": "Written scopes and proposals for new projects, planning PDFs from my boards, and audit reports with every finding set out by page. Each one gets a cover, numbered sections, a running head and page numbers, in the brand of whoever it's for.",
+        "background": "plain"
+      }
+    },
+    {
+      "type": "kit-text-block",
+      "data": {
+        "title": "05\nFOR *clients*",
+        "heading_level": "2",
+        "body": "Your scope and proposal arrive as a clear, designed document you can share with the people who sign off.",
+        "background": "tinted",
+        "link_label": "Start a project",
+        "link_url": "/start"
+      }
+    },
+    {
+      "type": "kit-ruled-list",
+      "data": {
+        "eyebrow": "Next case study →",
+        "tone": "plain",
+        "rows": [
+          {
+            "number": "",
+            "name": "KRITANO, *270 checks*",
+            "url": "/work/kritano-website-audits"
+          }
+        ]
+      }
+    },
+    {
+      "type": "kit-footer",
+      "data": {
+        "brand_name": "Chris Garlick",
+        "blurb": "Got something to build, or fix?",
+        "columns": [
+          {
+            "heading": "Work with me",
+            "links": [
+              {
+                "label": "Services",
+                "url": "/services"
+              },
+              {
+                "label": "Work",
+                "url": "/work"
+              },
+              {
+                "label": "How I work",
+                "url": "/how-i-work"
+              },
+              {
+                "label": "Writing",
+                "url": "/article"
+              }
+            ]
+          },
+          {
+            "heading": "More",
+            "links": [
+              {
+                "label": "About",
+                "url": "/about"
+              },
+              {
+                "label": "Free site audit",
+                "url": "/tools/site-audit"
+              },
+              {
+                "label": "Start a project",
+                "url": "/start"
+              }
+            ]
+          }
+        ],
+        "social": [
+          {
+            "network": "linkedin",
+            "url": "https://www.linkedin.com/in/chris-garlick-59a8bb91/"
+          }
+        ],
+        "small_print": "© 2026 Chris Garlick",
+        "legal": [
+          {
+            "label": "Privacy",
+            "url": "/privacy"
+          },
+          {
+            "label": "Terms",
+            "url": "/terms"
+          }
+        ],
+        "wordmark": "CHRIS GARLICK",
+        "cookie_label": "Cookie preferences"
+      }
+    }
+  ]
+}

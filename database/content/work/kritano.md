@@ -6,12 +6,12 @@ summary: A SaaS I founded, built and run. It audits a website across SEO, access
 kind: personal
 disclosure: named
 role: Founder, designer and developer
-outcome: More than 500 checks in under two minutes, across SEO, accessibility, security and performance.
+outcome: 270 checks in one audit, across SEO, accessibility, security, performance, content and structured data.
 year: 2026
 live_url: https://kritano.com
 featured: true
 seo_title: Kritano, the website auditing platform I built
-seo_description: How I built Kritano, a SaaS that checks a site against 500+ rules for SEO, accessibility, security, performance and content in under two minutes.
+seo_description: How I built Kritano, a SaaS that runs 270 checks across SEO, accessibility, security, performance, content and structured data in one audit.
 ---
 ## The problem
 
@@ -23,7 +23,7 @@ That made it hard to answer a simple question: what should I fix first? Joining 
 
 Kritano is a SaaS I founded, built and run. It puts all of those checks into one audit, with one prioritised list of what to fix.
 
-A single audit runs more than 500 checks in under two minutes. They cover six areas:
+A full audit runs 270 checks. They cover six areas:
 
 - **SEO:** metadata, headings, links and crawlability (whether search engines can find and read every page)
 - **Accessibility:** WCAG 2.2 checks, the standard for making sites usable by disabled people

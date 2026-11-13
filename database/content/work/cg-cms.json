@@ -1,0 +1,229 @@
+{
+  "mode": "night",
+  "content": [
+    {
+      "type": "kit-header",
+      "data": {
+        "brand_name": "Chris Garlick",
+        "home_url": "/",
+        "numbered": true,
+        "links": [
+          {
+            "label": "Services",
+            "url": "/services"
+          },
+          {
+            "label": "Work",
+            "url": "/work"
+          },
+          {
+            "label": "How I work",
+            "url": "/how-i-work"
+          },
+          {
+            "label": "Writing",
+            "url": "/article"
+          },
+          {
+            "label": "About",
+            "url": "/about"
+          }
+        ],
+        "secondary_label": "Free site audit",
+        "secondary_url": "/tools/site-audit",
+        "action_label": "Start a project",
+        "action_url": "/start",
+        "tone": "plain"
+      }
+    },
+    {
+      "type": "kit-hero",
+      "data": {
+        "variant": "text",
+        "eyebrow": "Case study 02 · cg-cms, my product",
+        "title": "MY LARAVEL CMS.\n*Pages in 0.4 ms.*",
+        "title_size": "large",
+        "heading_level": "1",
+        "lede": "The CMS this site runs on: an Inertia and React admin, content in Postgres, and every page written to disk when it's saved."
+      }
+    },
+    {
+      "type": "kit-stats",
+      "data": {
+        "tone": "plain",
+        "stats": [
+          {
+            "value": "Role",
+            "label": "Sole designer and developer"
+          },
+          {
+            "value": "Stack",
+            "label": "Laravel · Postgres · Inertia · React · TypeScript · Tailwind · nginx"
+          },
+          {
+            "value": "Live",
+            "label": "This site, on a 1GB server"
+          }
+        ]
+      }
+    },
+    {
+      "type": "kit-figure",
+      "data": {
+        "caption_left": "Fig. 01 · the cg-cms admin, chrisgarlick.com/admin",
+        "caption_right": "A cached page: 0.4 ms, live 1GB server",
+        "tone": "plain",
+        "image": {
+          "file": "media/cg-cms-admin-dashboard.png",
+          "alt": "The cg-cms admin dashboard at chrisgarlick.com/admin: alerts, published and draft counts, leads this week, page cache warmth and recent articles"
+        },
+        "frame": "browser",
+        "frame_url": "chrisgarlick.com/admin"
+      }
+    },
+    {
+      "type": "kit-text-block",
+      "data": {
+        "title": "01\nTHE *problem*",
+        "heading_level": "2",
+        "body": "I wanted a CMS I could edit comfortably, that stayed fast on a small server, without paying for a platform or fighting a page builder. Nothing off the shelf did all three, so I built it.",
+        "background": "tinted"
+      }
+    },
+    {
+      "type": "kit-text-block",
+      "data": {
+        "title": "02\nHOW IT *works*",
+        "heading_level": "2",
+        "body": "Content lives in Postgres and is edited in an Inertia and React admin built from typed blocks, so content can't break the layout. When a page is saved, cg-cms renders it once and writes the HTML to disk. Visitors are served that file, without PHP or the database.",
+        "background": "tinted"
+      }
+    },
+    {
+      "type": "kit-stats",
+      "data": {
+        "tone": "tinted",
+        "stats": [
+          {
+            "value": "0.4 ms",
+            "label": "To serve a cached page, live 1GB server"
+          },
+          {
+            "value": "6,300",
+            "label": "Requests a second on a 1GB, single-CPU server"
+          },
+          {
+            "value": "26 to 29 ms",
+            "label": "Cold render, measured on my laptop"
+          }
+        ]
+      }
+    },
+    {
+      "type": "kit-split",
+      "data": {
+        "eyebrow": "03 · The hard part",
+        "title": "THE FAST PATH *skips Laravel.*",
+        "heading_level": "2",
+        "body": "Laravel itself costs about 13.6 ms before any of my code runs, so no amount of tuning inside the app would get close to a static file. Saving a page renders it once and writes it to disk; a visitor never touches PHP or Postgres. Measured on the live 1GB server, from the server itself: time to first byte with curl, best of 20 requests with the connection setup taken off, and throughput with ab and keep-alive, 5,000 requests at 20 at a time.",
+        "media": "card",
+        "card_label": "Time to first byte · cg-cms, live 1GB server",
+        "card_title": "0.4 ms a page\n6,300 a second",
+        "background": "plain",
+        "panel": "none",
+        "swap": false
+      }
+    },
+    {
+      "type": "kit-text-block",
+      "data": {
+        "title": "04\nFOR *clients*",
+        "heading_level": "2",
+        "body": "The same approach works for any Laravel site that's mostly read: content you can edit yourself, pages that load at once, and a small server bill.",
+        "background": "tinted",
+        "link_label": "Start a Laravel project",
+        "link_url": "/start"
+      }
+    },
+    {
+      "type": "kit-ruled-list",
+      "data": {
+        "eyebrow": "Next case study →",
+        "tone": "plain",
+        "rows": [
+          {
+            "number": "",
+            "name": "CHRISGARLICK.COM, *every URL kept*",
+            "url": "/work/chrisgarlick-com"
+          }
+        ]
+      }
+    },
+    {
+      "type": "kit-footer",
+      "data": {
+        "brand_name": "Chris Garlick",
+        "blurb": "Got something to build, or fix?",
+        "columns": [
+          {
+            "heading": "Work with me",
+            "links": [
+              {
+                "label": "Services",
+                "url": "/services"
+              },
+              {
+                "label": "Work",
+                "url": "/work"
+              },
+              {
+                "label": "How I work",
+                "url": "/how-i-work"
+              },
+              {
+                "label": "Writing",
+                "url": "/article"
+              }
+            ]
+          },
+          {
+            "heading": "More",
+            "links": [
+              {
+                "label": "About",
+                "url": "/about"
+              },
+              {
+                "label": "Free site audit",
+                "url": "/tools/site-audit"
+              },
+              {
+                "label": "Start a project",
+                "url": "/start"
+              }
+            ]
+          }
+        ],
+        "social": [
+          {
+            "network": "linkedin",
+            "url": "https://www.linkedin.com/in/chris-garlick-59a8bb91/"
+          }
+        ],
+        "small_print": "© 2026 Chris Garlick",
+        "legal": [
+          {
+            "label": "Privacy",
+            "url": "/privacy"
+          },
+          {
+            "label": "Terms",
+            "url": "/terms"
+          }
+        ],
+        "wordmark": "CHRIS GARLICK",
+        "cookie_label": "Cookie preferences"
+      }
+    }
+  ]
+}

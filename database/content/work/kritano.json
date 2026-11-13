@@ -1,0 +1,226 @@
+{
+  "mode": "night",
+  "content": [
+    {
+      "type": "kit-header",
+      "data": {
+        "brand_name": "Chris Garlick",
+        "home_url": "/",
+        "numbered": true,
+        "links": [
+          {
+            "label": "Services",
+            "url": "/services"
+          },
+          {
+            "label": "Work",
+            "url": "/work"
+          },
+          {
+            "label": "How I work",
+            "url": "/how-i-work"
+          },
+          {
+            "label": "Writing",
+            "url": "/article"
+          },
+          {
+            "label": "About",
+            "url": "/about"
+          }
+        ],
+        "secondary_label": "Free site audit",
+        "secondary_url": "/tools/site-audit",
+        "action_label": "Start a project",
+        "action_url": "/start",
+        "tone": "plain"
+      }
+    },
+    {
+      "type": "kit-hero",
+      "data": {
+        "variant": "text",
+        "eyebrow": "Case study 01 · Kritano, my product",
+        "title": "270 CHECKS,\n*one audit.*",
+        "title_size": "large",
+        "heading_level": "1"
+      }
+    },
+    {
+      "type": "kit-stats",
+      "data": {
+        "tone": "plain",
+        "stats": [
+          {
+            "value": "Role",
+            "label": "Founder, designer and developer"
+          },
+          {
+            "value": "Stack",
+            "label": "Go · Postgres · River · Chromium · axe-core"
+          },
+          {
+            "value": "Live",
+            "label": "kritano.com",
+            "link_label": "Visit kritano.com",
+            "link_url": "https://kritano.com"
+          }
+        ]
+      }
+    },
+    {
+      "type": "kit-figure",
+      "data": {
+        "caption_left": "Fig. 01 · An example Kritano audit",
+        "caption_right": "Example finding: 12 images have no alt text",
+        "tone": "plain",
+        "image": {
+          "file": "media/kritano-audit-example.png",
+          "alt": "An example Kritano audit: overall health 87, scores for SEO, accessibility, security, performance and content, and the top findings"
+        },
+        "frame": "browser",
+        "frame_url": "kritano.com"
+      }
+    },
+    {
+      "type": "kit-text-block",
+      "data": {
+        "title": "01\nTHE *problem*",
+        "heading_level": "2",
+        "body": "Auditing a site properly meant half a dozen tools: one for SEO, one for accessibility, one for security headers, one for speed. Each had its own report and its own score. I wanted one audit and one list of what to fix first.",
+        "background": "tinted"
+      }
+    },
+    {
+      "type": "kit-text-block",
+      "data": {
+        "title": "02\nHOW IT *works*",
+        "heading_level": "2",
+        "body": "A Go crawler reads the sitemap and follows links, loading each page once in Chromium. Workers on a Postgres queue then check every page: axe-core's automated WCAG checks (A and AA) for accessibility, plus my own rules for SEO, security, performance, content and structured data. A full audit runs 270 checks. Each finding says what's wrong, why it matters and how to fix it, and points to the element when there is one.",
+        "background": "tinted"
+      }
+    },
+    {
+      "type": "kit-stats",
+      "data": {
+        "tone": "tinted",
+        "stats": [
+          {
+            "value": "270",
+            "label": "Checks in a full audit"
+          },
+          {
+            "value": "6",
+            "label": "Areas checked"
+          },
+          {
+            "value": "126 → 12",
+            "label": "Points one repeated rule cost a page, before and after"
+          }
+        ]
+      }
+    },
+    {
+      "type": "kit-text-block",
+      "data": {
+        "eyebrow": "03 · The hard part",
+        "title": "ONE REPEATED ISSUE *shouldn't zero a score.*",
+        "title_size": "large",
+        "heading_level": "2",
+        "body": "The old version took points off for every instance, so one issue repeated across a theme could take a category to zero, the same as an unusable site. Now each rule counts once per page, and extra copies add a little less each time, up to twice the rule's weight. Nine serious contrast failures on one page used to score 0; now they score 76, and the score moves as problems get fixed.",
+        "background": "plain"
+      }
+    },
+    {
+      "type": "kit-text-block",
+      "data": {
+        "title": "04\nFOR *clients*",
+        "heading_level": "2",
+        "body": "Every project I take on starts with a Kritano audit, so what's wrong is agreed before the price is. The free site audit on this site runs the same engine on one page, and shows the SEO, accessibility and performance scores.",
+        "background": "tinted",
+        "link_label": "Check my site",
+        "link_url": "/tools/site-audit"
+      }
+    },
+    {
+      "type": "kit-ruled-list",
+      "data": {
+        "eyebrow": "Next case study →",
+        "tone": "plain",
+        "rows": [
+          {
+            "number": "",
+            "name": "CG-CMS, *my own CMS*",
+            "url": "/work/cg-cms"
+          }
+        ]
+      }
+    },
+    {
+      "type": "kit-footer",
+      "data": {
+        "brand_name": "Chris Garlick",
+        "blurb": "Got something to build, or fix?",
+        "columns": [
+          {
+            "heading": "Work with me",
+            "links": [
+              {
+                "label": "Services",
+                "url": "/services"
+              },
+              {
+                "label": "Work",
+                "url": "/work"
+              },
+              {
+                "label": "How I work",
+                "url": "/how-i-work"
+              },
+              {
+                "label": "Writing",
+                "url": "/article"
+              }
+            ]
+          },
+          {
+            "heading": "More",
+            "links": [
+              {
+                "label": "About",
+                "url": "/about"
+              },
+              {
+                "label": "Free site audit",
+                "url": "/tools/site-audit"
+              },
+              {
+                "label": "Start a project",
+                "url": "/start"
+              }
+            ]
+          }
+        ],
+        "social": [
+          {
+            "network": "linkedin",
+            "url": "https://www.linkedin.com/in/chris-garlick-59a8bb91/"
+          }
+        ],
+        "small_print": "© 2026 Chris Garlick",
+        "legal": [
+          {
+            "label": "Privacy",
+            "url": "/privacy"
+          },
+          {
+            "label": "Terms",
+            "url": "/terms"
+          }
+        ],
+        "wordmark": "CHRIS GARLICK",
+        "cookie_label": "Cookie preferences"
+      }
+    }
+  ]
+}

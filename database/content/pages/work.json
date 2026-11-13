@@ -1,0 +1,236 @@
+{
+  "title": "Work",
+  "mode": "night",
+  "seo_title": "Work: Kritano, cg-cms, this site and Typeset | Chris Garlick",
+  "seo_description": "Products I built and run, and the site you are on: a website audit platform, a Laravel CMS, a rebuild that kept every URL and a PDF service.",
+  "content": [
+    {
+      "type": "kit-header",
+      "data": {
+        "brand_name": "Chris Garlick",
+        "home_url": "/",
+        "numbered": true,
+        "links": [
+          {
+            "label": "Services",
+            "url": "/services"
+          },
+          {
+            "label": "Work",
+            "url": "/work"
+          },
+          {
+            "label": "How I work",
+            "url": "/how-i-work"
+          },
+          {
+            "label": "Writing",
+            "url": "/article"
+          },
+          {
+            "label": "About",
+            "url": "/about"
+          }
+        ],
+        "secondary_label": "Free site audit",
+        "secondary_url": "/tools/site-audit",
+        "action_label": "Start a project",
+        "action_url": "/start",
+        "tone": "plain"
+      }
+    },
+    {
+      "type": "kit-hero",
+      "data": {
+        "variant": "text",
+        "eyebrow": "Work · four projects I built and run",
+        "title": "WORK I CAN\n*show you.*",
+        "title_size": "large",
+        "heading_level": "1",
+        "lede": "Products I built and run, and the site you're on. Client work appears here only with permission."
+      }
+    },
+    {
+      "type": "kit-split",
+      "data": {
+        "eyebrow": "01 · Product · Go, Postgres, Chromium",
+        "title": "KRITANO.\n*270 checks, one audit.*",
+        "heading_level": "2",
+        "body": "Checks across SEO, accessibility, security, performance, content and structured data. Where a problem is on the page, the finding points to the exact element.",
+        "link_label": "Read the case study",
+        "link_url": "/work/kritano-website-audits",
+        "media": "image",
+        "caption": "Fig. 01 · An example Kritano audit",
+        "background": "tinted",
+        "panel": "none",
+        "swap": true,
+        "image": {
+          "file": "media/kritano-audit-example.png",
+          "alt": "An example Kritano audit: overall health 87, scores for SEO, accessibility, security, performance and content, and the top findings"
+        },
+        "frame": "browser",
+        "frame_url": "kritano.com"
+      }
+    },
+    {
+      "type": "kit-split",
+      "data": {
+        "eyebrow": "02 · Product · Laravel, Postgres, Inertia",
+        "title": "CG-CMS.\n*Pages served in 0.4 ms.*",
+        "heading_level": "2",
+        "body": "The CMS this site runs on: an Inertia and React admin, content in Postgres, and every page written to disk when it's saved.",
+        "link_label": "Read the case study",
+        "link_url": "/work/cg-cms",
+        "media": "image",
+        "caption": "Fig. 02 · the cg-cms admin",
+        "background": "tinted",
+        "panel": "none",
+        "swap": false,
+        "image": {
+          "file": "media/cg-cms-admin-dashboard.png",
+          "alt": "The cg-cms admin dashboard at chrisgarlick.com/admin: alerts, published and draft counts, leads this week, page cache warmth and recent articles"
+        },
+        "frame": "browser",
+        "frame_url": "chrisgarlick.com/admin"
+      }
+    },
+    {
+      "type": "kit-stats",
+      "data": {
+        "tone": "plain",
+        "stats": [
+          {
+            "value": "270",
+            "label": "Checks in a full Kritano audit"
+          },
+          {
+            "value": "0.4 ms",
+            "label": "To serve a cached page on cg-cms, live 1GB server"
+          },
+          {
+            "value": "79",
+            "label": "URLs kept when I moved this site to Laravel: every live URL still works"
+          },
+          {
+            "value": "99",
+            "label": "Lighthouse performance, 99 or 100 in lab tests (up from the high 80s)"
+          }
+        ]
+      }
+    },
+    {
+      "type": "kit-split",
+      "data": {
+        "eyebrow": "03 · chrisgarlick.com · Laravel, cg-cms",
+        "title": "THIS SITE.\n*Every URL kept.*",
+        "heading_level": "2",
+        "body": "Moved from Astro and a Bun CMS to Laravel and cg-cms, with all 79 live URLs kept, lab LCP down from about 3 seconds to under 2, and more than 500 automated tests.",
+        "link_label": "Read the case study",
+        "link_url": "/work/chrisgarlick-com",
+        "media": "image",
+        "caption": "Fig. 03 · chrisgarlick.com before the rebuild, October 2026",
+        "background": "tinted",
+        "panel": "none",
+        "swap": true,
+        "image": {
+          "file": "media/chrisgarlick-com-before.png",
+          "alt": "chrisgarlick.com before the redesign, October 2026: the old home page, its contents strip and its five services, in black on paper"
+        },
+        "frame": "browser",
+        "frame_url": "chrisgarlick.com"
+      }
+    },
+    {
+      "type": "kit-split",
+      "data": {
+        "eyebrow": "04 · Product · Rust, Typst",
+        "title": "TYPESET.\n*Print-quality PDFs from plain text.*",
+        "heading_level": "2",
+        "body": "My Rust service that turns Markdown into branded PDFs: the proposals, scopes and audit reports I send. It's private, behind an IP allowlist.",
+        "link_label": "Read the case study",
+        "link_url": "/work/typeset",
+        "media": "image",
+        "caption": "Fig. 04 · Screenshot to come: Typeset editor",
+        "background": "tinted",
+        "panel": "none",
+        "swap": false
+      }
+    },
+    {
+      "type": "kit-cta",
+      "data": {
+        "title": "EVERY PROJECT\nSTARTS *with an audit.*",
+        "heading_level": "2",
+        "lede": "What's wrong is agreed before the price is: a Kritano audit, then a written scope. Client work appears on this page only with permission.",
+        "action_label": "Start a project",
+        "action_url": "/start"
+      }
+    },
+    {
+      "type": "kit-footer",
+      "data": {
+        "brand_name": "Chris Garlick",
+        "blurb": "Got something to build, or fix?",
+        "columns": [
+          {
+            "heading": "Work with me",
+            "links": [
+              {
+                "label": "Services",
+                "url": "/services"
+              },
+              {
+                "label": "Work",
+                "url": "/work"
+              },
+              {
+                "label": "How I work",
+                "url": "/how-i-work"
+              },
+              {
+                "label": "Writing",
+                "url": "/article"
+              }
+            ]
+          },
+          {
+            "heading": "More",
+            "links": [
+              {
+                "label": "About",
+                "url": "/about"
+              },
+              {
+                "label": "Free site audit",
+                "url": "/tools/site-audit"
+              },
+              {
+                "label": "Start a project",
+                "url": "/start"
+              }
+            ]
+          }
+        ],
+        "social": [
+          {
+            "network": "linkedin",
+            "url": "https://www.linkedin.com/in/chris-garlick-59a8bb91/"
+          }
+        ],
+        "small_print": "© 2026 Chris Garlick",
+        "legal": [
+          {
+            "label": "Privacy",
+            "url": "/privacy"
+          },
+          {
+            "label": "Terms",
+            "url": "/terms"
+          }
+        ],
+        "wordmark": "CHRIS GARLICK",
+        "cookie_label": "Cookie preferences"
+      }
+    }
+  ]
+}

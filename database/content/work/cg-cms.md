@@ -12,7 +12,7 @@ services:
 summary: A Laravel CMS I designed and built to run this site. Content in Postgres, HTML rendered on save and served from disk by nginx, with an admin built in Inertia and React.
 role: Sole designer and developer
 stack: Laravel, Postgres, Inertia, React, TypeScript, Tailwind, nginx
-outcome: Cached pages serve in 4.4ms at 3,900 requests a second on one vCPU, on a 1GB server.
+outcome: A cached page starts arriving in 0.4 ms, and the live 1GB server handles 6,300 requests a second.
 seo_title: cg-cms, a fast Laravel CMS I built from scratch
 seo_description: Why I built my own Laravel CMS, and how it serves pages from disk in milliseconds while keeping a modern editor, schema in code and Claude Code integration.
 ---

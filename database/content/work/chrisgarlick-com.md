@@ -37,7 +37,7 @@ The hard part was the move itself. A live site has pages that are indexed, linke
 
 When I save a page, cg-cms renders its HTML once and writes it to disk. nginx, the web server, sends that file straight to the visitor. PHP never runs and the database is never touched on a page view.
 
-On a 1GB server, a cached page comes back in 4.4 milliseconds. The same setup handles 3,900 requests a second on one vCPU (a single virtual processor).
+On the live 1GB server, a cached page starts arriving in under half a millisecond, and the server handles 6,300 requests a second.
 
 Publishing is targeted too. Each page records what content it used. When I publish an article, only that article and the pages that list it are cleared. The rest of the site stays cached.
 

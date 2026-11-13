@@ -1,0 +1,227 @@
+{
+  "mode": "night",
+  "content": [
+    {
+      "type": "kit-header",
+      "data": {
+        "brand_name": "Chris Garlick",
+        "home_url": "/",
+        "numbered": true,
+        "links": [
+          {
+            "label": "Services",
+            "url": "/services"
+          },
+          {
+            "label": "Work",
+            "url": "/work"
+          },
+          {
+            "label": "How I work",
+            "url": "/how-i-work"
+          },
+          {
+            "label": "Writing",
+            "url": "/article"
+          },
+          {
+            "label": "About",
+            "url": "/about"
+          }
+        ],
+        "secondary_label": "Free site audit",
+        "secondary_url": "/tools/site-audit",
+        "action_label": "Start a project",
+        "action_url": "/start",
+        "tone": "plain"
+      }
+    },
+    {
+      "type": "kit-hero",
+      "data": {
+        "variant": "text",
+        "eyebrow": "Case study 03 · chrisgarlick.com, this site",
+        "title": "THIS SITE.\n*Every URL kept.*",
+        "title_size": "large",
+        "heading_level": "1",
+        "lede": "I moved this site from Astro and a Bun CMS to Laravel and cg-cms, my own CMS, and kept every one of its 79 live URLs."
+      }
+    },
+    {
+      "type": "kit-stats",
+      "data": {
+        "tone": "plain",
+        "stats": [
+          {
+            "value": "Role",
+            "label": "Sole designer and developer"
+          },
+          {
+            "value": "Stack",
+            "label": "Laravel · Postgres · cg-cms · Tailwind · nginx"
+          },
+          {
+            "value": "Live",
+            "label": "chrisgarlick.com: you're reading it"
+          }
+        ]
+      }
+    },
+    {
+      "type": "kit-figure",
+      "data": {
+        "caption_left": "Fig. 01 · chrisgarlick.com before, October 2026",
+        "caption_right": "After: the site you're reading",
+        "tone": "plain",
+        "image": {
+          "file": "media/chrisgarlick-com-before.png",
+          "alt": "chrisgarlick.com before the redesign, October 2026: the old home page, its contents strip and its five services, in black on paper"
+        },
+        "frame": "browser",
+        "frame_url": "chrisgarlick.com",
+        "proof_value": "99",
+        "proof_note": "After: Lighthouse performance, lab tests"
+      }
+    },
+    {
+      "type": "kit-text-block",
+      "data": {
+        "title": "01\nTHE *problem*",
+        "heading_level": "2",
+        "body": "The old site ran on Astro with a separate Bun CMS: two codebases for one small site, and every publish rebuilt the whole thing. It also sold only AI implementation, though most of my work is Laravel and WordPress.",
+        "background": "tinted"
+      }
+    },
+    {
+      "type": "kit-text-block",
+      "data": {
+        "title": "02\nWHAT *changed*",
+        "heading_level": "2",
+        "body": "One Laravel app on cg-cms, with pages cached to disk and served by nginx. The fonts are self-hosted and there's one stylesheet, so lab LCP went from about 3 seconds to under 2. More than 500 automated tests cover it, and every article stayed.",
+        "background": "tinted"
+      }
+    },
+    {
+      "type": "kit-stats",
+      "data": {
+        "tone": "tinted",
+        "stats": [
+          {
+            "value": "79",
+            "label": "Live URLs, all kept"
+          },
+          {
+            "value": "Under 2 s",
+            "label": "LCP in lab tests, down from about 3 s"
+          },
+          {
+            "value": "500+",
+            "label": "Automated tests"
+          }
+        ]
+      }
+    },
+    {
+      "type": "kit-text-block",
+      "data": {
+        "eyebrow": "03 · The hard part",
+        "title": "79 URLS, *no broken links.*",
+        "title_size": "large",
+        "heading_level": "2",
+        "body": "Before the switch I listed all 79 live URLs, and a check of every one runs before each deploy, so nothing indexed broke on the way. Every article stayed, because the writing brings the search traffic.",
+        "background": "plain"
+      }
+    },
+    {
+      "type": "kit-text-block",
+      "data": {
+        "title": "04\nFOR *clients*",
+        "heading_level": "2",
+        "body": "A rebuild can change everything underneath, as long as nothing indexed breaks on the way. A rebuild I do keeps every URL that has traffic or links.",
+        "background": "tinted",
+        "link_label": "Start a rebuild",
+        "link_url": "/start"
+      }
+    },
+    {
+      "type": "kit-ruled-list",
+      "data": {
+        "eyebrow": "Next case study →",
+        "tone": "plain",
+        "rows": [
+          {
+            "number": "",
+            "name": "TYPESET, *PDFs from plain text*",
+            "url": "/work/typeset"
+          }
+        ]
+      }
+    },
+    {
+      "type": "kit-footer",
+      "data": {
+        "brand_name": "Chris Garlick",
+        "blurb": "Got something to build, or fix?",
+        "columns": [
+          {
+            "heading": "Work with me",
+            "links": [
+              {
+                "label": "Services",
+                "url": "/services"
+              },
+              {
+                "label": "Work",
+                "url": "/work"
+              },
+              {
+                "label": "How I work",
+                "url": "/how-i-work"
+              },
+              {
+                "label": "Writing",
+                "url": "/article"
+              }
+            ]
+          },
+          {
+            "heading": "More",
+            "links": [
+              {
+                "label": "About",
+                "url": "/about"
+              },
+              {
+                "label": "Free site audit",
+                "url": "/tools/site-audit"
+              },
+              {
+                "label": "Start a project",
+                "url": "/start"
+              }
+            ]
+          }
+        ],
+        "social": [
+          {
+            "network": "linkedin",
+            "url": "https://www.linkedin.com/in/chris-garlick-59a8bb91/"
+          }
+        ],
+        "small_print": "© 2026 Chris Garlick",
+        "legal": [
+          {
+            "label": "Privacy",
+            "url": "/privacy"
+          },
+          {
+            "label": "Terms",
+            "url": "/terms"
+          }
+        ],
+        "wordmark": "CHRIS GARLICK",
+        "cookie_label": "Cookie preferences"
+      }
+    }
+  ]
+}
