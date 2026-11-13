@@ -96,7 +96,8 @@
 [data-mode="day"],
 [data-mode="night"] :is([data-background="tinted"], [data-tone="tinted"]),
 [data-mode="night"] .kit-section-process .kit-note-card,
-[data-mode="night"] .kit-section-split .kit-split-card {
+[data-mode="night"] .kit-section-split .kit-split-card,
+[data-mode="night"] :is(.kit-figure-window, .kit-split-window) {
   color-scheme: light;
 
   /* Type */
@@ -978,10 +979,10 @@ body.kit-page::before {
 
 /* kit's browser frame (a screenshot in a window: figure and split, frame
    "browser"). Square like every Nightfolio sheet, but it floats: the window
-   takes the proof card's shadow (shadow-2 is none here). On night its bar is
-   the Lift's step up (#26483B) and its edge paper at 15%; the address is
-   ink-muted on the Lift, 5.9:1 (#B6B9B4 on #1B3F31; day #5B5852 on #F2EEE6,
-   6.1:1). */
+   takes the proof card's shadow (shadow-2 is none here). On night it is a
+   light window like the app inside it (it takes day's tokens, in the list at
+   the top), so it stands off the green rather than blending into the Lift:
+   the bar is #E9E5DE and the address ink-muted (#5B5852 on #F2EEE6, 6.1:1). */
 :is(.kit-figure-window, .kit-split-window) {
   box-shadow: var(--kit-shadow-3);
 }
