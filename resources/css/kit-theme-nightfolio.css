@@ -314,19 +314,16 @@ body.kit-page::before {
 .kit-section-footer .kit-footer-wordmark {
   color: var(--nf-wordmark);
 }
-/* The name spans the page's content box, margin to margin like everything
-   above it: the box is the container's (86rem plus the gutters, centred), and
-   the size comes from that box's width, so on a screen wider than the content
-   the name doesn't outgrow it on one side. The gutter is kit's container's
-   own (clamp(16px, 4vw, 32px)); "CHRIS GARLICK" measures 8.03em in Fraunces
-   caps, so dividing by 8.05 keeps the K inside the right margin at any width. */
+/* The name bleeds: edge to edge of the screen, no gutter on either side (Chris,
+   13 Nov). "CHRIS GARLICK" measures 8.03em in Fraunces caps, so 100cqi / 8.05
+   is the CSS size; resources/js/site/fit-wordmark.js then measures the real
+   text and scales it to the box exactly, in any font or browser. */
 .kit-page .kit-section-footer .kit-footer-wordmark {
-  --_gutter: clamp(16px, 4vw, 32px);
   box-sizing: border-box;
-  max-inline-size: calc(86rem + 2 * var(--_gutter));
-  padding-inline: var(--_gutter);
-  margin-inline: auto;
-  font-size: calc(min(100cqi - 2 * var(--_gutter), 86rem) / 8.05);
+  max-inline-size: none;
+  padding-inline: 0;
+  margin-inline: 0;
+  font-size: calc(100cqi / 8.05);
 }
 
 /* ---- Nightfolio layouts (the home page in Design, nf_home) ---- */

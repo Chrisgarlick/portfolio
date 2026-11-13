@@ -1,6 +1,6 @@
 /*
- * The footer's big name (kit's footer wordmark) fits the content box, margin
- * to margin, on any screen and in any font.
+ * The footer's big name (kit's footer wordmark) fits its box exactly (edge to
+ * edge of the screen, in the Nightfolio theme), on any screen and in any font.
  *
  * The theme's CSS sizes it from the width it expects the name to take
  * (kit-theme-nightfolio.css), which is right for the self-hosted Fraunces but
