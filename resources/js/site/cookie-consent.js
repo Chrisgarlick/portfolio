@@ -9,7 +9,8 @@
  *   'rejected' -> nothing loaded, stale _ga cookies cleared
  *   null       -> first visit, banner shown
  *
- * The footer's "Cookie preferences" button reopens the banner.
+ * The footer's "Cookie preferences" button reopens the banner: the old footer's
+ * [data-cookie-prefs], or kit's footer button [data-cookie-preferences].
  */
 const STORAGE_KEY = 'cg-cookie-consent';
 const GTM_ID = document.documentElement.dataset.gtm || '';
@@ -117,7 +118,7 @@ export function initCookieConsent() {
         }
     });
 
-    document.querySelectorAll('[data-cookie-prefs]').forEach((button) => {
+    document.querySelectorAll('[data-cookie-prefs], [data-cookie-preferences]').forEach((button) => {
         button.addEventListener('click', show);
     });
 }
