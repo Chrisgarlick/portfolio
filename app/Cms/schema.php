@@ -118,6 +118,15 @@ return [
             // The services this work shows; the first one sets the page colour.
             Field::relation('services')->to('service')->many(),
             Field::boolean('featured')->default('0'),
+
+            // The Nightfolio redesign: a case study built from kit's sections
+            // (App\Content\KitPage) renders those instead of the case-study
+            // template, but only for a named project: kit sections are copy the
+            // presenter cannot gate, so anything less keeps the template.
+            Field::blocks('content')->allow(Block::app()),
+            Field::select('mode')->options(['night', 'day'])->default('night')
+                ->help('For a case study built from kit sections. night: the dark green pages. day: paper.'),
+
             Field::datetime('published_at')->nullable(),
             Field::number('sort_order'),
             Field::select('status')->options(['draft', 'published'])->default('draft'),

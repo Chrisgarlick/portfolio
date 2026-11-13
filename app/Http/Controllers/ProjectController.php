@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Http\Controllers;
 
 use App\Content\Accent;
+use App\Content\KitPage;
 use App\Content\ProjectPresenter;
 use Cg\Cms\Cache\CacheContext;
 use Cg\Cms\Cache\CollectionVersion;
@@ -62,6 +63,15 @@ final class ProjectController extends Controller
         }
 
         $this->cacheContext->registerEntry($project);
+
+        // Rebuilt from kit's sections: rendered like the kit pages, with the
+        // project's own SEO title, description and canonical. Only a named
+        // project: its sections are written copy the presenter cannot gate, and
+        // the SEO head reads the entry, so anything confidential keeps the
+        // presenter-only template below whatever its content says.
+        if (KitPage::is($project) && ! ProjectPresenter::make($project)->isConfidential()) {
+            return view('pages.show', ['page' => $project, 'jsonLd' => []]);
+        }
 
         return view('projects.show', [
             'project' => ProjectPresenter::make($project),

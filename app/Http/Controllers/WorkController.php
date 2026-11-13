@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Http\Controllers;
 
 use App\Content\Accent;
+use App\Content\KitPage;
 use App\Content\ProjectPresenter;
 use Cg\Cms\Cache\CacheContext;
 use Cg\Cms\Cache\CollectionVersion;
@@ -29,6 +30,15 @@ final class WorkController extends Controller
 
     public function index(): View
     {
+        // The redesign's /work is a `page` built from kit's sections, like the
+        // services hub (config/site.php `pages.work`); until one is published,
+        // the project listing below stands.
+        $page = Entry::query()->collection('page')->published()->where('slug', 'work')->first();
+
+        if ($page !== null && KitPage::is($page)) {
+            return app(SitePageController::class)->show('work');
+        }
+
         $this->cacheContext->registerCollection('project');
 
         // Through the presenter before caching, so a confidential client name

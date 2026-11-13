@@ -132,6 +132,24 @@ return [
             ]],
         ],
 
+        // The work index, built from kit's sections (WorkController falls back
+        // to the project listing without it). The four case studies it lists.
+        'work' => [
+            'path' => '/work',
+            'json_ld' => [[
+                '@type' => 'CollectionPage',
+                'name' => 'Work',
+                'url' => 'https://chrisgarlick.com/work',
+                'inLanguage' => 'en-GB',
+                'hasPart' => [
+                    ['@type' => 'WebPage', 'name' => 'Kritano, a website auditing platform', 'url' => 'https://chrisgarlick.com/work/kritano-website-audits'],
+                    ['@type' => 'WebPage', 'name' => 'cg-cms, a lightweight CMS for Laravel', 'url' => 'https://chrisgarlick.com/work/cg-cms'],
+                    ['@type' => 'WebPage', 'name' => 'chrisgarlick.com, rebuilt on Laravel', 'url' => 'https://chrisgarlick.com/work/chrisgarlick-com'],
+                    ['@type' => 'WebPage', 'name' => 'Typeset, branded PDFs from plain text', 'url' => 'https://chrisgarlick.com/work/typeset'],
+                ],
+            ]],
+        ],
+
         'ai-implementation' => ['path' => '/services/ai-implementation', 'section' => 'services', 'faq' => 'ai-implementation'],
         'workflow-automation' => ['path' => '/services/workflow-automation', 'section' => 'services', 'service' => 'workflow'],
         'ai-agents' => ['path' => '/services/ai-agents', 'section' => 'services', 'service' => 'agents'],
