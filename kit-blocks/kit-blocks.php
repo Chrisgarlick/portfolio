@@ -47,7 +47,7 @@ return [
     ])->view('kit-blocks::basket-drawer'),
     Block::make('kit-cta', 'Call to action')->fields([
         Field::text('eyebrow')->label('Label above the heading')->maxLength(60)->help('A short kicker, like "Next step".'),
-        Field::textarea('title')->label('Heading')->required()->maxLength(80)->help('*Stars* for italics, **double stars** for bold.'),
+        Field::textarea('title')->label('Heading')->required()->maxLength(120)->help('*Stars* for italics, **double stars** for bold.'),
         Field::select('heading_level')->label('Heading level')->options(['1', '2', '3', '4'])->default('2'),
         Field::text('lede')->label('Supporting line')->maxLength(160),
         Field::text('action_label')->label('Button')->maxLength(30),
@@ -59,7 +59,7 @@ return [
         Field::media('logo')->label('Logo')->help('A version that reads on a dark background. Shown instead of the square mark. Left empty, it shows the site\'s logo on dark.'),
         Field::textarea('blurb')->label('About line')->maxLength(160)->help('Left empty, it shows the site\'s about line.'),
         Field::repeater('columns')->label('Link columns')->max(3)->rowLabel('heading')->fields([
-            Field::text('heading')->label('Heading')->required()->maxLength(30),
+            Field::text('heading')->label('Heading')->maxLength(30)->help('Optional. Left empty, the links stand on their own.'),
             Field::repeater('links')->label('Links')->max(8)->rowLabel('label')->fields([
                 Field::text('label')->label('Label')->required()->maxLength(40),
                 Field::url('url')->label('Address')->required(),
@@ -69,7 +69,7 @@ return [
         Field::text('phone')->label('Phone number')->maxLength(30)->help('Left empty, it shows the site\'s phone number.'),
         Field::text('email')->label('Email address')->maxLength(80)->help('Left empty, it shows the site\'s email address.'),
         Field::repeater('social')->label('Social links')->max(5)->help('Left empty, it shows the site\'s social profiles.')->fields([
-            Field::select('network')->label('Network')->options(['instagram', 'facebook', 'linkedin', 'tiktok', 'youtube'])->default('instagram'),
+            Field::select('network')->label('Network')->options(['instagram', 'facebook', 'linkedin', 'tiktok', 'youtube', 'github', 'x', 'bluesky'])->default('instagram'),
             Field::url('url')->label('Profile address')->required(),
         ]),
         Field::text('small_print')->label('Small print')->maxLength(200)->help('The legal name, company number and registered office, if you\'re a company. Left empty, it shows the site\'s small print.'),
@@ -77,6 +77,7 @@ return [
             Field::text('label')->label('Label')->required()->maxLength(30),
             Field::url('url')->label('Address')->required(),
         ]),
+        Field::text('cookie_label')->label('Cookie settings button')->maxLength(30)->help('Set, a button with these words joins the legal links, like "Cookie settings". It does nothing alone: the site\'s cookie script opens its preferences from it.'),
         Field::text('wordmark')->label('Wordmark')->maxLength(40)->help('Very large type at the very bottom, cropped by the edge: the brand name, usually. Decoration, so screen readers skip it.'),
     ])->view('kit-blocks::footer'),
     Block::make('kit-gallery', 'Gallery')->fields([
@@ -105,6 +106,8 @@ return [
         ]),
         Field::boolean('numbered')->label('Number the links')->help('Shows 01, 02… before each link. The numbers are decoration: screen readers hear the label alone.'),
         Field::text('phone')->label('Phone number')->maxLength(30)->help('Left empty, it shows the site\'s phone number.'),
+        Field::text('secondary_label')->label('Text link')->maxLength(30)->help('A plain link before the button, like "Book a call" or "Log in". Also in the phone menu.'),
+        Field::url('secondary_url')->label('Text link address'),
         Field::text('action_label')->label('Button')->maxLength(30),
         Field::url('action_url')->label('Button link'),
         Field::select('tone')->label('Background')->options(['plain', 'dark'])->default('plain')->help('Plain uses the page\'s colours; dark is the inverse band, like the footer (the logo must read on it).'),
@@ -121,8 +124,11 @@ return [
             Field::url('url')->label('Link')->required(),
             Field::select('style')->label('Style')->options(['primary', 'secondary'])->default('primary'),
         ]),
+        Field::select('secondary_style')->label('Second button as')->options(['button', 'link'])->default('button')->help('A text link with an arrow, instead of a second button, if you want one clear action.'),
         Field::textarea('proof')->label('Proof line')->maxLength(80)->help('A review score or a fact. **Stars** make it bold. Left empty, it shows the site\'s review summary.'),
+        Field::select('proof_icon')->label('Proof line icon')->options(['', 'bag', 'bolt', 'box', 'calendar', 'chat', 'check', 'clock', 'droplet', 'flame', 'hammer', 'home', 'image', 'key', 'leaf', 'map-pin', 'minus', 'phone', 'plus', 'returns', 'shield', 'siren', 'sparkles', 'star', 'truck', 'wrench', 'x'])->default('star')->help('Decoration before the proof line. A star by default.'),
         Field::media('image')->label('Image')->requireAlt()->preset('hero')->help('Not shown in the text-only layout.'),
+        Field::text('caption')->label('Image caption')->maxLength(160)->help('A short line under the image, like where or when it was taken.'),
         Field::select('heading_level')->label('Heading level')->options(['1', '2', '3', '4'])->default('1')->help('1 on a page\'s first section.'),
     ])->view('kit-blocks::hero'),
     Block::make('kit-hero-collage', 'Hero, collage')->fields([
@@ -146,7 +152,7 @@ return [
     ])->view('kit-blocks::hero-collage'),
     Block::make('kit-marquee', 'Marquee')->fields([
         Field::repeater('phrases')->label('Phrases')->min(1)->max(8)->fields([
-            Field::textarea('text')->label('Phrase')->required()->maxLength(60)->help('A few words. *Words in stars* are set in italics.'),
+            Field::textarea('text')->label('Phrase')->required()->maxLength(80)->help('A few words. *Words in stars* are set in italics.'),
         ]),
         Field::text('separator')->label('Separator')->maxLength(3)->default('·')->help('Shown between phrases: "·", "/", "✦".'),
         Field::select('speed')->label('Speed')->options(['slow', 'normal'])->default('slow'),
@@ -188,14 +194,15 @@ return [
         Field::textarea('title')->label('Heading')->required()->maxLength(120)->help('*Words in stars* are set in italics.'),
         Field::select('heading_level')->label('Heading level')->options(['1', '2', '3', '4'])->default('2'),
         Field::repeater('steps')->label('Steps')->min(1)->max(6)->rowLabel('title')->fields([
-            Field::text('title')->label('Step')->required()->maxLength(60),
+            Field::text('title')->label('Step')->required()->maxLength(100),
             Field::text('text')->label('What happens')->maxLength(200),
         ]),
+        Field::boolean('step_punctuation')->label('Full stop after each step')->default(true)->help('Adds a full stop after each step\'s name. Turn it off when the names are sentences or end in their own punctuation.'),
         Field::text('link_label')->label('Link')->maxLength(40),
         Field::url('link_url')->label('Link address'),
         Field::repeater('cards')->label('Example cards')->max(2)->rowLabel('label')->help('Shown beside the steps on wider screens: what a customer gets, with what\'s included and what isn\'t.')->fields([
-            Field::text('label')->label('Label')->maxLength(40),
-            Field::text('title')->label('Title')->required()->maxLength(60),
+            Field::text('label')->label('Label')->maxLength(80),
+            Field::textarea('title')->label('Title')->required()->maxLength(100)->help('A new line starts a second line. *Stars* for italics.'),
             Field::repeater('points')->label('Points')->max(5)->rowLabel('text')->fields([
                 Field::text('text')->label('Point')->required()->maxLength(80),
                 Field::boolean('included')->label('Included')->default(true),
@@ -208,7 +215,7 @@ return [
             Field::text('label')->label('Label')->required()->maxLength(60),
             Field::url('url')->label('Link'),
         ]),
-        Field::text('title')->label('Heading')->required()->maxLength(80),
+        Field::textarea('title')->label('Heading')->required()->maxLength(120)->help('*Words in stars* are set in italics.'),
         Field::select('heading_level')->label('Heading level')->options(['1', '2', '3', '4'])->default('1'),
         Field::text('count')->label('Product count')->maxLength(30)->help('"24 products".'),
         Field::text('link_label')->label('Link')->maxLength(40)->help('A link at the end of the heading row, like "Shop all" on a home page.'),
@@ -226,9 +233,11 @@ return [
         Field::url('sort_url')->label('Sort address')->default('?')->help('Where the sort form goes (this page, usually).'),
         Field::text('sort_name')->label('Sort parameter')->maxLength(30)->default('orderby'),
         Field::select('columns')->label('Columns')->options(['2', '3', '4'])->default('4'),
+        Field::select('background')->label('Background')->options(['plain', 'tinted'])->default('plain'),
         Field::repeater('products')->label('Products')->max(48)->rowLabel('name')->fields([
-            Field::text('name')->label('Name')->required()->maxLength(80),
+            Field::text('name')->label('Name')->required()->maxLength(100),
             Field::url('url')->label('Product page'),
+            Field::textarea('description')->label('Description')->maxLength(240)->help('A line or two under the name, for a grid of articles or guides rather than products.'),
             Field::media('image')->label('Photo')->preset('card')->help('The name is read out for the photo, so its alt can stay empty.'),
             Field::text('price')->label('Price')->maxLength(20)->help('As it reads: "£14.99". Needed unless there\'s a label instead.'),
             Field::text('label')->label('Label instead of a price')->maxLength(60)->help('For things that aren\'t sold, like a guide: "Free PDF · checklist". Shown in place of the price.'),
@@ -344,7 +353,7 @@ return [
         Field::textarea('lede')->label('Intro')->maxLength(240)->help('*Stars* for italics, **double stars** for bold.'),
         Field::repeater('rows')->label('Rows')->min(1)->max(12)->rowLabel('number')->fields([
             Field::text('number')->label('Number')->maxLength(6)->help('Leave empty to number rows in order (01, 02…).'),
-            Field::textarea('name')->label('Name')->required()->maxLength(60)->help('*Words in stars* are set in italics.'),
+            Field::textarea('name')->label('Name')->required()->maxLength(100)->help('*Words in stars* are set in italics.'),
             Field::text('text')->label('Description')->maxLength(140)->help('One line.'),
             Field::text('value')->label('Value')->maxLength(30)->help('Shown on the right: "1 to 3 weeks", "Monthly".'),
             Field::url('url')->label('Link'),
@@ -363,9 +372,9 @@ return [
         Field::select('columns')->label('Columns')->options(['1', '2', '3', '4'])->default('3')->help('The most in a row; fewer fit on a narrow screen. One makes a single column.'),
         Field::repeater('services')->label('Services')->max(12)->rowLabel('number')->fields([
             Field::select('icon')->label('Icon')->options(['', 'bag', 'bolt', 'box', 'calendar', 'chat', 'check', 'clock', 'droplet', 'flame', 'hammer', 'home', 'image', 'key', 'leaf', 'map-pin', 'minus', 'phone', 'plus', 'returns', 'shield', 'siren', 'sparkles', 'star', 'truck', 'wrench', 'x']),
-            Field::text('number')->label('Number label')->maxLength(40)->help('A small label above the name, like "01 — Laravel".'),
-            Field::text('title')->label('Name')->required()->maxLength(60),
-            Field::textarea('subtitle')->label('Second line of the name')->maxLength(80)->help('Shown under the name, as part of the heading. *Stars* for italics.'),
+            Field::text('number')->label('Number label')->maxLength(60)->help('A small label above the name, like "01 — Laravel".'),
+            Field::text('title')->label('Name')->required()->maxLength(100),
+            Field::textarea('subtitle')->label('Second line of the name')->maxLength(120)->help('Shown under the name, as part of the heading. *Stars* for italics.'),
             Field::textarea('text')->label('About it')->maxLength(240)->help('Two lines on what\'s included and who it\'s for.'),
             Field::text('proof')->label('Proof point')->maxLength(80)->help('A result or guarantee, shown as a chip.'),
             Field::text('link_label')->label('Link')->maxLength(30),
@@ -391,13 +400,14 @@ return [
         ]),
         Field::boolean('numbered')->label('Number the questions')->help('Shows 01, 02… before each question. Decoration: screen readers hear the question alone.'),
         Field::boolean('swap')->label('Swap the sides')->help('An image starts on the left and questions on the right.'),
+        Field::select('panel')->label('Text panel')->options(['none', 'accent', 'surface'])->default('none')->help('Puts the text on a filled panel, edge to edge with the image: accent is the brand colour, surface a lifted card. None leaves the text on the page.'),
         Field::select('background')->label('Background')->options(['plain', 'tinted'])->default('plain'),
     ])->view('kit-blocks::split'),
     Block::make('kit-stats', 'Stats')->fields([
         Field::repeater('stats')->label('Numbers')->min(1)->max(4)->rowLabel('value')->fields([
             Field::text('value')->label('Number')->required()->maxLength(16)->help('As it reads: "15 yrs", "2,400+", "4.9".'),
-            Field::text('label')->label('What it counts')->required()->maxLength(60),
-            Field::text('link_label')->label('Link')->maxLength(40)->help('A link under the number, like "How I measured".'),
+            Field::text('label')->label('What it counts')->required()->maxLength(100),
+            Field::text('link_label')->label('Link')->maxLength(60)->help('A link under the number, like "How I measured".'),
             Field::url('link_url')->label('Link address'),
         ]),
         Field::select('tone')->label('Background')->options(['dark', 'tinted', 'plain'])->default('dark'),
