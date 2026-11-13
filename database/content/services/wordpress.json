@@ -1,0 +1,267 @@
+{
+  "mode": "night",
+  "content": [
+    {
+      "type": "kit-header",
+      "data": {
+        "brand_name": "Chris Garlick",
+        "home_url": "/",
+        "numbered": true,
+        "links": [
+          {
+            "label": "Services",
+            "url": "/services",
+            "current": true
+          },
+          {
+            "label": "Work",
+            "url": "/work"
+          },
+          {
+            "label": "How I work",
+            "url": "/how-i-work"
+          },
+          {
+            "label": "Writing",
+            "url": "/article"
+          },
+          {
+            "label": "About",
+            "url": "/about"
+          }
+        ],
+        "secondary_label": "Free site audit",
+        "secondary_url": "/tools/site-audit",
+        "action_label": "Start a project",
+        "action_url": "/start",
+        "tone": "plain"
+      }
+    },
+    {
+      "type": "kit-hero",
+      "data": {
+        "variant": "text",
+        "eyebrow": "Services 02 · WordPress development",
+        "title": "WORDPRESS SITES\nTHAT ARE\n*fast and safe.*",
+        "title_size": "large",
+        "lede": "Custom themes and plugins built properly, slow sites made fast, and fragile ones made safe. No page builder and no monthly platform fees.",
+        "actions": [
+          {
+            "label": "Start a WordPress project",
+            "url": "/start",
+            "style": "primary"
+          },
+          {
+            "label": "Check my site first",
+            "url": "/tools/site-audit",
+            "style": "secondary"
+          }
+        ],
+        "heading_level": "1",
+        "secondary_style": "button"
+      }
+    },
+    {
+      "type": "kit-split",
+      "data": {
+        "eyebrow": "Step 1 of every WordPress job",
+        "title": "An audit, so the biggest problems *get fixed first.*",
+        "heading_level": "2",
+        "body": "No page builder.\nNo monthly fees.\n\nYour site gets its own before any work starts.",
+        "media": "image",
+        "image": {
+          "file": "media/kritano-audit-example.png",
+          "alt": "An example Kritano audit: overall health 87, scores for SEO, accessibility, security, performance and content, and the top findings"
+        },
+        "background": "plain",
+        "swap": false,
+        "panel": "surface"
+      }
+    },
+    {
+      "type": "kit-services",
+      "data": {
+        "title": "WHAT I BUILD\nIN *WordPress*",
+        "heading_level": "2",
+        "lede": "Built properly, measured before and after, and yours to edit.",
+        "rule": true,
+        "columns": "3",
+        "services": [
+          {
+            "number": "01 · Themes",
+            "title": "Custom",
+            "subtitle": "*themes*",
+            "text": "Built from your design, with blocks you can edit without breaking the layout."
+          },
+          {
+            "number": "02 · Plugins",
+            "title": "Custom",
+            "subtitle": "*plugins*",
+            "text": "The one feature no plugin quite does, written properly and tested."
+          },
+          {
+            "number": "03 · Speed",
+            "title": "Speed,",
+            "subtitle": "*measured*",
+            "text": "Caching, image sizes and a lighter theme, measured before and after."
+          },
+          {
+            "number": "04 · Security",
+            "title": "Security,",
+            "subtitle": "*tested backups*",
+            "text": "Updates, hardening, security headers and backups that are tested."
+          },
+          {
+            "number": "05 · Rescues",
+            "title": "Rescues,",
+            "subtitle": "*stabilised first*",
+            "text": "A site that broke, or that nobody dares update: stabilised, then fixed."
+          },
+          {
+            "number": "06 · Care",
+            "title": "Care plan,",
+            "subtitle": "*every month*",
+            "text": "Updates, monitoring and small changes, every month."
+          }
+        ],
+        "background": "tinted"
+      }
+    },
+    {
+      "type": "kit-stats",
+      "data": {
+        "stats": [
+          {
+            "value": "2 to 6",
+            "label": "Weeks for a typical rescue and speed project"
+          },
+          {
+            "value": "1 week",
+            "label": "About how long a fix sprint takes, on what an audit found"
+          },
+          {
+            "value": "0",
+            "label": "Page builders and monthly platform fees"
+          }
+        ],
+        "tone": "tinted"
+      }
+    },
+    {
+      "type": "kit-split",
+      "data": {
+        "eyebrow": "Edit 01 · my product",
+        "title": "KRITANO.\n*Audits a small site in about two minutes.*",
+        "heading_level": "2",
+        "body": "270 checks across SEO, accessibility, security, performance, content and structured data. It finds the problems; my WordPress work fixes them.",
+        "link_label": "Read the Kritano story",
+        "link_url": "/work/kritano-website-audits",
+        "media": "image",
+        "image": null,
+        "background": "plain",
+        "swap": false,
+        "panel": "accent"
+      }
+    },
+    {
+      "type": "kit-split",
+      "data": {
+        "title": "BEFORE\n*you ask*",
+        "heading_level": "2",
+        "media": "questions",
+        "numbered": true,
+        "questions": [
+          {
+            "question": "Can you speed up the site I already have?",
+            "answer": "Usually, yes. I start with an audit to find what's slowing it down, then fix the biggest causes first and measure the difference."
+          },
+          {
+            "question": "Do you use page builders?",
+            "answer": "No. I build custom blocks, so you can edit content freely without the extra weight a page builder adds."
+          },
+          {
+            "question": "How much does it cost?",
+            "answer": "It depends on the scope, so every project is priced in a proposal after a short call and a written scope."
+          }
+        ],
+        "background": "tinted"
+      }
+    },
+    {
+      "type": "kit-cta",
+      "data": {
+        "title": "START WITH\n*an audit.*",
+        "heading_level": "2",
+        "lede": "Every project starts with an audit and a written scope, so the biggest problems get fixed first.",
+        "action_label": "Start a WordPress project",
+        "action_url": "/start"
+      }
+    },
+    {
+      "type": "kit-footer",
+      "data": {
+        "brand_name": "Chris Garlick",
+        "blurb": "Got something to build, or fix?",
+        "columns": [
+          {
+            "heading": "Work with me",
+            "links": [
+              {
+                "label": "Services",
+                "url": "/services"
+              },
+              {
+                "label": "Work",
+                "url": "/work"
+              },
+              {
+                "label": "How I work",
+                "url": "/how-i-work"
+              },
+              {
+                "label": "Writing",
+                "url": "/article"
+              }
+            ]
+          },
+          {
+            "heading": "More",
+            "links": [
+              {
+                "label": "About",
+                "url": "/about"
+              },
+              {
+                "label": "Free site audit",
+                "url": "/tools/site-audit"
+              },
+              {
+                "label": "Start a project",
+                "url": "/start"
+              }
+            ]
+          }
+        ],
+        "social": [
+          {
+            "network": "linkedin",
+            "url": "https://www.linkedin.com/in/chris-garlick-59a8bb91/"
+          }
+        ],
+        "small_print": "© 2026 Chris Garlick",
+        "legal": [
+          {
+            "label": "Privacy",
+            "url": "/privacy"
+          },
+          {
+            "label": "Terms",
+            "url": "/terms"
+          }
+        ],
+        "wordmark": "CHRIS GARLICK",
+        "cookie_label": "Cookie preferences"
+      }
+    }
+  ]
+}

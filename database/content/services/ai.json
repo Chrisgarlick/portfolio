@@ -1,0 +1,254 @@
+{
+  "mode": "night",
+  "content": [
+    {
+      "type": "kit-header",
+      "data": {
+        "brand_name": "Chris Garlick",
+        "home_url": "/",
+        "numbered": true,
+        "links": [
+          {
+            "label": "Services",
+            "url": "/services",
+            "current": true
+          },
+          {
+            "label": "Work",
+            "url": "/work"
+          },
+          {
+            "label": "How I work",
+            "url": "/how-i-work"
+          },
+          {
+            "label": "Writing",
+            "url": "/article"
+          },
+          {
+            "label": "About",
+            "url": "/about"
+          }
+        ],
+        "secondary_label": "Free site audit",
+        "secondary_url": "/tools/site-audit",
+        "action_label": "Start a project",
+        "action_url": "/start",
+        "tone": "plain"
+      }
+    },
+    {
+      "type": "kit-hero",
+      "data": {
+        "variant": "text",
+        "eyebrow": "Services 03 · AI implementation",
+        "title": "AI THAT DOES\n*the manual work.*",
+        "title_size": "large",
+        "lede": "Intake, onboarding, data extraction and reporting, automated inside the tools you already use. Where AI doesn't earn its place, I'll say so.",
+        "actions": [
+          {
+            "label": "Start an AI pilot",
+            "url": "/start",
+            "style": "primary"
+          },
+          {
+            "label": "Read: AI client intake",
+            "url": "/article/ai-client-intake-law-firms",
+            "style": "secondary"
+          }
+        ],
+        "heading_level": "1",
+        "secondary_style": "button"
+      }
+    },
+    {
+      "type": "kit-services",
+      "data": {
+        "title": "WHAT I\n*automate*",
+        "heading_level": "2",
+        "lede": "Manual work, done for you, inside the tools you already use.",
+        "rule": true,
+        "columns": "3",
+        "services": [
+          {
+            "number": "01 · Intake",
+            "title": "Enquiries,",
+            "subtitle": "*sorted and filed*",
+            "text": "Enquiries read, sorted and filed, with the right questions asked back."
+          },
+          {
+            "number": "02 · Onboarding",
+            "title": "New clients,",
+            "subtitle": "*typed in once*",
+            "text": "New clients set up without retyping the same details three times."
+          },
+          {
+            "number": "03 · Data extraction",
+            "title": "Documents,",
+            "subtitle": "*into your system*",
+            "text": "Figures and fields pulled from documents into the system they belong in."
+          },
+          {
+            "number": "04 · Reporting",
+            "title": "Reports,",
+            "subtitle": "*ready to check*",
+            "text": "Regular reports drafted from your own data, ready to check and send."
+          },
+          {
+            "number": "05 · Pilot",
+            "title": "One workflow,",
+            "subtitle": "*first*",
+            "text": "One manual workflow automated in tools you already use, in 2 to 6 weeks."
+          },
+          {
+            "number": "06 · Your tools",
+            "title": "The tools you",
+            "subtitle": "*already use*",
+            "text": "Microsoft 365, Google Workspace, Xero, HubSpot and Notion."
+          }
+        ],
+        "background": "tinted"
+      }
+    },
+    {
+      "type": "kit-stats",
+      "data": {
+        "stats": [
+          {
+            "value": "1",
+            "label": "Workflow per pilot, with a number to beat"
+          },
+          {
+            "value": "2 to 6",
+            "label": "Weeks for a typical AI pilot, from scope to running"
+          },
+          {
+            "value": "0",
+            "label": "Messages sent before a person has checked them"
+          }
+        ],
+        "tone": "tinted"
+      }
+    },
+    {
+      "type": "kit-text-block",
+      "data": {
+        "eyebrow": "Where AI helps, and where it doesn't",
+        "title": "EVERY PILOT:\n*one workflow, a number to beat.*",
+        "heading_level": "2",
+        "points": [
+          {
+            "text": "It reads, sorts and drafts; a person checks before anything is sent."
+          },
+          {
+            "text": "It runs inside your systems, using Claude through its business API."
+          },
+          {
+            "text": "If a plain form or a simple rule does the job, that's what I'll build."
+          }
+        ],
+        "background": "plain"
+      }
+    },
+    {
+      "type": "kit-split",
+      "data": {
+        "title": "BEFORE\n*you ask*",
+        "heading_level": "2",
+        "media": "questions",
+        "numbered": true,
+        "questions": [
+          {
+            "question": "Where does my data go?",
+            "answer": "The written scope says exactly what data the AI sees, where it's processed and what's kept. Nothing goes anywhere you haven't agreed to."
+          },
+          {
+            "question": "What if it gets something wrong?",
+            "answer": "A person checks the output before it's sent or saved, and the pilot measures how often it needs correcting."
+          },
+          {
+            "question": "How much does it cost?",
+            "answer": "A pilot is priced in a proposal from a written scope, after a short call about the workflow you want to automate."
+          }
+        ],
+        "background": "tinted"
+      }
+    },
+    {
+      "type": "kit-cta",
+      "data": {
+        "title": "START WITH\n*one workflow.*",
+        "heading_level": "2",
+        "lede": "A pilot is priced in a proposal from a written scope, after a short call about the workflow you want to automate.",
+        "action_label": "Start an AI pilot",
+        "action_url": "/start"
+      }
+    },
+    {
+      "type": "kit-footer",
+      "data": {
+        "brand_name": "Chris Garlick",
+        "blurb": "Got something to build, or fix?",
+        "columns": [
+          {
+            "heading": "Work with me",
+            "links": [
+              {
+                "label": "Services",
+                "url": "/services"
+              },
+              {
+                "label": "Work",
+                "url": "/work"
+              },
+              {
+                "label": "How I work",
+                "url": "/how-i-work"
+              },
+              {
+                "label": "Writing",
+                "url": "/article"
+              }
+            ]
+          },
+          {
+            "heading": "More",
+            "links": [
+              {
+                "label": "About",
+                "url": "/about"
+              },
+              {
+                "label": "Free site audit",
+                "url": "/tools/site-audit"
+              },
+              {
+                "label": "Start a project",
+                "url": "/start"
+              }
+            ]
+          }
+        ],
+        "social": [
+          {
+            "network": "linkedin",
+            "url": "https://www.linkedin.com/in/chris-garlick-59a8bb91/"
+          }
+        ],
+        "small_print": "© 2026 Chris Garlick",
+        "legal": [
+          {
+            "label": "Privacy",
+            "url": "/privacy"
+          },
+          {
+            "label": "Terms",
+            "url": "/terms"
+          }
+        ],
+        "wordmark": "CHRIS GARLICK",
+        "cookie_label": "Cookie preferences"
+      }
+    }
+  ]
+}

@@ -1,0 +1,256 @@
+{
+  "mode": "night",
+  "content": [
+    {
+      "type": "kit-header",
+      "data": {
+        "brand_name": "Chris Garlick",
+        "home_url": "/",
+        "numbered": true,
+        "links": [
+          {
+            "label": "Services",
+            "url": "/services",
+            "current": true
+          },
+          {
+            "label": "Work",
+            "url": "/work"
+          },
+          {
+            "label": "How I work",
+            "url": "/how-i-work"
+          },
+          {
+            "label": "Writing",
+            "url": "/article"
+          },
+          {
+            "label": "About",
+            "url": "/about"
+          }
+        ],
+        "secondary_label": "Free site audit",
+        "secondary_url": "/tools/site-audit",
+        "action_label": "Start a project",
+        "action_url": "/start",
+        "tone": "plain"
+      }
+    },
+    {
+      "type": "kit-hero",
+      "data": {
+        "variant": "text",
+        "eyebrow": "Services 01 · Laravel development",
+        "title": "LARAVEL APPS\nTHAT ARE\n*easy to change.*",
+        "title_size": "large",
+        "lede": "Web apps, admin panels, APIs and integrations, built with tests from the first day, so the tenth change is as safe as the first.",
+        "actions": [
+          {
+            "label": "Start a Laravel project",
+            "url": "/start",
+            "style": "primary"
+          },
+          {
+            "label": "See cg-cms",
+            "url": "/work/cg-cms",
+            "style": "secondary"
+          }
+        ],
+        "heading_level": "1",
+        "secondary_style": "button"
+      }
+    },
+    {
+      "type": "kit-services",
+      "data": {
+        "title": "WHAT I BUILD\nIN *Laravel*",
+        "heading_level": "2",
+        "lede": "Laravel 12 · Postgres · Inertia + React · Queues · Pest · Redis",
+        "rule": true,
+        "columns": "3",
+        "services": [
+          {
+            "number": "01 · Web apps",
+            "title": "Bespoke",
+            "subtitle": "*web apps*",
+            "text": "Booking, quoting, client portals: the software your business runs on."
+          },
+          {
+            "number": "02 · Admin",
+            "title": "Admin panels,",
+            "subtitle": "*no manual needed*",
+            "text": "Inertia and React admins your team can use without a manual."
+          },
+          {
+            "number": "03 · Integrations",
+            "title": "APIs and",
+            "subtitle": "*integrations*",
+            "text": "Xero, HubSpot, Microsoft 365, Google Workspace: connected and queued."
+          },
+          {
+            "number": "04 · Rebuilds",
+            "title": "Rebuilds,",
+            "subtitle": "*old URLs kept*",
+            "text": "Slow or fragile sites rebuilt, with a redirect for every URL that changes."
+          },
+          {
+            "number": "05 · CMS",
+            "title": "CMS builds",
+            "subtitle": "*you can edit*",
+            "text": "Content you can edit yourself, on a site that stays fast."
+          },
+          {
+            "number": "06 · Care",
+            "title": "Upgrades",
+            "subtitle": "*and care*",
+            "text": "Laravel and PHP upgrades, security patches, monitoring."
+          }
+        ],
+        "background": "tinted"
+      }
+    },
+    {
+      "type": "kit-stats",
+      "data": {
+        "stats": [
+          {
+            "value": "0.4 ms",
+            "label": "To serve a cached page on cg-cms, live 1GB server",
+            "link_label": "How I measured",
+            "link_url": "/article/caching-pages-to-disk-laravel"
+          },
+          {
+            "value": "79",
+            "label": "URLs kept when I moved this site to Laravel: every live URL still works"
+          },
+          {
+            "value": "99",
+            "label": "Lighthouse performance, 99 or 100 in lab tests (up from the high 80s)"
+          }
+        ],
+        "tone": "tinted"
+      }
+    },
+    {
+      "type": "kit-split",
+      "data": {
+        "eyebrow": "Edit 01 · how I measure",
+        "title": "CACHING PAGES\nTO DISK.\n*0.4 ms a page.*",
+        "heading_level": "2",
+        "body": "In cg-cms, saving a page writes it to disk, so on the live 1GB server a cached page starts arriving in 0.4 ms and the server handles 6,300 requests a second, with no PHP involved. The write-up shows how I measured it.",
+        "link_label": "Read the write-up",
+        "link_url": "/article/caching-pages-to-disk-laravel",
+        "media": "image",
+        "image": null,
+        "background": "plain",
+        "swap": true,
+        "panel": "accent"
+      }
+    },
+    {
+      "type": "kit-split",
+      "data": {
+        "title": "BEFORE\n*you ask*",
+        "heading_level": "2",
+        "media": "questions",
+        "numbered": true,
+        "questions": [
+          {
+            "question": "How much does a Laravel project cost?",
+            "answer": "It depends on the scope, so every project is priced in a proposal after a short call and a written scope. Tell me your budget range in the brief and I'll say honestly what fits."
+          },
+          {
+            "question": "Can you take over an existing Laravel app?",
+            "answer": "Yes. I start with a paid audit: tests, dependencies, security and the risky parts, written up so you can decide what to do first."
+          },
+          {
+            "question": "Will I be tied to you?",
+            "answer": "Laravel and WordPress builds are yours: the code, the hosting and the documentation. If your site runs on cg-cms, my own CMS, it relies on me for CMS updates, and the scope says so up front."
+          },
+          {
+            "question": "Where do you use AI in the build?",
+            "answer": "For drafting code and tests, which I review line by line. It speeds up the typing; the decisions and the review are mine."
+          }
+        ],
+        "background": "tinted"
+      }
+    },
+    {
+      "type": "kit-cta",
+      "data": {
+        "title": "START WITH\n*a written scope.*",
+        "heading_level": "2",
+        "lede": "Every project starts with an audit and a written scope, so what's wrong is agreed before the price is.",
+        "action_label": "Start a Laravel project",
+        "action_url": "/start"
+      }
+    },
+    {
+      "type": "kit-footer",
+      "data": {
+        "brand_name": "Chris Garlick",
+        "blurb": "Got something to build, or fix?",
+        "columns": [
+          {
+            "heading": "Work with me",
+            "links": [
+              {
+                "label": "Services",
+                "url": "/services"
+              },
+              {
+                "label": "Work",
+                "url": "/work"
+              },
+              {
+                "label": "How I work",
+                "url": "/how-i-work"
+              },
+              {
+                "label": "Writing",
+                "url": "/article"
+              }
+            ]
+          },
+          {
+            "heading": "More",
+            "links": [
+              {
+                "label": "About",
+                "url": "/about"
+              },
+              {
+                "label": "Free site audit",
+                "url": "/tools/site-audit"
+              },
+              {
+                "label": "Start a project",
+                "url": "/start"
+              }
+            ]
+          }
+        ],
+        "social": [
+          {
+            "network": "linkedin",
+            "url": "https://www.linkedin.com/in/chris-garlick-59a8bb91/"
+          }
+        ],
+        "small_print": "© 2026 Chris Garlick",
+        "legal": [
+          {
+            "label": "Privacy",
+            "url": "/privacy"
+          },
+          {
+            "label": "Terms",
+            "url": "/terms"
+          }
+        ],
+        "wordmark": "CHRIS GARLICK",
+        "cookie_label": "Cookie preferences"
+      }
+    }
+  ]
+}

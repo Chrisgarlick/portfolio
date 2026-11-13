@@ -1,0 +1,254 @@
+{
+  "title": "Services",
+  "mode": "night",
+  "seo_title": "Services: Laravel, WordPress and AI implementation | Chris Garlick",
+  "seo_description": "Three kinds of work, all from one developer. Every project starts with an audit and a written scope.",
+  "content": [
+    {
+      "type": "kit-header",
+      "data": {
+        "brand_name": "Chris Garlick",
+        "home_url": "/",
+        "numbered": true,
+        "links": [
+          {
+            "label": "Services",
+            "url": "/services"
+          },
+          {
+            "label": "Work",
+            "url": "/work"
+          },
+          {
+            "label": "How I work",
+            "url": "/how-i-work"
+          },
+          {
+            "label": "Writing",
+            "url": "/article"
+          },
+          {
+            "label": "About",
+            "url": "/about"
+          }
+        ],
+        "secondary_label": "Free site audit",
+        "secondary_url": "/tools/site-audit",
+        "action_label": "Start a project",
+        "action_url": "/start",
+        "tone": "plain"
+      }
+    },
+    {
+      "type": "kit-hero",
+      "data": {
+        "variant": "text",
+        "eyebrow": "Services · Laravel, WordPress and AI implementation",
+        "title": "WHAT I BUILD,\n*and how.*",
+        "title_size": "large",
+        "lede": "Three kinds of work, all from one developer. Every project starts with an audit and a written scope.",
+        "actions": [
+          {
+            "label": "Start a project",
+            "url": "/start",
+            "style": "primary"
+          },
+          {
+            "label": "Free site audit",
+            "url": "/tools/site-audit",
+            "style": "secondary"
+          }
+        ],
+        "heading_level": "1",
+        "secondary_style": "button"
+      }
+    },
+    {
+      "type": "kit-services",
+      "data": {
+        "eyebrow": "01 · Three services",
+        "title": "One developer for all three",
+        "heading_level": "2",
+        "rule": true,
+        "columns": "3",
+        "background": "tinted",
+        "services": [
+          {
+            "number": "01 · Laravel",
+            "title": "LARAVEL",
+            "subtitle": "*Apps that are easy to change*",
+            "text": "Web apps, admin panels, APIs and integrations, with tests from day one.",
+            "link_label": "Laravel development",
+            "link_url": "/services/laravel"
+          },
+          {
+            "number": "02 · WordPress",
+            "title": "WORDPRESS",
+            "subtitle": "*Fast, safe and yours to edit*",
+            "text": "Custom themes and plugins, speed and security work, and rescues. No page builder, no monthly fees.",
+            "link_label": "WordPress development",
+            "link_url": "/services/wordpress"
+          },
+          {
+            "number": "03 · AI implementation",
+            "title": "AI",
+            "subtitle": "*Manual work, done for you*",
+            "text": "Intake, onboarding, data extraction and reporting, inside the tools you already use.",
+            "link_label": "AI implementation",
+            "link_url": "/services/ai"
+          }
+        ]
+      }
+    },
+    {
+      "type": "kit-process",
+      "data": {
+        "eyebrow": "Edit 01 · how I work",
+        "title": "AI DOES THE TYPING.\n*I do the thinking.*",
+        "heading_level": "2",
+        "steps": [
+          {
+            "title": "Audit and plan"
+          },
+          {
+            "title": "Scope in writing"
+          },
+          {
+            "title": "Design, then build"
+          },
+          {
+            "title": "Tested and handed over"
+          }
+        ],
+        "link_label": "How I work",
+        "link_url": "/how-i-work",
+        "cards": [],
+        "background": "plain",
+        "step_punctuation": false
+      }
+    },
+    {
+      "type": "kit-ruled-list",
+      "data": {
+        "title": "WAYS TO WORK\n*together*",
+        "heading_level": "2",
+        "lede": "Every project is priced from a written scope.",
+        "tone": "tinted",
+        "rows": [
+          {
+            "number": "01",
+            "name": "Fix sprint",
+            "text": "Fix what a site audit found.",
+            "value": "About a week"
+          },
+          {
+            "number": "02",
+            "name": "WordPress rescue and speed",
+            "text": "Make a slow or fragile site fast and safe.",
+            "value": "2 to 6 weeks"
+          },
+          {
+            "number": "03",
+            "name": "AI pilot",
+            "text": "One manual workflow automated in tools you already use.",
+            "value": "2 to 6 weeks"
+          },
+          {
+            "number": "04",
+            "name": "Website build",
+            "text": "A fast, accessible site you can edit yourself.",
+            "value": "2 to 4 weeks"
+          },
+          {
+            "number": "05",
+            "name": "Laravel app or internal tool",
+            "text": "Bespoke software, admin panel or API.",
+            "value": "4 weeks and up"
+          },
+          {
+            "number": "06",
+            "name": "Care plan",
+            "text": "Updates, monitoring and small changes.",
+            "value": "Monthly"
+          }
+        ]
+      }
+    },
+    {
+      "type": "kit-cta",
+      "data": {
+        "title": "NOT SURE\n*which you need?*",
+        "heading_level": "2",
+        "lede": "Run the free site audit, or describe the problem and I'll tell you honestly.",
+        "action_label": "Start a project",
+        "action_url": "/start"
+      }
+    },
+    {
+      "type": "kit-footer",
+      "data": {
+        "brand_name": "Chris Garlick",
+        "blurb": "Got something to build, or fix?",
+        "columns": [
+          {
+            "heading": "Work with me",
+            "links": [
+              {
+                "label": "Services",
+                "url": "/services"
+              },
+              {
+                "label": "Work",
+                "url": "/work"
+              },
+              {
+                "label": "How I work",
+                "url": "/how-i-work"
+              },
+              {
+                "label": "Writing",
+                "url": "/article"
+              }
+            ]
+          },
+          {
+            "heading": "More",
+            "links": [
+              {
+                "label": "About",
+                "url": "/about"
+              },
+              {
+                "label": "Free site audit",
+                "url": "/tools/site-audit"
+              },
+              {
+                "label": "Start a project",
+                "url": "/start"
+              }
+            ]
+          }
+        ],
+        "social": [
+          {
+            "network": "linkedin",
+            "url": "https://www.linkedin.com/in/chris-garlick-59a8bb91/"
+          }
+        ],
+        "small_print": "© 2026 Chris Garlick",
+        "legal": [
+          {
+            "label": "Privacy",
+            "url": "/privacy"
+          },
+          {
+            "label": "Terms",
+            "url": "/terms"
+          }
+        ],
+        "wordmark": "CHRIS GARLICK",
+        "cookie_label": "Cookie preferences"
+      }
+    }
+  ]
+}
