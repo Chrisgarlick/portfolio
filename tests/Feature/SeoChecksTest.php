@@ -196,6 +196,13 @@ it('refuses to publish an image with no alt text', function (): void {
     ]))->toThrow(ValidationException::class);
 });
 
+it('does not count an image explicitly marked decorative, but still counts an empty alt', function (): void {
+    $inspector = fn (string $html) => (new \Cg\Cms\Seo\Checks\HtmlInspector($html))->images();
+
+    expect($inspector('<main><img src="/mark.png" alt="" aria-hidden="true"><img src="/x.png" alt="" role="presentation"></main>'))->toBe([])
+        ->and($inspector('<main><img src="/a.jpg" alt=""></main>'))->toHaveCount(1);
+});
+
 it('lets the legacy import through, as it does for lint', function (): void {
     Linter::without(fn () => makeArticle('legacy', 'Imported with its old undescribed image', [
         'data' => ['excerpt' => 'x', 'body' => tiptapDoc(['type' => 'image', 'attrs' => ['src' => '/img/old.jpg']])],

@@ -23,6 +23,11 @@ return [
     'site' => [
         'name' => 'Chris Garlick',
         'email' => env('CONTACT_EMAIL'),
+        // The "cg" mark (the favicon's 512px PNG), beside the name in the
+        // header and footer. It reads on the night green and on paper, so
+        // the same file serves both. kit prints it with empty alt (the name beside it says it); the alt here is for the CMS's publish check.
+        'logo' => ['src' => '/images/brand/mark-512.png', 'alt' => 'The cg mark', 'width' => 512, 'height' => 512],
+        'logo_on_dark' => ['src' => '/images/brand/mark-512.png', 'alt' => 'The cg mark', 'width' => 512, 'height' => 512],
     ],
 
 ];
