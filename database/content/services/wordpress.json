@@ -163,10 +163,14 @@
         "link_label": "Read the Kritano story",
         "link_url": "/work/kritano-website-audits",
         "media": "image",
-        "image": null,
+        "image": {
+          "file": "media/kritano-audit-example.png",
+          "alt": "An example Kritano audit: overall health 87, scores for SEO, accessibility, security, performance and content, and the top findings"
+        },
         "background": "plain",
         "swap": false,
-        "panel": "accent"
+        "panel": "accent",
+        "caption": "Fig. 02 · An example Kritano audit"
       }
     },
     {
