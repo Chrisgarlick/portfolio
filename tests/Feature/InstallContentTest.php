@@ -49,12 +49,19 @@ it('creates drafts and proposes changes to live entries, and a second run adds n
         ->and(EntryRevision::query()->where('entry_id', $about->id)->where('label', 'proposed')->count())->toBe(1);
 });
 
-it('applies and publishes everything with --publish', function (): void {
+it('applies and publishes everything with --publish, but a file marked status: draft', function (): void {
     $about = liveAboutPage();
 
     $this->artisan('site:install-content', ['--publish' => true])->assertSuccessful();
 
-    expect(Entry::query()->whereIn('collection', ['service', 'project', 'article'])->where('status', 'draft')->exists())->toBeFalse()
+    // The articles waiting for Chris say `status: draft`; everything else goes live.
+    $marked = collect(glob(database_path('content/articles/*.md')))
+        ->filter(fn (string $file): bool => preg_match('/^status: draft$/m', (string) file_get_contents($file)) === 1)
+        ->map(fn (string $file): string => basename($file, '.md'))
+        ->values()->all();
+
+    expect($marked)->not->toBeEmpty()
+        ->and(Entry::query()->whereIn('collection', ['service', 'project', 'article'])->where('status', 'draft')->pluck('slug')->sort()->values()->all())->toBe(collect($marked)->sort()->values()->all())
         ->and($about->refresh()->data['content'][1]['data']['title'])->toContain('*start to finish.*')
         ->and(EntryRevision::query()->where('entry_id', $about->id)->where('label', 'proposed')->exists())->toBeFalse();
 

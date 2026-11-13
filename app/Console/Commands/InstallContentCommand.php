@@ -24,7 +24,8 @@ use Symfony\Component\Yaml\Yaml;
  * Without --publish, new entries are drafts and changes to live entries are
  * proposals, exactly as the content CLI makes them, for review in the admin.
  * With --publish, which a person passes at launch, everything is applied
- * and published through the same publish gate as the admin.
+ * and published through the same publish gate as the admin, except a file
+ * whose frontmatter says `status: draft`.
  *
  * Markdown files carry their fields as frontmatter and the body as the
  * collection's first rich text field; a JSON object beside one (same name)
@@ -76,6 +77,12 @@ final class InstallContentCommand extends Command
 
                 try {
                     $input = $this->fileValues($file, $collection, $collections);
+                    // `status: draft` in a file (an article waiting for
+                    // Chris) keeps it a draft even with --publish. Status is
+                    // not set from files otherwise: publishing goes through
+                    // the publish gate below.
+                    $keepDraft = ($input['status'] ?? null) === 'draft';
+                    unset($input['status']);
                     $slug = (string) ($input['slug'] ?? pathinfo($file, PATHINFO_FILENAME));
                     $entry = Entry::query()->collection($collection)->where('slug', $slug)->first();
 
@@ -95,7 +102,7 @@ final class InstallContentCommand extends Command
 
                     $action = $result['action'];
 
-                    if ($publish) {
+                    if ($publish && ! $keepDraft) {
                         $entry = Entry::query()->collection($collection)->where('slug', $slug)->firstOrFail();
                         $published = $content->publish($entry);
                         $action .= $published['action'] === 'published' ? ', published' : '';
