@@ -3,7 +3,9 @@
     includes it when APP_ENV is local), never in production.
 
     It swaps the --font-display and --font-body variables on <html>, so every
-    heading and paragraph on the page follows, and loads each font from Bunny
+    heading and paragraph on the page follows (kit pages read --font-lab-display
+    and --font-lab-body, set only once a choice differs from the default), and
+    loads each font from Bunny
     Fonts (the GDPR-friendly Google Fonts mirror the site already uses). The
     choice is kept in localStorage, so it follows you from page to page.
 --}}
@@ -131,6 +133,15 @@
         load(d); load(b);
         root.style.setProperty('--font-display', `'${d[0]}', ${d[3]}`);
         root.style.setProperty('--font-body', `'${b[0]}', ${b[3]}`);
+        // Kit pages (the Nightfolio theme) have their own fonts and follow the
+        // lab only once a choice differs from the default; Reset hands them back.
+        if (d[0] !== 'Inter Tight' || b[0] !== 'Inter') {
+            root.style.setProperty('--font-lab-display', `'${d[0]}', ${d[3]}`);
+            root.style.setProperty('--font-lab-body', `'${b[0]}', ${b[3]}`);
+        } else {
+            root.style.removeProperty('--font-lab-display');
+            root.style.removeProperty('--font-lab-body');
+        }
         // font-size-adjust in ex units: 0.5 is roughly neutral; scale it for the slider.
         if (state.size !== 100) {
             root.dataset.fontLabScale = '';

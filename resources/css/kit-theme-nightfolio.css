@@ -27,8 +27,11 @@
 */
 
 /*
- * Fonts: self-hosted (Fontsource variable files, latin, SIL OFL 1.1). Inter
- * and Inter Tight are the same files app.css uses, so Vite emits them once.
+ * Fonts: self-hosted (Fontsource variable files, latin, SIL OFL 1.1). Inter is
+ * the same file app.css uses, so Vite emits it once. Fraunces (chosen 13 Nov
+ * 2026) is the "standard" cut: weight and optical size, so the huge headlines
+ * get the finer detail the large optical sizes draw; the italic is a true
+ * italic, which Nightfolio's one italic phrase per headline needs.
  */
 @font-face {
   font-family: 'Inter';
@@ -38,18 +41,18 @@
   src: url('../fonts/inter-latin-wght-normal.woff2') format('woff2-variations');
 }
 @font-face {
-  font-family: 'Inter Tight';
+  font-family: 'Fraunces';
   font-style: normal;
   font-weight: 100 900;
   font-display: swap;
-  src: url('../fonts/inter-tight-latin-wght-normal.woff2') format('woff2-variations');
+  src: url('../fonts/fraunces-latin-standard-normal.woff2') format('woff2-variations');
 }
 @font-face {
-  font-family: 'Inter Tight';
+  font-family: 'Fraunces';
   font-style: italic;
   font-weight: 100 900;
   font-display: swap;
-  src: url('../fonts/inter-tight-latin-wght-italic.woff2') format('woff2-variations');
+  src: url('../fonts/fraunces-latin-standard-italic.woff2') format('woff2-variations');
 }
 @font-face {
   font-family: 'JetBrains Mono';
@@ -62,12 +65,19 @@
 /*
  * The font choice, in three variables, to trial other faces: change these
  * (and add their @font-face above). Everything else reads kit's tokens.
- * Display and body follow the site's --font-display and --font-body (app.css,
- * the same faces), which the font lab ("Aa Fonts") swaps on <html>.
+ * Display and body follow the font lab ("Aa Fonts", local only) when it has a
+ * choice other than its default: it sets --font-lab-display and -body on <html>.
  */
 :root {
-  --nf-font-display: var(--font-display, 'Inter Tight', 'Inter', system-ui, sans-serif);
-  --nf-font-body: var(--font-body, 'Inter', system-ui, -apple-system, 'Segoe UI', sans-serif);
+  /* Fraunces at its text optical size (9) at every size: sturdy strokes and a
+     plain italic, the Fraunces chosen in the font lab, rather than the hairline,
+     swash-italic display cut the browser would pick for huge type. Inter and
+     JetBrains Mono have no opsz axis, so this touches only Fraunces. */
+  font-optical-sizing: none;
+  font-variation-settings: "opsz" 9;
+
+  --nf-font-display: var(--font-lab-display, 'Fraunces', Georgia, 'Times New Roman', serif);
+  --nf-font-body: var(--font-lab-body, 'Inter', system-ui, -apple-system, 'Segoe UI', sans-serif);
   --nf-font-mono: 'JetBrains Mono', ui-monospace, 'SF Mono', Menlo, Consolas, monospace;
 }
 
@@ -84,7 +94,7 @@
   --kit-font-ui: var(--nf-font-body);
   --kit-font-mono: var(--nf-font-mono);
   --kit-display-weight: 500;
-  --kit-display-tracking: -0.03em;
+  --kit-display-tracking: -0.015em; /* a serif in capitals wants less than Inter Tight did */
   --kit-display-case: uppercase;
 
   /* Surfaces and text */
@@ -270,7 +280,7 @@ body.kit-page::before {
 .kit-section-hero[data-title-size="large"] .kit-hero-title {
   font-size: clamp(3.5rem, 0.8rem + 9.5vw, 10.5rem);
   line-height: 0.88;
-  letter-spacing: -0.04em;
+  letter-spacing: -0.025em;
 }
 
 /* Measured numbers are lit: mint on night, house green on day. */
