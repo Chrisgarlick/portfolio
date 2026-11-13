@@ -254,6 +254,10 @@
               {
                 "label": "Start a project",
                 "url": "/start"
+              },
+              {
+                "label": "Contact",
+                "url": "/contact"
               }
             ]
           }

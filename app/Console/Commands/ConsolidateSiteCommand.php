@@ -37,6 +37,10 @@ use Throwable;
  *      can point at a page this consolidation now redirects, so /start went
  *      /audit then /tools/site-audit. Each now goes straight to the end.
  *
+ * It also removes the imported redirects for addresses that are pages again
+ * (REMOVE_REDIRECTS): /start went to the site audit until the brief was
+ * built, and a forced redirect would still win over the new page.
+ *
  * Resources stay published: the gate on the article posts the resource's
  * slug, and /resources/{slug}/thanks must keep working for links in emails
  * already sent. Only the resource pages themselves redirect.
@@ -90,6 +94,9 @@ final class ConsolidateSiteCommand extends Command
 
         '/work/ai-integrated-delivery-how-one-operator-delivers-like-a-team' => ['/about', 301],
     ];
+
+    /** @var array<int, string> Redirects to delete: these addresses are pages again. */
+    public const REMOVE_REDIRECTS = ['/start'];
 
     /** @var array<string, array<int, string>> collection => slugs */
     public const RETIRE = [
@@ -154,6 +161,14 @@ final class ConsolidateSiteCommand extends Command
                     'force' => true,
                     'notes' => 'Site consolidation, October 2026.',
                 ]);
+            }
+        }
+
+        foreach (Redirect::query()->whereIn('from', self::REMOVE_REDIRECTS)->get() as $redirect) {
+            $this->components->twoColumnDetail(($dry ? 'Would remove redirect ' : 'Removing redirect ').$redirect->from, $redirect->to);
+
+            if (! $dry) {
+                $redirect->delete();
             }
         }
 

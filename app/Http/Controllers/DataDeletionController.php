@@ -4,14 +4,19 @@ declare(strict_types=1);
 
 namespace App\Http\Controllers;
 
+use App\Console\Commands\GdprExportCommand;
 use App\Mail\DataDeletionLink;
 use App\Models\AuditSubmission;
+use App\Models\GdprDeletion;
 use App\Support\AuditErasure;
 use Cg\Cms\Cache\CacheContext;
 use Cg\Cms\Forms\FormGuard;
+use Cg\Cms\Models\FormSubmission;
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\URL;
@@ -35,6 +40,12 @@ use Illuminate\Support\Str;
  * address's submissions the same signed link, good for LINK_HOURS. The answer
  * is the same whether or not anything is on file, so the form cannot be used
  * to find out who has written in.
+ *
+ * Messages sent through the site's forms (a /start brief, the /contact form,
+ * a service page enquiry) are found by the address in them and get one link
+ * of their own, carrying their ids (`messages`) rather than a submission.
+ * Confirming it deletes those rows outright: unlike an audit, nothing about
+ * them needs to stay on record.
  */
 final class DataDeletionController extends Controller
 {
@@ -49,6 +60,16 @@ final class DataDeletionController extends Controller
         // Per-visitor and signed: never a page-cache candidate, whatever the
         // query string rules would otherwise conclude.
         $cacheContext->doNotCache();
+
+        $messages = $this->messagesFromSignedRequest($request);
+
+        if ($messages !== null) {
+            return response()->view('data-delete.show', [
+                'state' => $messages->isEmpty() ? 'already' : 'messages',
+                'messages' => $messages,
+                'link' => $request->fullUrl(),
+            ]);
+        }
 
         $submission = $this->fromSignedRequest($request);
 
@@ -66,6 +87,12 @@ final class DataDeletionController extends Controller
     public function confirm(Request $request, AuditErasure $erasure): JsonResponse|Response
     {
         $link = (string) $request->input('link', '');
+        $messages = $this->messagesFromSignedLink($link);
+
+        if ($messages !== null) {
+            return $this->answer($request, 200, ['ok' => true, 'alreadyDeleted' => ! $this->eraseMessages($messages)], 'done');
+        }
+
         $submission = $this->fromSignedLink($link);
 
         if ($submission === null) {
@@ -106,7 +133,75 @@ final class DataDeletionController extends Controller
                 Mail::to($submission->email)->queue(new DataDeletionLink($submission, $link, self::LINK_HOURS));
             });
 
+        $messages = self::messages($email)->pluck('id')->sort()->values()->all();
+
+        if ($messages !== []) {
+            $link = URL::temporarySignedRoute('data-delete', now()->addHours(self::LINK_HOURS), ['messages' => implode(',', $messages)]);
+
+            Mail::to($email)->queue(new DataDeletionLink(null, $link, self::LINK_HOURS, count($messages)));
+        }
+
         return $this->answer($request, 200, ['ok' => true], 'sent');
+    }
+
+    /**
+     * The form messages held for an address: briefs, contact messages and
+     * enquiries. Not the audit tool's mirrored copies, which go with their
+     * audit submission.
+     *
+     * @return \Illuminate\Database\Eloquent\Builder<FormSubmission>
+     */
+    public static function messages(string $email)
+    {
+        return GdprExportCommand::formSubmissions(mb_strtolower(trim($email)))->where('form', '!=', 'audit-intake');
+    }
+
+    /** @param Collection<int, FormSubmission> $messages */
+    private function eraseMessages(Collection $messages): bool
+    {
+        if ($messages->isEmpty()) {
+            return false;
+        }
+
+        DB::transaction(function () use ($messages): void {
+            $email = (string) ($messages->first()->data['email'] ?? '');
+
+            FormSubmission::query()->whereKey($messages->modelKeys())->delete();
+
+            GdprDeletion::query()->create([
+                'email_hash' => GdprDeletion::hash($email),
+                'reason' => self::REASON,
+                'counts' => ['form_submissions' => $messages->count()],
+            ]);
+        });
+
+        return true;
+    }
+
+    /** @return Collection<int, FormSubmission>|null Null when the link is not a messages link. */
+    private function messagesFromSignedLink(string $link): ?Collection
+    {
+        if ($link === '' || ! Str::startsWith($link, ['http://', 'https://'])) {
+            return null;
+        }
+
+        $request = Request::create($link);
+
+        return $request->getPathInfo() === '/data/delete' ? $this->messagesFromSignedRequest($request) : null;
+    }
+
+    /** @return Collection<int, FormSubmission>|null */
+    private function messagesFromSignedRequest(Request $request): ?Collection
+    {
+        $ids = (string) $request->query('messages', '');
+
+        if ($ids === '' || ! URL::hasValidSignature($request)) {
+            return null;
+        }
+
+        $ids = array_filter(explode(',', $ids), 'ctype_digit');
+
+        return FormSubmission::query()->whereKey($ids)->orderBy('created_at')->get();
     }
 
     /**

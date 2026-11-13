@@ -50,8 +50,9 @@ foreach (['about', 'contact', 'services', 'industries', 'how-i-work'] as $slug) 
 
 Route::get('/services/{slug}', [SitePageController::class, 'service'])->name('services.show');
 
-// Where a /start brief lands (the `thanks` page). /start itself is still a
-// redirect until the brief form is built; it should send people here.
+// The /start brief (the `start` page, its form the site-start-brief block;
+// it posts to /start, routes/forms.php) and where a sent brief lands.
+Route::get('/start', [SitePageController::class, 'show'])->defaults('slug', 'start')->name('start');
 Route::get('/start/thanks', [SitePageController::class, 'show'])->defaults('slug', 'thanks')->name('start.thanks');
 Route::get('/industries/{slug}', [SitePageController::class, 'industry'])->name('industries.show');
 

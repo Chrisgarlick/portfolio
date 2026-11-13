@@ -31,3 +31,8 @@ use Illuminate\Support\Facades\Route;
 Route::post('/forms/{slug}', [FormController::class, 'store'])
     ->middleware('form')
     ->name('forms.store');
+
+// The /start brief and the /contact form post to their own page's address, so
+// a browser without JavaScript sees its errors (or its thanks) on that page.
+Route::post('/start', [FormController::class, 'store'])->defaults('slug', 'start')->name('start.submit');
+Route::post('/contact', [FormController::class, 'store'])->defaults('slug', 'contact')->name('contact.submit');

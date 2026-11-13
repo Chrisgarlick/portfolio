@@ -19,6 +19,7 @@ import { initTopicFilter } from './site/topic-filter';
 import { initReadingProgress } from './site/reading-progress';
 import { initStudioAudit } from './site/studio-audit';
 import { initFitWordmark } from './site/fit-wordmark';
+import { initFormSource } from './site/form-source';
 
 initNav();
 initCookieConsent();
@@ -34,3 +35,4 @@ initTopicFilter();
 initReadingProgress();
 initStudioAudit();
 initFitWordmark();
+initFormSource();

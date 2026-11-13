@@ -1,0 +1,159 @@
+{
+  "title": "Start a project",
+  "mode": "night",
+  "seo_title": "Start a project | Chris Garlick",
+  "seo_description": "Tell me what you're building in a few lines. I read every brief myself and reply within 48 hours with a few times for a call.",
+  "content": [
+    {
+      "type": "kit-header",
+      "data": {
+        "brand_name": "Chris Garlick",
+        "home_url": "/",
+        "numbered": true,
+        "links": [
+          {
+            "label": "Services",
+            "url": "/services"
+          },
+          {
+            "label": "Work",
+            "url": "/work"
+          },
+          {
+            "label": "How I work",
+            "url": "/how-i-work"
+          },
+          {
+            "label": "Writing",
+            "url": "/article"
+          },
+          {
+            "label": "About",
+            "url": "/about"
+          }
+        ],
+        "secondary_label": "Free site audit",
+        "secondary_url": "/tools/site-audit",
+        "action_label": "Start a project",
+        "action_url": "/start",
+        "tone": "plain"
+      }
+    },
+    {
+      "type": "kit-hero",
+      "data": {
+        "variant": "text",
+        "eyebrow": "Start a project · a short brief, then a call",
+        "title": "TELL ME WHAT\nYOU'RE *building.*",
+        "title_size": "large",
+        "heading_level": "1",
+        "lede": "A few lines is enough. I'll read it myself and reply with an honest view of whether I'm the right person."
+      }
+    },
+    {
+      "type": "site-start-brief",
+      "data": {}
+    },
+    {
+      "type": "kit-services",
+      "data": {
+        "title": "THEN, *a call*",
+        "heading_level": "2",
+        "lede": "Once you've sent it, I'll reply with a few times for a call, on a weekday evening or at the weekend.",
+        "rule": true,
+        "columns": "3",
+        "background": "tinted",
+        "services": [
+          {
+            "number": "01 · First",
+            "title": "A",
+            "subtitle": "*30-minute call*",
+            "text": "Video or phone, at a time that suits you, arranged by email. No sales pitch, just your project."
+          },
+          {
+            "number": "02 · After the call",
+            "title": "Get a",
+            "subtitle": "*written scope*",
+            "text": "What I'll build, what's out of scope, and what done looks like."
+          },
+          {
+            "number": "03 · Then",
+            "title": "A proposal",
+            "subtitle": "*with the price*",
+            "text": "The timeline and price, in writing, from the scope."
+          }
+        ]
+      }
+    },
+    {
+      "type": "kit-footer",
+      "data": {
+        "brand_name": "Chris Garlick",
+        "blurb": "Got something to build, or fix?",
+        "columns": [
+          {
+            "heading": "Work with me",
+            "links": [
+              {
+                "label": "Services",
+                "url": "/services"
+              },
+              {
+                "label": "Work",
+                "url": "/work"
+              },
+              {
+                "label": "How I work",
+                "url": "/how-i-work"
+              },
+              {
+                "label": "Writing",
+                "url": "/article"
+              }
+            ]
+          },
+          {
+            "heading": "More",
+            "links": [
+              {
+                "label": "About",
+                "url": "/about"
+              },
+              {
+                "label": "Free site audit",
+                "url": "/tools/site-audit"
+              },
+              {
+                "label": "Start a project",
+                "url": "/start"
+              },
+              {
+                "label": "Contact",
+                "url": "/contact"
+              }
+            ]
+          }
+        ],
+        "social": [
+          {
+            "network": "linkedin",
+            "url": "https://www.linkedin.com/in/chris-garlick-59a8bb91/"
+          }
+        ],
+        "small_print": "© 2026 Chris Garlick",
+        "legal": [
+          {
+            "label": "Privacy",
+            "url": "/privacy"
+          },
+          {
+            "label": "Terms",
+            "url": "/terms"
+          }
+        ],
+        "wordmark": "CHRIS GARLICK",
+        "cookie_label": "Cookie preferences"
+      }
+    }
+  ]
+}

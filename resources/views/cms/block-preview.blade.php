@@ -22,6 +22,8 @@
     {{-- kit's kit.css and each kit block's section CSS, then the theme over them. --}}
     @include('cgcms::preview-styles')
     @vite(['resources/css/kit-theme-nightfolio.css'])
+    {{-- The site's own forms on kit pages (/start, /contact). --}}
+    @vite(['resources/css/kit-theme-forms.css'])
 </head>
 @if ($kit)
 <body class="kit-page">{!! $body !!}</body>

@@ -101,17 +101,25 @@ it('moves a download onto its live article and redirects the resource page there
 });
 
 it('points imported redirects straight at the final page, and survives a loop', function (): void {
-    // As the live site has it: /start went to /audit, which consolidation redirects.
-    Redirect::query()->create(['from' => '/start', 'to' => '/audit', 'status' => 301, 'match_type' => 'exact']);
+    // As the live site has it: /free-audit went to /audit, which consolidation redirects.
+    Redirect::query()->create(['from' => '/free-audit', 'to' => '/audit', 'status' => 301, 'match_type' => 'exact']);
     Redirect::query()->create(['from' => '/loop-a', 'to' => '/loop-b', 'status' => 301, 'match_type' => 'exact']);
     Redirect::query()->create(['from' => '/loop-b', 'to' => '/loop-a', 'status' => 301, 'match_type' => 'exact']);
 
     $this->artisan('site:consolidate', ['--skip-checks' => true])->assertSuccessful();
 
-    expect(Redirect::query()->where('from', '/start')->value('to'))->toBe('/tools/site-audit')
+    expect(Redirect::query()->where('from', '/free-audit')->value('to'))->toBe('/tools/site-audit')
         ->and(Redirect::query()->where('from', '/loop-a')->value('to'))->toBe('/loop-b');
 
-    $this->get('/start')->assertRedirect('/tools/site-audit');
+    $this->get('/free-audit')->assertRedirect('/tools/site-audit');
+});
+
+it('removes the imported /start redirect: /start is the brief now', function (): void {
+    Redirect::query()->create(['from' => '/start', 'to' => '/audit', 'status' => 301, 'match_type' => 'exact']);
+
+    $this->artisan('site:consolidate', ['--skip-checks' => true])->assertSuccessful();
+
+    expect(Redirect::query()->where('from', '/start')->exists())->toBeFalse();
 });
 
 it('changes nothing on a dry run', function (): void {

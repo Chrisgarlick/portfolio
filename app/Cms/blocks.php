@@ -39,4 +39,26 @@ return [
         Field::text('button')->label('Button')->maxLength(30)->default('Send the link'),
         Field::text('note')->label('Note under the form')->maxLength(120)->default('The link works for 24 hours.'),
     ])->view('blocks.site-data-deletion'),
+
+    // The /start brief: three fieldsets (Design nf_start). The fields are the
+    // `start` form definition in app/Cms/forms.php; only the words around them are here.
+    Block::make('site-start-brief', 'Start a project brief')->fields([
+        Field::text('step1_title')->label('Step 1 heading')->maxLength(60)->default('WHAT DO YOU *need?*')->help('Wrap the italic phrase in *stars*.'),
+        Field::text('step1_lede')->label('Step 1 note')->maxLength(160)->default('Pick the closest. Not sure is a fine answer.'),
+        Field::text('step2_title')->label('Step 2 heading')->maxLength(60)->default('BUDGET AND *timing*'),
+        Field::text('step2_lede')->label('Step 2 note')->maxLength(160)->default("A rough band (small, medium or large, to discuss) and when you'd like it live."),
+        Field::text('step3_title')->label('Step 3 heading')->maxLength(60)->default('YOUR *details*'),
+        Field::text('step3_lede')->label('Step 3 note')->maxLength(160)->default('Your name, your email, and anything else I should know.'),
+        Field::text('note')->label('Note by the button')->maxLength(160)->default("I'll use these details to reply to you and for nothing else."),
+        Field::text('button')->label('Button')->maxLength(30)->default('Send my brief'),
+    ])->view('blocks.site-start-brief'),
+
+    // The /contact form: name, email, message (the `contact` definition).
+    Block::make('site-contact-form', 'Contact form')->fields([
+        Field::text('kicker')->label('Label')->maxLength(60)->default('A message'),
+        Field::text('title')->label('Heading')->maxLength(60)->default('SAY *hello*')->help('Wrap the italic phrase in *stars*.'),
+        Field::text('lede')->label('Note')->maxLength(160)->default('A question, a note about something I wrote, or anything else.'),
+        Field::text('note')->label('Note by the button')->maxLength(160)->default("I'll use these details to reply to you and for nothing else."),
+        Field::text('button')->label('Button')->maxLength(30)->default('Send message'),
+    ])->view('blocks.site-contact-form'),
 ];

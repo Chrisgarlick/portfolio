@@ -162,9 +162,9 @@ it('queues the enquiry email to the contact address instead of sending it in the
 
 it('gives the script field errors it can place, not a redirect', function (): void {
     // The page has no session, so a redirect back would lose the errors.
-    $this->postJson('/forms/contact', ['name' => 'A visitor', 'project_type' => 'Shipping'])
+    $this->postJson('/forms/contact', ['name' => 'A visitor', 'email' => 'not an address'])
         ->assertStatus(422)
-        ->assertJsonValidationErrors(['email', 'project_type', 'message']);
+        ->assertJsonValidationErrors(['email', 'message']);
 });
 
 it('renders the 404 page in the site layout', function (): void {

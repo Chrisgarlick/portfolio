@@ -1,90 +1,139 @@
-[
+{
+  "title": "Contact",
+  "mode": "night",
+  "seo_title": "Contact Chris Garlick, Laravel and WordPress developer",
+  "seo_description": "Send me a message about anything: a question, something I wrote, or hello. I read every one myself and reply within 48 hours.",
+  "content": [
     {
-        "type": "hero",
-        "data": {
-            "label": "Contact",
-            "heading": "Tell me what you're *building*.",
-            "subtext": "A new web app, a WordPress site that needs rescuing, or an idea you want to test. A few lines is plenty to start with, and I read every message myself.",
-            "theme": "light"
-        }
+      "type": "kit-header",
+      "data": {
+        "brand_name": "Chris Garlick",
+        "home_url": "/",
+        "numbered": true,
+        "links": [
+          {
+            "label": "Services",
+            "url": "/services"
+          },
+          {
+            "label": "Work",
+            "url": "/work"
+          },
+          {
+            "label": "How I work",
+            "url": "/how-i-work"
+          },
+          {
+            "label": "Writing",
+            "url": "/article"
+          },
+          {
+            "label": "About",
+            "url": "/about"
+          }
+        ],
+        "secondary_label": "Free site audit",
+        "secondary_url": "/tools/site-audit",
+        "action_label": "Start a project",
+        "action_url": "/start",
+        "tone": "plain"
+      }
     },
     {
-        "type": "contact-form",
-        "data": {
-            "form_slug": "contact",
-            "label": "Message",
-            "heading": "Start with a few lines",
-            "theme": "light"
-        }
+      "type": "kit-hero",
+      "data": {
+        "variant": "text",
+        "eyebrow": "Contact · I reply within 48 hours",
+        "title": "GET IN\n*touch.*",
+        "title_size": "large",
+        "heading_level": "1",
+        "lede": "A question, a note about something I wrote, or just hello. I read every message myself and reply within 48 hours."
+      }
     },
     {
-        "type": "text-section",
-        "data": {
-            "label": "Not ready to talk?",
-            "heading": "Try the free site audit.",
-            "theme": "light",
-            "body": {
-                "type": "doc",
-                "content": [
-                    {
-                        "type": "paragraph",
-                        "content": [
-                            {
-                                "type": "text",
-                                "text": "The "
-                            },
-                            {
-                                "type": "text",
-                                "text": "free website audit",
-                                "marks": [
-                                    {
-                                        "type": "link",
-                                        "attrs": {
-                                            "href": "/tools/site-audit"
-                                        }
-                                    }
-                                ]
-                            },
-                            {
-                                "type": "text",
-                                "text": " checks your site's SEO, accessibility and performance in about thirty seconds, and gives us something concrete to talk about. Or have a look at "
-                            },
-                            {
-                                "type": "text",
-                                "text": "the work",
-                                "marks": [
-                                    {
-                                        "type": "link",
-                                        "attrs": {
-                                            "href": "/work"
-                                        }
-                                    }
-                                ]
-                            },
-                            {
-                                "type": "text",
-                                "text": " and "
-                            },
-                            {
-                                "type": "text",
-                                "text": "the articles",
-                                "marks": [
-                                    {
-                                        "type": "link",
-                                        "attrs": {
-                                            "href": "/article"
-                                        }
-                                    }
-                                ]
-                            },
-                            {
-                                "type": "text",
-                                "text": " first, and get in touch when you're ready."
-                            }
-                        ]
-                    }
-                ]
-            }
-        }
+      "type": "site-contact-form",
+      "data": {}
+    },
+    {
+      "type": "kit-cta",
+      "data": {
+        "eyebrow": "Got a project?",
+        "title": "START WITH\n*a short brief.*",
+        "heading_level": "2",
+        "lede": "For a new build, a fix or a rescue, the brief asks the right questions up front, so my first reply can be useful.",
+        "action_label": "Start a project",
+        "action_url": "/start"
+      }
+    },
+    {
+      "type": "kit-footer",
+      "data": {
+        "brand_name": "Chris Garlick",
+        "blurb": "Got something to build, or fix?",
+        "columns": [
+          {
+            "heading": "Work with me",
+            "links": [
+              {
+                "label": "Services",
+                "url": "/services"
+              },
+              {
+                "label": "Work",
+                "url": "/work"
+              },
+              {
+                "label": "How I work",
+                "url": "/how-i-work"
+              },
+              {
+                "label": "Writing",
+                "url": "/article"
+              }
+            ]
+          },
+          {
+            "heading": "More",
+            "links": [
+              {
+                "label": "About",
+                "url": "/about"
+              },
+              {
+                "label": "Free site audit",
+                "url": "/tools/site-audit"
+              },
+              {
+                "label": "Start a project",
+                "url": "/start"
+              },
+              {
+                "label": "Contact",
+                "url": "/contact"
+              }
+            ]
+          }
+        ],
+        "social": [
+          {
+            "network": "linkedin",
+            "url": "https://www.linkedin.com/in/chris-garlick-59a8bb91/"
+          }
+        ],
+        "small_print": "© 2026 Chris Garlick",
+        "legal": [
+          {
+            "label": "Privacy",
+            "url": "/privacy"
+          },
+          {
+            "label": "Terms",
+            "url": "/terms"
+          }
+        ],
+        "wordmark": "CHRIS GARLICK",
+        "cookie_label": "Cookie preferences"
+      }
     }
-]
+  ]
+}

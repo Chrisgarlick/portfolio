@@ -10,6 +10,9 @@ use Cg\Cms\Models\FormSubmission;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
+use Illuminate\Support\MessageBag;
+use Illuminate\Support\ViewErrorBag;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Validation\ValidationException;
@@ -26,7 +29,7 @@ final class FormController extends Controller
 {
     public function __construct(private readonly FormGuard $guard) {}
 
-    public function store(Request $request, string $slug): RedirectResponse|JsonResponse
+    public function store(Request $request, string $slug): RedirectResponse|JsonResponse|Response
     {
         $definition = config("cg-forms.{$slug}");
 
@@ -41,11 +44,29 @@ final class FormController extends Controller
         // Validate regardless of the guard's verdict, so a genuine person who
         // trips a check still gets field-level errors rather than a dead end.
         try {
-            $data = $request->validate($this->rules($definition));
+            $data = $request->validate($this->rules($definition), (array) ($definition['messages'] ?? []), $this->attributes($definition));
         } catch (ValidationException $e) {
             $this->record($request, $slug, $request->except($this->sensitive()), 'invalid');
 
+            // A form that posts to its own page's address answers a browser
+            // with that page, its errors beside the fields and the answers
+            // kept: the page itself has no session to carry them in.
+            if (! $request->expectsJson() && isset($definition['page'])) {
+                $request->session()->flashInput($request->except($this->sensitive()));
+
+                return $this->page($definition, $slug, $e->validator->errors(), null, 422);
+            }
+
             throw $e;
+        }
+
+        // Only the parts of the source that were there.
+        if (array_key_exists('source', $data)) {
+            $data['source'] = array_filter((array) $data['source'], filled(...));
+
+            if ($data['source'] === []) {
+                unset($data['source']);
+            }
         }
 
         $submission = $this->record($request, $slug, $data, $rejections[0] ?? null);
@@ -56,12 +77,12 @@ final class FormController extends Controller
             // success message rather than an accusation.
             Log::info('Form submission rejected', ['form' => $slug, 'reasons' => $rejections]);
 
-            return $this->done($request, $definition);
+            return $this->done($request, $definition, $slug);
         }
 
         $this->notify($definition, $submission);
 
-        return $this->done($request, $definition);
+        return $this->done($request, $definition, $slug);
     }
 
     /**
@@ -74,15 +95,57 @@ final class FormController extends Controller
      *
      * @param  array<string, mixed>  $definition
      */
-    private function done(Request $request, array $definition): RedirectResponse|JsonResponse
+    private function done(Request $request, array $definition, string $slug): RedirectResponse|JsonResponse|Response
     {
         $message = (string) ($definition['success'] ?? 'Thanks.');
 
         if ($request->expectsJson()) {
-            return response()->json(['message' => $message]);
+            return response()->json(array_filter(['message' => $message, 'redirect' => $definition['redirect'] ?? null]));
+        }
+
+        // A page of its own to land on (the /start brief's thanks page)…
+        if (isset($definition['redirect'])) {
+            return redirect((string) $definition['redirect']);
+        }
+
+        // …or the form's own page with the success message where the form was.
+        if (isset($definition['page'])) {
+            return $this->page($definition, $slug, null, $message, 200);
         }
 
         return back()->with('form_success', $message);
+    }
+
+    /**
+     * The kit page the form sits on, drawn for this one response with its
+     * errors or its success message (blocks/site-*-form read `$errors` and
+     * `$formSuccess`). A POST response is never page-cached.
+     *
+     * @param  array<string, mixed>  $definition
+     */
+    private function page(array $definition, string $slug, ?MessageBag $errors, ?string $success, int $status): Response
+    {
+        view()->share('errors', (new ViewErrorBag)->put('default', $errors ?? new MessageBag));
+        view()->share('formSuccess', $success === null ? [] : [$slug => $success]);
+
+        return response(app(SitePageController::class)->show((string) $definition['page']), $status);
+    }
+
+    /**
+     * The fields' labels, so a default message names the field as the form does.
+     *
+     * @param  array<string, mixed>  $definition
+     * @return array<string, string>
+     */
+    private function attributes(array $definition): array
+    {
+        $attributes = [];
+
+        foreach ($definition['fields'] ?? [] as $name => $field) {
+            $attributes[$name] = mb_strtolower((string) ($field['label'] ?? $name));
+        }
+
+        return $attributes;
     }
 
     /** @param array<string, mixed> $definition */
@@ -96,6 +159,12 @@ final class FormController extends Controller
 
         // The context is which service page the enquiry came from.
         $rules['context'] = ['nullable', 'string', 'max:120'];
+
+        // Where the visitor came from (resources/js/site/form-source.js).
+        if (! empty($definition['source'])) {
+            $rules['source'] = ['nullable', 'array:landing,referrer,utm_source,utm_medium,utm_campaign,utm_term,utm_content'];
+            $rules['source.*'] = ['nullable', 'string', 'max:255'];
+        }
 
         return $rules;
     }

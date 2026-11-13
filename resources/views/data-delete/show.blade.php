@@ -3,7 +3,7 @@
 
     The live page fetched the preview from the API with JavaScript; here the
     server renders whichever state applies, so it works without a script.
-    $state is invalid | already | prompt | done, or, after the privacy page's
+    $state is invalid | already | prompt | messages | done, or, after the privacy page's
     request form posts without JavaScript, sent | retry. The confirm button is a real
     form; resources/js/site/data-delete.js submits it in the background and
     swaps in the done state, and without JavaScript the form posts normally.
@@ -78,6 +78,35 @@
 
                     <p class="mb-6 text-[14px] leading-[1.6] text-text-secondary">
                         This deletes the submission, the generated audit PDF (if any), and all associated personal data. It can&rsquo;t be undone.
+                    </p>
+
+                    <form method="POST" action="{{ route('data-delete.confirm') }}" class="flex flex-wrap items-center gap-3" data-delete-form data-contact-email="{{ config('cg-cms.site.contact_email') }}">
+                        <input type="hidden" name="link" value="{{ $link }}">
+                        <button type="submit" class="delete-primary-btn">Yes, delete my data</button>
+                        <a href="/" class="font-body text-[13px] tracking-wider text-text-secondary uppercase no-underline hover:text-text-primary">Cancel</a>
+                    </form>
+
+                    <p class="mt-4 hidden font-body text-[13px] text-destructive" data-delete-error role="alert"></p>
+                </div>
+            @endif
+
+            @if ($state === 'messages')
+                <div data-delete-prompt>
+                    <p class="mb-6 text-[15px] leading-[1.7] text-text-secondary md:text-[16px]">
+                        You&rsquo;re about to delete {{ $messages->count() === 1 ? 'this message' : 'these '.$messages->count().' messages' }} you sent me through the site:
+                    </p>
+
+                    <div class="mb-8 border border-border bg-bg-surface p-5 md:p-6" style="border-radius: 3px;">
+                        <dl class="grid grid-cols-[120px_1fr] gap-y-2 font-body text-[13px]">
+                            @foreach ($messages as $message)
+                                <dt class="tracking-widest text-text-tertiary uppercase">{{ config("cg-forms.{$message->form}.name", $message->form) }}</dt>
+                                <dd class="text-text-primary">{{ $message->created_at?->format('j F Y, H:i') }}</dd>
+                            @endforeach
+                        </dl>
+                    </div>
+
+                    <p class="mb-6 text-[14px] leading-[1.6] text-text-secondary">
+                        This deletes {{ $messages->count() === 1 ? 'it' : 'them' }} and everything in {{ $messages->count() === 1 ? 'it' : 'them' }}, including your name and email address. It can&rsquo;t be undone.
                     </p>
 
                     <form method="POST" action="{{ route('data-delete.confirm') }}" class="flex flex-wrap items-center gap-3" data-delete-form data-contact-email="{{ config('cg-cms.site.contact_email') }}">

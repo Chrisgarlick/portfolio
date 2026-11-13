@@ -52,6 +52,8 @@
     <link rel="stylesheet" href="{{ rtrim((string) config('kit-blocks.url', '/kit-blocks'), '/') }}/kit/kit.css">
     @stack('kit-styles')
     @vite(['resources/css/kit-theme-nightfolio.css'])
+    {{-- The site's own forms on kit pages (/start, /contact). --}}
+    @vite(['resources/css/kit-theme-forms.css'])
 </head>
 @if (! empty($kitMode))
 <body class="kit-page">
