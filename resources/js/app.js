@@ -17,6 +17,7 @@ import { initSiteAudit } from './site/site-audit';
 import { initTopicFilter } from './site/topic-filter';
 import { initReadingProgress } from './site/reading-progress';
 import { initStudioAudit } from './site/studio-audit';
+import { initFitWordmark } from './site/fit-wordmark';
 
 initNav();
 initCookieConsent();
@@ -30,3 +31,4 @@ initSiteAudit();
 initTopicFilter();
 initReadingProgress();
 initStudioAudit();
+initFitWordmark();
