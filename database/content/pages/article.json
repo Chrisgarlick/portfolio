@@ -1,0 +1,134 @@
+{
+  "title": "Writing",
+  "mode": "night",
+  "seo_title": "Writing on Laravel, WordPress, AI and performance | Chris Garlick",
+  "seo_description": "What I built, measured and learned, on Laravel, WordPress, AI and performance. Notes from real projects, with the numbers.",
+  "content": [
+    {
+      "type": "kit-header",
+      "data": {
+        "brand_name": "Chris Garlick",
+        "home_url": "/",
+        "numbered": true,
+        "links": [
+          {
+            "label": "Services",
+            "url": "/services"
+          },
+          {
+            "label": "Work",
+            "url": "/work"
+          },
+          {
+            "label": "How I work",
+            "url": "/how-i-work"
+          },
+          {
+            "label": "Writing",
+            "url": "/article"
+          },
+          {
+            "label": "About",
+            "url": "/about"
+          }
+        ],
+        "secondary_label": "Free site audit",
+        "secondary_url": "/tools/site-audit",
+        "action_label": "Start a project",
+        "action_url": "/start",
+        "tone": "plain"
+      }
+    },
+    {
+      "type": "kit-hero",
+      "data": {
+        "variant": "text",
+        "eyebrow": "Writing · Laravel, WordPress, AI and performance",
+        "title": "NOTES FROM\n*real projects.*",
+        "title_size": "large",
+        "heading_level": "1",
+        "lede": "What I built, measured and learned, on Laravel, WordPress, AI and performance."
+      }
+    },
+    {
+      "type": "kit-cta",
+      "data": {
+        "title": "CHECK A PAGE\n*for free.*",
+        "heading_level": "2",
+        "lede": "The free site audit gives any page quick scores for SEO, accessibility and performance, and hands over to Kritano for the full audit.",
+        "action_label": "Check my site",
+        "action_url": "/tools/site-audit"
+      }
+    },
+    {
+      "type": "kit-footer",
+      "data": {
+        "brand_name": "Chris Garlick",
+        "blurb": "Got something to build, or fix?",
+        "columns": [
+          {
+            "heading": "Work with me",
+            "links": [
+              {
+                "label": "Services",
+                "url": "/services"
+              },
+              {
+                "label": "Work",
+                "url": "/work"
+              },
+              {
+                "label": "How I work",
+                "url": "/how-i-work"
+              },
+              {
+                "label": "Writing",
+                "url": "/article"
+              }
+            ]
+          },
+          {
+            "heading": "More",
+            "links": [
+              {
+                "label": "About",
+                "url": "/about"
+              },
+              {
+                "label": "Free site audit",
+                "url": "/tools/site-audit"
+              },
+              {
+                "label": "Start a project",
+                "url": "/start"
+              },
+              {
+                "label": "Contact",
+                "url": "/contact"
+              }
+            ]
+          }
+        ],
+        "social": [
+          {
+            "network": "linkedin",
+            "url": "https://www.linkedin.com/in/chris-garlick-59a8bb91/"
+          }
+        ],
+        "small_print": "© 2026 Chris Garlick",
+        "legal": [
+          {
+            "label": "Privacy",
+            "url": "/privacy"
+          },
+          {
+            "label": "Terms",
+            "url": "/terms"
+          }
+        ],
+        "wordmark": "CHRIS GARLICK",
+        "cookie_label": "Cookie preferences"
+      }
+    }
+  ]
+}

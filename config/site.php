@@ -132,6 +132,20 @@ return [
             ]],
         ],
 
+        // The writing index, built from kit's sections around the list of
+        // every published article (ArticleController::index falls back to the
+        // old listing without it).
+        'article' => [
+            'path' => '/article',
+            'json_ld' => [[
+                '@type' => 'CollectionPage',
+                'name' => 'Writing',
+                'description' => 'What I built, measured and learned, on Laravel, WordPress, AI and performance.',
+                'url' => 'https://chrisgarlick.com/article',
+                'inLanguage' => 'en-GB',
+            ]],
+        ],
+
         // The work index, built from kit's sections (WorkController falls back
         // to the project listing without it). The four case studies it lists.
         'work' => [
@@ -188,6 +202,16 @@ return [
 
     // Shared by every Service node on service and industry pages.
     'area_served' => $areaServed,
+
+    /*
+    | The short names topics (services) go by on the writing pages, where the
+    | service's own title is too long. Without one, " development" or
+    | " implementation" is dropped from the title.
+    */
+    'topic_labels' => [
+        'website-building' => 'Websites',
+        'software-development' => 'Software',
+    ],
 
     /*
     |--------------------------------------------------------------------------

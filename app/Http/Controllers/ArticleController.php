@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Http\Controllers;
 
 use App\Content\Accent;
+use App\Content\KitPage;
 use Cg\Cms\Cache\CacheContext;
 use Cg\Cms\Cache\CollectionVersion;
 use Cg\Cms\Models\Entry;
@@ -81,6 +82,29 @@ final class ArticleController extends Controller
         // Only services something is filed under get a filter button.
         $used = collect($articles)->pluck('topics')->flatten()->unique()->all();
 
+        // The Nightfolio writing page: a published kit `article` page brings
+        // the opener and the call to action; the featured article and the
+        // list between them are every published article.
+        $page = Entry::query()->collection('page')->published()->where('slug', 'article')->first();
+
+        if ($page !== null && KitPage::is($page)) {
+            $this->cacheContext->registerEntry($page);
+            $labels = $this->topicLabels(array_keys($topics));
+            $rows = array_values(array_map(fn (array $row, int $i): array => [
+                ...$row,
+                'number' => sprintf('%02d', $i + 1),
+                'label' => $labels[$row['topics'][0] ?? ''] ?? null,
+            ], $articles, array_keys($articles)));
+
+            return view('articles.kit-index', [
+                'page' => $page,
+                'featured' => $rows[0] ?? null,
+                'articles' => array_slice($rows, 1),
+                'topics' => array_intersect_key($labels, array_flip($used)),
+                'jsonLd' => (array) config('site.pages.article.json_ld', []),
+            ]);
+        }
+
         return view('articles.index', [
             'articles' => $articles,
             'years' => $years,
@@ -101,6 +125,24 @@ final class ArticleController extends Controller
         }
 
         $this->cacheContext->registerEntry($article);
+
+        // The Nightfolio article: the body as it is, in kit's prose, between
+        // the kit home page's masthead and footer. Without a kit home page
+        // the old template stands.
+        $chrome = KitPage::chrome();
+
+        if ($chrome !== null) {
+            $this->cacheContext->registerEntry($chrome['entry']);
+
+            return view('articles.kit-show', [
+                'article' => $article,
+                'chrome' => $chrome,
+                'readTime' => $this->readTime($article->html('body')),
+                'topic' => $this->topicLabel((array) $article->value('services', [])),
+                ...$this->position($article),
+                'download' => $this->download($article),
+            ]);
+        }
 
         return view('articles.show', [
             'article' => $article,
@@ -188,6 +230,72 @@ final class ArticleController extends Controller
         }
 
         return $resource;
+    }
+
+    /**
+     * Where an article sits among the published ones, newest first: its
+     * number (01 is the newest) and the next one along (older, wrapping round
+     * to the newest), for the folio and the "Next article" band.
+     *
+     * @return array{number: string, next: array{title: string, url: string, number: string, topic: ?string}|null}
+     */
+    private function position(Entry $article): array
+    {
+        $this->cacheContext->registerCollection('article');
+
+        $rows = Entry::query()
+            ->collection('article')
+            ->published()
+            ->orderByDesc('published_at')
+            ->orderByDesc('id')
+            ->get(['id', 'collection', 'slug', 'title', 'published_at', 'data']);
+
+        $index = $rows->search(fn (Entry $row): bool => $row->id === $article->id);
+        $index = $index === false ? 0 : $index;
+        $next = $rows->count() > 1 ? $rows[($index + 1) % $rows->count()] : null;
+
+        return [
+            'number' => sprintf('%02d', $index + 1),
+            'next' => $next === null ? null : [
+                'title' => $next->title,
+                'url' => $next->url(),
+                'number' => sprintf('%02d', (($index + 1) % $rows->count()) + 1),
+                'topic' => $this->topicLabel((array) $next->value('services', [])),
+            ],
+        ];
+    }
+
+    /**
+     * The short name a topic goes by on the writing pages: "Laravel" for
+     * "Laravel development", "AI" for "AI implementation".
+     *
+     * @param  array<int, string>  $slugs
+     * @return array<string, string>
+     */
+    private function topicLabels(array $slugs): array
+    {
+        $this->cacheContext->registerCollection('service');
+
+        return Entry::query()
+            ->collection('service')
+            ->published()
+            ->whereIn('slug', $slugs)
+            ->orderBy('sort_order')
+            ->orderBy('id')
+            ->get(['slug', 'title'])
+            ->mapWithKeys(fn (Entry $service): array => [
+                $service->slug => (string) (config("site.topic_labels.{$service->slug}")
+                    ?? preg_replace('/\s+(development|implementation)$/i', '', $service->title)),
+            ])
+            ->all();
+    }
+
+    /** @param  array<int, mixed>  $slugs */
+    private function topicLabel(array $slugs): ?string
+    {
+        $first = collect($slugs)->first(fn (mixed $slug): bool => is_string($slug));
+
+        return $first === null ? null : ($this->topicLabels([$first])[$first] ?? null);
     }
 
     /** Minutes at 200 words a minute, never less than one. */

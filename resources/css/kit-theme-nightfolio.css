@@ -1649,3 +1649,173 @@ body.kit-page::before {
     padding: 0 1.5rem 2rem;
   }
 }
+
+/* ---- Writing: an article (Design nf_article) and /article (nf_writing) ---- */
+
+/* The opener: the title in sentence case, its phrase after the colon in
+   italics; under the standfirst, the byline in ink and a mono line. */
+.kit-article .kit-hero-title {
+  text-transform: none;
+  font-size: clamp(2.5rem, 1rem + 5.2vw, 6rem);
+  line-height: 0.95;
+}
+.kit-article-opener {
+  border-block-end: 1px solid var(--kit-fg);
+  padding-block-end: 3rem;
+}
+.kit-article-opener .kit-section-hero {
+  padding-block-end: 1.5rem;
+}
+.kit-article-byline {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0.25rem 1rem;
+  margin: 0;
+}
+.kit-article-author-name {
+  margin: 0;
+  font-size: 0.9375rem;
+  font-weight: 500;
+  color: var(--kit-fg);
+}
+.kit-article-meta {
+  font-family: var(--kit-font-mono);
+  font-size: 0.75rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--kit-fg-2);
+}
+
+/* The body: kit's prose, its first paragraph the larger standfirst in ink,
+   the rest in the muted ink; links underlined in the accent. */
+.kit-article-body .kit-prose {
+  color: var(--kit-fg-2);
+}
+.kit-article-body .kit-prose > p:first-child {
+  font-size: clamp(1.25rem, 1rem + 0.6vw, 1.4375rem);
+  line-height: 1.5;
+  color: var(--kit-fg);
+}
+.kit-article-body .kit-prose :is(h2, h3, h4, strong) {
+  color: var(--kit-fg);
+}
+.kit-article-body .kit-prose-heading {
+  text-transform: none;
+}
+.kit-article-body .kit-prose a {
+  color: var(--kit-accent);
+  text-decoration: underline;
+  text-underline-offset: 0.18em;
+}
+.kit-article-body .kit-prose a:hover {
+  color: var(--kit-fg);
+}
+.kit-article-body .kit-prose a:focus-visible {
+  outline: 2px solid var(--kit-focus-ring);
+  outline-offset: 2px;
+}
+.kit-article-body .kit-prose hr {
+  border: 0;
+  border-block-start: 1px solid var(--kit-line);
+}
+.kit-article-body .kit-prose :not(pre) > code {
+  padding: 0.1em 0.3em;
+  border-radius: 3px;
+  background: var(--kit-surface);
+  font-family: var(--kit-font-mono);
+  font-size: 0.85em;
+}
+/* Code on the Well, as in Design: paper type on near black. */
+.kit-article-body .kit-prose-code pre {
+  border: 0;
+  background: #151513;
+  color: #FAF8F3;
+}
+.kit-article-body .kit-prose-code pre:focus-visible {
+  outline-color: var(--kit-accent);
+}
+.kit-article-body .kit-prose-list li > p {
+  margin: 0;
+}
+
+/* The author, under the body, in the reading column. */
+.kit-article-author {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.5rem;
+  max-inline-size: 45rem;
+  margin: 0 auto;
+  padding-block: 1.75rem 6rem;
+  border-block-start: 1px solid var(--kit-line);
+}
+.kit-article-author > div {
+  flex: 1 1 20rem;
+}
+.kit-article-author-text {
+  margin: 0.5rem 0 0;
+  font-size: 1rem;
+  line-height: 1.5;
+  color: var(--kit-fg-2);
+}
+.kit-article-download {
+  padding-block-end: 4rem;
+}
+
+/* The next article: the case studies' green band, on a day page too. */
+.kit-article-next .kit-section-ruled-list {
+  --_hover: #DDE7DF;
+  --kit-focus-ring: #FAF8F3;
+  --kit-fg: #FAF8F3;
+  padding-block: 2.5rem 3rem;
+  background: #1F5C45; /* paper 7.4:1, mint 6.2:1 */
+  color: #FAF8F3;
+}
+.kit-article-next .kit-section-head-eyebrow {
+  color: #DDE7DF;
+}
+
+/* /article: the topic filter (buttons, pressed like kit's current filter),
+   its mono label, and cards the filter hides. */
+.kit-writing-list .kit-shop-filters {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.75rem;
+}
+.kit-shop-filters-label {
+  font-family: var(--kit-font-mono);
+  font-size: 0.75rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--kit-fg-2);
+}
+.kit-writing-list .kit-shop-filter {
+  background: transparent;
+  font: inherit;
+  font-family: var(--kit-font-mono);
+  font-size: 0.75rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+.kit-writing-list .kit-shop-filter[aria-pressed="true"] {
+  background: var(--kit-fg);
+  border-color: var(--kit-fg);
+  color: var(--kit-bg);
+}
+.kit-writing-list [data-topic-card].hidden,
+.kit-writing-empty.hidden {
+  display: none;
+}
+.kit-writing-empty {
+  color: var(--kit-fg-2);
+}
+.kit-article-body ul.kit-prose-list {
+  list-style-type: disc;
+}
+.kit-article-body ol.kit-prose-list {
+  list-style-type: decimal;
+}

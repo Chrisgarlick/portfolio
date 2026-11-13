@@ -79,6 +79,75 @@ final class KitPage
     }
 
     /**
+     * The page's middle split after its first block of a type (the hero), so
+     * a template can put its own content between: /article's featured
+     * article and its list go between the opener and the call to action.
+     *
+     * @return array{lead: HtmlString, rest: HtmlString}
+     */
+    public static function splitMain(Entry $page, string $afterType): array
+    {
+        $blocks = array_filter((array) $page->value('content', []), 'is_array');
+        $edge = fn (array $block): bool => in_array((string) ($block['type'] ?? ''), ['kit-announcement-bar', 'kit-header', 'kit-footer'], true);
+        $lead = [];
+        $rest = [];
+        $found = false;
+
+        foreach ($blocks as $i => $block) {
+            if ($edge($block)) {
+                continue;
+            }
+            if ($found) {
+                $rest[$i] = $block;
+            } else {
+                $lead[$i] = $block;
+                $found = ($block['type'] ?? null) === $afterType;
+            }
+        }
+
+        $rendered = (array) data_get($page->rendered, 'content', []);
+        $render = fn (array $part): HtmlString => new HtmlString(app(BlockRenderer::class)->render($part, $rendered));
+
+        return ['lead' => $render($lead), 'rest' => $render($rest)];
+    }
+
+    /**
+     * The header and footer blocks of the published kit home page, for pages
+     * that are not built from blocks themselves (an article): the same
+     * masthead and footer as everywhere else, edited in one place. Null when
+     * the home page is not a kit page.
+     *
+     * @return array{header: array<int, array<string, mixed>>, footer: array<int, array<string, mixed>>, entry: Entry}|null
+     */
+    public static function chrome(): ?array
+    {
+        $home = Entry::query()->collection('page')->published()->where('slug', 'home')->first();
+
+        if ($home === null || ! self::is($home)) {
+            return null;
+        }
+
+        $blocks = array_filter((array) $home->value('content', []), 'is_array');
+        $find = fn (string $type): array => array_values(array_filter($blocks, fn (array $b): bool => ($b['type'] ?? null) === $type));
+        return [
+            'header' => array_slice($find('kit-header'), 0, 1),
+            'footer' => array_slice($find('kit-footer'), -1),
+            'entry' => $home,
+        ];
+    }
+
+    /**
+     * Blocks rendered as HTML. Call it from the view, so the CSS each block
+     * pushes onto the kit-styles stack is still there when the layout prints it.
+     *
+     * @param  array<int, array<string, mixed>>  $blocks
+     */
+    public static function render(array $blocks): HtmlString
+    {
+        return new HtmlString(app(BlockRenderer::class)->render($blocks));
+    }
+
+    /**
      * FAQPage structured data for the questions a page answers in a split
      * section (`media` questions), as they read on the page. Empty when it
      * has none.

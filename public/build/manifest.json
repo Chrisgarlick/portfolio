@@ -13,8 +13,17 @@
       "assets/inter-tight-latin-wght-italic-DiXukCDG.woff2"
     ]
   },
+  "resources/css/kit-theme-forms.css": {
+    "file": "assets/kit-theme-forms-BoBulnKh.css",
+    "name": "kit-theme-forms",
+    "names": [
+      "kit-theme-forms.css"
+    ],
+    "src": "resources/css/kit-theme-forms.css",
+    "isEntry": true
+  },
   "resources/css/kit-theme-nightfolio.css": {
-    "file": "assets/kit-theme-nightfolio-CFVLfcW6.css",
+    "file": "assets/kit-theme-nightfolio-CG91OnbG.css",
     "name": "kit-theme-nightfolio",
     "names": [
       "kit-theme-nightfolio.css"
@@ -53,7 +62,7 @@
     "src": "resources/fonts/jetbrains-mono-latin-wght-normal.woff2"
   },
   "resources/js/app.js": {
-    "file": "assets/app-D10LYWB8.js",
+    "file": "assets/app-ByoREIyd.js",
     "name": "app",
     "src": "resources/js/app.js",
     "isEntry": true
