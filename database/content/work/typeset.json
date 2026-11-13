@@ -71,8 +71,14 @@
       "type": "kit-figure",
       "data": {
         "caption_left": "Fig. 01 · Typeset, Markdown in, PDF out",
-        "caption_right": "Screenshot to come: Typeset editor",
-        "tone": "plain"
+        "caption_right": "Private, behind an IP allowlist",
+        "tone": "plain",
+        "image": {
+          "file": "media/typeset-home.png",
+          "alt": "Typeset's home page: \"Markdown in. Branded PDF out.\", with three branded documents fanned out beside it"
+        },
+        "frame": "browser",
+        "frame_url": "Typeset"
       }
     },
     {

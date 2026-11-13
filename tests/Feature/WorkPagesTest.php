@@ -30,7 +30,7 @@ it('serves /work as a kit page listing the four case studies', function (): void
         ->assertSee('href="/work/cg-cms"', false)
         ->assertSee('href="/work/chrisgarlick-com"', false)
         ->assertSee('href="/work/typeset"', false)
-        ->assertSee('Fig. 04 · Screenshot to come: Typeset editor')
+        ->assertSee('Fig. 04 · Typeset, private, behind an IP allowlist')
         ->assertSee('<link rel="canonical" href="'.rtrim((string) config('cg-cms.site.domain'), '/').'/work"', false)
         ->assertSee('"@type":"CollectionPage"', false);
 });
@@ -100,8 +100,9 @@ it('never links out to Typeset, which is private', function (): void {
     $this->get('/work/typeset')
         ->assertOk()
         ->assertSee('Private, behind an IP allowlist')
-        ->assertSee('Screenshot to come: Typeset editor')
-        ->assertSee('kit-figure-media" data-empty', false)
+        // The screenshot is framed with its name, never its address.
+        ->assertSee('<span class="kit-figure-url">Typeset</span>', false)
+        ->assertDontSee('typeset.chrisgarlick.com', false)
         ->assertDontSee('typeset.kritano.com', false)
         ->assertDontSee('sentry')
         ->assertDontSee('stats daemon');

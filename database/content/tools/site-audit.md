@@ -7,4 +7,4 @@ seo_description: Check any website for free. Scores for SEO, accessibility and p
 ---
 It's a quick version of the audit every one of [my projects](/work) starts with. It checks the public side of a site, the way a search engine or a visitor's browser sees it, and scores each area out of 100.
 
-Want the full picture? [Kritano](/work/kritano-website-audits) runs more than 500 rules across SEO, accessibility, security, performance, content and structured data, and ranks what to fix first.
+Want the full picture? [Kritano](/work/kritano-website-audits) runs 270 checks across SEO, accessibility, security, performance, content and structured data, and ranks what to fix first.

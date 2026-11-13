@@ -150,10 +150,16 @@
         "link_label": "Read the case study",
         "link_url": "/work/typeset",
         "media": "image",
-        "caption": "Fig. 04 · Screenshot to come: Typeset editor",
+        "caption": "Fig. 04 · Typeset, private, behind an IP allowlist",
         "background": "tinted",
         "panel": "none",
-        "swap": false
+        "swap": false,
+        "image": {
+          "file": "media/typeset-home.png",
+          "alt": "Typeset's home page: \"Markdown in. Branded PDF out.\", with three branded documents fanned out beside it"
+        },
+        "frame": "browser",
+        "frame_url": "Typeset"
       }
     },
     {
