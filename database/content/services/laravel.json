@@ -72,7 +72,9 @@
         "proof_label": "Save → written to disk",
         "proof_value": "0.4 ms",
         "proof_note": "To serve a cached page, live 1GB server",
-        "tone": "plain"
+        "tone": "plain",
+        "frame": "browser",
+        "frame_url": "chrisgarlick.com/admin"
       }
     },
     {

@@ -976,6 +976,33 @@ body.kit-page::before {
   }
 }
 
+/* kit's browser frame (a screenshot in a window: figure and split, frame
+   "browser"). Square like every Nightfolio sheet, but it floats: the window
+   takes the proof card's shadow (shadow-2 is none here). On night its bar is
+   the Lift's step up (#26483B) and its edge paper at 15%; the address is
+   ink-muted on the Lift, 5.9:1 (#B6B9B4 on #1B3F31; day #5B5852 on #F2EEE6,
+   6.1:1). */
+:is(.kit-figure-window, .kit-split-window) {
+  box-shadow: var(--kit-shadow-3);
+}
+[data-mode="night"] :is(.kit-figure-window, .kit-split-window) {
+  border-color: rgb(250 248 243 / 0.18);
+  box-shadow: 0 2px 6px rgb(0 0 0 / 0.25), 0 30px 60px -24px rgb(0 0 0 / 0.7);
+}
+/* Edit 01 framed, on night: the picture's half is the Lift (as it was before
+   the frame) and the window floats on it; the picture inside the window is the
+   screenshot alone, not the padded Lift card above. */
+[data-mode="night"] .kit-section-split[data-frame][data-panel="accent"] .kit-split-inner {
+  background: var(--kit-surface);
+}
+[data-mode="night"] .kit-section-split[data-frame][data-panel="accent"] .kit-split-window .kit-split-media {
+  padding: 0;
+  background: none;
+}
+[data-mode="night"] .kit-section-split[data-frame][data-panel="accent"] .kit-split-caption {
+  color: var(--kit-fg-2);
+}
+
 /* A split's image caption: a mono label under the picture ("Fig. 01 · …"). */
 .kit-split-caption {
   font-family: var(--kit-font-mono);

@@ -86,7 +86,9 @@
         },
         "background": "plain",
         "swap": true,
-        "panel": "accent"
+        "panel": "accent",
+        "frame": "browser",
+        "frame_url": "kritano.com"
       }
     },
     {

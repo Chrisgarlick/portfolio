@@ -75,7 +75,9 @@
         "background": "plain",
         "swap": false,
         "panel": "surface",
-        "caption": "Fig. 01 · An example Kritano audit"
+        "caption": "Fig. 01 · An example Kritano audit",
+        "frame": "browser",
+        "frame_url": "kritano.com"
       }
     },
     {
@@ -170,7 +172,9 @@
         "background": "plain",
         "swap": false,
         "panel": "accent",
-        "caption": "Fig. 02 · An example Kritano audit"
+        "caption": "Fig. 02 · An example Kritano audit",
+        "frame": "browser",
+        "frame_url": "kritano.com"
       }
     },
     {
