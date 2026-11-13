@@ -716,3 +716,167 @@ body.kit-page::before {
   letter-spacing: inherit;
   text-transform: inherit;
 }
+
+/* ---- The services pages (Design nf_services, nf_laravel, nf_wordpress, nf_ai) ---- */
+
+/* A text-only opener runs the full width: one masthead line per line of the
+   title ("WHAT I BUILD,", "LARAVEL APPS"), the lede keeping its measure. */
+.kit-section-hero[data-title-size="large"][data-variant="text"] .kit-hero-text,
+.kit-section-hero[data-title-size="large"][data-variant="text"] .kit-hero-title {
+  max-inline-size: none;
+}
+.kit-section-hero[data-title-size="large"][data-variant="text"] .kit-hero-title {
+  font-size: clamp(3rem, 0.5rem + 8.4vw, 9rem); /* "WORDPRESS SITES", about 9.4em, fits 1440 */
+}
+.kit-section-hero[data-variant="text"] .kit-hero-lede {
+  max-inline-size: 40rem;
+}
+
+/* A services grid with no lede has a label row for its head, not a masthead
+   heading: Design's "01 · Three services … One developer for all three". */
+.kit-section-services .kit-section-head:not(:has(.kit-section-head-lede)) .kit-section-head-text {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--kit-space-2) var(--kit-space-6);
+  inline-size: 100%;
+  max-inline-size: none;
+}
+.kit-section-services .kit-section-head:not(:has(.kit-section-head-lede)) .kit-section-head-title {
+  font-family: var(--kit-font-mono);
+  font-size: 0.75rem;
+  font-weight: 400;
+  line-height: 1.4;
+  letter-spacing: 0.06em;
+  color: var(--kit-fg-2);
+}
+.kit-section-head-eyebrow {
+  font-family: var(--kit-font-mono);
+  font-size: 0.75rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--kit-accent);
+}
+
+/* Steps with no example card beside them run across the band, each number
+   over its step (Design ns_k_how: four columns). */
+.kit-process-inner:not(:has(.kit-process-cards)) {
+  grid-template-columns: minmax(0, 1fr);
+}
+.kit-process-inner:not(:has(.kit-process-cards)) .kit-process-title {
+  font-size: clamp(2.75rem, 1rem + 5.2vw, 6rem);
+  line-height: 0.9;
+}
+.kit-process-inner:not(:has(.kit-process-cards)) .kit-process-steps {
+  justify-self: stretch;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 14rem), 1fr));
+  gap: var(--kit-space-5);
+  font-size: clamp(1.125rem, 1rem + 0.5vw, 1.375rem);
+  color: var(--kit-fg);
+}
+.kit-process-inner:not(:has(.kit-process-cards)) .kit-process-steps li::before {
+  display: block;
+  content: counter(kit-step, decimal-leading-zero);
+}
+
+/* Ways to work: number, name, line and length in one row, the name in
+   sentence case and the length a mono label (Design kn_ruled_list). */
+.kit-ruled-name {
+  text-transform: none;
+}
+.kit-ruled-value {
+  font-family: var(--kit-font-mono);
+  font-size: 0.75rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--kit-accent);
+}
+@container kit-ruled-list (min-width: 48rem) {
+  .kit-ruled-row {
+    grid-template-columns: 6rem minmax(0, 1fr) minmax(0, 1fr) minmax(8rem, auto);
+    grid-template-areas: "num name text value";
+    align-items: center;
+  }
+}
+
+/* Calls to action on night sit in the Well, not on a mint band: paper type,
+   the mint button, and a focus ring that shows on the dark. */
+[data-mode="night"] .kit-cta-band {
+  background: var(--kit-inverse-bg);
+  color: var(--kit-inverse-fg);
+}
+[data-mode="night"] .kit-section-cta .kit-button {
+  --_bg: var(--kit-accent);
+  --_fg: var(--kit-accent-fg);
+  --_hover: var(--kit-accent-hover);
+}
+[data-mode="night"] .kit-section-cta a:focus-visible {
+  outline-color: var(--kit-focus-ring);
+}
+.kit-cta-title {
+  font-size: clamp(2.5rem, 1rem + 4.6vw, 6rem);
+  line-height: 0.9;
+}
+.kit-cta-text {
+  gap: var(--kit-space-5);
+  max-inline-size: 52rem;
+}
+
+/* The checklist (a text block of points, no paragraphs) on night: Design
+   na_k_help, the heading beside ruled points on the house green (paper on
+   #1F5C45 is 7.5:1, mint 6.4:1). */
+[data-mode="night"] .kit-section-text-block:has(.kit-text-block-points):not(:has(.kit-text-block-body)) {
+  --kit-fg-2: #DDE7DF;
+  background: #1F5C45;
+}
+.kit-section-text-block:has(.kit-text-block-points):not(:has(.kit-text-block-body)) .kit-text-block {
+  grid-template-columns: minmax(0, 1fr);
+  max-inline-size: none;
+}
+.kit-section-text-block:has(.kit-text-block-points):not(:has(.kit-text-block-body)) .kit-text-block-eyebrow {
+  font-family: var(--kit-font-mono);
+  font-size: 0.6875rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+.kit-section-text-block:has(.kit-text-block-points):not(:has(.kit-text-block-body)) .kit-text-block-title {
+  font-size: clamp(2.25rem, 1rem + 2.6vw, 3.5rem);
+  line-height: 0.95;
+}
+.kit-section-text-block:has(.kit-text-block-points):not(:has(.kit-text-block-body)) .kit-text-block-points {
+  gap: 0;
+  inline-size: 100%;
+  font-size: clamp(1.0625rem, 1rem + 0.3vw, 1.25rem);
+}
+.kit-section-text-block:has(.kit-text-block-points):not(:has(.kit-text-block-body)) .kit-text-block-points li {
+  gap: var(--kit-space-5);
+  padding: 1.5rem 1.25rem;
+  border: 1px solid var(--kit-line);
+  border-block-start-width: 0;
+}
+.kit-section-text-block:has(.kit-text-block-points):not(:has(.kit-text-block-body)) .kit-text-block-points li:first-child {
+  border-block-start-width: 1px;
+}
+@media (min-width: 56rem) {
+  .kit-section-text-block:has(.kit-text-block-points):not(:has(.kit-text-block-body)) .kit-text-block {
+    grid-template-columns: minmax(0, 32rem) minmax(0, 1fr);
+    column-gap: clamp(3rem, 6vw, 5rem);
+    align-items: start;
+  }
+  .kit-section-text-block:has(.kit-text-block-points):not(:has(.kit-text-block-body)) .kit-text-block-points {
+    grid-column: 2;
+    grid-row: 1 / span 3;
+  }
+}
+
+/* Edit 01 with its picture first (WordPress's Kritano): the picture takes the
+   wider column, as in Design (840 of 1440). */
+[data-mode="night"] .kit-section-split[data-panel="accent"][data-media="image"]:not([data-swap]) .kit-split-inner {
+  grid-template-columns: minmax(0, 840fr) minmax(0, 600fr);
+}
+
+/* "Before you ask": a rule over the questions, as in Design. */
+.kit-section-split[data-media="questions"] .kit-split-questions {
+  border-block-start: 1px solid var(--kit-fg);
+}
