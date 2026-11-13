@@ -1362,6 +1362,31 @@ body.kit-page::before {
 [data-mode="night"] .kit-section-figure[data-tone="tinted"] + .kit-section-figure[data-tone="tinted"] {
   padding-block-start: 0;
 }
+/* Two figures in a row sit side by side, 50/50, on wide screens (About's
+   Kritano and cg-cms): the page's main becomes a wrapping row only when it
+   holds such a pair, every other section keeps the full width. Each half's
+   container gutters stay, so the pair lines up with the content above. */
+@media (min-width: 64rem) {
+  main:has(> .kit-section-figure + .kit-section-figure) {
+    display: flex;
+    flex-wrap: wrap;
+  }
+  main:has(> .kit-section-figure + .kit-section-figure) > * {
+    flex: 0 0 100%;
+    min-inline-size: 0;
+  }
+  main > .kit-section-figure:has(+ .kit-section-figure),
+  main > .kit-section-figure + .kit-section-figure {
+    flex-basis: 50%;
+    padding-block-start: 0;
+  }
+  main > .kit-section-figure:has(+ .kit-section-figure) .kit-container {
+    padding-inline-end: calc(var(--_gutter, 32px) / 2);
+  }
+  main > .kit-section-figure + .kit-section-figure .kit-container {
+    padding-inline-start: calc(var(--_gutter, 32px) / 2);
+  }
+}
 
 /* The stack: a card with only a name says it in body type (Design nab_kk). */
 .kit-service-card:not(:has(.kit-service-text, .kit-service-subtitle)) .kit-service-title {
