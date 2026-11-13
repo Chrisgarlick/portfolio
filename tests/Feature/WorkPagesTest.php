@@ -84,7 +84,7 @@ it('shows the case studies\' screenshots in browser frames', function (): void {
         ->assertSee('https://kritano.com', false);
 
     $this->get('/work/cg-cms')
-        ->assertSee('<span class="kit-figure-url">chrisgarlick.com/admin</span>', false)
+        ->assertSee('<span class="kit-figure-url">chrisgarlick.com</span>', false)
         ->assertSee('alt="The cg-cms admin dashboard', false);
 
     $this->get('/work/chrisgarlick-com')

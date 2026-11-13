@@ -88,10 +88,10 @@
         "swap": false,
         "image": {
           "file": "media/cg-cms-admin-dashboard.png",
-          "alt": "The cg-cms admin dashboard at chrisgarlick.com/admin: alerts, published and draft counts, leads this week, page cache warmth and recent articles"
+          "alt": "The cg-cms admin dashboard at chrisgarlick.com: alerts, published and draft counts, leads this week, page cache warmth and recent articles"
         },
         "frame": "browser",
-        "frame_url": "chrisgarlick.com/admin"
+        "frame_url": "chrisgarlick.com"
       }
     },
     {

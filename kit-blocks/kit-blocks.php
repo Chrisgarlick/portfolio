@@ -59,7 +59,7 @@ return [
     Block::make('kit-figure', 'Figure')->fields([
         Field::media('image')->label('Image')->requireAlt()->preset('hero')->help('Shown at its own shape, the width of the page. Empty, it shows a placeholder.'),
         Field::select('frame')->label('Frame')->options(['none', 'browser'])->default('none')->help('Browser puts the image in a window, a bar with three dots and the address over it, so a screenshot reads as the product.'),
-        Field::text('frame_url')->label('Address in the frame')->maxLength(80)->help('With the browser frame: the address shown in its bar, like "chrisgarlick.com/admin". Optional.'),
+        Field::text('frame_url')->label('Address in the frame')->maxLength(80)->help('With the browser frame: the address shown in its bar, like "example.com/dashboard". Optional.'),
         Field::text('caption_left')->label('Caption')->maxLength(160)->help('What the image shows, under it on the left.'),
         Field::text('caption_right')->label('Caption, right')->maxLength(80)->help('A second, shorter note on the right, like the date or the client.'),
         Field::text('proof_label')->label('Proof card label')->maxLength(60)->help('A small label at the top of the card, like "Lighthouse performance".'),

@@ -70,15 +70,15 @@
     {
       "type": "kit-figure",
       "data": {
-        "caption_left": "Fig. 01 · the cg-cms admin, chrisgarlick.com/admin",
+        "caption_left": "Fig. 01 · the cg-cms admin, chrisgarlick.com",
         "caption_right": "A cached page: 0.4 ms, live 1GB server",
         "tone": "plain",
         "image": {
           "file": "media/cg-cms-admin-dashboard.png",
-          "alt": "The cg-cms admin dashboard at chrisgarlick.com/admin: alerts, published and draft counts, leads this week, page cache warmth and recent articles"
+          "alt": "The cg-cms admin dashboard at chrisgarlick.com: alerts, published and draft counts, leads this week, page cache warmth and recent articles"
         },
         "frame": "browser",
-        "frame_url": "chrisgarlick.com/admin"
+        "frame_url": "chrisgarlick.com"
       }
     },
     {
