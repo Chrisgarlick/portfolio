@@ -1,0 +1,381 @@
+{
+  "title": "Privacy",
+  "mode": "day",
+  "seo_title": "Privacy and your data | Chris Garlick",
+  "seo_description": "What I collect when you use chrisgarlick.com, why, how long I keep it and how to have it deleted.",
+  "content": [
+    {
+      "type": "kit-header",
+      "data": {
+        "brand_name": "Chris Garlick",
+        "home_url": "/",
+        "numbered": true,
+        "links": [
+          {
+            "label": "Services",
+            "url": "/services"
+          },
+          {
+            "label": "Work",
+            "url": "/work"
+          },
+          {
+            "label": "How I work",
+            "url": "/how-i-work"
+          },
+          {
+            "label": "Writing",
+            "url": "/article"
+          },
+          {
+            "label": "About",
+            "url": "/about"
+          }
+        ],
+        "secondary_label": "Free site audit",
+        "secondary_url": "/tools/site-audit",
+        "action_label": "Start a project",
+        "action_url": "/start",
+        "tone": "plain"
+      }
+    },
+    {
+      "type": "kit-hero",
+      "data": {
+        "variant": "text",
+        "eyebrow": "Legal · privacy and data deletion",
+        "title": "PRIVACY AND\n*your data.*",
+        "title_size": "large",
+        "heading_level": "1",
+        "proof": "Last updated: 12 November 2026",
+        "proof_icon": "calendar"
+      }
+    },
+    {
+      "type": "kit-prose",
+      "data": {
+        "variant": "default",
+        "width": "normal",
+        "background": "plain",
+        "blocks": [
+          {
+            "kind": "paragraph",
+            "text": "This page explains what I collect when you use chrisgarlick.com, why, how long I keep it and how to have it deleted. I'm Chris Garlick, a web developer in the United Kingdom, and I'm the only person who handles your data. Questions or requests: cgarlick94@gmail.com."
+          },
+          {
+            "kind": "heading",
+            "number": "01",
+            "text": "What I *collect*",
+            "heading_level": "2"
+          },
+          {
+            "kind": "paragraph",
+            "text": "**Starting a project (/start).** The three-step brief asks what you need built, your budget band and timeline, and your details: name, email, and optionally your company, website and anything else you want to tell me. I also record how you found the site (the page you arrived on, any campaign tags in the link, and whether you came from the site audit), so I know which of my writing and posts actually bring people here."
+          },
+          {
+            "kind": "paragraph",
+            "text": "**The contact form (/contact).** For anything that isn't a project: your name, email address and message, and the page you sent it from."
+          },
+          {
+            "kind": "paragraph",
+            "text": "**The monthly email.** If you sign up, I keep your email address, your name if you gave it, when and where you signed up, and whether each email was opened or a link clicked, so I can tell what's useful."
+          },
+          {
+            "kind": "paragraph",
+            "text": "**The free site audit (/tools/site-audit).** When you check a page, I record the address you checked, the scores, your IP address and the time, to stop abuse and improve the tool. I don't ask for your email. If you ask for the results by email or for the full Kritano report, I keep your email address with that audit."
+          },
+          {
+            "kind": "paragraph",
+            "text": "**Data deletion requests (/data/delete).** I keep the email address you ask about, the request and the date I completed it, as a record that it was done."
+          },
+          {
+            "kind": "paragraph",
+            "text": "**Earlier forms.** Before November 2026 the site had an AI readiness audit at /audit. Submissions made through it are still covered by this policy."
+          },
+          {
+            "kind": "heading",
+            "number": "02",
+            "text": "Why I *collect it*",
+            "heading_level": "2"
+          },
+          {
+            "kind": "table",
+            "columns": [
+              {
+                "text": "What"
+              },
+              {
+                "text": "Why"
+              },
+              {
+                "text": "Lawful basis (UK GDPR)"
+              }
+            ],
+            "row_headers": true,
+            "rows": [
+              {
+                "cells": [
+                  {
+                    "text": "A /start brief"
+                  },
+                  {
+                    "text": "To reply, decide whether I can help, and write a scope and proposal"
+                  },
+                  {
+                    "text": "Steps you've asked for before a contract, Article 6(1)(b)"
+                  }
+                ]
+              },
+              {
+                "cells": [
+                  {
+                    "text": "A message through /contact"
+                  },
+                  {
+                    "text": "To reply to you"
+                  },
+                  {
+                    "text": "Legitimate interest, Article 6(1)(f)"
+                  }
+                ]
+              },
+              {
+                "cells": [
+                  {
+                    "text": "How you found the site"
+                  },
+                  {
+                    "text": "To know which pages and posts bring enquiries"
+                  },
+                  {
+                    "text": "Legitimate interest, Article 6(1)(f)"
+                  }
+                ]
+              },
+              {
+                "cells": [
+                  {
+                    "text": "The monthly email"
+                  },
+                  {
+                    "text": "To send it, and see what's read"
+                  },
+                  {
+                    "text": "Consent, Article 6(1)(a). Withdraw any time with the link in every email"
+                  }
+                ]
+              },
+              {
+                "cells": [
+                  {
+                    "text": "Site audit records"
+                  },
+                  {
+                    "text": "To stop abuse and improve the tool"
+                  },
+                  {
+                    "text": "Legitimate interest, Article 6(1)(f)"
+                  }
+                ]
+              },
+              {
+                "cells": [
+                  {
+                    "text": "Deletion records"
+                  },
+                  {
+                    "text": "To prove a request was done"
+                  },
+                  {
+                    "text": "Legal obligation, Article 6(1)(c)"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "paragraph",
+            "text": "I never sell or rent your data, and I don't use it for advertising."
+          },
+          {
+            "kind": "heading",
+            "text": "Who else handles it for me",
+            "heading_level": "3"
+          },
+          {
+            "kind": "list",
+            "ordered": true,
+            "items": [
+              {
+                "text": "**Resend:** sends the emails (replies to your brief, audit results, the monthly email). US-based, under Standard Contractual Clauses."
+              },
+              {
+                "text": "**DigitalOcean:** hosts the site and its database in the UK or EU. Server logs may hold IP addresses."
+              },
+              {
+                "text": "**Google (Analytics 4 and Tag Manager):** pseudonymous visit data, only if you accept cookies. May be processed in the US under Google's Data Processing Addendum."
+              },
+              {
+                "text": "**Anthropic (Claude API):** only for submissions made through the old /audit form, which were sent to Claude to draft the audit, with zero data retention and no training on your data."
+              }
+            ]
+          },
+          {
+            "kind": "heading",
+            "number": "03",
+            "text": "How long *I keep it*",
+            "heading_level": "2"
+          },
+          {
+            "kind": "list",
+            "ordered": true,
+            "items": [
+              {
+                "text": "**/start briefs:** 24 months if the project doesn't go ahead. If it does, up to 7 years after the work ends for tax and contract records, then anonymised."
+              },
+              {
+                "text": "**Contact form messages:** 12 months, then deleted, unless the conversation turns into a project (then as for /start briefs)."
+              },
+              {
+                "text": "**The monthly email:** until you unsubscribe. After that I keep only your email address on a \"do not email\" list, so you're never added back by mistake."
+              },
+              {
+                "text": "**Site audit records:** 12 months."
+              },
+              {
+                "text": "**Deletion records:** 6 years."
+              },
+              {
+                "text": "**Earlier /audit submissions:** as stated when you sent them: up to 24 months (7 years if you became a client)."
+              }
+            ]
+          },
+          {
+            "kind": "heading",
+            "number": "04",
+            "text": "Your *rights*",
+            "heading_level": "2"
+          },
+          {
+            "kind": "paragraph",
+            "text": "Under UK GDPR you can ask to see the data I hold about you, correct it, delete it, restrict or object to how I use it, take a copy with you, and withdraw consent at any time. The quickest way to delete everything is the form below. For anything else, email cgarlick94@gmail.com from the address you used, and I'll reply within 30 days. If you're not happy with my answer, you can complain to the Information Commissioner's Office at ico.org.uk."
+          },
+          {
+            "kind": "heading",
+            "number": "05",
+            "text": "*Cookies*",
+            "heading_level": "2"
+          },
+          {
+            "kind": "paragraph",
+            "text": "Nothing is set until you choose in the cookie banner. If you accept, Google Analytics 4 sets its standard _ga cookies to count visits. If you reject, no analytics cookies are set. Cookies here are never used for advertising, retargeting or personalisation. You can change your mind any time with \"Cookie preferences\" in the footer; withdrawing clears any analytics cookies already set."
+          },
+          {
+            "kind": "heading",
+            "number": "06",
+            "text": "Delete *your data*",
+            "heading_level": "2"
+          },
+          {
+            "kind": "paragraph",
+            "text": "Enter the email address you used. I'll send a link to it, and once you click it, I delete your briefs, messages, audit records and monthly email signup, and confirm by email when it's done."
+          }
+        ]
+      }
+    },
+    {
+      "type": "site-data-deletion",
+      "data": {
+        "label": "Your email address",
+        "placeholder": "you@your-website.co.uk",
+        "button": "Send the link",
+        "note": "The link works for 24 hours."
+      }
+    },
+    {
+      "type": "kit-prose",
+      "data": {
+        "variant": "default",
+        "width": "normal",
+        "background": "plain",
+        "blocks": [
+          {
+            "kind": "heading",
+            "text": "Changes",
+            "heading_level": "3"
+          },
+          {
+            "kind": "paragraph",
+            "text": "If anything changes I'll update this page and its date. The version you agreed to is stored with each brief or signup, so you can always see what applied at the time."
+          }
+        ]
+      }
+    },
+    {
+      "type": "kit-footer",
+      "data": {
+        "brand_name": "Chris Garlick",
+        "blurb": "Got something to build, or fix?",
+        "columns": [
+          {
+            "heading": "Work with me",
+            "links": [
+              {
+                "label": "Services",
+                "url": "/services"
+              },
+              {
+                "label": "Work",
+                "url": "/work"
+              },
+              {
+                "label": "How I work",
+                "url": "/how-i-work"
+              },
+              {
+                "label": "Writing",
+                "url": "/article"
+              }
+            ]
+          },
+          {
+            "heading": "More",
+            "links": [
+              {
+                "label": "About",
+                "url": "/about"
+              },
+              {
+                "label": "Free site audit",
+                "url": "/tools/site-audit"
+              },
+              {
+                "label": "Start a project",
+                "url": "/start"
+              }
+            ]
+          }
+        ],
+        "social": [
+          {
+            "network": "linkedin",
+            "url": "https://www.linkedin.com/in/chris-garlick-59a8bb91/"
+          }
+        ],
+        "small_print": "© 2026 Chris Garlick",
+        "legal": [
+          {
+            "label": "Privacy",
+            "url": "/privacy"
+          },
+          {
+            "label": "Terms",
+            "url": "/terms"
+          }
+        ],
+        "wordmark": "CHRIS GARLICK",
+        "cookie_label": "Cookie preferences"
+      }
+    }
+  ]
+}

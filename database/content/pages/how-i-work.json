@@ -1,0 +1,301 @@
+{
+  "title": "How I work",
+  "mode": "night",
+  "seo_title": "How I work: four stages, one developer | Chris Garlick",
+  "seo_description": "You talk to the person who writes the code, from the first call to the handover. Audit and plan, scope in writing, design then build, tested and handed over.",
+  "content": [
+    {
+      "type": "kit-header",
+      "data": {
+        "brand_name": "Chris Garlick",
+        "home_url": "/",
+        "numbered": true,
+        "links": [
+          {
+            "label": "Services",
+            "url": "/services"
+          },
+          {
+            "label": "Work",
+            "url": "/work"
+          },
+          {
+            "label": "How I work",
+            "url": "/how-i-work"
+          },
+          {
+            "label": "Writing",
+            "url": "/article"
+          },
+          {
+            "label": "About",
+            "url": "/about"
+          }
+        ],
+        "secondary_label": "Free site audit",
+        "secondary_url": "/tools/site-audit",
+        "action_label": "Start a project",
+        "action_url": "/start",
+        "tone": "plain"
+      }
+    },
+    {
+      "type": "kit-hero",
+      "data": {
+        "variant": "text",
+        "eyebrow": "How I work · one developer, four stages",
+        "title": "AI DOES\nTHE TYPING.\n*I do the thinking.*",
+        "title_size": "large",
+        "heading_level": "1",
+        "lede": "You talk to the person who writes the code, from the first call to the handover. AI does the typing; I do the thinking, the tests and the review.",
+        "actions": [
+          {
+            "label": "Start a project",
+            "url": "/start",
+            "style": "primary"
+          },
+          {
+            "label": "Free site audit",
+            "url": "/tools/site-audit",
+            "style": "secondary"
+          }
+        ],
+        "secondary_style": "link"
+      }
+    },
+    {
+      "type": "kit-text-block",
+      "data": {
+        "variant": "default",
+        "title": "FOUR *stages*",
+        "title_size": "large",
+        "heading_level": "2",
+        "body": "Each one ends with something you can see and sign off.",
+        "background": "tinted"
+      }
+    },
+    {
+      "type": "kit-split",
+      "data": {
+        "eyebrow": "Stage 01 · Audit and plan",
+        "title": "WHAT'S WRONG,\n*agreed first.*",
+        "heading_level": "3",
+        "body": "I audit what you have with Kritano, then map the pages, flows and data on a board you can comment on.",
+        "media": "image",
+        "image": {
+          "file": "media/kritano-audit-example.png",
+          "alt": "An example Kritano audit: overall health 87, scores for SEO, accessibility, security, performance and content, and the top findings"
+        },
+        "frame": "browser",
+        "frame_url": "kritano.com",
+        "caption": "Fig. 01 · a Kritano audit, the starting point",
+        "background": "tinted",
+        "panel": "none",
+        "swap": false
+      }
+    },
+    {
+      "type": "kit-split",
+      "data": {
+        "eyebrow": "Stage 02 · Scope in writing",
+        "title": "YOU KNOW WHAT\n*done* LOOKS LIKE.",
+        "heading_level": "3",
+        "body": "A written scope: what's in, what's out, how it's tested and what done looks like. The timeline and price come with it, in the proposal. You sign off before anything is built.",
+        "media": "card",
+        "card_label": "A written scope covers",
+        "card_title": "**01** What's in\n**02** What's out\n**03** How it's tested\n**04** What done looks like\n**05** The price, in the proposal",
+        "card_text": "Signed off before anything is built",
+        "background": "tinted",
+        "panel": "none",
+        "swap": true
+      }
+    },
+    {
+      "type": "kit-split",
+      "data": {
+        "eyebrow": "Stage 03 · Design, then build",
+        "title": "SOMETHING\nWORKING,\n*every week.*",
+        "heading_level": "3",
+        "body": "Every page designed and signed off first, then built in small releases you can click through each week.",
+        "media": "image",
+        "image": {
+          "file": "media/cg-cms-admin-dashboard.png",
+          "alt": "The cg-cms admin dashboard at chrisgarlick.com: alerts, published and draft counts, leads this week, page cache warmth and recent articles"
+        },
+        "frame": "browser",
+        "frame_url": "chrisgarlick.com",
+        "caption": "Fig. 03 · the cg-cms admin, my own Laravel CMS",
+        "background": "tinted",
+        "panel": "none",
+        "swap": false
+      }
+    },
+    {
+      "type": "kit-split",
+      "data": {
+        "eyebrow": "Stage 04 · Tested and handed over",
+        "title": "DOCUMENTED,\n*handed over.*",
+        "heading_level": "3",
+        "body": "Automated tests, written documentation and a clear deployment, so you always know how it works and what it runs on.",
+        "media": "card",
+        "card_label": "Time to first byte · cached page, live 1GB server",
+        "card_title": "0.4 ms",
+        "card_text": "Measured, with the method written down",
+        "background": "tinted",
+        "panel": "none",
+        "swap": true
+      }
+    },
+    {
+      "type": "kit-text-block",
+      "data": {
+        "variant": "default",
+        "eyebrow": "Edit 01 · where AI fits",
+        "title": "WHERE AI IS,\n*and where it isn't.*",
+        "heading_level": "2",
+        "body": "Claude Code, Board, Design, Motion and Typeset let one person deliver like a small team. The judgement stays with me.",
+        "points": [
+          {
+            "text": "Drafting code and tests, which I review line by line.",
+            "excluded": false
+          },
+          {
+            "text": "Turning the plan into designs, visuals and documents faster.",
+            "excluded": false
+          },
+          {
+            "text": "Decide what to build.",
+            "excluded": true
+          },
+          {
+            "text": "Sign off quality.",
+            "excluded": true
+          },
+          {
+            "text": "Talk to you.",
+            "excluded": true
+          }
+        ],
+        "background": "plain"
+      }
+    },
+    {
+      "type": "kit-services",
+      "data": {
+        "title": "EVERY *week*",
+        "heading_level": "2",
+        "lede": "What working with me looks like once the scope is signed.",
+        "rule": true,
+        "columns": "3",
+        "background": "tinted",
+        "services": [
+          {
+            "number": "01 · A release",
+            "title": "Something to",
+            "subtitle": "*click through*",
+            "text": "The build ships in small releases, so you see real pages working, not a status report."
+          },
+          {
+            "number": "02 · Tests",
+            "title": "Tests on",
+            "subtitle": "*every change*",
+            "text": "Automated tests run on each change, because you will want to change it later."
+          },
+          {
+            "number": "03 · One person",
+            "title": "You talk",
+            "subtitle": "*to me*",
+            "text": "No account managers, no junior hand-offs: the person you talk to writes the code."
+          }
+        ]
+      }
+    },
+    {
+      "type": "kit-quote-stats",
+      "data": {
+        "quote": "*“You'll deal with me from the first call to the handover, and see something working every week.”*",
+        "attribution": "Chris Garlick, how every project runs",
+        "stats": [],
+        "background": "tinted"
+      }
+    },
+    {
+      "type": "kit-cta",
+      "data": {
+        "title": "START WITH\n*a written scope.*",
+        "heading_level": "2",
+        "lede": "Tell me what you need built or fixed. Every project starts with a Kritano audit, so what's wrong is agreed before the price is.",
+        "action_label": "Start a project",
+        "action_url": "/start",
+        "secondary_label": "Free site audit",
+        "secondary_url": "/tools/site-audit"
+      }
+    },
+    {
+      "type": "kit-footer",
+      "data": {
+        "brand_name": "Chris Garlick",
+        "blurb": "Got something to build, or fix?",
+        "columns": [
+          {
+            "heading": "Work with me",
+            "links": [
+              {
+                "label": "Services",
+                "url": "/services"
+              },
+              {
+                "label": "Work",
+                "url": "/work"
+              },
+              {
+                "label": "How I work",
+                "url": "/how-i-work"
+              },
+              {
+                "label": "Writing",
+                "url": "/article"
+              }
+            ]
+          },
+          {
+            "heading": "More",
+            "links": [
+              {
+                "label": "About",
+                "url": "/about"
+              },
+              {
+                "label": "Free site audit",
+                "url": "/tools/site-audit"
+              },
+              {
+                "label": "Start a project",
+                "url": "/start"
+              }
+            ]
+          }
+        ],
+        "social": [
+          {
+            "network": "linkedin",
+            "url": "https://www.linkedin.com/in/chris-garlick-59a8bb91/"
+          }
+        ],
+        "small_print": "© 2026 Chris Garlick",
+        "legal": [
+          {
+            "label": "Privacy",
+            "url": "/privacy"
+          },
+          {
+            "label": "Terms",
+            "url": "/terms"
+          }
+        ],
+        "wordmark": "CHRIS GARLICK",
+        "cookie_label": "Cookie preferences"
+      }
+    }
+  ]
+}

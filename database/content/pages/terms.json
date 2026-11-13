@@ -1,0 +1,225 @@
+{
+  "title": "Terms",
+  "mode": "day",
+  "seo_title": "Terms of use | Chris Garlick",
+  "seo_description": "The terms for using chrisgarlick.com. Short on purpose: work I do for you is covered by its own written scope and agreement.",
+  "content": [
+    {
+      "type": "kit-header",
+      "data": {
+        "brand_name": "Chris Garlick",
+        "home_url": "/",
+        "numbered": true,
+        "links": [
+          {
+            "label": "Services",
+            "url": "/services"
+          },
+          {
+            "label": "Work",
+            "url": "/work"
+          },
+          {
+            "label": "How I work",
+            "url": "/how-i-work"
+          },
+          {
+            "label": "Writing",
+            "url": "/article"
+          },
+          {
+            "label": "About",
+            "url": "/about"
+          }
+        ],
+        "secondary_label": "Free site audit",
+        "secondary_url": "/tools/site-audit",
+        "action_label": "Start a project",
+        "action_url": "/start",
+        "tone": "plain"
+      }
+    },
+    {
+      "type": "kit-hero",
+      "data": {
+        "variant": "text",
+        "eyebrow": "Legal · terms of use",
+        "title": "TERMS\n*of use.*",
+        "title_size": "large",
+        "heading_level": "1",
+        "proof": "Last updated: 12 November 2026",
+        "proof_icon": "calendar"
+      }
+    },
+    {
+      "type": "kit-prose",
+      "data": {
+        "variant": "default",
+        "width": "normal",
+        "background": "plain",
+        "blocks": [
+          {
+            "kind": "paragraph",
+            "text": "These terms cover using chrisgarlick.com. They're short on purpose. Work I do for you is covered by its own written scope and agreement, not by this page."
+          },
+          {
+            "kind": "heading",
+            "number": "01",
+            "text": "Who *I am*",
+            "heading_level": "2"
+          },
+          {
+            "kind": "paragraph",
+            "text": "This site is run by Chris Garlick, a web developer in the United Kingdom. I build Laravel and WordPress sites and apps, and put AI to work inside them. Questions about these terms: cgarlick94@gmail.com."
+          },
+          {
+            "kind": "heading",
+            "number": "02",
+            "text": "Using *the site*",
+            "heading_level": "2"
+          },
+          {
+            "kind": "paragraph",
+            "text": "You're welcome to read, share and link to anything here. Please don't use the site for anything unlawful, try to get into parts of it that aren't public, overload it on purpose, send false details through its forms, or copy its content in bulk by automated means without asking me first."
+          },
+          {
+            "kind": "heading",
+            "number": "03",
+            "text": "Starting *a project*",
+            "heading_level": "2"
+          },
+          {
+            "kind": "paragraph",
+            "text": "Sending a brief through /start is a way to start a conversation. It doesn't create a contract or commit either of us to anything. If the project goes ahead, the work is set out in a written scope and proposal: what's in, what's out, what done looks like, the timeline and the price. That agreement is what counts."
+          },
+          {
+            "kind": "heading",
+            "number": "04",
+            "text": "The free *site audit*",
+            "heading_level": "2"
+          },
+          {
+            "kind": "paragraph",
+            "text": "The site audit gives a quick check of one page, with scores for SEO, accessibility and performance. The results are automated and a starting point, not a guarantee: a page can score well and still have problems, or the other way round. Only check sites you own or have permission to test. I may limit how often the tool can be used to keep it fast for everyone."
+          },
+          {
+            "kind": "heading",
+            "number": "05",
+            "text": "Articles *and examples*",
+            "heading_level": "2"
+          },
+          {
+            "kind": "paragraph",
+            "text": "The articles share how I work and what I've measured on my own projects. They're general information, not advice for your particular site or business, so check before you rely on them. Code examples are given as they are; test them before using them anywhere that matters."
+          },
+          {
+            "kind": "heading",
+            "number": "06",
+            "text": "Who *owns what*",
+            "heading_level": "2"
+          },
+          {
+            "kind": "paragraph",
+            "text": "The writing, design, code and case studies on this site are mine unless I say otherwise. Logos and product names belong to their owners. Quoting a short passage with a link back is fine."
+          },
+          {
+            "kind": "heading",
+            "number": "07",
+            "text": "Links to *other sites*",
+            "heading_level": "2"
+          },
+          {
+            "kind": "paragraph",
+            "text": "Some pages link to other sites, including my own products. I'm not responsible for what's on sites I don't run."
+          },
+          {
+            "kind": "heading",
+            "number": "08",
+            "text": "*Liability*",
+            "heading_level": "2"
+          },
+          {
+            "kind": "paragraph",
+            "text": "The site is provided as it is, and I can't promise it will always be available or free of errors. As far as the law allows, I'm not liable for any indirect or consequential loss from using it. Nothing here limits liability for death or personal injury caused by negligence, for fraud, or for anything else that can't be limited under English law."
+          },
+          {
+            "kind": "heading",
+            "number": "09",
+            "text": "Changes and *the law that applies*",
+            "heading_level": "2"
+          },
+          {
+            "kind": "paragraph",
+            "text": "I'll update this page if anything changes, and the date at the top shows the latest version. These terms are governed by the law of England and Wales, and the courts of England and Wales deal with any dispute."
+          }
+        ]
+      }
+    },
+    {
+      "type": "kit-footer",
+      "data": {
+        "brand_name": "Chris Garlick",
+        "blurb": "Got something to build, or fix?",
+        "columns": [
+          {
+            "heading": "Work with me",
+            "links": [
+              {
+                "label": "Services",
+                "url": "/services"
+              },
+              {
+                "label": "Work",
+                "url": "/work"
+              },
+              {
+                "label": "How I work",
+                "url": "/how-i-work"
+              },
+              {
+                "label": "Writing",
+                "url": "/article"
+              }
+            ]
+          },
+          {
+            "heading": "More",
+            "links": [
+              {
+                "label": "About",
+                "url": "/about"
+              },
+              {
+                "label": "Free site audit",
+                "url": "/tools/site-audit"
+              },
+              {
+                "label": "Start a project",
+                "url": "/start"
+              }
+            ]
+          }
+        ],
+        "social": [
+          {
+            "network": "linkedin",
+            "url": "https://www.linkedin.com/in/chris-garlick-59a8bb91/"
+          }
+        ],
+        "small_print": "© 2026 Chris Garlick",
+        "legal": [
+          {
+            "label": "Privacy",
+            "url": "/privacy"
+          },
+          {
+            "label": "Terms",
+            "url": "/terms"
+          }
+        ],
+        "wordmark": "CHRIS GARLICK",
+        "cookie_label": "Cookie preferences"
+      }
+    }
+  ]
+}

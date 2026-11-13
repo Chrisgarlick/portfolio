@@ -1,0 +1,179 @@
+{
+  "title": "Thanks",
+  "mode": "night",
+  "seo_title": "Thanks, your brief is in | Chris Garlick",
+  "seo_description": "I reply to every brief within 48 hours, with a few times for a 30-minute call.",
+  "seo_noindex": true,
+  "content": [
+    {
+      "type": "kit-header",
+      "data": {
+        "brand_name": "Chris Garlick",
+        "home_url": "/",
+        "numbered": true,
+        "links": [
+          {
+            "label": "Services",
+            "url": "/services"
+          },
+          {
+            "label": "Work",
+            "url": "/work"
+          },
+          {
+            "label": "How I work",
+            "url": "/how-i-work"
+          },
+          {
+            "label": "Writing",
+            "url": "/article"
+          },
+          {
+            "label": "About",
+            "url": "/about"
+          }
+        ],
+        "secondary_label": "Free site audit",
+        "secondary_url": "/tools/site-audit",
+        "action_label": "Start a project",
+        "action_url": "/start",
+        "tone": "plain"
+      }
+    },
+    {
+      "type": "kit-hero",
+      "data": {
+        "variant": "text",
+        "eyebrow": "Start a project · brief sent",
+        "title": "THANKS,\n*I've got it.*",
+        "title_size": "large",
+        "heading_level": "1",
+        "lede": "I reply to every brief within 48 hours. If it's a big one, that first reply might just confirm it's arrived and say when I'll be in touch properly."
+      }
+    },
+    {
+      "type": "kit-ruled-list",
+      "data": {
+        "eyebrow": "The call",
+        "title": "30 MINUTES\n*with me*",
+        "heading_level": "2",
+        "lede": "Video or phone. No sales pitch, just your project.",
+        "tone": "dark",
+        "rows": [
+          {
+            "name": "Weekday evenings or weekends. I'll suggest a few times in my reply; pick the one that suits you.",
+            "value": "When"
+          },
+          {
+            "name": "About 30 minutes.",
+            "value": "How long"
+          },
+          {
+            "name": "Video or phone, whichever you prefer.",
+            "value": "How"
+          },
+          {
+            "name": "Run a free site audit on your site, or read how I work.",
+            "value": "Meanwhile"
+          }
+        ]
+      }
+    },
+    {
+      "type": "kit-services",
+      "data": {
+        "title": "WHAT HAPPENS *next*",
+        "heading_level": "2",
+        "rule": true,
+        "columns": "3",
+        "background": "tinted",
+        "services": [
+          {
+            "number": "01",
+            "title": "Your",
+            "subtitle": "*call*",
+            "text": "About 30 minutes, video or phone, on a weekday evening or at the weekend."
+          },
+          {
+            "number": "02",
+            "title": "A written",
+            "subtitle": "*scope*",
+            "text": "What I'll build, what's out of scope, and what done looks like."
+          },
+          {
+            "number": "03",
+            "title": "A",
+            "subtitle": "*proposal*",
+            "text": "The timeline and price, in writing."
+          }
+        ]
+      }
+    },
+    {
+      "type": "kit-footer",
+      "data": {
+        "brand_name": "Chris Garlick",
+        "blurb": "Got something to build, or fix?",
+        "columns": [
+          {
+            "heading": "Work with me",
+            "links": [
+              {
+                "label": "Services",
+                "url": "/services"
+              },
+              {
+                "label": "Work",
+                "url": "/work"
+              },
+              {
+                "label": "How I work",
+                "url": "/how-i-work"
+              },
+              {
+                "label": "Writing",
+                "url": "/article"
+              }
+            ]
+          },
+          {
+            "heading": "More",
+            "links": [
+              {
+                "label": "About",
+                "url": "/about"
+              },
+              {
+                "label": "Free site audit",
+                "url": "/tools/site-audit"
+              },
+              {
+                "label": "Start a project",
+                "url": "/start"
+              }
+            ]
+          }
+        ],
+        "social": [
+          {
+            "network": "linkedin",
+            "url": "https://www.linkedin.com/in/chris-garlick-59a8bb91/"
+          }
+        ],
+        "small_print": "© 2026 Chris Garlick",
+        "legal": [
+          {
+            "label": "Privacy",
+            "url": "/privacy"
+          },
+          {
+            "label": "Terms",
+            "url": "/terms"
+          }
+        ],
+        "wordmark": "CHRIS GARLICK",
+        "cookie_label": "Cookie preferences"
+      }
+    }
+  ]
+}

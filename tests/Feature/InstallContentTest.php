@@ -55,7 +55,7 @@ it('applies and publishes everything with --publish', function (): void {
     $this->artisan('site:install-content', ['--publish' => true])->assertSuccessful();
 
     expect(Entry::query()->whereIn('collection', ['service', 'project', 'article'])->where('status', 'draft')->exists())->toBeFalse()
-        ->and($about->refresh()->data['content'][0]['data']['heading'])->toContain('middlemen')
+        ->and($about->refresh()->data['content'][1]['data']['title'])->toContain('*start to finish.*')
         ->and(EntryRevision::query()->where('entry_id', $about->id)->where('label', 'proposed')->exists())->toBeFalse();
 
     $this->get('/services/laravel')->assertOk()->assertSee('Laravel development');

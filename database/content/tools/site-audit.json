@@ -1,0 +1,245 @@
+{
+  "mode": "night",
+  "content": [
+    {
+      "type": "kit-header",
+      "data": {
+        "brand_name": "Chris Garlick",
+        "home_url": "/",
+        "numbered": true,
+        "links": [
+          {
+            "label": "Services",
+            "url": "/services"
+          },
+          {
+            "label": "Work",
+            "url": "/work"
+          },
+          {
+            "label": "How I work",
+            "url": "/how-i-work"
+          },
+          {
+            "label": "Writing",
+            "url": "/article"
+          },
+          {
+            "label": "About",
+            "url": "/about"
+          }
+        ],
+        "secondary_label": "Free site audit",
+        "secondary_url": "/tools/site-audit",
+        "action_label": "Start a project",
+        "action_url": "/start",
+        "tone": "plain"
+      }
+    },
+    {
+      "type": "kit-hero",
+      "data": {
+        "variant": "text",
+        "eyebrow": "Free site audit · powered by Kritano, my own product",
+        "title": "HOW HEALTHY IS\n*your site?*",
+        "title_size": "large",
+        "heading_level": "1",
+        "lede": "Quick scores for SEO, accessibility and performance on one page, plus an overall health score, in about 30 seconds. The full Kritano audit is the next step."
+      }
+    },
+    {
+      "type": "site-audit-tool",
+      "data": {
+        "number": "01",
+        "label": "Your website address",
+        "placeholder": "your-website.co.uk",
+        "button": "Check my site",
+        "note": "Free · one page · results on screen, nothing emailed unless you ask"
+      }
+    },
+    {
+      "type": "kit-services",
+      "data": {
+        "title": "WHAT IT *checks*",
+        "heading_level": "2",
+        "lede": "The quick check scores SEO, accessibility and performance. The full Kritano audit adds security, content and structured data.",
+        "rule": true,
+        "columns": "3",
+        "background": "tinted",
+        "services": [
+          {
+            "icon": "search-check",
+            "number": "01 · SEO",
+            "title": "Search",
+            "subtitle": "*what search reads*",
+            "text": "Titles, meta descriptions, headings and links."
+          },
+          {
+            "icon": "check",
+            "number": "02 · Accessibility",
+            "title": "Access",
+            "subtitle": "*who can use it*",
+            "text": "Checked with axe-core: alt text, labels, landmarks and heading order."
+          },
+          {
+            "icon": "shield",
+            "number": "03 · Security · full audit",
+            "title": "Security",
+            "subtitle": "*what it exposes*",
+            "text": "Security headers, cookies and HTTPS."
+          },
+          {
+            "icon": "gauge",
+            "number": "04 · Performance",
+            "title": "Speed",
+            "subtitle": "*how fast it loads*",
+            "text": "How quickly the page loads, and what slows it down."
+          },
+          {
+            "icon": "file-search",
+            "number": "05 · Content · full audit",
+            "title": "Content",
+            "subtitle": "*what it says*",
+            "text": "The quality of the words on the page."
+          },
+          {
+            "icon": "code",
+            "number": "06 · Structured data · full audit",
+            "title": "Schema",
+            "subtitle": "*what it means*",
+            "text": "The markup that tells search engines what the page is about."
+          }
+        ]
+      }
+    },
+    {
+      "type": "kit-split",
+      "data": {
+        "eyebrow": "Fig. 01 · An example result",
+        "title": "SCORES, AND THE\n*top five fixes.*",
+        "heading_level": "2",
+        "body": "Each one says why it matters and how to fix it.",
+        "points": [
+          {
+            "text": "Images missing alt text · 12 images",
+            "excluded": false
+          },
+          {
+            "text": "Links with no text · 5 links",
+            "excluded": false
+          },
+          {
+            "text": "Heading levels skipped · 8 headings",
+            "excluded": false
+          }
+        ],
+        "media": "image",
+        "image": {
+          "file": "media/kritano-audit-example.png",
+          "alt": "An example Kritano audit: overall health 87, scores for SEO, accessibility, security, performance and content, and the top findings"
+        },
+        "frame": "browser",
+        "frame_url": "kritano.com",
+        "caption": "Fig. 01 · a Kritano audit card, example result",
+        "background": "tinted",
+        "panel": "surface",
+        "swap": false
+      }
+    },
+    {
+      "type": "kit-services",
+      "data": {
+        "title": "THEN, *your choice*",
+        "heading_level": "2",
+        "lede": "Three ways on from the result, all optional.",
+        "rule": true,
+        "columns": "2",
+        "background": "plain",
+        "services": [
+          {
+            "number": "01 · Do it yourself",
+            "title": "The full report",
+            "subtitle": "*on Kritano*",
+            "text": "Up to 50 pages free, with SEO, security and content checks. Paid plans add accessibility, performance and structured data.",
+            "link_label": "Open Kritano",
+            "link_url": "https://kritano.com"
+          },
+          {
+            "number": "02 · I do it",
+            "title": "Fix it",
+            "subtitle": "*for me*",
+            "text": "Opens Start a project with this audit attached, so I can scope a fix sprint from it.",
+            "link_label": "Fix it for me",
+            "link_url": "/start"
+          }
+        ]
+      }
+    },
+    {
+      "type": "kit-footer",
+      "data": {
+        "brand_name": "Chris Garlick",
+        "blurb": "Got something to build, or fix?",
+        "columns": [
+          {
+            "heading": "Work with me",
+            "links": [
+              {
+                "label": "Services",
+                "url": "/services"
+              },
+              {
+                "label": "Work",
+                "url": "/work"
+              },
+              {
+                "label": "How I work",
+                "url": "/how-i-work"
+              },
+              {
+                "label": "Writing",
+                "url": "/article"
+              }
+            ]
+          },
+          {
+            "heading": "More",
+            "links": [
+              {
+                "label": "About",
+                "url": "/about"
+              },
+              {
+                "label": "Free site audit",
+                "url": "/tools/site-audit"
+              },
+              {
+                "label": "Start a project",
+                "url": "/start"
+              }
+            ]
+          }
+        ],
+        "social": [
+          {
+            "network": "linkedin",
+            "url": "https://www.linkedin.com/in/chris-garlick-59a8bb91/"
+          }
+        ],
+        "small_print": "© 2026 Chris Garlick",
+        "legal": [
+          {
+            "label": "Privacy",
+            "url": "/privacy"
+          },
+          {
+            "label": "Terms",
+            "url": "/terms"
+          }
+        ],
+        "wordmark": "CHRIS GARLICK",
+        "cookie_label": "Cookie preferences"
+      }
+    }
+  ]
+}
