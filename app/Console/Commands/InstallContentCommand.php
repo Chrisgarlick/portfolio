@@ -25,8 +25,9 @@ use Symfony\Component\Yaml\Yaml;
  * and published through the same publish gate as the admin.
  *
  * Markdown files carry their fields as frontmatter and the body as the
- * collection's first rich text field. A page is a JSON list of blocks named
- * after the page's slug.
+ * collection's first rich text field. A page is a JSON file named after the
+ * page's slug: a list of blocks, or an object of the page's fields (`content`
+ * for the blocks, `mode`, `seo_title`, `seo_description`) when it sets more.
  */
 final class InstallContentCommand extends Command
 {
@@ -197,7 +198,14 @@ final class InstallContentCommand extends Command
                 throw new ContentException('Not valid JSON: '.json_last_error_msg());
             }
 
-            return ['slug' => pathinfo($file, PATHINFO_FILENAME), 'content' => $blocks];
+            // A list is the page's blocks. An object is the page's fields
+            // (`content` for the blocks, `mode`, `seo_title`…), for a page
+            // that sets more than its blocks.
+            if (array_is_list($blocks)) {
+                return ['slug' => pathinfo($file, PATHINFO_FILENAME), 'content' => $blocks];
+            }
+
+            return ['slug' => pathinfo($file, PATHINFO_FILENAME), ...$this->fieldValues($blocks)];
         }
 
         $values = [];
@@ -210,13 +218,7 @@ final class InstallContentCommand extends Command
                 throw new ContentException('The frontmatter is not valid YAML: '.$e->getMessage());
             }
 
-            foreach (is_array($meta) ? $meta : [] as $key => $value) {
-                if ($key === 'seo_title' || $key === 'seo_description') {
-                    $values['seo'][substr((string) $key, 4)] = $value;
-                } else {
-                    $values[$key] = $value;
-                }
-            }
+            $values = $this->fieldValues(is_array($meta) ? $meta : []);
 
             $body = $matches[2];
         }
@@ -229,6 +231,28 @@ final class InstallContentCommand extends Command
             }
 
             $values[$richText->name] = $body;
+        }
+
+        return $values;
+    }
+
+    /**
+     * A file's fields as the content service takes them: `seo_title` and
+     * `seo_description` go into `seo`.
+     *
+     * @param  array<array-key, mixed>  $fields
+     * @return array<string, mixed>
+     */
+    private function fieldValues(array $fields): array
+    {
+        $values = [];
+
+        foreach ($fields as $key => $value) {
+            if ($key === 'seo_title' || $key === 'seo_description') {
+                $values['seo'][substr((string) $key, 4)] = $value;
+            } else {
+                $values[(string) $key] = $value;
+            }
         }
 
         return $values;
