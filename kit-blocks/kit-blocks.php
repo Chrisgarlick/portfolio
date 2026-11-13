@@ -16,7 +16,7 @@ kit_cgcms_register_views();
 
 return [
     Block::make('kit-announcement-bar', 'Announcement bar')->fields([
-        Field::select('icon')->label('Icon')->options(['', 'bag', 'bolt', 'box', 'calendar', 'chat', 'check', 'clock', 'droplet', 'flame', 'hammer', 'home', 'image', 'key', 'leaf', 'map-pin', 'minus', 'phone', 'plus', 'returns', 'shield', 'siren', 'sparkles', 'star', 'truck', 'wrench', 'x'])->default('truck'),
+        Field::select('icon')->label('Icon')->options(['', 'app-window', 'bag', 'blocks', 'bolt', 'book-open', 'box', 'calendar', 'calendar-check', 'chart-column', 'chat', 'check', 'clock', 'code', 'code-xml', 'droplet', 'file-chart-column', 'file-pen-line', 'file-search', 'flame', 'flask-conical', 'gauge', 'hammer', 'home', 'image', 'inbox', 'key', 'layout-dashboard', 'layout-template', 'leaf', 'life-buoy', 'map-pin', 'minus', 'palette', 'phone', 'plug', 'plus', 'puzzle', 'refresh-cw', 'returns', 'search-check', 'shield', 'shield-check', 'siren', 'sparkles', 'star', 'truck', 'user-plus', 'wrench', 'x'])->default('truck'),
         Field::text('text')->label('Notice')->required()->maxLength(100),
         Field::text('link_label')->label('Link')->maxLength(30),
         Field::url('link_url')->label('Link address'),
@@ -52,8 +52,19 @@ return [
         Field::text('lede')->label('Supporting line')->maxLength(160),
         Field::text('action_label')->label('Button')->maxLength(30),
         Field::url('action_url')->label('Button link'),
+        Field::text('secondary_label')->label('Text link')->maxLength(40)->help('A second, quieter action beside the button, like "See how it works". Shown with an arrow.'),
+        Field::url('secondary_url')->label('Text link address'),
         Field::text('phone')->label('Phone number')->maxLength(30)->help('Left empty, it shows the site\'s phone number.'),
     ])->view('kit-blocks::cta'),
+    Block::make('kit-figure', 'Figure')->fields([
+        Field::media('image')->label('Image')->requireAlt()->preset('hero')->help('Shown at its own shape, the width of the page. Empty, it shows a placeholder.'),
+        Field::text('caption_left')->label('Caption')->maxLength(160)->help('What the image shows, under it on the left.'),
+        Field::text('caption_right')->label('Caption, right')->maxLength(80)->help('A second, shorter note on the right, like the date or the client.'),
+        Field::text('proof_label')->label('Proof card label')->maxLength(60)->help('A small label at the top of the card, like "Lighthouse performance".'),
+        Field::text('proof_value')->label('Proof card number')->maxLength(20)->help('The big number, like "100" or "0.4 s". Left empty, there\'s no card.'),
+        Field::text('proof_note')->label('Proof card note')->maxLength(80)->help('A line under the number, like "on a phone, over 4G".'),
+        Field::select('tone')->label('Background')->options(['plain', 'tinted', 'dark'])->default('plain')->help('Tinted is a step from the page colour; dark is the inverse band, like the footer.'),
+    ])->view('kit-blocks::figure'),
     Block::make('kit-footer', 'Footer')->fields([
         Field::text('brand_name')->label('Business name')->maxLength(40)->help('Left empty, it shows the site\'s business name.'),
         Field::media('logo')->label('Logo')->help('A version that reads on a dark background. Shown instead of the square mark. Left empty, it shows the site\'s logo on dark.'),
@@ -115,7 +126,7 @@ return [
     Block::make('kit-hero', 'Hero')->fields([
         Field::select('variant')->label('Layout')->options(['default', 'centred', 'text'])->default('default')->help('default: Split: the image beside the text. centred: Centred: the image below the text. text: Text only: no image, the heading runs wider.'),
         Field::text('eyebrow')->label('Label above the heading')->maxLength(60),
-        Field::select('eyebrow_icon')->label('Icon before the label')->options(['', 'bag', 'bolt', 'box', 'calendar', 'chat', 'check', 'clock', 'droplet', 'flame', 'hammer', 'home', 'image', 'key', 'leaf', 'map-pin', 'minus', 'phone', 'plus', 'returns', 'shield', 'siren', 'sparkles', 'star', 'truck', 'wrench', 'x'])->help('Decoration beside the label; shown only with a label.'),
+        Field::select('eyebrow_icon')->label('Icon before the label')->options(['', 'app-window', 'bag', 'blocks', 'bolt', 'book-open', 'box', 'calendar', 'calendar-check', 'chart-column', 'chat', 'check', 'clock', 'code', 'code-xml', 'droplet', 'file-chart-column', 'file-pen-line', 'file-search', 'flame', 'flask-conical', 'gauge', 'hammer', 'home', 'image', 'inbox', 'key', 'layout-dashboard', 'layout-template', 'leaf', 'life-buoy', 'map-pin', 'minus', 'palette', 'phone', 'plug', 'plus', 'puzzle', 'refresh-cw', 'returns', 'search-check', 'shield', 'shield-check', 'siren', 'sparkles', 'star', 'truck', 'user-plus', 'wrench', 'x'])->help('Decoration beside the label; shown only with a label.'),
         Field::textarea('title')->label('Heading')->required()->maxLength(120)->help('*Words in stars* are set in italics.'),
         Field::select('title_size')->label('Heading size')->options(['normal', 'large'])->default('normal'),
         Field::textarea('lede')->label('Supporting line')->maxLength(240),
@@ -126,7 +137,7 @@ return [
         ]),
         Field::select('secondary_style')->label('Second button as')->options(['button', 'link'])->default('button')->help('A text link with an arrow, instead of a second button, if you want one clear action.'),
         Field::textarea('proof')->label('Proof line')->maxLength(80)->help('A review score or a fact. **Stars** make it bold. Left empty, it shows the site\'s review summary.'),
-        Field::select('proof_icon')->label('Proof line icon')->options(['', 'bag', 'bolt', 'box', 'calendar', 'chat', 'check', 'clock', 'droplet', 'flame', 'hammer', 'home', 'image', 'key', 'leaf', 'map-pin', 'minus', 'phone', 'plus', 'returns', 'shield', 'siren', 'sparkles', 'star', 'truck', 'wrench', 'x'])->default('star')->help('Decoration before the proof line. A star by default.'),
+        Field::select('proof_icon')->label('Proof line icon')->options(['', 'app-window', 'bag', 'blocks', 'bolt', 'book-open', 'box', 'calendar', 'calendar-check', 'chart-column', 'chat', 'check', 'clock', 'code', 'code-xml', 'droplet', 'file-chart-column', 'file-pen-line', 'file-search', 'flame', 'flask-conical', 'gauge', 'hammer', 'home', 'image', 'inbox', 'key', 'layout-dashboard', 'layout-template', 'leaf', 'life-buoy', 'map-pin', 'minus', 'palette', 'phone', 'plug', 'plus', 'puzzle', 'refresh-cw', 'returns', 'search-check', 'shield', 'shield-check', 'siren', 'sparkles', 'star', 'truck', 'user-plus', 'wrench', 'x'])->default('star')->help('Decoration before the proof line. A star by default.'),
         Field::media('image')->label('Image')->requireAlt()->preset('hero')->help('Not shown in the text-only layout.'),
         Field::text('caption')->label('Image caption')->maxLength(160)->help('A short line under the image, like where or when it was taken.'),
         Field::select('heading_level')->label('Heading level')->options(['1', '2', '3', '4'])->default('1')->help('1 on a page\'s first section.'),
@@ -279,7 +290,7 @@ return [
         Field::url('form_action')->label('Basket address')->help('Where the form posts: the shop\'s add-to-basket address.'),
         Field::text('product_id')->label('Product id')->maxLength(40)->help('Sent with the form as "product".'),
         Field::repeater('perks')->label('Notes under the button')->max(3)->rowLabel('text')->fields([
-            Field::select('icon')->label('Icon')->options(['', 'bag', 'bolt', 'box', 'calendar', 'chat', 'check', 'clock', 'droplet', 'flame', 'hammer', 'home', 'image', 'key', 'leaf', 'map-pin', 'minus', 'phone', 'plus', 'returns', 'shield', 'siren', 'sparkles', 'star', 'truck', 'wrench', 'x']),
+            Field::select('icon')->label('Icon')->options(['', 'app-window', 'bag', 'blocks', 'bolt', 'book-open', 'box', 'calendar', 'calendar-check', 'chart-column', 'chat', 'check', 'clock', 'code', 'code-xml', 'droplet', 'file-chart-column', 'file-pen-line', 'file-search', 'flame', 'flask-conical', 'gauge', 'hammer', 'home', 'image', 'inbox', 'key', 'layout-dashboard', 'layout-template', 'leaf', 'life-buoy', 'map-pin', 'minus', 'palette', 'phone', 'plug', 'plus', 'puzzle', 'refresh-cw', 'returns', 'search-check', 'shield', 'shield-check', 'siren', 'sparkles', 'star', 'truck', 'user-plus', 'wrench', 'x']),
             Field::text('text')->label('Text')->required()->maxLength(60),
         ]),
         Field::repeater('details')->label('Details')->max(6)->rowLabel('title')->help('Folded sections: details and care, delivery and returns.')->fields([
@@ -371,7 +382,7 @@ return [
         Field::boolean('rule')->label('Rule under the heading')->help('A heavy line between the heading row and the grid.'),
         Field::select('columns')->label('Columns')->options(['1', '2', '3', '4'])->default('3')->help('The most in a row; fewer fit on a narrow screen. One makes a single column.'),
         Field::repeater('services')->label('Services')->max(12)->rowLabel('number')->fields([
-            Field::select('icon')->label('Icon')->options(['', 'bag', 'bolt', 'box', 'calendar', 'chat', 'check', 'clock', 'droplet', 'flame', 'hammer', 'home', 'image', 'key', 'leaf', 'map-pin', 'minus', 'phone', 'plus', 'returns', 'shield', 'siren', 'sparkles', 'star', 'truck', 'wrench', 'x']),
+            Field::select('icon')->label('Icon')->options(['', 'app-window', 'bag', 'blocks', 'bolt', 'book-open', 'box', 'calendar', 'calendar-check', 'chart-column', 'chat', 'check', 'clock', 'code', 'code-xml', 'droplet', 'file-chart-column', 'file-pen-line', 'file-search', 'flame', 'flask-conical', 'gauge', 'hammer', 'home', 'image', 'inbox', 'key', 'layout-dashboard', 'layout-template', 'leaf', 'life-buoy', 'map-pin', 'minus', 'palette', 'phone', 'plug', 'plus', 'puzzle', 'refresh-cw', 'returns', 'search-check', 'shield', 'shield-check', 'siren', 'sparkles', 'star', 'truck', 'user-plus', 'wrench', 'x']),
             Field::text('number')->label('Number label')->maxLength(60)->help('A small label above the name, like "01 — Laravel".'),
             Field::text('title')->label('Name')->required()->maxLength(100),
             Field::textarea('subtitle')->label('Second line of the name')->maxLength(120)->help('Shown under the name, as part of the heading. *Stars* for italics.'),
@@ -389,15 +400,20 @@ return [
         Field::textarea('body')->label('Text')->maxLength(1200)->help('A blank line starts a new paragraph. *Stars* for italics, **double stars** for bold.'),
         Field::repeater('points')->label('Ticked points')->max(6)->rowLabel('text')->fields([
             Field::text('text')->label('Point')->required()->maxLength(80),
+            Field::boolean('excluded')->label('Not included')->help('Shows a cross instead of the tick, and screen readers hear "Not included" first.'),
         ]),
         Field::text('link_label')->label('Link')->maxLength(40),
         Field::url('link_url')->label('Link address'),
-        Field::select('media')->label('Beside the text')->options(['image', 'questions'])->default('image'),
+        Field::select('media')->label('Beside the text')->options(['image', 'questions', 'card'])->default('image'),
         Field::media('image')->label('Image')->requireAlt()->preset('half')->help('When an image is beside the text.'),
+        Field::text('caption')->label('Image caption')->maxLength(160)->help('A short line under the image, like where or when it was taken.'),
         Field::repeater('questions')->label('Questions')->max(12)->rowLabel('question')->help('When questions are beside the text. The first starts open.')->fields([
             Field::text('question')->label('Question')->required()->maxLength(120),
             Field::textarea('answer')->label('Answer')->required()->maxLength(800),
         ]),
+        Field::text('card_label')->label('Card label')->maxLength(80)->help('When a card is beside the text. A short label at the top of the card, like "Time to first byte".'),
+        Field::textarea('card_title')->label('Card text, large')->maxLength(160)->help('The card\'s main words, in the display face. A new line starts a new line; *stars* for italics.'),
+        Field::text('card_text')->label('Card note')->maxLength(200)->help('Optional. A smaller line under it.'),
         Field::boolean('numbered')->label('Number the questions')->help('Shows 01, 02… before each question. Decoration: screen readers hear the question alone.'),
         Field::boolean('swap')->label('Swap the sides')->help('An image starts on the left and questions on the right.'),
         Field::select('panel')->label('Text panel')->options(['none', 'accent', 'surface'])->default('none')->help('Puts the text on a filled panel, edge to edge with the image: accent is the brand colour, surface a lifted card. None leaves the text on the page.'),
@@ -421,6 +437,7 @@ return [
         Field::textarea('body')->label('Text')->maxLength(1200)->help('A blank line starts a new paragraph. *Stars* for italics, **double stars** for bold.'),
         Field::repeater('points')->label('Ticked points')->rowLabel('text')->help('As many as the section needs.')->fields([
             Field::text('text')->label('Point')->required()->maxLength(80),
+            Field::boolean('excluded')->label('Not included')->help('Shows a cross instead of the tick, and screen readers hear "Not included" first.'),
         ]),
         Field::text('link_label')->label('Link')->maxLength(40),
         Field::url('link_url')->label('Link address'),

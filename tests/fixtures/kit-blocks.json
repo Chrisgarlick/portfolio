@@ -125,6 +125,67 @@
     "html": "\u003csection class=\"kit-section-cta\"\u003e\n  \u003cdiv class=\"kit-container\"\u003e\n    \u003cdiv class=\"kit-cta-band\"\u003e\n      \u003cdiv class=\"kit-cta-text\"\u003e\n        \u003cp class=\"kit-cta-eyebrow\"\u003eNext step\u003c/p\u003e\n        \u003ch2 class=\"kit-cta-title\"\u003eReady when you are\u003c/h2\u003e\n                \u003cp class=\"kit-cta-lede\"\u003eTell us what you need and we\u0026#039;ll reply the same day.\u003c/p\u003e\n              \u003c/div\u003e\n            \u003cdiv class=\"kit-cta-actions\"\u003e\n                \u003ca class=\"kit-button\" data-size=\"lg\" href=\"/contact\"\u003eGet a free quote\u003c/a\u003e\n                        \u003ca class=\"kit-cta-phone\" href=\"tel:01234567890\"\u003e\u003csvg aria-hidden=\"true\" viewBox=\"0 0 24 24\" width=\"18\" height=\"18\"\u003e\u003cpath d=\"M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 1.9.7 2.8a2 2 0 0 1-.5 2.1L8 9.9a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.8.7a2 2 0 0 1 1.7 2z\"/\u003e\u003c/svg\u003e\u003cspan\u003e01234 567890\u003c/span\u003e\u003c/a\u003e\n              \u003c/div\u003e\n          \u003c/div\u003e\n  \u003c/div\u003e\n\u003c/section\u003e\n"
   },
   {
+    "section": "cta",
+    "title": "With a text link beside the button",
+    "data": {
+      "action_label": "Get a free quote",
+      "action_url": "/contact",
+      "eyebrow": "Next step",
+      "lede": "Tell us what you need and we'll reply the same day.",
+      "phone": "01234 567890",
+      "secondary_label": "See how it works",
+      "secondary_url": "/how-it-works",
+      "title": "Ready when you are"
+    },
+    "html": "\u003csection class=\"kit-section-cta\"\u003e\n  \u003cdiv class=\"kit-container\"\u003e\n    \u003cdiv class=\"kit-cta-band\"\u003e\n      \u003cdiv class=\"kit-cta-text\"\u003e\n        \u003cp class=\"kit-cta-eyebrow\"\u003eNext step\u003c/p\u003e\n        \u003ch2 class=\"kit-cta-title\"\u003eReady when you are\u003c/h2\u003e\n                \u003cp class=\"kit-cta-lede\"\u003eTell us what you need and we\u0026#039;ll reply the same day.\u003c/p\u003e\n              \u003c/div\u003e\n            \u003cdiv class=\"kit-cta-actions\"\u003e\n                \u003ca class=\"kit-button\" data-size=\"lg\" href=\"/contact\"\u003eGet a free quote\u003c/a\u003e\n                \u003ca class=\"kit-link kit-cta-secondary\" data-variant=\"arrow\" href=\"/how-it-works\"\u003eSee how it works\u003c/a\u003e\n                \u003ca class=\"kit-cta-phone\" href=\"tel:01234567890\"\u003e\u003csvg aria-hidden=\"true\" viewBox=\"0 0 24 24\" width=\"18\" height=\"18\"\u003e\u003cpath d=\"M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 1.9.7 2.8a2 2 0 0 1-.5 2.1L8 9.9a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.8.7a2 2 0 0 1 1.7 2z\"/\u003e\u003c/svg\u003e\u003cspan\u003e01234 567890\u003c/span\u003e\u003c/a\u003e\n              \u003c/div\u003e\n          \u003c/div\u003e\n  \u003c/div\u003e\n\u003c/section\u003e\n"
+  },
+  {
+    "section": "cta",
+    "title": "Phone: with a text link",
+    "data": {
+      "action_label": "Get a free quote",
+      "action_url": "/contact",
+      "lede": "Tell us what you need and we'll reply the same day.",
+      "secondary_label": "See how it works",
+      "secondary_url": "/how-it-works",
+      "title": "Ready when you are"
+    },
+    "html": "\u003csection class=\"kit-section-cta\"\u003e\n  \u003cdiv class=\"kit-container\"\u003e\n    \u003cdiv class=\"kit-cta-band\"\u003e\n      \u003cdiv class=\"kit-cta-text\"\u003e\n        \u003ch2 class=\"kit-cta-title\"\u003eReady when you are\u003c/h2\u003e\n                \u003cp class=\"kit-cta-lede\"\u003eTell us what you need and we\u0026#039;ll reply the same day.\u003c/p\u003e\n              \u003c/div\u003e\n            \u003cdiv class=\"kit-cta-actions\"\u003e\n                \u003ca class=\"kit-button\" data-size=\"lg\" href=\"/contact\"\u003eGet a free quote\u003c/a\u003e\n                \u003ca class=\"kit-link kit-cta-secondary\" data-variant=\"arrow\" href=\"/how-it-works\"\u003eSee how it works\u003c/a\u003e\n              \u003c/div\u003e\n          \u003c/div\u003e\n  \u003c/div\u003e\n\u003c/section\u003e\n"
+  },
+  {
+    "section": "figure",
+    "title": "A screenshot with captions and a proof card",
+    "data": {
+      "caption_left": "The booking flow on a phone and a laptop: one page, three steps.",
+      "caption_right": "Harrogate Physio · 2026",
+      "proof_label": "Lighthouse performance",
+      "proof_note": "On a mid-range phone, over 4G",
+      "proof_value": "100"
+    },
+    "html": "\u003csection class=\"kit-section-figure\" data-tone=\"plain\"\u003e\n  \u003cdiv class=\"kit-container\"\u003e\n    \u003cfigure class=\"kit-figure\"\u003e\n      \u003cdiv class=\"kit-figure-frame\"\u003e\n        \u003cdiv class=\"kit-figure-media\" data-empty\u003e\u003csvg class=\"kit-icon\" aria-hidden=\"true\" viewBox=\"0 0 24 24\" width=\"24\" height=\"24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.75\" stroke-linecap=\"round\" stroke-linejoin=\"round\"\u003e\u003crect x=\"3\" y=\"3\" width=\"18\" height=\"18\" rx=\"2\"/\u003e\u003ccircle cx=\"9\" cy=\"9\" r=\"2\"/\u003e\u003cpath d=\"m21 15-3.09-3.09a2 2 0 0 0-2.82 0L6 21\"/\u003e\u003c/svg\u003e\u003c/div\u003e\n        \u003cdiv class=\"kit-figure-proof\"\u003e\n          \u003cp class=\"kit-figure-proof-label\"\u003eLighthouse performance\u003c/p\u003e\n          \u003cp class=\"kit-figure-proof-value\"\u003e100\u003c/p\u003e\n          \u003cp class=\"kit-figure-proof-note\"\u003eOn a mid-range phone, over 4G\u003c/p\u003e\n        \u003c/div\u003e\n      \u003c/div\u003e\n      \u003cfigcaption class=\"kit-figure-caption\"\u003e\n        \u003cspan class=\"kit-figure-caption-left\"\u003eThe booking flow on a phone and a laptop: one page, three steps.\u003c/span\u003e\n        \u003cspan class=\"kit-figure-caption-right\"\u003eHarrogate Physio · 2026\u003c/span\u003e\n      \u003c/figcaption\u003e\n    \u003c/figure\u003e\n  \u003c/div\u003e\n\u003c/section\u003e\n"
+  },
+  {
+    "section": "figure",
+    "title": "Phone: the card under the image",
+    "data": {
+      "caption_left": "The booking flow: one page, three steps.",
+      "caption_right": "2026",
+      "proof_label": "Lighthouse performance",
+      "proof_note": "On a mid-range phone, over 4G",
+      "proof_value": "100"
+    },
+    "html": "\u003csection class=\"kit-section-figure\" data-tone=\"plain\"\u003e\n  \u003cdiv class=\"kit-container\"\u003e\n    \u003cfigure class=\"kit-figure\"\u003e\n      \u003cdiv class=\"kit-figure-frame\"\u003e\n        \u003cdiv class=\"kit-figure-media\" data-empty\u003e\u003csvg class=\"kit-icon\" aria-hidden=\"true\" viewBox=\"0 0 24 24\" width=\"24\" height=\"24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.75\" stroke-linecap=\"round\" stroke-linejoin=\"round\"\u003e\u003crect x=\"3\" y=\"3\" width=\"18\" height=\"18\" rx=\"2\"/\u003e\u003ccircle cx=\"9\" cy=\"9\" r=\"2\"/\u003e\u003cpath d=\"m21 15-3.09-3.09a2 2 0 0 0-2.82 0L6 21\"/\u003e\u003c/svg\u003e\u003c/div\u003e\n        \u003cdiv class=\"kit-figure-proof\"\u003e\n          \u003cp class=\"kit-figure-proof-label\"\u003eLighthouse performance\u003c/p\u003e\n          \u003cp class=\"kit-figure-proof-value\"\u003e100\u003c/p\u003e\n          \u003cp class=\"kit-figure-proof-note\"\u003eOn a mid-range phone, over 4G\u003c/p\u003e\n        \u003c/div\u003e\n      \u003c/div\u003e\n      \u003cfigcaption class=\"kit-figure-caption\"\u003e\n        \u003cspan class=\"kit-figure-caption-left\"\u003eThe booking flow: one page, three steps.\u003c/span\u003e\n        \u003cspan class=\"kit-figure-caption-right\"\u003e2026\u003c/span\u003e\n      \u003c/figcaption\u003e\n    \u003c/figure\u003e\n  \u003c/div\u003e\n\u003c/section\u003e\n"
+  },
+  {
+    "section": "figure",
+    "title": "Dark, a caption only",
+    "data": {
+      "caption_left": "The admin: every page, its blocks and their fields.",
+      "tone": "dark"
+    },
+    "html": "\u003csection class=\"kit-section-figure\" data-tone=\"dark\"\u003e\n  \u003cdiv class=\"kit-container\"\u003e\n    \u003cfigure class=\"kit-figure\"\u003e\n      \u003cdiv class=\"kit-figure-frame\"\u003e\n        \u003cdiv class=\"kit-figure-media\" data-empty\u003e\u003csvg class=\"kit-icon\" aria-hidden=\"true\" viewBox=\"0 0 24 24\" width=\"24\" height=\"24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.75\" stroke-linecap=\"round\" stroke-linejoin=\"round\"\u003e\u003crect x=\"3\" y=\"3\" width=\"18\" height=\"18\" rx=\"2\"/\u003e\u003ccircle cx=\"9\" cy=\"9\" r=\"2\"/\u003e\u003cpath d=\"m21 15-3.09-3.09a2 2 0 0 0-2.82 0L6 21\"/\u003e\u003c/svg\u003e\u003c/div\u003e\n      \u003c/div\u003e\n      \u003cfigcaption class=\"kit-figure-caption\"\u003e\n        \u003cspan class=\"kit-figure-caption-left\"\u003eThe admin: every page, its blocks and their fields.\u003c/span\u003e\n      \u003c/figcaption\u003e\n    \u003c/figure\u003e\n  \u003c/div\u003e\n\u003c/section\u003e\n"
+  },
+  {
     "section": "footer",
     "title": "Desktop",
     "data": {
@@ -824,6 +885,35 @@
       "secondary_url": "/book"
     },
     "html": "\u003cheader class=\"kit-section-header\"\u003e\n  \u003cdiv class=\"kit-container kit-header-bar\"\u003e\n    \u003ca class=\"kit-header-brand\" href=\"/\"\u003e\n            \u003cspan class=\"kit-header-mark\" aria-hidden=\"true\"\u003e\u003c/span\u003e\n            \u003cspan class=\"kit-header-name\"\u003eYour brand\u003c/span\u003e\n    \u003c/a\u003e\n        \u003cnav class=\"kit-header-nav\" aria-label=\"Main\"\u003e\n      \u003cul role=\"list\"\u003e\n                \u003cli\u003e\u003ca href=\"/services\"\u003eServices\u003c/a\u003e\u003c/li\u003e\n                \u003cli\u003e\u003ca href=\"/about\"\u003eAbout\u003c/a\u003e\u003c/li\u003e\n                \u003cli\u003e\u003ca href=\"/contact\"\u003eContact\u003c/a\u003e\u003c/li\u003e\n              \u003c/ul\u003e\n    \u003c/nav\u003e\n        \u003cdiv class=\"kit-header-end\"\u003e\n            \u003ca class=\"kit-header-phone\" href=\"tel:01234567890\"\u003e\u003csvg aria-hidden=\"true\" viewBox=\"0 0 24 24\" width=\"18\" height=\"18\"\u003e\u003cpath d=\"M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 1.9.7 2.8a2 2 0 0 1-.5 2.1L8 9.9a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.8.7a2 2 0 0 1 1.7 2z\"/\u003e\u003c/svg\u003e\u003cspan\u003e01234 567890\u003c/span\u003e\u003c/a\u003e\n            \u003ca class=\"kit-header-secondary\" href=\"/book\"\u003eBook a call\u003c/a\u003e\n            \u003ca class=\"kit-button kit-header-action\" data-variant=\"primary\" href=\"/contact\"\u003eBook now\u003c/a\u003e\n                  \u003cdetails class=\"kit-header-menu\"\u003e\n        \u003csummary class=\"kit-button\" data-variant=\"ghost\"\u003e\u003csvg aria-hidden=\"true\" viewBox=\"0 0 24 24\" width=\"20\" height=\"20\"\u003e\u003cpath d=\"M4 7h16M4 12h16M4 17h16\"/\u003e\u003c/svg\u003e\u003cspan\u003eMenu\u003c/span\u003e\u003c/summary\u003e\n        \u003cnav class=\"kit-header-sheet\" aria-label=\"Menu\"\u003e\n          \u003cul role=\"list\"\u003e\n                        \u003cli\u003e\u003ca href=\"/services\"\u003eServices\u003c/a\u003e\u003c/li\u003e\n                        \u003cli\u003e\u003ca href=\"/about\"\u003eAbout\u003c/a\u003e\u003c/li\u003e\n                        \u003cli\u003e\u003ca href=\"/contact\"\u003eContact\u003c/a\u003e\u003c/li\u003e\n                      \u003c/ul\u003e\n          \u003ca class=\"kit-header-secondary\" href=\"/book\"\u003eBook a call\u003c/a\u003e\n                    \u003ca class=\"kit-button\" data-variant=\"primary\" href=\"/contact\"\u003eBook now\u003c/a\u003e\n                  \u003c/nav\u003e\n      \u003c/details\u003e\n          \u003c/div\u003e\n  \u003c/div\u003e\n\u003c/header\u003e\n"
+  },
+  {
+    "section": "header",
+    "title": "On a service's page: its section marked",
+    "data": {
+      "action_label": "Book now",
+      "action_url": "/contact",
+      "brand_name": "Your brand",
+      "links": [
+        {
+          "label": "Services",
+          "section": true,
+          "url": "/services"
+        },
+        {
+          "label": "Work",
+          "url": "/work"
+        },
+        {
+          "label": "About",
+          "url": "/about"
+        },
+        {
+          "label": "Contact",
+          "url": "/contact"
+        }
+      ]
+    },
+    "html": "\u003cheader class=\"kit-section-header\"\u003e\n  \u003cdiv class=\"kit-container kit-header-bar\"\u003e\n    \u003ca class=\"kit-header-brand\" href=\"/\"\u003e\n            \u003cspan class=\"kit-header-mark\" aria-hidden=\"true\"\u003e\u003c/span\u003e\n            \u003cspan class=\"kit-header-name\"\u003eYour brand\u003c/span\u003e\n    \u003c/a\u003e\n        \u003cnav class=\"kit-header-nav\" aria-label=\"Main\"\u003e\n      \u003cul role=\"list\"\u003e\n                \u003cli\u003e\u003ca href=\"/services\" aria-current=\"true\"\u003eServices\u003c/a\u003e\u003c/li\u003e\n                \u003cli\u003e\u003ca href=\"/work\"\u003eWork\u003c/a\u003e\u003c/li\u003e\n                \u003cli\u003e\u003ca href=\"/about\"\u003eAbout\u003c/a\u003e\u003c/li\u003e\n                \u003cli\u003e\u003ca href=\"/contact\"\u003eContact\u003c/a\u003e\u003c/li\u003e\n              \u003c/ul\u003e\n    \u003c/nav\u003e\n        \u003cdiv class=\"kit-header-end\"\u003e\n                  \u003ca class=\"kit-button kit-header-action\" data-variant=\"primary\" href=\"/contact\"\u003eBook now\u003c/a\u003e\n                  \u003cdetails class=\"kit-header-menu\"\u003e\n        \u003csummary class=\"kit-button\" data-variant=\"ghost\"\u003e\u003csvg aria-hidden=\"true\" viewBox=\"0 0 24 24\" width=\"20\" height=\"20\"\u003e\u003cpath d=\"M4 7h16M4 12h16M4 17h16\"/\u003e\u003c/svg\u003e\u003cspan\u003eMenu\u003c/span\u003e\u003c/summary\u003e\n        \u003cnav class=\"kit-header-sheet\" aria-label=\"Menu\"\u003e\n          \u003cul role=\"list\"\u003e\n                        \u003cli\u003e\u003ca href=\"/services\" aria-current=\"true\"\u003eServices\u003c/a\u003e\u003c/li\u003e\n                        \u003cli\u003e\u003ca href=\"/work\"\u003eWork\u003c/a\u003e\u003c/li\u003e\n                        \u003cli\u003e\u003ca href=\"/about\"\u003eAbout\u003c/a\u003e\u003c/li\u003e\n                        \u003cli\u003e\u003ca href=\"/contact\"\u003eContact\u003c/a\u003e\u003c/li\u003e\n                      \u003c/ul\u003e\n                    \u003ca class=\"kit-button\" data-variant=\"primary\" href=\"/contact\"\u003eBook now\u003c/a\u003e\n                  \u003c/nav\u003e\n      \u003c/details\u003e\n          \u003c/div\u003e\n  \u003c/div\u003e\n\u003c/header\u003e\n"
   },
   {
     "section": "hero",
@@ -2551,6 +2641,66 @@
     "html": "\u003csection class=\"kit-section-split\" data-background=\"plain\" data-media=\"questions\" data-panel=\"surface\"\u003e\n  \u003cdiv class=\"kit-container kit-split-inner\"\u003e\n    \u003cdiv class=\"kit-text-block kit-split-text\"\u003e\n            \u003cp class=\"kit-text-block-eyebrow\"\u003eQuestions\u003c/p\u003e\n            \u003ch2 class=\"kit-text-block-title\"\u003eBefore you \u003cem\u003eask\u003c/em\u003e\u003c/h2\u003e\n            \u003cdiv class=\"kit-text-block-body\"\u003e\u003cp\u003eThe answers to what most people want to know first.\u003c/p\u003e\u003c/div\u003e\n                      \u003c/div\u003e\n        \u003cdiv class=\"kit-split-questions\"\u003e\n            \u003cdetails class=\"kit-accordion\" open\u003e\n        \u003csummary\u003eHow long does a rebuild take?\u003c/summary\u003e\n        \u003cdiv class=\"kit-accordion-body\"\u003e\u003cp\u003eFour to eight weeks, most of it waiting on content.\u003c/p\u003e\u003c/div\u003e\n      \u003c/details\u003e\n            \u003cdetails class=\"kit-accordion\"\u003e\n        \u003csummary\u003eDo you work with agencies?\u003c/summary\u003e\n        \u003cdiv class=\"kit-accordion-body\"\u003e\u003cp\u003eYes, as a named developer on your team.\u003c/p\u003e\u003c/div\u003e\n      \u003c/details\u003e\n          \u003c/div\u003e\n      \u003c/div\u003e\n\u003c/section\u003e\n"
   },
   {
+    "section": "split",
+    "title": "A note card beside the text",
+    "data": {
+      "body": "Pages are built once and served as files, so a visit costs the server almost nothing.",
+      "card_label": "Time to first byte · cg-cms, live 1GB server",
+      "card_text": "Measured with wrk against the live server, November 2026.",
+      "card_title": "0.4 ms a page\n6,300 a second",
+      "eyebrow": "Speed",
+      "media": "card",
+      "points": [
+        {
+          "text": "Cached pages, purged when you save"
+        },
+        {
+          "excluded": true,
+          "text": "No page builder"
+        }
+      ],
+      "title": "Fast because it does *less*"
+    },
+    "html": "\u003csection class=\"kit-section-split\" data-background=\"plain\" data-media=\"card\"\u003e\n  \u003cdiv class=\"kit-container kit-split-inner\"\u003e\n    \u003cdiv class=\"kit-text-block kit-split-text\"\u003e\n            \u003cp class=\"kit-text-block-eyebrow\"\u003eSpeed\u003c/p\u003e\n            \u003ch2 class=\"kit-text-block-title\"\u003eFast because it does \u003cem\u003eless\u003c/em\u003e\u003c/h2\u003e\n            \u003cdiv class=\"kit-text-block-body\"\u003e\u003cp\u003ePages are built once and served as files, so a visit costs the server almost nothing.\u003c/p\u003e\u003c/div\u003e\n                  \u003cul class=\"kit-text-block-points\" role=\"list\"\u003e\n                \u003cli\u003eCached pages, purged when you save\u003c/li\u003e\n                \u003cli data-excluded\u003e\u003cspan class=\"kit-vh\"\u003eNot included: \u003c/span\u003eNo page builder\u003c/li\u003e\n              \u003c/ul\u003e\n                \u003c/div\u003e\n        \u003cdiv class=\"kit-split-card\"\u003e\n      \u003cp class=\"kit-split-card-label\"\u003eTime to first byte · cg-cms, live 1GB server\u003c/p\u003e\n      \u003cp class=\"kit-split-card-title\"\u003e0.4 ms a page\u003cbr\u003e\n6,300 a second\u003c/p\u003e\n      \u003cp class=\"kit-split-card-text\"\u003eMeasured with wrk against the live server, November 2026.\u003c/p\u003e\n    \u003c/div\u003e\n      \u003c/div\u003e\n\u003c/section\u003e\n"
+  },
+  {
+    "section": "split",
+    "title": "Phone: the card under the text",
+    "data": {
+      "body": "Pages are built once and served as files.",
+      "card_label": "Time to first byte",
+      "card_title": "0.4 ms a page\n6,300 a second",
+      "eyebrow": "Speed",
+      "media": "card",
+      "title": "Fast because it does *less*"
+    },
+    "html": "\u003csection class=\"kit-section-split\" data-background=\"plain\" data-media=\"card\"\u003e\n  \u003cdiv class=\"kit-container kit-split-inner\"\u003e\n    \u003cdiv class=\"kit-text-block kit-split-text\"\u003e\n            \u003cp class=\"kit-text-block-eyebrow\"\u003eSpeed\u003c/p\u003e\n            \u003ch2 class=\"kit-text-block-title\"\u003eFast because it does \u003cem\u003eless\u003c/em\u003e\u003c/h2\u003e\n            \u003cdiv class=\"kit-text-block-body\"\u003e\u003cp\u003ePages are built once and served as files.\u003c/p\u003e\u003c/div\u003e\n                      \u003c/div\u003e\n        \u003cdiv class=\"kit-split-card\"\u003e\n      \u003cp class=\"kit-split-card-label\"\u003eTime to first byte\u003c/p\u003e\n      \u003cp class=\"kit-split-card-title\"\u003e0.4 ms a page\u003cbr\u003e\n6,300 a second\u003c/p\u003e\n    \u003c/div\u003e\n      \u003c/div\u003e\n\u003c/section\u003e\n"
+  },
+  {
+    "section": "split",
+    "title": "An image with a caption, swapped",
+    "data": {
+      "body": "Two of us, working from a converted mill on the canal.",
+      "caption": "The studio, Saltaire, spring 2026",
+      "eyebrow": "About",
+      "swap": true,
+      "title": "A small studio in *Leeds*"
+    },
+    "html": "\u003csection class=\"kit-section-split\" data-background=\"plain\" data-media=\"image\" data-swap\u003e\n  \u003cdiv class=\"kit-container kit-split-inner\"\u003e\n    \u003cdiv class=\"kit-text-block kit-split-text\"\u003e\n            \u003cp class=\"kit-text-block-eyebrow\"\u003eAbout\u003c/p\u003e\n            \u003ch2 class=\"kit-text-block-title\"\u003eA small studio in \u003cem\u003eLeeds\u003c/em\u003e\u003c/h2\u003e\n            \u003cdiv class=\"kit-text-block-body\"\u003e\u003cp\u003eTwo of us, working from a converted mill on the canal.\u003c/p\u003e\u003c/div\u003e\n                      \u003c/div\u003e\n        \u003cfigure class=\"kit-split-figure\"\u003e\n      \u003cdiv class=\"kit-split-media\" data-empty\u003e\u003csvg aria-hidden=\"true\" viewBox=\"0 0 24 24\" width=\"36\" height=\"36\"\u003e\u003crect x=\"3\" y=\"3\" width=\"18\" height=\"18\" rx=\"2\"/\u003e\u003ccircle cx=\"9\" cy=\"9\" r=\"2\"/\u003e\u003cpath d=\"m21 15-3.1-3.1a2 2 0 0 0-2.8 0L6 21\"/\u003e\u003c/svg\u003e\u003c/div\u003e\n      \u003cfigcaption class=\"kit-split-caption\"\u003eThe studio, Saltaire, spring 2026\u003c/figcaption\u003e\n    \u003c/figure\u003e\n      \u003c/div\u003e\n\u003c/section\u003e\n"
+  },
+  {
+    "section": "split",
+    "title": "Accent panel, an image with a caption",
+    "data": {
+      "body": "Two of us, working from a converted mill on the canal.",
+      "caption": "The studio, Saltaire, spring 2026",
+      "eyebrow": "About",
+      "panel": "accent",
+      "title": "A small studio in *Leeds*"
+    },
+    "html": "\u003csection class=\"kit-section-split\" data-background=\"plain\" data-media=\"image\" data-panel=\"accent\"\u003e\n  \u003cdiv class=\"kit-container kit-split-inner\"\u003e\n    \u003cdiv class=\"kit-text-block kit-split-text\"\u003e\n            \u003cp class=\"kit-text-block-eyebrow\"\u003eAbout\u003c/p\u003e\n            \u003ch2 class=\"kit-text-block-title\"\u003eA small studio in \u003cem\u003eLeeds\u003c/em\u003e\u003c/h2\u003e\n            \u003cdiv class=\"kit-text-block-body\"\u003e\u003cp\u003eTwo of us, working from a converted mill on the canal.\u003c/p\u003e\u003c/div\u003e\n                      \u003c/div\u003e\n        \u003cfigure class=\"kit-split-figure\"\u003e\n      \u003cdiv class=\"kit-split-media\" data-empty\u003e\u003csvg aria-hidden=\"true\" viewBox=\"0 0 24 24\" width=\"36\" height=\"36\"\u003e\u003crect x=\"3\" y=\"3\" width=\"18\" height=\"18\" rx=\"2\"/\u003e\u003ccircle cx=\"9\" cy=\"9\" r=\"2\"/\u003e\u003cpath d=\"m21 15-3.1-3.1a2 2 0 0 0-2.8 0L6 21\"/\u003e\u003c/svg\u003e\u003c/div\u003e\n      \u003cfigcaption class=\"kit-split-caption\"\u003eThe studio, Saltaire, spring 2026\u003c/figcaption\u003e\n    \u003c/figure\u003e\n      \u003c/div\u003e\n\u003c/section\u003e\n"
+  },
+  {
     "section": "stats",
     "title": "On the dark band",
     "data": {
@@ -2748,6 +2898,38 @@
       "variant": "default"
     },
     "html": "\u003csection class=\"kit-section-text-block\" data-background=\"plain\" data-title-size=\"large\"\u003e\n  \u003cdiv class=\"kit-container\"\u003e\n    \u003cdiv class=\"kit-text-block\"\u003e\n            \u003ch2 class=\"kit-text-block-title\"\u003eREAD THIS \u003cem\u003efirst\u003c/em\u003e\u003c/h2\u003e\n            \u003cdiv class=\"kit-text-block-body\"\u003e\u003cp\u003eWhat happens from the first message to the site going live.\u003c/p\u003e\u003c/div\u003e\n                  \u003cul class=\"kit-text-block-points\" role=\"list\"\u003e\n                \u003cli\u003eA written scope before any code\u003c/li\u003e\n                \u003cli\u003eA fixed price, in stages\u003c/li\u003e\n              \u003c/ul\u003e\n                \u003c/div\u003e\n  \u003c/div\u003e\n\u003c/section\u003e\n"
+  },
+  {
+    "section": "text-block",
+    "title": "Points, some not included",
+    "data": {
+      "body": "Updates, backups and a fix within a day. New features are quoted separately.",
+      "eyebrow": "The care plan",
+      "link_label": "See the care plan",
+      "link_url": "/care",
+      "points": [
+        {
+          "text": "Security and plugin updates every week"
+        },
+        {
+          "text": "Daily backups, kept for 30 days"
+        },
+        {
+          "text": "Fixes within one working day"
+        },
+        {
+          "excluded": true,
+          "text": "New pages and features"
+        },
+        {
+          "excluded": true,
+          "text": "Content writing"
+        }
+      ],
+      "title": "What's in it, *and what isn't*",
+      "variant": "default"
+    },
+    "html": "\u003csection class=\"kit-section-text-block\" data-background=\"plain\"\u003e\n  \u003cdiv class=\"kit-container\"\u003e\n    \u003cdiv class=\"kit-text-block\"\u003e\n            \u003cp class=\"kit-text-block-eyebrow\"\u003eThe care plan\u003c/p\u003e\n            \u003ch2 class=\"kit-text-block-title\"\u003eWhat\u0026#039;s in it, \u003cem\u003eand what isn\u0026#039;t\u003c/em\u003e\u003c/h2\u003e\n            \u003cdiv class=\"kit-text-block-body\"\u003e\u003cp\u003eUpdates, backups and a fix within a day. New features are quoted separately.\u003c/p\u003e\u003c/div\u003e\n                  \u003cul class=\"kit-text-block-points\" role=\"list\"\u003e\n                \u003cli\u003eSecurity and plugin updates every week\u003c/li\u003e\n                \u003cli\u003eDaily backups, kept for 30 days\u003c/li\u003e\n                \u003cli\u003eFixes within one working day\u003c/li\u003e\n                \u003cli data-excluded\u003e\u003cspan class=\"kit-vh\"\u003eNot included: \u003c/span\u003eNew pages and features\u003c/li\u003e\n                \u003cli data-excluded\u003e\u003cspan class=\"kit-vh\"\u003eNot included: \u003c/span\u003eContent writing\u003c/li\u003e\n              \u003c/ul\u003e\n                  \u003cp class=\"kit-text-block-actions\"\u003e\u003ca class=\"kit-link\" data-variant=\"arrow\" href=\"/care\"\u003eSee the care plan\u003c/a\u003e\u003c/p\u003e\n          \u003c/div\u003e\n  \u003c/div\u003e\n\u003c/section\u003e\n"
   },
   {
     "section": "trust-strip",
