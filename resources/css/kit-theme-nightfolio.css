@@ -312,6 +312,16 @@ body.kit-page::before {
 .kit-section-footer .kit-footer-wordmark {
   color: var(--nf-wordmark);
 }
+/* The name spans the page's content box, margin to margin like everything
+   above it: the box is the container's (86rem plus the gutters, centred), and
+   the size comes from that box's width, so on a screen wider than the content
+   the name doesn't outgrow it on one side. */
+.kit-page .kit-section-footer .kit-footer-wordmark {
+  box-sizing: border-box;
+  max-inline-size: calc(86rem + 2 * clamp(16px, 2cqi, 32px));
+  margin-inline: auto;
+  font-size: calc(min(100cqi - 2 * clamp(16px, 2cqi, 32px), 86rem) / 8);
+}
 
 /* ---- Nightfolio layouts (the home page in Design, nf_home) ---- */
 
