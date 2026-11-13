@@ -10,8 +10,7 @@
         "links": [
           {
             "label": "Services",
-            "url": "/services",
-            "current": true
+            "url": "/services"
           },
           {
             "label": "Work",
@@ -62,6 +61,21 @@
       }
     },
     {
+      "type": "kit-figure",
+      "data": {
+        "image": {
+          "file": "media/cg-cms-admin-dashboard.png",
+          "alt": "The cg-cms admin dashboard: two alerts (a lead that was never emailed, one blocking SEO issue), published and draft counts, leads this week, page cache warmth and recent articles"
+        },
+        "caption_left": "Fig. 01 · cg-cms admin, my own CMS",
+        "caption_right": "Leads, SEO and cache in one place",
+        "proof_label": "Save → written to disk",
+        "proof_value": "0.4 ms",
+        "proof_note": "To serve a cached page, live 1GB server",
+        "tone": "plain"
+      }
+    },
+    {
       "type": "kit-services",
       "data": {
         "title": "WHAT I BUILD\nIN *Laravel*",
@@ -74,37 +88,43 @@
             "number": "01 · Web apps",
             "title": "Bespoke",
             "subtitle": "*web apps*",
-            "text": "Booking, quoting, client portals: the software your business runs on."
+            "text": "Booking, quoting, client portals: the software your business runs on.",
+            "icon": "app-window"
           },
           {
             "number": "02 · Admin",
             "title": "Admin panels,",
             "subtitle": "*no manual needed*",
-            "text": "Inertia and React admins your team can use without a manual."
+            "text": "Inertia and React admins your team can use without a manual.",
+            "icon": "layout-dashboard"
           },
           {
             "number": "03 · Integrations",
             "title": "APIs and",
             "subtitle": "*integrations*",
-            "text": "Xero, HubSpot, Microsoft 365, Google Workspace: connected and queued."
+            "text": "Xero, HubSpot, Microsoft 365, Google Workspace: connected and queued.",
+            "icon": "plug"
           },
           {
             "number": "04 · Rebuilds",
             "title": "Rebuilds,",
             "subtitle": "*old URLs kept*",
-            "text": "Slow or fragile sites rebuilt, with a redirect for every URL that changes."
+            "text": "Slow or fragile sites rebuilt, with a redirect for every URL that changes.",
+            "icon": "refresh-cw"
           },
           {
             "number": "05 · CMS",
             "title": "CMS builds",
             "subtitle": "*you can edit*",
-            "text": "Content you can edit yourself, on a site that stays fast."
+            "text": "Content you can edit yourself, on a site that stays fast.",
+            "icon": "file-pen-line"
           },
           {
             "number": "06 · Care",
             "title": "Upgrades",
             "subtitle": "*and care*",
-            "text": "Laravel and PHP upgrades, security patches, monitoring."
+            "text": "Laravel and PHP upgrades, security patches, monitoring.",
+            "icon": "shield-check"
           }
         ],
         "background": "tinted"
@@ -141,11 +161,12 @@
         "body": "In cg-cms, saving a page writes it to disk, so on the live 1GB server a cached page starts arriving in 0.4 ms and the server handles 6,300 requests a second, with no PHP involved. The write-up shows how I measured it.",
         "link_label": "Read the write-up",
         "link_url": "/article/caching-pages-to-disk-laravel",
-        "media": "image",
-        "image": null,
+        "media": "card",
         "background": "plain",
-        "swap": true,
-        "panel": "accent"
+        "swap": false,
+        "panel": "accent",
+        "card_label": "Time to first byte · cg-cms, live 1GB server",
+        "card_title": "0.4 ms a page\n6,300 a second"
       }
     },
     {
@@ -183,7 +204,9 @@
         "heading_level": "2",
         "lede": "Every project starts with an audit and a written scope, so what's wrong is agreed before the price is.",
         "action_label": "Start a Laravel project",
-        "action_url": "/start"
+        "action_url": "/start",
+        "secondary_label": "Free site audit",
+        "secondary_url": "/tools/site-audit"
       }
     },
     {

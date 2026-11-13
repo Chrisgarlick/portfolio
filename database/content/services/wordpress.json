@@ -10,8 +10,7 @@
         "links": [
           {
             "label": "Services",
-            "url": "/services",
-            "current": true
+            "url": "/services"
           },
           {
             "label": "Work",
@@ -75,7 +74,8 @@
         },
         "background": "plain",
         "swap": false,
-        "panel": "surface"
+        "panel": "surface",
+        "caption": "Fig. 01 · An example Kritano audit"
       }
     },
     {
@@ -91,37 +91,43 @@
             "number": "01 · Themes",
             "title": "Custom",
             "subtitle": "*themes*",
-            "text": "Built from your design, with blocks you can edit without breaking the layout."
+            "text": "Built from your design, with blocks you can edit without breaking the layout.",
+            "icon": "palette"
           },
           {
             "number": "02 · Plugins",
             "title": "Custom",
             "subtitle": "*plugins*",
-            "text": "The one feature no plugin quite does, written properly and tested."
+            "text": "The one feature no plugin quite does, written properly and tested.",
+            "icon": "puzzle"
           },
           {
             "number": "03 · Speed",
             "title": "Speed,",
             "subtitle": "*measured*",
-            "text": "Caching, image sizes and a lighter theme, measured before and after."
+            "text": "Caching, image sizes and a lighter theme, measured before and after.",
+            "icon": "gauge"
           },
           {
             "number": "04 · Security",
             "title": "Security,",
             "subtitle": "*tested backups*",
-            "text": "Updates, hardening, security headers and backups that are tested."
+            "text": "Updates, hardening, security headers and backups that are tested.",
+            "icon": "shield-check"
           },
           {
             "number": "05 · Rescues",
             "title": "Rescues,",
             "subtitle": "*stabilised first*",
-            "text": "A site that broke, or that nobody dares update: stabilised, then fixed."
+            "text": "A site that broke, or that nobody dares update: stabilised, then fixed.",
+            "icon": "life-buoy"
           },
           {
             "number": "06 · Care",
             "title": "Care plan,",
             "subtitle": "*every month*",
-            "text": "Updates, monitoring and small changes, every month."
+            "text": "Updates, monitoring and small changes, every month.",
+            "icon": "calendar-check"
           }
         ],
         "background": "tinted"
@@ -194,7 +200,9 @@
         "heading_level": "2",
         "lede": "Every project starts with an audit and a written scope, so the biggest problems get fixed first.",
         "action_label": "Start a WordPress project",
-        "action_url": "/start"
+        "action_url": "/start",
+        "secondary_label": "Check my site first",
+        "secondary_url": "/tools/site-audit"
       }
     },
     {

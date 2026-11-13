@@ -51,8 +51,10 @@ it('renders the three service pages from kit sections, keeping their SEO', funct
         ->assertSee('<header class="kit-section-header"', false)
         ->assertSee($title, false)
         ->assertSee($question)
-        // The services link is the current section on every service page.
-        ->assertSee('href="/services" aria-current="page"', false)
+        // The services link is the current section on every service page:
+        // worked out from the path, a section (true) rather than the page.
+        ->assertSee('href="/services" aria-current="true"', false)
+        ->assertSee('class="kit-link kit-cta-secondary"', false)
         ->assertSee('<title>'.e($entry->seo['title'] ?? ''), false)
         ->assertSee('<link rel="canonical" href="'.rtrim((string) config('cg-cms.site.domain'), '/')."/services/{$slug}\"", false)
         ->assertSee('"@type":"Service"', false)
@@ -71,4 +73,21 @@ it('keeps the structured template for a service without kit sections', function 
         ->assertOk()
         ->assertDontSee('data-mode="night"', false)
         ->assertSee('What that involves');
+});
+
+it('shows Laravel\'s stage figure, its proof card and the caching card', function (): void {
+    $this->get('/services/laravel')
+        ->assertOk()
+        ->assertSee('<section class="kit-section-figure" data-tone="plain">', false)
+        ->assertSee('alt="The cg-cms admin dashboard', false)
+        ->assertSee('Fig. 01 · cg-cms admin, my own CMS')
+        ->assertSee('<p class="kit-figure-proof-value">0.4 ms</p>', false)
+        ->assertSee('data-media="card"', false)
+        ->assertSee('Time to first byte · cg-cms, live 1GB server');
+});
+
+it('marks the AI checklist\'s last point as not included', function (): void {
+    $this->get('/services/ai')
+        ->assertOk()
+        ->assertSee('<li data-excluded><span class="kit-vh">Not included: </span>', false);
 });

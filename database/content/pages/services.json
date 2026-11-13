@@ -79,7 +79,8 @@
             "subtitle": "*Apps that are easy to change*",
             "text": "Web apps, admin panels, APIs and integrations, with tests from day one.",
             "link_label": "Laravel development",
-            "link_url": "/services/laravel"
+            "link_url": "/services/laravel",
+            "icon": "code-xml"
           },
           {
             "number": "02 · WordPress",
@@ -87,7 +88,8 @@
             "subtitle": "*Fast, safe and yours to edit*",
             "text": "Custom themes and plugins, speed and security work, and rescues. No page builder, no monthly fees.",
             "link_label": "WordPress development",
-            "link_url": "/services/wordpress"
+            "link_url": "/services/wordpress",
+            "icon": "layout-template"
           },
           {
             "number": "03 · AI implementation",
@@ -95,7 +97,8 @@
             "subtitle": "*Manual work, done for you*",
             "text": "Intake, onboarding, data extraction and reporting, inside the tools you already use.",
             "link_label": "AI implementation",
-            "link_url": "/services/ai"
+            "link_url": "/services/ai",
+            "icon": "sparkles"
           }
         ]
       }
@@ -181,7 +184,9 @@
         "heading_level": "2",
         "lede": "Run the free site audit, or describe the problem and I'll tell you honestly.",
         "action_label": "Start a project",
-        "action_url": "/start"
+        "action_url": "/start",
+        "secondary_label": "Free site audit",
+        "secondary_url": "/tools/site-audit"
       }
     },
     {

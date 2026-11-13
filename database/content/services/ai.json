@@ -10,8 +10,7 @@
         "links": [
           {
             "label": "Services",
-            "url": "/services",
-            "current": true
+            "url": "/services"
           },
           {
             "label": "Work",
@@ -74,37 +73,43 @@
             "number": "01 · Intake",
             "title": "Enquiries,",
             "subtitle": "*sorted and filed*",
-            "text": "Enquiries read, sorted and filed, with the right questions asked back."
+            "text": "Enquiries read, sorted and filed, with the right questions asked back.",
+            "icon": "inbox"
           },
           {
             "number": "02 · Onboarding",
             "title": "New clients,",
             "subtitle": "*typed in once*",
-            "text": "New clients set up without retyping the same details three times."
+            "text": "New clients set up without retyping the same details three times.",
+            "icon": "user-plus"
           },
           {
             "number": "03 · Data extraction",
             "title": "Documents,",
             "subtitle": "*into your system*",
-            "text": "Figures and fields pulled from documents into the system they belong in."
+            "text": "Figures and fields pulled from documents into the system they belong in.",
+            "icon": "file-search"
           },
           {
             "number": "04 · Reporting",
             "title": "Reports,",
             "subtitle": "*ready to check*",
-            "text": "Regular reports drafted from your own data, ready to check and send."
+            "text": "Regular reports drafted from your own data, ready to check and send.",
+            "icon": "file-chart-column"
           },
           {
             "number": "05 · Pilot",
             "title": "One workflow,",
             "subtitle": "*first*",
-            "text": "One manual workflow automated in tools you already use, in 2 to 6 weeks."
+            "text": "One manual workflow automated in tools you already use, in 2 to 6 weeks.",
+            "icon": "flask-conical"
           },
           {
             "number": "06 · Your tools",
             "title": "The tools you",
             "subtitle": "*already use*",
-            "text": "Microsoft 365, Google Workspace, Xero, HubSpot and Notion."
+            "text": "Microsoft 365, Google Workspace, Xero, HubSpot and Notion.",
+            "icon": "blocks"
           }
         ],
         "background": "tinted"
@@ -144,7 +149,8 @@
             "text": "It runs inside your systems, using Claude through its business API."
           },
           {
-            "text": "If a plain form or a simple rule does the job, that's what I'll build."
+            "text": "If a plain form or a simple rule does the job, that's what I'll build.",
+            "excluded": true
           }
         ],
         "background": "plain"
@@ -181,7 +187,9 @@
         "heading_level": "2",
         "lede": "A pilot is priced in a proposal from a written scope, after a short call about the workflow you want to automate.",
         "action_label": "Start an AI pilot",
-        "action_url": "/start"
+        "action_url": "/start",
+        "secondary_label": "Read: AI client intake",
+        "secondary_url": "/article/ai-client-intake-law-firms"
       }
     },
     {
