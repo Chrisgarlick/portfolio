@@ -89,12 +89,14 @@
  * of day: paper, ink and the house green, as the home page's "What I build"
  * and its numbers are in Design. Its tokens are set on the section itself, so
  * they win over the night ones it would inherit. The process section's
- * example card is a sheet of paper too (Design nh_k_how_c), on the Lift.
+ * example card is a sheet of paper too (Design nh_k_how_c), on the Lift, and
+ * so is a split's card (Design nl_k_ec, "0.4 ms a page").
  */
 :root:root,
 [data-mode="day"],
 [data-mode="night"] :is([data-background="tinted"], [data-tone="tinted"]),
-[data-mode="night"] .kit-section-process .kit-note-card {
+[data-mode="night"] .kit-section-process .kit-note-card,
+[data-mode="night"] .kit-section-split .kit-split-card {
   color-scheme: light;
 
   /* Type */
@@ -879,4 +881,172 @@ body.kit-page::before {
 /* "Before you ask": a rule over the questions, as in Design. */
 .kit-section-split[data-media="questions"] .kit-split-questions {
   border-block-start: 1px solid var(--kit-fg);
+}
+
+/* ---- kit's figure, split card and caption, cta link, excluded points
+   (Design nl_k_stage, nl_k_ec, nw_k_stage, na_k_help, kn_cta) ---- */
+
+/* Service cards: the icon small, beside the mono number, not in a soft disc
+   above it (Design kn_service_card_badge). */
+.kit-service-card:has(> .kit-service-icon) {
+  grid-template-columns: auto minmax(0, 1fr);
+  column-gap: 0.625rem;
+}
+.kit-service-card:has(> .kit-service-icon) > * {
+  grid-column: 1 / -1;
+}
+.kit-service-card > .kit-service-icon {
+  grid-column: 1;
+  grid-row: 1;
+  align-self: center;
+  inline-size: auto;
+  block-size: auto;
+  border-radius: 0;
+  background: none;
+  color: var(--kit-accent);
+}
+.kit-service-icon .kit-icon {
+  inline-size: 16px;
+  block-size: 16px;
+}
+.kit-service-card:has(> .kit-service-icon) > .kit-service-number {
+  grid-column: 2;
+  grid-row: 1;
+  align-self: center;
+}
+
+/* The stage: a screenshot on the Lift, 1200 wide at 1440, its caption row in
+   mono capitals (the right half lit) and the proof card on the house green,
+   hanging off the picture's right edge as far as the page's margin allows. */
+[data-mode="night"] .kit-section-figure[data-tone="plain"] {
+  background: var(--kit-surface);
+  padding-block: clamp(2.5rem, 5vw, 4.5rem);
+}
+.kit-figure {
+  max-inline-size: 75rem;
+  margin-inline: auto;
+  gap: 1.25rem;
+}
+.kit-figure-caption,
+.kit-figure-caption-right {
+  font-family: var(--kit-font-mono);
+  font-size: 0.6875rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+.kit-figure-caption-right {
+  color: var(--kit-accent);
+}
+/* Paper on #1F5C45 is 7.4:1, mint 6.2:1, #C4D3CA (on-inverse at about 75%) 5.1:1. */
+.kit-figure-proof {
+  gap: 0.5rem;
+  inline-size: 16.25rem;
+  min-inline-size: 0;
+  max-inline-size: 100%;
+  box-sizing: border-box;
+  padding: 1.375rem;
+  inset-inline-end: max(-3.75rem, calc((100% - 100vw) / 2 + 1rem));
+  inset-block-end: clamp(1.25rem, 9%, 3.75rem);
+  background: #1F5C45;
+  color: #FAF8F3;
+  box-shadow: 0 16px 40px rgb(0 0 0 / 0.4);
+}
+.kit-figure-proof-label,
+.kit-figure-proof-note {
+  font-family: var(--kit-font-mono);
+  font-size: 0.6875rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: #C4D3CA;
+}
+.kit-figure-proof-note {
+  font-family: var(--kit-font-ui);
+  font-weight: 500;
+  letter-spacing: 0.02em;
+}
+.kit-figure-proof-value {
+  font-size: 3rem;
+  font-weight: 500;
+  color: #DDE7DF;
+}
+@container kit-figure (max-width: 40rem) {
+  .kit-figure-proof {
+    inline-size: auto;
+    border: 0;
+  }
+}
+
+/* A split's image caption: a mono label under the picture ("Fig. 01 · …"). */
+.kit-split-caption {
+  font-family: var(--kit-font-mono);
+  font-size: 0.6875rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+/* A split's card: a sheet of paper, its figures large in the display face in
+   sentence case ("0.4 ms a page / 6,300 a second"), its label in ink. */
+.kit-split-card-title {
+  font-size: clamp(2rem, 1rem + 2vw, 2.75rem);
+  font-weight: 600;
+  line-height: 0.92;
+  text-transform: none;
+}
+.kit-split-card-label {
+  font-size: 0.6875rem;
+  letter-spacing: 0.06em;
+  color: var(--kit-fg);
+}
+/* Edit 01 with a card on night: the green text panel edge to edge with the
+   Lift, the paper card centred on the Lift (Design nl_k_edit: 600 and 840 of
+   1440, a 520 card). */
+[data-mode="night"] .kit-section-split[data-panel="accent"][data-media="card"] .kit-split-inner {
+  inline-size: 100%;
+  max-inline-size: none;
+  padding-inline: 0;
+  gap: 0;
+  align-items: stretch;
+  grid-template-columns: minmax(0, 600fr) minmax(0, 840fr);
+  background: var(--kit-surface);
+}
+[data-mode="night"] .kit-section-split[data-media="card"] .kit-split-card {
+  align-self: center;
+  justify-self: center;
+  inline-size: min(32.5rem, 100% - 2.5rem);
+  min-block-size: 0;
+  padding: 2rem;
+  border: 0;
+  background: var(--kit-bg);
+  box-shadow: none;
+}
+@container kit-split (max-width: 48rem) {
+  [data-mode="night"] .kit-section-split[data-panel="accent"][data-media="card"] .kit-split-inner {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  [data-mode="night"] .kit-section-split[data-media="card"] .kit-split-card {
+    inline-size: auto;
+    justify-self: stretch;
+    margin: 2.5rem 1.25rem;
+    padding: 1.5rem;
+  }
+}
+
+/* The call to action's text link sits on the button's baseline row, at the
+   foot of the band (Design kn_cta: aligned to the end). */
+@container kit-cta (min-width: 48.01rem) {
+  .kit-cta-band {
+    align-items: flex-end;
+  }
+}
+
+/* A point that's not included: the text as the others, the cross quieter
+   (Design na_k_help: paper at 70%, #C4D3CA, 5.1:1 on the green). */
+.kit-text-block-points li[data-excluded] {
+  color: inherit;
+}
+.kit-text-block-points li[data-excluded]::before {
+  background: var(--kit-fg-2);
+}
+[data-mode="night"] .kit-section-text-block:has(.kit-text-block-points):not(:has(.kit-text-block-body)) li[data-excluded]::before {
+  background: #C4D3CA;
 }
