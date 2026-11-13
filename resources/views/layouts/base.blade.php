@@ -46,11 +46,12 @@
     @include('partials.font-preload')
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 
-    {{-- kit's sections: its base stylesheet, the Nightfolio theme over it,
-         then the CSS of each section on the page (pushed by its block). --}}
+    {{-- kit's sections: its base stylesheet, the CSS of each section on the
+         page (pushed by its block), then the Nightfolio theme over both, so a
+         theme rule beats a section's own rule of the same weight. --}}
     <link rel="stylesheet" href="{{ rtrim((string) config('kit-blocks.url', '/kit-blocks'), '/') }}/kit/kit.css">
-    @vite(['resources/css/kit-theme-nightfolio.css'])
     @stack('kit-styles')
+    @vite(['resources/css/kit-theme-nightfolio.css'])
 </head>
 @if (! empty($kitMode))
 <body class="kit-page">

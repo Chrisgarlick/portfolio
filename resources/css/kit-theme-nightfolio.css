@@ -227,6 +227,35 @@ body.kit-page {
   font-family: var(--kit-font-ui);
 }
 
+/*
+ * The old site's Tailwind base styles (app.css, @layer base) still load on a
+ * kit page: headings in ink with an accent italic, h4 as small grey caps,
+ * links in the old accent, a noise texture over the page. Undo them here.
+ * :where() keeps these at zero specificity, so every kit class rule still
+ * wins, and being unlayered they beat Tailwind's layer whatever its weight.
+ */
+:where(.kit-page) :where(h1, h2, h3, h4, h5, h6),
+:where(.kit-page) :where(h1, h2, h3, h4, h5, h6) em,
+:where(.kit-page) :where(a),
+:where(.kit-page) :where(a):hover {
+  color: inherit;
+}
+:where(.kit-page) :where(h4) {
+  font: inherit;
+  text-transform: none;
+  letter-spacing: normal;
+}
+:where(.kit-page) :where(p, li, span, td) a {
+  text-decoration-color: currentColor;
+}
+body.kit-page::before {
+  content: none;
+}
+/* Code shows what was typed: no "!==" drawn as one glyph. */
+:where(.kit-page) :where(code, kbd, pre, samp) {
+  font-variant-ligatures: none;
+}
+
 /* ---- Nightfolio details on kit's sections ---- */
 
 /* Headlines are uppercase with one lower-case italic phrase: "WEBSITES THAT *stay fast.*" */
