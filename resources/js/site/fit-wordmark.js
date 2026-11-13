@@ -1,4 +1,8 @@
 /*
+ * Also the next case study's title (a ruled list of one row): one line,
+ * fitted within the margins rather than to the screen's edges, and left to
+ * wrap at the theme's size if one line would be smaller than 28px (a phone).
+ *
  * The footer's big name (kit's footer wordmark) fits its box exactly (edge to
  * edge of the screen, in the Nightfolio theme), on any screen and in any font.
  *
@@ -23,19 +27,38 @@ const fit = (el) => {
     }
 };
 
+const fitLine = (el) => {
+    el.style.fontSize = '';
+    el.style.whiteSpace = 'nowrap';
+    const range = document.createRange();
+    range.selectNodeContents(el);
+    const text = range.getBoundingClientRect().width;
+    const size = (parseFloat(getComputedStyle(el).fontSize) * el.clientWidth) / text;
+
+    if (el.clientWidth > 0 && text > 0 && size >= 28) {
+        el.style.fontSize = `${size}px`;
+    } else {
+        el.style.whiteSpace = '';
+    }
+};
+
 export function initFitWordmark() {
     const marks = [...document.querySelectorAll('.kit-page .kit-footer-wordmark')];
+    const lines = [...document.querySelectorAll('.kit-page .kit-section-ruled-list .kit-ruled-row:only-child .kit-ruled-name')];
 
-    if (marks.length === 0) {
+    if (marks.length === 0 && lines.length === 0) {
         return;
     }
 
-    const fitAll = () => marks.forEach(fit);
+    const fitAll = () => {
+        marks.forEach(fit);
+        lines.forEach(fitLine);
+    };
     document.fonts?.ready.then(fitAll);
     // A font that arrives later (the font lab loads its choice on demand) refits it.
     document.fonts?.addEventListener('loadingdone', fitAll);
     fitAll();
 
     const observer = new ResizeObserver(() => fitAll());
-    marks.forEach((el) => observer.observe(el.parentElement ?? el));
+    [...marks, ...lines].forEach((el) => observer.observe(el.parentElement ?? el));
 }
