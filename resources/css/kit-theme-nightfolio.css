@@ -251,6 +251,12 @@ body.kit-page {
   color: var(--kit-fg);
   font-family: var(--kit-font-ui);
 }
+/* The canvas behind the page takes the page's background too (app.css paints
+   it paper), so space past the footer (the cookie banner's room, an overscroll)
+   is the page's colour, not a strip of paper under a night page. */
+html:has(> body.kit-page) {
+  background: var(--kit-bg);
+}
 
 /*
  * The old site's Tailwind base styles (app.css, @layer base) still load on a
