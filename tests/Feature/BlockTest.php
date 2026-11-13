@@ -20,7 +20,10 @@ it('registers every built-in block type', function (): void {
         'rich-text', 'contact-form', 'faq',
     ];
 
-    expect($registry->all())->toHaveCount(count($handles));
+    // kit's sections (`kit-*`, app/Cms/blocks.php) are registered beside them.
+    $builtIn = array_filter($registry->all(), fn ($block): bool => ! str_starts_with($block->handle, 'kit-'));
+
+    expect($builtIn)->toHaveCount(count($handles));
 
     foreach ($handles as $handle) {
         expect($registry->find($handle))->not->toBeNull();

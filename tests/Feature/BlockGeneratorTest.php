@@ -20,7 +20,13 @@ use Illuminate\Support\Facades\Blade;
 beforeEach(function (): void {
     $this->dir = sys_get_temp_dir().'/cms-block-'.uniqid();
     mkdir($this->dir);
-    copy(base_path('app/Cms/schema.php'), $this->dir.'/schema.php');
+    // The site's pages already allow app blocks (kit's), so close them again
+    // to see the generator open them.
+    file_put_contents($this->dir.'/schema.php', str_replace(
+        '->allow([...Block::builtIns(), ...Block::app()])',
+        '->allow(Block::builtIns())',
+        (string) file_get_contents(base_path('app/Cms/schema.php')),
+    ));
 
     config([
         'cg-cms.schema_path' => $this->dir.'/schema.php',

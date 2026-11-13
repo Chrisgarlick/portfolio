@@ -253,7 +253,14 @@ return [
         ->fields([
             Field::text('title')->required(),
             Field::slug('slug')->from('title'),
-            Field::blocks('content')->allow(Block::builtIns()),
+            // kit's sections (app/Cms/blocks.php) replace the built-in blocks.
+            // Both are allowed while the pages are rebuilt on kit, so the
+            // content installer's pages still validate; the built-ins come out
+            // with the last page that uses them.
+            Field::blocks('content')->allow([...Block::builtIns(), ...Block::app()]),
+            // Nightfolio: short pages are night (dark green), long reading is day (paper).
+            Field::select('mode')->options(['night', 'day'])->default('night')
+                ->help('night: the dark green pages (home, services, about). day: paper, for long reading.'),
             Field::select('status')->options(['draft', 'published'])->default('draft'),
             Field::seo(),
         ]),
