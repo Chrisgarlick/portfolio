@@ -1,0 +1,264 @@
+/*
+    Nightfolio, as a theme for kit's sections (the kit-* blocks).
+
+    Loaded after kit's kit.css (layouts/base.blade.php, cms/block-preview), and
+    a Vite entry of its own so its fonts are hashed and served from /build.
+    It sets kit's --kit-* tokens and nothing kit doesn't already read, plus a
+    few Nightfolio details at the end (uppercase display type with a
+    lower-case italic phrase, mono labels, square buttons, the footer's
+    green wordmark).
+
+    Style: Hub library `nightfolio` (client chris-garlick), on the Chris
+    Garlick brand (Design `brand`). The night values are the accessibility-
+    checked ones from the Design file 38bc0169c69841d6a7a0ab1e4bef2e5b.
+
+    Modes. Day (paper) is the default. A page built from kit's sections sets
+    data-mode="night" or "day" on <html> (App\Content\KitPage, the page's
+    `mode` field); night re-points every token to the dark green canvas. The
+    mode is the page's choice: it never follows the visitor's system dark
+    mode, which kit's own tokens would. Inside either mode, a section with
+    tone "dark" sits on kit's inverse band: on day pages that is the night
+    canvas (with numbers and buttons lit in mint), on night pages the Well
+    (darker, recessed: the footer, a call to action).
+
+    Every text colour is at least 4.5:1 on the surfaces it is used on, in both
+    modes: tests/Feature/KitThemeContrastTest.php reads this file and checks
+    each pair, so a change that breaks one fails the suite.
+*/
+
+/*
+ * Fonts: self-hosted (Fontsource variable files, latin, SIL OFL 1.1). Inter
+ * and Inter Tight are the same files app.css uses, so Vite emits them once.
+ */
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+  src: url('../fonts/inter-latin-wght-normal.woff2') format('woff2-variations');
+}
+@font-face {
+  font-family: 'Inter Tight';
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+  src: url('../fonts/inter-tight-latin-wght-normal.woff2') format('woff2-variations');
+}
+@font-face {
+  font-family: 'Inter Tight';
+  font-style: italic;
+  font-weight: 100 900;
+  font-display: swap;
+  src: url('../fonts/inter-tight-latin-wght-italic.woff2') format('woff2-variations');
+}
+@font-face {
+  font-family: 'JetBrains Mono';
+  font-style: normal;
+  font-weight: 100 800;
+  font-display: swap;
+  src: url('../fonts/jetbrains-mono-latin-wght-normal.woff2') format('woff2-variations');
+}
+
+/*
+ * The font choice, in three variables, to trial other faces: change these
+ * (and add their @font-face above). Everything else reads kit's tokens.
+ */
+:root {
+  --nf-font-display: 'Inter Tight', 'Inter', system-ui, sans-serif;
+  --nf-font-body: 'Inter', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --nf-font-mono: 'JetBrains Mono', ui-monospace, 'SF Mono', Menlo, Consolas, monospace;
+}
+
+/*
+ * Day: paper. The default, and every page's tokens until a mode says night.
+ * :root:root outranks kit's own :root and its prefers-color-scheme block.
+ */
+:root:root,
+[data-mode="day"] {
+  color-scheme: light;
+
+  /* Type */
+  --kit-font-display: var(--nf-font-display);
+  --kit-font-ui: var(--nf-font-body);
+  --kit-font-mono: var(--nf-font-mono);
+  --kit-display-weight: 500;
+  --kit-display-tracking: -0.03em;
+  --kit-display-case: uppercase;
+
+  /* Surfaces and text */
+  --kit-bg: #FAF8F3;          /* paper */
+  --kit-surface: #F2EEE6;     /* brand surface: day's Lift */
+  --kit-surface-2: #E9E5DE;
+  --kit-surface-3: #DEDAD3;
+  --kit-band: #F2EEE6;        /* a tinted section */
+  --kit-line: #DAD5CA;        /* rule (day) */
+  --kit-line-strong: #857F74; /* form field edges, 3.7:1 on paper */
+  --kit-fg: #151513;          /* ink */
+  --kit-fg-2: #5B5852;        /* ink-muted */
+  --kit-fg-3: #625F58;
+
+  /* Accent: the house green */
+  --kit-accent: #1F5C45;
+  --kit-accent-hover: #1D4F3C;
+  --kit-accent-soft: #DDE7DF; /* mint */
+  --kit-accent-fg: #FFFFFF;
+  --kit-focus-ring: #1F5C45;
+
+  /* Meaning */
+  --kit-good: #1F5C45;
+  --kit-good-soft: #DDE7DF;
+  --kit-warn: #7F510D;
+  --kit-warn-soft: #F6ECDD;
+  --kit-bad: #B42318;
+  --kit-bad-soft: #F8E8E3;
+  --kit-bad-fg: #FFFFFF;
+  --kit-info: #1D5E8C;
+  --kit-info-soft: #DCE8F2;
+
+  --kit-series-1: #1F5C45;
+  --kit-series-2: #1D5E8C;
+  --kit-series-3: #B12F1C;
+  --kit-series-4: #6B3FB8;
+  --kit-series-5: #925600;
+  --kit-series-6: #5B5852;
+
+  /* The inverse band (tone "dark"): the night canvas */
+  --kit-inverse-bg: #182720;   /* accent at 26% over inverse */
+  --kit-inverse-fg: #FAF8F3;
+  --kit-inverse-fg-2: #B6B9B4; /* on-inverse at 70% */
+  --kit-inverse-line: #3A4640; /* on-inverse at 15% */
+
+  /* Shape: pages are trimmed sheets. No radius, no shadow. */
+  --kit-radius-1: 0px;
+  --kit-radius-2: 0px;
+  --kit-radius-3: 0px;
+  --kit-button-radius: 0px;
+  --kit-button-radius-sm: 0px;
+  --kit-card-radius: 0px;
+  --kit-shadow-1: none;
+  --kit-shadow-2: none;
+  --kit-shadow-3: 0 18px 40px -20px rgb(21 21 19 / 0.35); /* the one floating proof card */
+  --kit-scrim: rgb(21 21 19 / 0.55);
+
+  --kit-section-pad-y: clamp(4rem, 8vw, 6rem); /* 96px on day */
+  --kit-footer-wordmark-size: 14.5cqi;
+
+  /* Nightfolio's own */
+  --nf-lit: #1F5C45;          /* measured numbers: house green on day */
+  --nf-wordmark: #1F5C45;     /* the footer's cropped name: decorative */
+}
+
+/*
+ * Night: the dark green shell, for short pages (home, services, about).
+ */
+:root:root[data-mode="night"],
+[data-mode="night"] {
+  color-scheme: dark;
+
+  --kit-bg: #182720;           /* canvas: accent at 26% over inverse */
+  --kit-surface: #1B3F31;      /* Lift */
+  --kit-surface-2: #26483B;
+  --kit-surface-3: #315244;
+  --kit-band: #1B3F31;
+  --kit-line: rgb(250 248 243 / 0.15);
+  --kit-line-strong: #7E857F;  /* input borders: on-inverse at 45%, 4.1:1 */
+  --kit-fg: #FAF8F3;
+  --kit-fg-2: #B6B9B4;         /* on-inverse at 70% */
+  --kit-fg-3: #B0B5AF;
+
+  /* Mint is the lit colour: numbers, primary buttons, the current link */
+  --kit-accent: #DDE7DF;
+  --kit-accent-hover: #EEF3EF;
+  --kit-accent-soft: #1F5C45;  /* house green */
+  --kit-accent-fg: #151513;
+  --kit-focus-ring: #DDE7DF;
+
+  --kit-good: #7CCFA4;
+  --kit-good-soft: #263F32;
+  --kit-warn: #E8B45A;
+  --kit-warn-soft: #353B28;
+  /* Design's night error border is #C96058 (3.9:1, enough for a border);
+     kit's --kit-bad also colours error text, so it is lighter here. */
+  --kit-bad: #F2A49B;
+  --kit-bad-soft: #3A3530;
+  --kit-bad-fg: #151513;
+  --kit-info: #8AB8DD;
+  --kit-info-soft: #283B3A;
+
+  --kit-series-1: #DDE7DF;
+  --kit-series-2: #7CCFA4;
+  --kit-series-3: #8AB8DD;
+  --kit-series-4: #E8B45A;
+  --kit-series-5: #F08A78;
+  --kit-series-6: #B6B9B4;
+
+  /* The inverse band on night: the Well */
+  --kit-inverse-bg: #161D19;   /* inverse at 55% over the canvas */
+  --kit-inverse-fg: #FAF8F3;
+  --kit-inverse-fg-2: #B6B6B2;
+  --kit-inverse-line: #383E3A;
+
+  --kit-shadow-3: 0 18px 40px -20px rgb(0 0 0 / 0.6);
+  --kit-scrim: rgb(0 0 0 / 0.6);
+  --kit-section-pad-y: clamp(4.5rem, 9vw, 7.5rem); /* 120px on night */
+
+  --nf-lit: #DDE7DF;
+  --nf-wordmark: #287659;
+}
+
+/*
+ * A dark-toned section on a day page is a piece of night: its accent turns
+ * to mint, so its numbers glow and its buttons read on the canvas.
+ */
+:root:not([data-mode="night"]) [data-tone="dark"] {
+  --kit-accent: #DDE7DF;
+  --kit-accent-hover: #EEF3EF;
+  --kit-accent-fg: #151513;
+  --kit-focus-ring: #DDE7DF;
+  --nf-lit: #DDE7DF;
+}
+
+/* ---- The page ---- */
+
+body.kit-page {
+  margin: 0;
+  background: var(--kit-bg);
+  color: var(--kit-fg);
+  font-family: var(--kit-font-ui);
+}
+
+/* ---- Nightfolio details on kit's sections ---- */
+
+/* Headlines are uppercase with one lower-case italic phrase: "WEBSITES THAT *stay fast.*" */
+:is(.kit-hero-title, .kit-cta-title, .kit-process-title, .kit-ruled-name, .kit-marquee-phrase,
+    .kit-collage-title, .kit-qs-quote, .kit-section-head-title, .kit-prose-heading) em {
+  text-transform: none;
+}
+
+/* The opener: masthead type, as large as the page allows. */
+.kit-section-hero[data-title-size="large"] .kit-hero-title {
+  font-size: clamp(3.5rem, 0.8rem + 9.5vw, 10.5rem);
+  line-height: 0.88;
+  letter-spacing: -0.04em;
+}
+
+/* Measured numbers are lit: mint on night, house green on day. */
+.kit-stats-item dd,
+.kit-qs-stat dd,
+.kit-prose-stat dd {
+  color: var(--nf-lit);
+}
+
+/* Buttons: square bars with a mono label. */
+[class*="kit-section-"] .kit-button {
+  font-family: var(--kit-font-mono);
+  font-size: 0.8125rem;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+/* The footer's name, cropped by the bottom edge, in green (decorative: aria-hidden). */
+.kit-section-footer .kit-footer-wordmark {
+  color: var(--nf-wordmark);
+}

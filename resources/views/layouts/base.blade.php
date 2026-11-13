@@ -11,6 +11,10 @@
                 one-line footer.
       $accent   the topic colour (green, red, blue, violet, amber), from
                 App\Content\Accent. Defaults to the house green.
+      $kitMode  night | day for a page built from kit's sections
+                (App\Content\KitPage): the page's blocks bring their own
+                header and footer, so the site's navigation and footer are
+                left out, and the Nightfolio theme takes the page's mode.
 
     Every template supplies the `head` section by rendering <x-cms-seo>. One
     that forgets still gets the site default, because missing meta fails
@@ -19,7 +23,8 @@
 <html lang="en-GB"
       data-accent="{{ $accent ?? \App\Content\Accent::HOUSE }}"
       @if (! empty($service)) data-service="{{ $service }}" @endif
-      @if (filled(config('site.gtm_id'))) data-gtm="{{ config('site.gtm_id') }}" @endif>
+      @if (filled(config('site.gtm_id'))) data-gtm="{{ config('site.gtm_id') }}" @endif
+      @if (! empty($kitMode)) data-mode="{{ $kitMode }}" @endif>
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -40,7 +45,22 @@
 
     @include('partials.font-preload')
     @vite(['resources/css/app.css', 'resources/js/app.js'])
+
+    {{-- kit's sections: its base stylesheet, the Nightfolio theme over it,
+         then the CSS of each section on the page (pushed by its block). --}}
+    <link rel="stylesheet" href="{{ rtrim((string) config('kit-blocks.url', '/kit-blocks'), '/') }}/kit/kit.css">
+    @vite(['resources/css/kit-theme-nightfolio.css'])
+    @stack('kit-styles')
 </head>
+@if (! empty($kitMode))
+<body class="kit-page">
+    <a href="#main" class="skip-to-content">Skip to content</a>
+    @yield('kit-top')
+    <main id="main" tabindex="-1">
+        @yield('content')
+    </main>
+    @yield('kit-bottom')
+@else
 <body class="min-h-screen bg-bg-primary text-text-primary">
     @unless ($bare ?? false)
         @include('partials.nav')
@@ -49,8 +69,11 @@
     <main id="main" tabindex="-1" class="{{ ($bare ?? false) ? '' : 'pt-16' }}">
         @yield('content')
     </main>
+@endif
 
-    @if ($bare ?? false)
+    @if (! empty($kitMode))
+        {{-- The page's own footer block is its footer. --}}
+    @elseif ($bare ?? false)
         <footer class="border-t border-border bg-bg-muted">
             <div class="mx-auto flex max-w-[1080px] flex-col items-center justify-between gap-3 px-6 py-8 text-[12px] text-text-tertiary md:flex-row md:px-8">
                 <span>&copy; {{ now()->year }} Chris Garlick</span>

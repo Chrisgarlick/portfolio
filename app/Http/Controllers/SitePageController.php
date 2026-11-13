@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Http\Controllers;
 
 use App\Content\HomePage;
+use App\Content\KitPage;
 use Cg\Cms\Cache\CacheContext;
 use Cg\Cms\Models\Entry;
 use Illuminate\Contracts\View\View;
@@ -37,6 +38,11 @@ final class SitePageController extends Controller
 
         if ($page === null) {
             return redirect('/article');
+        }
+
+        // Rebuilt from kit's sections: rendered like any other block-built page.
+        if (KitPage::is($page)) {
+            return $this->render($page, 'home');
         }
 
         $this->cacheContext->registerEntry($page);
