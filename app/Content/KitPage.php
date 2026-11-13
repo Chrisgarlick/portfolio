@@ -77,4 +77,34 @@ final class KitPage
 
         return ['top' => $render($top), 'main' => $render($main), 'bottom' => $render($bottom)];
     }
+
+    /**
+     * FAQPage structured data for the questions a page answers in a split
+     * section (`media` questions), as they read on the page. Empty when it
+     * has none.
+     *
+     * @return array<int, array<string, mixed>>
+     */
+    public static function faqPage(Entry $page): array
+    {
+        $questions = [];
+
+        foreach ((array) $page->value('content', []) as $block) {
+            if (! is_array($block) || ($block['type'] ?? null) !== 'kit-split' || data_get($block, 'data.media') !== 'questions') {
+                continue;
+            }
+
+            foreach ((array) data_get($block, 'data.questions', []) as $item) {
+                if (is_array($item) && filled($item['question'] ?? null) && filled($item['answer'] ?? null)) {
+                    $questions[] = [
+                        '@type' => 'Question',
+                        'name' => (string) $item['question'],
+                        'acceptedAnswer' => ['@type' => 'Answer', 'text' => (string) $item['answer']],
+                    ];
+                }
+            }
+        }
+
+        return $questions === [] ? [] : [['@type' => 'FAQPage', 'mainEntity' => $questions]];
+    }
 }

@@ -133,7 +133,9 @@ return [
     |
     | AI implementation, website building, software development. Structured
     | rather than block-built, so presentation stays consistent and each one
-    | can cross-link to the projects that evidence it.
+    | can cross-link to the projects that evidence it. The redesign's three
+    | (Laravel, WordPress, AI) add kit's sections in `content`, which then
+    | replace that template.
     |
     */
 
@@ -164,6 +166,13 @@ return [
 
             // Evidence. A service page with no work behind it is a claim.
             Field::relation('projects')->to('project')->many(),
+
+            // The Nightfolio redesign: a service built from kit's sections
+            // (App\Content\KitPage) renders those instead of the structured
+            // template above; one without them keeps the old template.
+            Field::blocks('content')->allow(Block::app()),
+            Field::select('mode')->options(['night', 'day'])->default('night')
+                ->help('For a service built from kit sections. night: the dark green pages. day: paper.'),
 
             Field::number('sort_order'),
             Field::select('status')->options(['draft', 'published'])->default('draft'),

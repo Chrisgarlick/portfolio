@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Http\Controllers;
 
 use App\Content\Accent;
+use App\Content\KitPage;
 use App\Content\ProjectPresenter;
 use Cg\Cms\Cache\CacheContext;
 use Cg\Cms\Cache\CollectionVersion;
@@ -70,6 +71,16 @@ final class ServiceController extends Controller
         }
 
         $this->cacheContext->registerEntry($service);
+
+        // Rebuilt from kit's sections: rendered like the kit pages, keeping the
+        // service's own SEO (its Service node comes from the collection), plus
+        // the FAQPage its "Before you ask" questions answer.
+        if (KitPage::is($service)) {
+            return view('pages.show', [
+                'page' => $service,
+                'jsonLd' => KitPage::faqPage($service),
+            ]);
+        }
 
         return view('services.show', [
             'service' => $service,

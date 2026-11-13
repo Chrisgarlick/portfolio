@@ -27,7 +27,8 @@ use Symfony\Component\Yaml\Yaml;
  * and published through the same publish gate as the admin.
  *
  * Markdown files carry their fields as frontmatter and the body as the
- * collection's first rich text field. A page is a JSON file named after the
+ * collection's first rich text field; a JSON object beside one (same name)
+ * adds more fields, such as a service's kit sections. A page is a JSON file named after the
  * page's slug: a list of blocks, or an object of the page's fields (`content`
  * for the blocks, `mode`, `seo_title`, `seo_description`) when it sets more.
  * Images come along as files under database/content/media (see withMedia()).
@@ -178,10 +179,21 @@ final class InstallContentCommand extends Command
         return array_map(fn (mixed $item): mixed => $this->normalise($item), $value);
     }
 
-    /** @return array<int, string> */
+    /**
+     * A folder's entries, one file each. A JSON file beside a markdown file
+     * of the same name is that entry's other fields (see fileValues()), not an
+     * entry of its own.
+     *
+     * @return array<int, string>
+     */
     private function files(string $directory): array
     {
-        $files = [...(glob("{$directory}/*.md") ?: []), ...(glob("{$directory}/*.json") ?: [])];
+        $markdown = glob("{$directory}/*.md") ?: [];
+        $json = array_filter(
+            glob("{$directory}/*.json") ?: [],
+            fn (string $file): bool => ! is_file(substr($file, 0, -5).'.md'),
+        );
+        $files = [...$markdown, ...$json];
         sort($files);
 
         return $files;
@@ -236,6 +248,20 @@ final class InstallContentCommand extends Command
             }
 
             $values[$richText->name] = $body;
+        }
+
+        // Fields too big for frontmatter (a service's kit sections) can sit
+        // in a JSON object beside it: services/laravel.json for laravel.md.
+        $beside = substr($file, 0, -3).'.json';
+
+        if (is_file($beside)) {
+            $more = json_decode(str_replace("\r\n", "\n", (string) file_get_contents($beside)), true);
+
+            if (! is_array($more) || array_is_list($more)) {
+                throw new ContentException(basename($beside).' must be a JSON object of fields: '.json_last_error_msg());
+            }
+
+            $values = [...$values, ...$this->fieldValues($more)];
         }
 
         return $values;
