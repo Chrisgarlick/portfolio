@@ -14,7 +14,7 @@
     ]
   },
   "resources/css/kit-theme-nightfolio.css": {
-    "file": "assets/kit-theme-nightfolio-Cecn1NoD.css",
+    "file": "assets/kit-theme-nightfolio-CPTVL79b.css",
     "name": "kit-theme-nightfolio",
     "names": [
       "kit-theme-nightfolio.css"
@@ -53,7 +53,7 @@
     "src": "resources/fonts/jetbrains-mono-latin-wght-normal.woff2"
   },
   "resources/js/app.js": {
-    "file": "assets/app-UQgb5WE5.js",
+    "file": "assets/app-CziWANRs.js",
     "name": "app",
     "src": "resources/js/app.js",
     "isEntry": true
