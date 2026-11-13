@@ -6,9 +6,11 @@ namespace App\Console\Commands;
 
 use Cg\Cms\Content\ContentException;
 use Cg\Cms\Content\ContentService;
+use Cg\Cms\Media\MediaLibrary;
 use Cg\Cms\Models\Entry;
 use Cg\Cms\Schema\CollectionRegistry;
 use Illuminate\Console\Command;
+use Illuminate\Http\UploadedFile;
 use Symfony\Component\Yaml\Exception\ParseException;
 use Symfony\Component\Yaml\Yaml;
 
@@ -28,6 +30,7 @@ use Symfony\Component\Yaml\Yaml;
  * collection's first rich text field. A page is a JSON file named after the
  * page's slug: a list of blocks, or an object of the page's fields (`content`
  * for the blocks, `mode`, `seo_title`, `seo_description`) when it sets more.
+ * Images come along as files under database/content/media (see withMedia()).
  */
 final class InstallContentCommand extends Command
 {
@@ -80,6 +83,8 @@ final class InstallContentCommand extends Command
 
                         continue;
                     }
+
+                    $input = $this->withMedia($input);
 
                     $result = match (true) {
                         $entry === null => $content->createDraft($collection, ['title' => $this->titleFor($slug), 'slug' => $slug, ...$input]),
@@ -256,6 +261,34 @@ final class InstallContentCommand extends Command
         }
 
         return $values;
+    }
+
+    /**
+     * Images a file brings with it. Anywhere in a file's fields, `{"file":
+     * "media/portrait.jpg", "alt": "…"}` (a path under database/content) is put
+     * in the media library and becomes the `{"id", "alt"}` a media field
+     * stores. The library keeps one copy per checksum, so running this again
+     * reuses the same image rather than adding another.
+     */
+    private function withMedia(mixed $value): mixed
+    {
+        if (! is_array($value)) {
+            return $value;
+        }
+
+        if (isset($value['file']) && is_string($value['file']) && count(array_diff(array_keys($value), ['file', 'alt'])) === 0) {
+            $path = database_path('content/'.ltrim($value['file'], '/'));
+
+            if (! is_file($path) || str_contains($value['file'], '..')) {
+                throw new ContentException("The image {$value['file']} is not in database/content.");
+            }
+
+            $media = app(MediaLibrary::class)->store(new UploadedFile($path, basename($path), test: true));
+
+            return ['id' => $media->uuid, 'alt' => (string) ($value['alt'] ?? '')];
+        }
+
+        return array_map(fn (mixed $item): mixed => $this->withMedia($item), $value);
     }
 
     private function titleFor(string $slug): string

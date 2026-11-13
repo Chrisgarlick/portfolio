@@ -5,8 +5,12 @@ declare(strict_types=1);
 use Cg\Cms\Models\Entry;
 use Cg\Cms\Models\EntryRevision;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Illuminate\Support\Facades\Storage;
 
 uses(RefreshDatabase::class);
+
+// Pages bring their images (database/content/media); keep the copies off the real disk.
+beforeEach(fn () => Storage::fake((string) config('cg-cms.media.disk', 'local')));
 
 /*
 | site:install-content: the redesign content from database/content, run at
@@ -94,4 +98,20 @@ it('proposes the kit home page for a live home page, with its mode, rather than 
     expect($home->refresh()->data['content'][0]['data']['heading'])->toBe('The old home page')
         ->and($snapshot['data']['mode'])->toBe('night')
         ->and($snapshot['data']['content'][0]['type'])->toBe('kit-header');
+});
+
+it('puts the images a page brings in the media library once and stores them as media references', function (): void {
+    $this->artisan('site:install-content', ['--only' => ['pages'], '--publish' => true])->assertSuccessful();
+
+    $hero = collect(Entry::query()->collection('page')->where('slug', 'home')->value('data')['content'])
+        ->firstWhere('type', 'kit-hero')['data']['image'];
+
+    expect($hero)->toHaveKeys(['id', 'alt'])
+        ->and($hero)->not->toHaveKey('file')
+        ->and(\Cg\Cms\Models\Media::query()->where('uuid', $hero['id'])->exists())->toBeTrue();
+
+    $count = \Cg\Cms\Models\Media::query()->count();
+    $this->artisan('site:install-content', ['--only' => ['pages'], '--publish' => true])->assertSuccessful();
+
+    expect(\Cg\Cms\Models\Media::query()->count())->toBe($count);
 });
