@@ -84,9 +84,15 @@
 /*
  * Day: paper. The default, and every page's tokens until a mode says night.
  * :root:root outranks kit's own :root and its prefers-color-scheme block.
+ *
+ * On a night page a tinted section (background or tone "tinted") is a sheet
+ * of day: paper, ink and the house green, as the home page's "What I build"
+ * and its numbers are in Design. Its tokens are set on the section itself, so
+ * they win over the night ones it would inherit.
  */
 :root:root,
-[data-mode="day"] {
+[data-mode="day"],
+[data-mode="night"] :is([data-background="tinted"], [data-tone="tinted"]) {
   color-scheme: light;
 
   /* Type */
@@ -153,7 +159,9 @@
   --kit-scrim: rgb(21 21 19 / 0.55);
 
   --kit-section-pad-y: clamp(4rem, 8vw, 6rem); /* 96px on day */
-  --kit-footer-wordmark-size: 14.5cqi;
+  /* Fitted, not cropped (Hub decision, 12 Nov): "CHRIS GARLICK" is about 8.05em
+     wide in Fraunces caps, so this spans the footer's padding box exactly. */
+  --kit-footer-wordmark-size: calc((100cqi - 2 * clamp(16px, 2cqi, 32px)) / 8.1);
 
   /* Nightfolio's own */
   --nf-lit: #1F5C45;          /* measured numbers: house green on day */
@@ -272,7 +280,8 @@ body.kit-page::before {
 
 /* Headlines are uppercase with one lower-case italic phrase: "WEBSITES THAT *stay fast.*" */
 :is(.kit-hero-title, .kit-cta-title, .kit-process-title, .kit-ruled-name, .kit-marquee-phrase,
-    .kit-collage-title, .kit-qs-quote, .kit-section-head-title, .kit-prose-heading) em {
+    .kit-collage-title, .kit-qs-quote, .kit-section-head-title, .kit-prose-heading,
+    .kit-text-block-title) em {
   text-transform: none;
 }
 
@@ -302,4 +311,162 @@ body.kit-page::before {
 /* The footer's name, cropped by the bottom edge, in green (decorative: aria-hidden). */
 .kit-section-footer .kit-footer-wordmark {
   color: var(--nf-wordmark);
+}
+
+/* ---- Nightfolio layouts (the home page in Design, nf_home) ---- */
+
+/* Folio's full-width page: content runs to 86rem (1376px, margin to margin at
+   1440 with 32px gutters), wider than kit's 72rem. */
+.kit-page .kit-container {
+  --_max: 86rem;
+}
+/* Room for a masthead-sized heading on one line; the lede keeps a reading measure. */
+.kit-section-head-text {
+  max-inline-size: 60rem;
+}
+.kit-section-head-lede {
+  max-inline-size: 36em;
+}
+
+/* A sheet of day on a night page (see the tokens at the top): paper, not the
+   day band, with its cards ruled on paper as in Design. */
+[data-mode="night"] :is([data-background="tinted"], [data-tone="tinted"]) {
+  background: var(--kit-bg);
+}
+[data-mode="night"] .kit-section-services[data-background="tinted"] .kit-service-card {
+  background: var(--kit-bg);
+  border-color: var(--kit-line);
+}
+[data-mode="night"] .kit-section-services[data-background="tinted"] .kit-service-card:hover {
+  background: var(--kit-surface);
+}
+
+/* The opener beside a portrait: the text takes most of the width (Design:
+   1000 of 1440) and the title fits its longest line ("WEB APPS THAT" is about
+   8.1em in Fraunces caps). One column below kit's 48rem, sized to the phone. */
+.kit-section-hero[data-title-size="large"]:not([data-variant="text"]) .kit-hero-title {
+  font-size: clamp(2.5rem, 11cqi - 0.25rem, 10.5rem);
+}
+@container kit-hero (min-width: 48.01rem) {
+  .kit-section-hero[data-title-size="large"][data-variant="default"] .kit-hero-inner {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 0.42fr);
+    align-items: end;
+  }
+  .kit-section-hero[data-title-size="large"][data-variant="default"] .kit-hero-title {
+    font-size: clamp(3rem, 7.4cqi, 8.5rem);
+  }
+  .kit-section-hero[data-title-size="large"][data-variant="default"] .kit-hero-media {
+    aspect-ratio: 440 / 640;
+  }
+}
+
+/* Masthead-sized section headings: "WHAT I build", "LATEST writing" (120px at 1440). */
+.kit-section-head-title,
+.kit-shop-heading {
+  font-size: clamp(3.5rem, 0.5rem + 7.8vw, 7.5rem);
+  line-height: 0.88;
+}
+.kit-process-title {
+  font-size: clamp(2.5rem, 1rem + 3.9vw, 4.5rem);
+  line-height: 0.92;
+}
+.kit-split-text .kit-text-block-title {
+  font-size: clamp(2.25rem, 1rem + 3.3vw, 4rem);
+  line-height: 0.95;
+}
+
+/* Service cards: a display-type name with its italic phrase under it, a mono number. */
+.kit-service-title {
+  font-family: var(--kit-font-display);
+  font-weight: var(--kit-display-weight);
+  font-size: clamp(1.75rem, 1rem + 2vw, 2.75rem);
+  line-height: 0.98;
+  letter-spacing: var(--kit-display-tracking);
+}
+.kit-service-subtitle {
+  color: inherit;
+  font-weight: inherit;
+}
+.kit-service-number {
+  color: var(--kit-accent);
+}
+
+/* The numbers: big lit figures over small capitals (80px at 1440). */
+.kit-stats-item dd:not(.kit-stats-link) {
+  font-size: clamp(3rem, 1rem + 4.45vw, 5rem);
+  line-height: 1;
+}
+.kit-stats-item dt {
+  font-size: 0.75rem;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  line-height: 1.4;
+  text-transform: uppercase;
+}
+.kit-stats-item .kit-stats-link .kit-link {
+  font-family: var(--kit-font-mono);
+  font-size: 0.75rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+/* A quote on its own (no numbers beside it) is the page's pull quote:
+   centred on the canvas, unboxed, large. */
+.kit-qs-inner:not(:has(.kit-qs-stats)) {
+  grid-template-columns: minmax(0, 1fr);
+}
+.kit-qs-inner:not(:has(.kit-qs-stats)) .kit-qs-quote {
+  justify-items: center;
+  max-inline-size: 70rem;
+  margin-inline: auto;
+  padding: 0;
+  background: none;
+  color: var(--kit-fg);
+  text-align: center;
+}
+.kit-qs-inner:not(:has(.kit-qs-stats)) blockquote p {
+  font-size: clamp(1.875rem, 0.75rem + 3.1vw, 3.5rem);
+  line-height: 1.1;
+  text-wrap: balance;
+}
+.kit-qs-quote figcaption {
+  font-family: var(--kit-font-mono);
+  font-size: 0.75rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+/* The steps: zero-padded numbers, as in Design ("01 Audit and plan"). */
+.kit-process-steps li::before {
+  content: counter(kit-step, decimal-leading-zero) "\00a0\00a0";
+}
+
+/* Cards that aren't sold (articles, guides): a 16:9 still, the label above
+   the name as a mono kicker, and a larger name. */
+.kit-shop-grid:has(.kit-product-label) {
+  --_gap: var(--kit-space-6);
+}
+/* kit puts two products a row on a phone; an article title wants the full width. */
+@container kit-shop (max-width: 40rem) {
+  .kit-shop-grid:has(.kit-product-label) {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+.kit-product-card:has(.kit-product-label) .kit-product-media {
+  aspect-ratio: 16 / 9;
+}
+.kit-product-card .kit-product-label {
+  order: -1;
+  font-family: var(--kit-font-mono);
+  font-size: 0.75rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--kit-accent);
+}
+.kit-product-card .kit-product-media {
+  order: -2;
+}
+.kit-product-card:has(.kit-product-label) .kit-product-name {
+  font-size: clamp(1.125rem, 1rem + 0.5vw, 1.375rem);
+  line-height: 1.25;
 }
