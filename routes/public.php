@@ -44,11 +44,15 @@ use Illuminate\Support\Facades\Route;
 */
 Route::get('/', [SitePageController::class, 'home'])->name('home');
 
-foreach (['about', 'contact', 'services', 'industries'] as $slug) {
+foreach (['about', 'contact', 'services', 'industries', 'how-i-work'] as $slug) {
     Route::get('/'.$slug, [SitePageController::class, 'show'])->defaults('slug', $slug)->name("pages.{$slug}");
 }
 
 Route::get('/services/{slug}', [SitePageController::class, 'service'])->name('services.show');
+
+// Where a /start brief lands (the `thanks` page). /start itself is still a
+// redirect until the brief form is built; it should send people here.
+Route::get('/start/thanks', [SitePageController::class, 'show'])->defaults('slug', 'thanks')->name('start.thanks');
 Route::get('/industries/{slug}', [SitePageController::class, 'industry'])->name('industries.show');
 
 /*
@@ -82,7 +86,8 @@ Route::get('/diagnostic', [DiagnosticController::class, 'show'])->name('diagnost
 Route::get('/data/delete', [DataDeletionController::class, 'show'])->name('data-delete');
 
 /*
-| Static pages. Templates rather than entries, as they were on the live site.
+| Privacy and terms: templates, as they were on the live site, until a page
+| built from kit's sections is published under the same slug.
 */
 Route::get('/privacy', [StaticPageController::class, 'show'])->defaults('page', 'privacy')->name('privacy');
 Route::get('/terms', [StaticPageController::class, 'show'])->defaults('page', 'terms')->name('terms');

@@ -20,8 +20,9 @@ it('registers every built-in block type', function (): void {
         'rich-text', 'contact-form', 'faq',
     ];
 
-    // kit's sections (`kit-*`, app/Cms/blocks.php) are registered beside them.
-    $builtIn = array_filter($registry->all(), fn ($block): bool => ! str_starts_with($block->handle, 'kit-'));
+    // kit's sections (`kit-*`) and the site's own (`site-*`), from
+    // app/Cms/blocks.php, are registered beside them.
+    $builtIn = array_filter($registry->all(), fn ($block): bool => ! str_starts_with($block->handle, 'kit-') && ! str_starts_with($block->handle, 'site-'));
 
     expect($builtIn)->toHaveCount(count($handles));
 

@@ -8,28 +8,46 @@
 
     Styles were scoped to the Astro component and stay with it here, inline,
     because they only matter on this one page.
+
+    The copy can be set (the Nightfolio page's `site-audit-tool` block does);
+    left out, it reads as it always has. A `label` shows the address's label
+    instead of keeping it for screen readers only, with `number` before it as
+    decoration. The Nightfolio look is in kit-theme-nightfolio.css.
 --}}
+@props([
+    'label' => null,
+    'number' => null,
+    'placeholder' => 'https://example.com',
+    'button' => 'Run audit',
+    'hint' => 'Enter any URL to get a free site health report.',
+])
 <div class="audit-tool" data-site-audit data-endpoint="{{ route('site-audit.store', [], false) }}">
   <!-- Input form -->
   <form id="audit-form" class="audit-form" novalidate>
     <div class="audit-input-row">
       <div class="audit-input-wrap">
-        <label for="audit-url" class="sr-only">Website address</label>
+        @if (filled($label))
+          <label for="audit-url" class="audit-label">@if (filled($number))<span aria-hidden="true">{{ $number }} · </span>@endif{{ $label }}</label>
+        @else
+          <label for="audit-url" class="sr-only">Website address</label>
+        @endif
         <input
           type="url"
           id="audit-url"
           name="url"
-          placeholder="https://example.com"
+          placeholder="{{ $placeholder }}"
           required
           class="audit-input"
           autocomplete="url"
         />
       </div>
       <button type="submit" class="audit-submit" id="audit-submit">
-        Run audit
+        {{ $button }}
       </button>
     </div>
-    <p class="audit-hint">Enter any URL to get a free site health report.</p>
+    @if (filled($hint))
+      <p class="audit-hint">{{ $hint }}</p>
+    @endif
     <p class="audit-error hidden" id="audit-error-validation">Please enter a valid URL (e.g. https://example.com)</p>
 
     <!-- Segmentation field — optional, used to route post-audit follow-up to the right case study / service page -->

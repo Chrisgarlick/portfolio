@@ -3,7 +3,8 @@
 
     The live page fetched the preview from the API with JavaScript; here the
     server renders whichever state applies, so it works without a script.
-    $state is invalid | already | prompt | done. The confirm button is a real
+    $state is invalid | already | prompt | done, or, after the privacy page's
+    request form posts without JavaScript, sent | retry. The confirm button is a real
     form; resources/js/site/data-delete.js submits it in the background and
     swaps in the done state, and without JavaScript the form posts normally.
 --}}
@@ -26,6 +27,22 @@
                     </p>
                     <p class="text-[15px] leading-[1.7] text-text-secondary">
                         If you&rsquo;d like your data removed and the link isn&rsquo;t working, email <a href="mailto:{{ config('cg-cms.site.contact_email') }}" class="text-accent hover:text-accent-hover">{{ config('cg-cms.site.contact_email') }}</a> with the email address you used and I&rsquo;ll action it within 30 days.
+                    </p>
+                </div>
+            @endif
+
+            @if ($state === 'sent')
+                <div class="mb-8 border-l-2 border-accent pl-6 md:pl-7">
+                    <p class="mb-2 font-body text-[11px] font-medium tracking-[0.18em] text-accent uppercase">Check your email</p>
+                    <h2 class="mb-3 font-display text-[24px] text-text-primary">If that address is on file, a link is on its way.</h2>
+                    <p class="text-[15px] leading-[1.7] text-text-secondary">It works for 24 hours. Open it to see what I hold and confirm the deletion.</p>
+                </div>
+            @endif
+
+            @if ($state === 'retry')
+                <div class="mb-8">
+                    <p class="text-[15px] leading-[1.7] text-text-secondary">
+                        That doesn&rsquo;t look like an email address. <a href="/privacy#delete-your-data" class="text-accent hover:text-accent-hover">Go back and try again</a>.
                     </p>
                 </div>
             @endif

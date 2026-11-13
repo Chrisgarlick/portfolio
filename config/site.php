@@ -150,6 +150,15 @@ return [
             ]],
         ],
 
+        // The Nightfolio pages built from kit's sections at their own
+        // addresses. Privacy and terms fall back to their templates until a
+        // page is published (StaticPageController). Thanks is where a /start
+        // brief lands; never indexed (its seo.noindex, from the content file).
+        'how-i-work' => ['path' => '/how-i-work'],
+        'privacy' => ['path' => '/privacy'],
+        'terms' => ['path' => '/terms'],
+        'thanks' => ['path' => '/start/thanks'],
+
         'ai-implementation' => ['path' => '/services/ai-implementation', 'section' => 'services', 'faq' => 'ai-implementation'],
         'workflow-automation' => ['path' => '/services/workflow-automation', 'section' => 'services', 'service' => 'workflow'],
         'ai-agents' => ['path' => '/services/ai-agents', 'section' => 'services', 'service' => 'agents'],

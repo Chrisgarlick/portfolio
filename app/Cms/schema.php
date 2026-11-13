@@ -244,6 +244,12 @@ return [
             Field::richText('body')->lint(['no-em-dash', 'no-html-entities']),
             Field::text('icon'),
             Field::select('category')->options(['Audit', 'Performance', 'SEO', 'Content', 'AI']),
+            // The Nightfolio redesign: a tool page built from kit's sections
+            // (App\Content\KitPage), the tool itself one of the app's blocks
+            // among them, renders those instead of the template.
+            Field::blocks('content')->allow(Block::app()),
+            Field::select('mode')->options(['night', 'day'])->default('night')
+                ->help('For a tool page built from kit sections. night: the dark green pages. day: paper.'),
             Field::number('sort_order'),
             Field::select('status')->options(['draft', 'published'])->default('draft'),
             Field::seo(),

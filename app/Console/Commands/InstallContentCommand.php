@@ -30,7 +30,7 @@ use Symfony\Component\Yaml\Yaml;
  * collection's first rich text field; a JSON object beside one (same name)
  * adds more fields, such as a service's kit sections. A page is a JSON file named after the
  * page's slug: a list of blocks, or an object of the page's fields (`content`
- * for the blocks, `mode`, `seo_title`, `seo_description`) when it sets more.
+ * for the blocks, `mode`, `seo_title`, `seo_description`, `seo_noindex`) when it sets more.
  * Images come along as files under database/content/media (see withMedia()).
  */
 final class InstallContentCommand extends Command
@@ -268,8 +268,8 @@ final class InstallContentCommand extends Command
     }
 
     /**
-     * A file's fields as the content service takes them: `seo_title` and
-     * `seo_description` go into `seo`.
+     * A file's fields as the content service takes them: `seo_title`,
+     * `seo_description` and `seo_noindex` go into `seo`.
      *
      * @param  array<array-key, mixed>  $fields
      * @return array<string, mixed>
@@ -279,7 +279,7 @@ final class InstallContentCommand extends Command
         $values = [];
 
         foreach ($fields as $key => $value) {
-            if ($key === 'seo_title' || $key === 'seo_description') {
+            if (in_array($key, ['seo_title', 'seo_description', 'seo_noindex'], true)) {
                 $values['seo'][substr((string) $key, 4)] = $value;
             } else {
                 $values[(string) $key] = $value;

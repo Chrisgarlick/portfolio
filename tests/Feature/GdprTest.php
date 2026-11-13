@@ -2,13 +2,16 @@
 
 declare(strict_types=1);
 
+use App\Mail\DataDeletionLink;
 use App\Models\AuditSubmission;
 use App\Models\GdprDeletion;
 use App\Models\OutboundEmail;
 use App\Models\ResourceDownload;
 use App\Models\ResourceLead;
+use Cg\Cms\Forms\FormGuard;
 use Cg\Cms\Models\FormSubmission;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\URL;
 
@@ -158,6 +161,87 @@ it('works without JavaScript: the form posts and the page shows the done state',
         ->assertSee('Your data has been removed.');
 
     expect($submission->fresh()->isDeleted())->toBeTrue();
+});
+
+/*
+| The privacy page's form: an email address in, the same signed link out
+*/
+
+function requestDeletion(array $overrides = [], bool $json = true): Illuminate\Testing\TestResponse
+{
+    $guard = app(FormGuard::class)->hiddenFields('data-deletion');
+    $guard[FormGuard::TIMESTAMP] = (string) (time() - 30);
+    $payload = [...$guard, 'email' => 'ADA@example.com', ...$overrides];
+
+    return $json ? test()->postJson('/api/data/delete/request', $payload) : test()->post('/api/data/delete/request', $payload);
+}
+
+it('emails each live submission for an address a day-long link to the deletion page', function (): void {
+    Mail::fake();
+    $mine = gdprSubmission();
+    $again = gdprSubmission();
+    $gone = gdprSubmission();
+    $gone->forceFill(['deleted_at' => now()])->save();
+    gdprSubmission(['email' => 'someone-else@example.com']);
+
+    requestDeletion()->assertOk()->assertExactJson(['ok' => true]);
+
+    Mail::assertQueued(DataDeletionLink::class, 2);
+
+    $sent = [];
+    Mail::assertQueued(DataDeletionLink::class, function (DataDeletionLink $mail) use (&$sent): bool {
+        $sent[$mail->submission->id] = $mail->url;
+
+        return $mail->hasTo('ada@example.com') && $mail->hours === 24;
+    });
+    expect(array_keys($sent))->toEqualCanonicalizing([$mine->id, $again->id]);
+
+    // The link is the existing two-step flow: it shows, then the confirm erases.
+    $this->get($sent[$mine->id])->assertOk()->assertSee('Yes, delete my data');
+    $this->postJson('/api/data/delete', ['link' => $sent[$mine->id]])->assertOk()->assertJson(['alreadyDeleted' => false]);
+    expect($mine->fresh()->isDeleted())->toBeTrue()
+        ->and($again->fresh()->isDeleted())->toBeFalse();
+
+    // …and it lapses after a day.
+    $this->travel(25)->hours();
+    $this->get($sent[$again->id])->assertForbidden();
+    $this->postJson('/api/data/delete', ['link' => $sent[$again->id]])->assertStatus(401);
+});
+
+it('answers an unknown address exactly as a known one, and sends nothing', function (): void {
+    Mail::fake();
+
+    requestDeletion(['email' => 'nobody@example.com'])->assertOk()->assertExactJson(['ok' => true]);
+
+    Mail::assertNothingQueued();
+});
+
+it('asks again for something that is not an email address', function (): void {
+    Mail::fake();
+
+    requestDeletion(['email' => 'not an address'])->assertStatus(422)->assertJson(['error' => 'Enter the email address you used.']);
+    requestDeletion(['email' => 'not an address'], json: false)->assertStatus(422)->assertSee('Go back and try again');
+
+    Mail::assertNothingQueued();
+});
+
+it('quietly drops a bot that fills the honeypot or has no token', function (): void {
+    Mail::fake();
+    gdprSubmission();
+
+    requestDeletion([FormGuard::HONEYPOT => 'https://spam.example'])->assertOk()->assertExactJson(['ok' => true]);
+    requestDeletion(['_form_token' => 'forged'])->assertOk();
+
+    Mail::assertNothingQueued();
+});
+
+it('works without JavaScript: the form posts and a page says what happens next', function (): void {
+    Mail::fake();
+    gdprSubmission();
+
+    requestDeletion(json: false)->assertOk()->assertSee('If that address is on file, a link is on its way.');
+
+    Mail::assertQueued(DataDeletionLink::class, 1);
 });
 
 /*

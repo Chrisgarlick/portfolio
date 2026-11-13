@@ -71,6 +71,8 @@ export function initSiteAudit() {
     const errorText = root.querySelector('#audit-error-text');
     const results = root.querySelector('#audit-results');
     const resultsUrl = root.querySelector('#audit-results-url');
+    // The page sets the button's words ("Run audit", "Check my site"); put them back after a run.
+    const submitLabel = submit?.textContent.trim() || 'Run audit';
 
     const reset = () => {
         [validation, loading, errorBox, results].forEach((element) => element?.classList.add('hidden'));
@@ -165,7 +167,7 @@ export function initSiteAudit() {
             showError(MESSAGES.network);
         } finally {
             submit.disabled = false;
-            submit.textContent = 'Run audit';
+            submit.textContent = submitLabel;
         }
     });
 }

@@ -4,12 +4,18 @@ declare(strict_types=1);
 
 namespace App\Http\Controllers;
 
+use App\Content\KitPage;
 use Cg\Cms\Cache\CacheContext;
+use Cg\Cms\Models\Entry;
 use Illuminate\Contracts\View\View;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 /**
  * Privacy and terms: templates, as they were on the live site.
+ *
+ * The Nightfolio redesign builds both from kit's sections as `page` entries
+ * (config/site.php `pages`). Once one is published it is served instead,
+ * like any other kit page; until then the template stands.
  *
  * Tagged 'static' so the page cache will keep them. Nothing in the CMS changes
  * them; a deploy that changes the template flushes the cache.
@@ -24,6 +30,12 @@ final class StaticPageController extends Controller
     {
         if (! in_array($page, self::PAGES, true)) {
             throw new NotFoundHttpException;
+        }
+
+        $entry = Entry::query()->collection('page')->published()->where('slug', $page)->first();
+
+        if ($entry !== null && KitPage::is($entry)) {
+            return app(SitePageController::class)->show($page);
         }
 
         $this->cacheContext->registerTag('static');

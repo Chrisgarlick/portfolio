@@ -42,3 +42,5 @@ Route::get('/resources/{slug}/download', [ResourceGateController::class, 'downlo
 
 // Self-serve erasure. The page is GET /data/delete; this is the confirm step.
 Route::post('/data/delete', [DataDeletionController::class, 'confirm'])->middleware('throttle:data-delete')->name('data-delete.confirm');
+// The privacy page's form: an email address in, a signed link to the page above out.
+Route::post('/data/delete/request', [DataDeletionController::class, 'request'])->middleware('throttle:data-delete')->name('data-delete.request');
