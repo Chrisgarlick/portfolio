@@ -27,3 +27,24 @@ it('serves the kit home page with its hero, header and footer', function (): voi
         ->assertSee('<em>stay fast.</em>', false)
         ->assertSee('Start a project');
 });
+
+it('carries the design\'s copy and a cookie preferences button the banner script answers', function (): void {
+    $this->artisan('site:install-content', ['--only' => ['pages'], '--publish' => true])->assertSuccessful();
+
+    $this->get('/')
+        ->assertOk()
+        ->assertSee('URLs kept when I moved this site to Laravel: every live URL still works')
+        ->assertSee('Lighthouse performance, 99 or 100 in lab tests (up from the high 80s)')
+        ->assertSee('Time to first byte · cg-cms, live 1GB server')
+        ->assertSee('0.4 ms a page<br>', false)
+        ->assertSee('6,300 a second')
+        ->assertSee('<em>writing</em>', false)
+        ->assertSee('class="kit-header-secondary" href="/tools/site-audit"', false)
+        ->assertSee('<figcaption class="kit-hero-caption">Chris Garlick · writes the code</figcaption>', false)
+        ->assertSee('data-panel="accent"', false)
+        ->assertSee('data-cookie-preferences>Cookie preferences</button>', false)
+        ->assertSee('id="cookie-banner"', false);
+
+    expect((string) file_get_contents(resource_path('js/site/cookie-consent.js')))
+        ->toContain('[data-cookie-preferences]');
+});

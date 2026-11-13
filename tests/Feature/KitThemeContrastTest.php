@@ -116,3 +116,9 @@ it('uses the night values checked in Design', function (): void {
         ->and($night['kit-accent'])->toBe('#DDE7DF')
         ->and($night['nf-wordmark'])->toBe('#287659');
 });
+
+it('puts paper on the house green in a night accent panel (Edit 01)', function (): void {
+    $panel = nightfolioTokens('[data-mode="night"] .kit-section-split[data-panel="accent"] .kit-split-text');
+
+    expect(nightfolioFailures($panel, ['kit-accent-fg' => ['kit-accent']]))->toBe([]);
+});

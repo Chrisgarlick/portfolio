@@ -88,11 +88,13 @@
  * On a night page a tinted section (background or tone "tinted") is a sheet
  * of day: paper, ink and the house green, as the home page's "What I build"
  * and its numbers are in Design. Its tokens are set on the section itself, so
- * they win over the night ones it would inherit.
+ * they win over the night ones it would inherit. The process section's
+ * example card is a sheet of paper too (Design nh_k_how_c), on the Lift.
  */
 :root:root,
 [data-mode="day"],
-[data-mode="night"] :is([data-background="tinted"], [data-tone="tinted"]) {
+[data-mode="night"] :is([data-background="tinted"], [data-tone="tinted"]),
+[data-mode="night"] .kit-section-process .kit-note-card {
   color-scheme: light;
 
   /* Type */
@@ -281,7 +283,7 @@ body.kit-page::before {
 /* Headlines are uppercase with one lower-case italic phrase: "WEBSITES THAT *stay fast.*" */
 :is(.kit-hero-title, .kit-cta-title, .kit-process-title, .kit-ruled-name, .kit-marquee-phrase,
     .kit-collage-title, .kit-qs-quote, .kit-section-head-title, .kit-prose-heading,
-    .kit-text-block-title) em {
+    .kit-text-block-title, .kit-shop-heading) em {
   text-transform: none;
 }
 
@@ -479,4 +481,237 @@ body.kit-page::before {
 .kit-product-card:has(.kit-product-label) .kit-product-name {
   font-size: clamp(1.125rem, 1rem + 0.5vw, 1.375rem);
   line-height: 1.25;
+}
+
+/* ---- The finishing pieces (nf_home: masthead, opener, Edit 01 and 02,
+   writing, footer) ---- */
+
+/* Mono labels: Design sets every small label and "→" link in the mono face,
+   in capitals (nav, eyebrows, the links under a section, card kickers). */
+.kit-header-nav a,
+.kit-header-secondary,
+.kit-hero-proof,
+.kit-hero-caption,
+.kit-process-eyebrow,
+.kit-note-label,
+[class*="kit-section-"] .kit-link[data-variant="arrow"],
+.kit-section-footer :is(.kit-footer-column ul, .kit-footer-bottom) {
+  font-family: var(--kit-font-mono);
+  font-size: 0.75rem;
+  font-weight: 400;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+.kit-header-num {
+  font-size: 1em;
+  margin-inline-end: 0.75em;
+}
+.kit-header-nav a,
+.kit-section-header .kit-header-secondary {
+  color: var(--kit-fg-2);
+  white-space: nowrap;
+}
+.kit-header-nav a:hover,
+.kit-section-header .kit-header-secondary:hover {
+  color: var(--kit-fg);
+}
+/* The mono capitals run wider than kit's sans: close the gaps up, and fold
+   the links into the menu below 64rem rather than kit's 54rem (kit's own
+   fold rules, repeated at the wider width). */
+@container kit-header (max-width: 72rem) {
+  .kit-header-bar,
+  .kit-header-nav ul {
+    gap: var(--kit-space-4);
+  }
+}
+@container kit-header (max-width: 63.99rem) {
+  .kit-header-bar { min-block-size: 72px; }
+  .kit-header-nav,
+  .kit-section-header .kit-header-action,
+  .kit-header-end > .kit-header-secondary { display: none; }
+  .kit-header-menu { display: block; }
+  .kit-header-nav + .kit-header-end { margin-inline-start: auto; }
+}
+.kit-header-nav .kit-header-num {
+  color: inherit;
+}
+/* The phone menu keeps a tappable size. */
+.kit-header-sheet :is(a, .kit-header-secondary) {
+  font-size: 0.875rem;
+}
+
+/* The masthead on night: a ruled bar, its action a mint text link ("START A
+   PROJECT →") rather than a filled button. */
+[data-mode="night"] .kit-section-header {
+  border-block-end: 1px solid var(--kit-line);
+}
+[data-mode="night"] .kit-header-end > .kit-header-action {
+  --_h: auto;
+  --_bg: transparent;
+  --_fg: var(--kit-accent);
+  --_border: transparent;
+  --_hover: transparent;
+  --_shadow: none;
+  padding: 3px 0;
+  letter-spacing: 0.06em;
+  font-size: 0.75rem;
+  font-weight: 400;
+}
+[data-mode="night"] .kit-header-end > .kit-header-action::after {
+  content: "→";
+}
+[data-mode="night"] .kit-header-end > .kit-header-action:hover {
+  color: var(--kit-fg);
+}
+
+/* The opener sits right under the masthead (Design: 36px), its proof line in
+   mint and the portrait's caption small under it. */
+.kit-section-hero[data-title-size="large"] {
+  padding-block: clamp(1.5rem, 2.5vw, 2.25rem) clamp(2.5rem, 4vw, 3rem);
+}
+.kit-hero-proof {
+  color: var(--kit-accent);
+}
+.kit-hero-proof svg,
+.kit-hero-proof .kit-icon {
+  color: inherit;
+  inline-size: 16px;
+  block-size: 16px;
+}
+.kit-hero-actions .kit-hero-link {
+  color: var(--kit-fg);
+}
+.kit-hero-caption {
+  font-size: 0.6875rem;
+}
+
+/* Edit 01 (split, panel accent) on night: Design's two panels edge to edge,
+   the text on the house green (paper on #1F5C45 is 7.5:1) and the picture
+   framed on the Lift. kit's panel takes the accent, which on night is mint,
+   so the panel's own tokens point it back at the house green. */
+[data-mode="night"] .kit-section-split[data-panel="accent"] {
+  padding-block: 0;
+}
+[data-mode="night"] .kit-section-split[data-panel="accent"][data-media="image"] .kit-split-inner {
+  inline-size: 100%;
+  max-inline-size: none;
+  grid-template-columns: minmax(0, 600fr) minmax(0, 840fr);
+}
+[data-mode="night"] .kit-section-split[data-panel="accent"] .kit-split-text {
+  --kit-accent: #1F5C45;
+  --kit-accent-fg: #FAF8F3;
+  align-content: end;
+  min-block-size: clamp(30rem, 48vw, 43.75rem);
+  padding: clamp(2rem, 4vw, 3rem) clamp(1.25rem, 3vw, 2.5rem);
+}
+[data-mode="night"] .kit-section-split[data-panel="accent"] .kit-text-block-eyebrow {
+  font-family: var(--kit-font-mono);
+  font-size: 0.6875rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+[data-mode="night"] .kit-section-split[data-panel="accent"] .kit-text-block-body {
+  font-size: 1rem;
+  line-height: 1.45;
+}
+[data-mode="night"] .kit-section-split[data-panel="accent"][data-media="image"] .kit-split-media {
+  box-sizing: border-box;
+  padding: clamp(1.25rem, 5vw, 4.5rem);
+  background: var(--kit-surface);
+  object-fit: contain;
+}
+@container kit-split (max-width: 48rem) {
+  [data-mode="night"] .kit-section-split[data-panel="accent"][data-media="image"] .kit-split-inner {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  [data-mode="night"] .kit-section-split[data-panel="accent"] .kit-split-text {
+    min-block-size: 0;
+  }
+}
+
+/* Edit 02 (process) on night: the band is the Lift, not paper (Design
+   nh_k_how). Only "tinted" is a sheet of day on night pages, so a plain
+   process takes the Lift here; its card is paper (the token rule at the top). */
+[data-mode="night"] .kit-section-process[data-background="plain"] {
+  background: var(--kit-surface);
+}
+.kit-process-inner:has(.kit-process-cards) {
+  grid-template-columns: minmax(0, 1fr) minmax(0, 32.5rem);
+  align-items: start;
+}
+.kit-process-title {
+  font-size: clamp(2.5rem, 1rem + 3.2vw, 3.75rem);
+}
+.kit-process-steps {
+  gap: var(--kit-space-2);
+  font-size: 0.9375rem;
+}
+.kit-process-steps strong {
+  font-weight: 400;
+}
+.kit-note-card {
+  gap: var(--kit-space-4);
+  padding: 2rem;
+  background: var(--kit-bg);
+  color: var(--kit-fg);
+  box-shadow: none;
+}
+.kit-note-label {
+  font-size: 0.6875rem;
+  color: var(--kit-fg);
+}
+.kit-note-title {
+  font-family: var(--kit-font-display);
+  font-size: clamp(2rem, 1rem + 1.8vw, 2.75rem);
+  font-weight: 600;
+  line-height: 0.95;
+  letter-spacing: var(--kit-display-tracking);
+}
+@container kit-process (max-width: 56rem) {
+  .kit-process-inner:has(.kit-process-cards) {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+/* Writing: no still yet, so no empty shop placeholder; the description
+   under the title in the muted ink. */
+.kit-product-card:has(.kit-product-label) .kit-product-media:has(.kit-product-placeholder) {
+  display: none;
+}
+/* kit draws a card's focus ring on its still; without one, on the card. */
+.kit-product-card:has(.kit-product-label):has(.kit-product-placeholder):has(.kit-product-link:focus-visible) {
+  outline: 2px solid var(--kit-focus-ring);
+  outline-offset: 6px;
+}
+.kit-product-card .kit-product-description {
+  font-size: 0.875rem;
+  line-height: 1.5;
+}
+
+/* The footer, as Design's: the question large, the links as mono lines, the
+   cookie button one of the legal links. The brand is the green wordmark, so
+   the small brand line is kept for screen readers only. */
+/* Design's footer has no column headings either; they stay for screen
+   readers, as the names of the link lists. */
+.kit-section-footer:has(> .kit-footer-wordmark) :is(.kit-footer-brand, .kit-footer-heading) {
+  position: absolute;
+  inline-size: 1px;
+  block-size: 1px;
+  margin: -1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+.kit-section-footer .kit-footer-blurb {
+  font-size: clamp(1.375rem, 1rem + 1vw, 1.75rem);
+  font-weight: 500;
+  line-height: 1.2;
+  color: var(--kit-inverse-fg);
+}
+.kit-section-footer .kit-footer-column ul {
+  gap: var(--kit-space-2);
+}
+.kit-section-footer .kit-footer-cookies {
+  letter-spacing: inherit;
+  text-transform: inherit;
 }

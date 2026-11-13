@@ -32,6 +32,8 @@
             "url": "/about"
           }
         ],
+        "secondary_label": "Free site audit",
+        "secondary_url": "/tools/site-audit",
         "action_label": "Start a project",
         "action_url": "/start",
         "tone": "plain"
@@ -62,7 +64,10 @@
           "file": "media/chris-garlick-portrait.jpg",
           "alt": "Chris Garlick, smiling, in a suit and tie"
         },
-        "heading_level": "1"
+        "heading_level": "1",
+        "secondary_style": "link",
+        "proof_icon": "clock",
+        "caption": "Chris Garlick · writes the code"
       }
     },
     {
@@ -80,7 +85,8 @@
           "alt": "An example Kritano audit: overall health 87, scores for SEO, accessibility, security, performance and content, and the top findings"
         },
         "background": "plain",
-        "swap": true
+        "swap": true,
+        "panel": "accent"
       }
     },
     {
@@ -136,11 +142,11 @@
           },
           {
             "value": "79",
-            "label": "URLs kept when I moved this site to Laravel"
+            "label": "URLs kept when I moved this site to Laravel: every live URL still works"
           },
           {
             "value": "99",
-            "label": "Lighthouse performance, 99 or 100 in lab tests"
+            "label": "Lighthouse performance, 99 or 100 in lab tests (up from the high 80s)"
           }
         ],
         "tone": "tinted"
@@ -179,18 +185,19 @@
         "link_url": "/how-i-work",
         "cards": [
           {
-            "label": "Time to first byte · cg-cms, 1GB server",
-            "title": "0.4 ms a page, 6,300 a second",
+            "label": "Time to first byte · cg-cms, live 1GB server",
+            "title": "0.4 ms a page\n6,300 a second",
             "points": []
           }
         ],
-        "background": "plain"
+        "background": "plain",
+        "step_punctuation": false
       }
     },
     {
       "type": "kit-product-grid",
       "data": {
-        "title": "Latest writing",
+        "title": "LATEST *writing*",
         "heading_level": "2",
         "link_label": "All writing",
         "link_url": "/article",
@@ -203,21 +210,25 @@
             "name": "Caching pages to disk: how cg-cms serves pages in under a millisecond",
             "url": "/article/caching-pages-to-disk-laravel",
             "image": null,
-            "label": "01 · Laravel"
+            "label": "01 · Laravel",
+            "description": "How cg-cms writes each Laravel page to disk on save, lets nginx serve it without PHP, and purges only the pages a change affects."
           },
           {
             "name": "How chrisgarlick.com's LCP went from 3 seconds to under 2",
             "url": "/article/chrisgarlick-com-lcp-3-seconds-to-under-2",
             "image": null,
-            "label": "02 · Performance"
+            "label": "02 · Performance",
+            "description": "What moved this site's largest contentful paint from about 3 seconds to under 2 in Lighthouse, and the checks you can run on your own site."
           },
           {
             "name": "Taking over a WordPress site: what I check in the first hour",
             "url": "/article/taking-over-a-wordpress-site",
             "image": null,
-            "label": "03 · WordPress"
+            "label": "03 · WordPress",
+            "description": "What I check in the first hour with an inherited WordPress site: backups, versions, plugins, logins, hosting and speed. Most you can run yourself."
           }
-        ]
+        ],
+        "background": "tinted"
       }
     },
     {
@@ -313,7 +324,8 @@
             "url": "/terms"
           }
         ],
-        "wordmark": "CHRIS GARLICK"
+        "wordmark": "CHRIS GARLICK",
+        "cookie_label": "Cookie preferences"
       }
     }
   ]
