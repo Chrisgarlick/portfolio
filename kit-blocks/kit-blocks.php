@@ -11,6 +11,9 @@ use Cg\Cms\Schema\Field;
 
 require_once __DIR__ . '/kit/cgcms.php';
 
+// Every load, so each new app (a test, a queue job under Octane) gets the views.
+kit_cgcms_register_views();
+
 return [
     Block::make('kit-announcement-bar', 'Announcement bar')->fields([
         Field::select('icon')->label('Icon')->options(['', 'bag', 'bolt', 'box', 'calendar', 'chat', 'check', 'clock', 'droplet', 'flame', 'hammer', 'home', 'image', 'key', 'leaf', 'map-pin', 'minus', 'phone', 'plus', 'returns', 'shield', 'siren', 'sparkles', 'star', 'truck', 'wrench', 'x'])->default('truck'),
