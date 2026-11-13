@@ -1256,3 +1256,371 @@ body.kit-page::before {
 .kit-section-split[data-media="image"][data-swap] .kit-split-figure > .kit-split-window {
   order: 0;
 }
+
+/* ---- How I work, About, Privacy, Terms, the site audit and Thanks (Design
+   nf_how, nf_about, nf_privacy, nf_terms, nf_audit, nf_thanks) ---- */
+
+/* "FOUR stages": a heading on paper over the splits that follow it, its line
+   under it and a rule below, not the numbered section's two halves. */
+[data-mode="night"] .kit-section-text-block[data-background="tinted"]:has(+ .kit-section-split[data-background="tinted"]) {
+  padding-block: 6rem 0;
+}
+[data-mode="night"] .kit-section-text-block[data-background="tinted"]:has(+ .kit-section-split[data-background="tinted"]) .kit-text-block {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 1rem;
+  max-inline-size: none;
+  padding-block-end: 2.5rem;
+  border-block-end: 1px solid var(--kit-fg);
+}
+[data-mode="night"] .kit-section-text-block[data-background="tinted"]:has(+ .kit-section-split[data-background="tinted"]) .kit-text-block > * {
+  grid-column: 1;
+  grid-row: auto;
+}
+[data-mode="night"] .kit-section-text-block[data-background="tinted"]:has(+ .kit-section-split[data-background="tinted"]) .kit-text-block-title {
+  font-size: clamp(2.75rem, 1rem + 6.5vw, 7.5rem);
+  line-height: 0.9;
+}
+
+/* The stages' cards ("A written scope covers", "0.4 ms"): splits on paper,
+   like the pictures between them, not cg-cms's Well. Runs of stages are ruled
+   apart as in Design. */
+[data-mode="night"] .kit-section-split[data-media="card"][data-background="tinted"] {
+  background: var(--kit-bg);
+  padding-block: 3rem;
+}
+[data-mode="night"] .kit-section-text-block[data-background="tinted"] ~ .kit-section-split[data-background="tinted"] + .kit-section-split[data-background="tinted"] .kit-split-inner {
+  padding-block-start: 3rem;
+  border-block-start: 1px solid var(--kit-line);
+}
+[data-mode="night"] .kit-section-split[data-background="tinted"]:has(+ :not(.kit-section-split)) {
+  padding-block-end: 6rem;
+}
+[data-mode="night"] .kit-section-split[data-media="card"][data-background="tinted"] .kit-split-card {
+  border: 1px solid var(--kit-line);
+}
+/* A card that is a list (one item a line) reads at body size, not as one big figure. */
+.kit-split-card-title:has(br) {
+  font-size: clamp(1.125rem, 1rem + 0.4vw, 1.25rem);
+  line-height: 2.2;
+}
+.kit-split-card-title:has(br) strong {
+  font-family: var(--kit-font-mono);
+  font-size: 0.75em;
+  color: var(--kit-accent);
+  margin-inline-end: 0.75em;
+}
+
+/* "Where AI is": words and the lists side by side on night, the words on the
+   house green and the lists on the Lift (Design nhw_kai). A text block with
+   words and points is only ever this. */
+[data-mode="night"] .kit-section-text-block[data-background="plain"]:has(.kit-text-block-body):has(.kit-text-block-points) {
+  background: var(--kit-bg);
+}
+@media (min-width: 56rem) {
+  [data-mode="night"] .kit-section-text-block[data-background="plain"]:has(.kit-text-block-body):has(.kit-text-block-points) .kit-text-block {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    max-inline-size: none;
+    gap: 0;
+  }
+  [data-mode="night"] .kit-section-text-block[data-background="plain"]:has(.kit-text-block-body):has(.kit-text-block-points) .kit-text-block > * {
+    grid-column: 1;
+    justify-self: stretch;
+    max-inline-size: none;
+    margin: 0;
+    padding-inline: 2.5rem;
+    background: var(--kit-accent-soft);
+  }
+  [data-mode="night"] .kit-section-text-block[data-background="plain"]:has(.kit-text-block-body):has(.kit-text-block-points) .kit-text-block > :first-child {
+    padding-block-start: 3rem;
+  }
+  [data-mode="night"] .kit-section-text-block[data-background="plain"]:has(.kit-text-block-body):has(.kit-text-block-points) .kit-text-block-title {
+    padding-block: 6rem 1.5rem;
+  }
+  [data-mode="night"] .kit-section-text-block[data-background="plain"]:has(.kit-text-block-body):has(.kit-text-block-points) .kit-text-block-body {
+    padding-block-end: 3rem;
+  }
+  [data-mode="night"] .kit-section-text-block[data-background="plain"]:has(.kit-text-block-body):has(.kit-text-block-points) .kit-text-block-points {
+    grid-column: 2;
+    grid-row: 1 / span 3;
+    align-self: stretch;
+    align-content: end;
+    padding: 3rem;
+    background: var(--kit-surface);
+  }
+}
+[data-mode="night"] .kit-section-text-block:has(.kit-text-block-body) .kit-text-block-points li {
+  font-size: 1.25rem;
+}
+
+/* About's two screenshots, framed, follow the story on paper and each other
+   closely, as one figure row would. */
+[data-mode="night"] .kit-section-text-block[data-background="tinted"] + .kit-section-figure[data-tone="tinted"] {
+  padding-block-start: 0;
+}
+[data-mode="night"] .kit-section-figure[data-tone="tinted"] + .kit-section-figure[data-tone="tinted"] {
+  padding-block-start: 0;
+}
+
+/* The stack: a card with only a name says it in body type (Design nab_kk). */
+.kit-service-card:not(:has(.kit-service-text, .kit-service-subtitle)) .kit-service-title {
+  font-family: var(--kit-font-ui);
+  font-size: clamp(1.125rem, 1rem + 0.4vw, 1.375rem);
+  font-weight: 500;
+  line-height: 1.3;
+  text-transform: none;
+}
+
+/* Thanks: "The call", a ruled list of the Well's tone made a panel on the
+   Lift: the heading on the left, each answer under its mono label on the
+   right, no numbers (Design nth_book). The only dark ruled list on night. */
+[data-mode="night"] .kit-section-ruled-list[data-tone="dark"] {
+  background: var(--kit-bg);
+  padding-block: 0 6rem;
+}
+[data-mode="night"] .kit-section-ruled-list[data-tone="dark"] .kit-container > * {
+  background: var(--kit-surface);
+}
+[data-mode="night"] .kit-section-ruled-list[data-tone="dark"] .kit-section-head {
+  display: block;
+  padding: 3rem 3rem 1rem;
+  margin: 0;
+}
+[data-mode="night"] .kit-section-ruled-list[data-tone="dark"] .kit-ruled-value {
+  justify-self: start;
+}
+[data-mode="night"] .kit-section-ruled-list[data-tone="dark"] .kit-section-head-title {
+  font-size: clamp(2.5rem, 1.5rem + 2vw, 3.5rem);
+  line-height: 0.9;
+}
+[data-mode="night"] .kit-section-ruled-list[data-tone="dark"] .kit-ruled-list {
+  padding: 0 3rem 3rem;
+}
+[data-mode="night"] .kit-section-ruled-list[data-tone="dark"] .kit-ruled-num {
+  display: none;
+}
+[data-mode="night"] .kit-section-ruled-list[data-tone="dark"] .kit-ruled-name {
+  font-family: var(--kit-font-ui);
+  font-size: 1.1875rem;
+  line-height: 1.45;
+}
+[data-mode="night"] .kit-section-ruled-list[data-tone="dark"] .kit-ruled-row {
+  grid-template-columns: 10rem minmax(0, 1fr);
+  grid-template-areas: "value name";
+  align-items: center;
+}
+@container kit-ruled-list (max-width: 40rem) {
+  [data-mode="night"] .kit-section-ruled-list[data-tone="dark"] .kit-ruled-row {
+    grid-template-columns: minmax(0, 1fr);
+    grid-template-areas: "value" "name";
+  }
+}
+@media (min-width: 64rem) {
+  [data-mode="night"] .kit-section-ruled-list[data-tone="dark"] .kit-container {
+    display: grid;
+    grid-template-columns: 28rem minmax(0, 1fr);
+    align-items: stretch;
+  }
+  [data-mode="night"] .kit-section-ruled-list[data-tone="dark"] .kit-ruled-list {
+    padding: 3rem 3rem 3rem 1rem;
+  }
+}
+/* …and "What happens next" after it keeps its masthead heading. */
+.kit-section-ruled-list + .kit-section-services .kit-section-head:not(:has(.kit-section-head-lede)) .kit-section-head-title {
+  font-family: var(--kit-font-display);
+  font-size: clamp(2.75rem, 1rem + 6.5vw, 7.5rem);
+  font-weight: var(--kit-display-weight);
+  line-height: 0.9;
+  letter-spacing: var(--kit-display-tracking);
+  color: var(--kit-fg);
+}
+
+/* Privacy and terms: numbered lists count in the mono face, in green. */
+.kit-section-prose ol.kit-prose-list {
+  list-style: decimal-leading-zero;
+  padding-inline-start: 2.5em;
+}
+.kit-section-prose ol.kit-prose-list li::marker {
+  color: var(--kit-accent);
+}
+/* The prose after the deletion form follows on, as one column. */
+.site-data-deletion + .kit-section-prose {
+  padding-block-start: 3rem;
+}
+.kit-section-prose:has(+ .site-data-deletion) {
+  padding-block-end: 1.5rem;
+}
+
+/* ---- The site's own blocks between kit's sections ---- */
+
+/* The privacy page's "delete your data" form, in the prose column. */
+.site-data-deletion-form {
+  max-inline-size: 45rem;
+  margin-inline: auto;
+}
+.site-data-deletion-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: end;
+  gap: 0.75rem;
+}
+.site-data-deletion-row .kit-field {
+  flex: 1 1 18rem;
+}
+.site-data-deletion-row .kit-input {
+  min-block-size: 3.5rem;
+}
+.site-data-deletion-row .kit-button {
+  min-block-size: 3.5rem;
+  border-radius: 0;
+  border-color: var(--kit-fg);
+  background: var(--kit-fg);
+  color: var(--kit-bg);
+  font-family: var(--kit-font-mono);
+  font-size: 0.8125rem;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+.site-data-deletion-row .kit-input {
+  border-radius: 0;
+}
+.site-data-deletion-note,
+.site-data-deletion-status {
+  margin: 0.75rem 0 0;
+  font-size: 0.875rem;
+  color: var(--kit-fg-2);
+}
+.site-data-deletion-status:empty {
+  display: none;
+}
+.site-data-deletion-status[data-error] {
+  color: var(--kit-bad);
+}
+
+/* The free site audit (the site-audit-tool block), in Nightfolio: its own
+   colour names (the old theme's) point at kit's, so the tool, its loading
+   line and its results read on the night canvas. One large field joined to
+   its button (Design nau_form). */
+.site-audit-band {
+  --color-text-primary: var(--kit-fg);
+  --color-text-secondary: var(--kit-fg-2);
+  --color-text-tertiary: var(--kit-fg-3);
+  --color-border: var(--kit-line);
+  --color-field-border: var(--kit-line-strong);
+  --color-bg-surface: var(--kit-surface);
+  --color-bg-muted: var(--kit-surface-2);
+  --color-bg-dark: var(--kit-inverse-bg);
+  --color-accent: var(--kit-accent);
+  --color-accent-hover: var(--kit-accent-hover);
+  --color-accent-light: var(--kit-bad-soft);
+  --color-destructive: var(--kit-bad);
+  --font-display: var(--kit-font-display);
+  --font-body: var(--kit-font-ui);
+  padding-block: 0 6rem;
+  color: var(--kit-fg);
+}
+.site-audit-band .audit-input-row {
+  gap: 0;
+  align-items: end;
+}
+.site-audit-band .audit-label {
+  display: block;
+  margin-block-end: 1rem;
+  font-family: var(--kit-font-mono);
+  font-size: 0.75rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--kit-accent);
+}
+.site-audit-band #audit-url {
+  min-block-size: 5.5rem;
+  padding-inline: 1.75rem;
+  border-radius: 0;
+  background: var(--kit-inverse-bg);
+  font-size: clamp(1.25rem, 1rem + 1vw, 1.875rem);
+}
+.site-audit-band #audit-url:focus-visible,
+.site-audit-band .audit-segmentation-input:focus-visible {
+  outline: 2px solid var(--kit-focus-ring);
+  outline-offset: 2px;
+}
+.site-audit-band .audit-submit {
+  min-block-size: 5.5rem;
+  padding-inline: 2.5rem;
+  border-radius: 0;
+  color: var(--kit-accent-fg);
+  font-family: var(--kit-font-mono);
+  font-size: 0.9375rem;
+  letter-spacing: 0.06em;
+}
+.site-audit-band .audit-submit::after {
+  content: "\00a0→";
+}
+.site-audit-band .audit-submit:focus-visible {
+  outline: 2px solid var(--kit-focus-ring);
+  outline-offset: 3px;
+}
+.site-audit-band .audit-hint {
+  margin-block-start: 1rem;
+  font-family: var(--kit-font-mono);
+  font-size: 0.6875rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+.site-audit-band .audit-segmentation {
+  max-inline-size: 40rem;
+  margin-block-start: 2rem;
+}
+.site-audit-band .audit-segmentation-input {
+  border-radius: 0;
+  background: var(--kit-inverse-bg);
+}
+.site-audit-band .audit-cta-heading {
+  color: var(--kit-inverse-fg);
+}
+.site-audit-band .audit-cta-body {
+  color: var(--kit-inverse-fg-2);
+}
+.site-audit-band .audit-cta-button {
+  border-color: var(--kit-accent);
+  border-radius: 0;
+  background: var(--kit-accent);
+  color: var(--kit-accent-fg);
+}
+@media (max-width: 640px) {
+  .site-audit-band .audit-input-row {
+    align-items: stretch;
+  }
+  .site-audit-band #audit-url,
+  .site-audit-band .audit-submit {
+    min-block-size: 4rem;
+  }
+}
+
+/* About's "How I work": two cards (what you get, what I don't offer) are the
+   content, not an illustration, so they sit side by side under the steps
+   and stay on a phone, where kit hides a process's example cards. */
+.kit-process-inner:has(.kit-note-card + .kit-note-card) {
+  grid-template-columns: minmax(0, 1fr);
+}
+.kit-section-process .kit-process-cards:has(.kit-note-card + .kit-note-card) {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 22rem), 1fr));
+  align-items: stretch;
+}
+.kit-process-cards:has(.kit-note-card + .kit-note-card) > * {
+  margin-inline: 0;
+}
+.kit-process-cards:has(.kit-note-card + .kit-note-card) .kit-note-title {
+  font-size: clamp(1.75rem, 1rem + 1.2vw, 2.25rem);
+}
+@media (max-width: 40rem) {
+  [data-mode="night"] .kit-section-ruled-list[data-tone="dark"] .kit-section-head {
+    padding: 2rem 1.5rem 0.5rem;
+  }
+  [data-mode="night"] .kit-section-ruled-list[data-tone="dark"] .kit-ruled-list {
+    padding: 0 1.5rem 2rem;
+  }
+}
