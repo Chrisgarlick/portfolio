@@ -9,7 +9,7 @@ written into the old bodies are extra.
 
 Nothing here changes what an article says. Three kinds of edit:
 
-**A. Remove the old closing block.** Six articles end with:
+**A. Remove the old closing block.** Eight articles end with:
 
 > **Want to find out which tasks on your site are costing you the most time?**
 > Run a free audit → · Book a 30-min call →
