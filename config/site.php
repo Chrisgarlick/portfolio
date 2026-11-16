@@ -272,4 +272,11 @@ return [
     // Google Tag Manager, loaded only after cookie consent.
     'gtm_id' => env('GTM_ID', 'GTM-N6FD4K8Z'),
 
+    // Client previews: design previews sent to prospects, behind a login on
+    // their own host. `preview` entries are the clients; the files are a
+    // bundle from Design, uploaded to storage/previews/<slug>/current.
+    'previews' => [
+        'host' => env('PREVIEW_HOST', 'preview.chrisgarlick.com'),
+    ],
+
 ];

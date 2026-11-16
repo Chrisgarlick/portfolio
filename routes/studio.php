@@ -3,6 +3,7 @@
 declare(strict_types=1);
 
 use App\Http\Controllers\Studio\AuditReviewController;
+use App\Http\Controllers\Studio\PreviewController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -22,3 +23,7 @@ Route::patch('/audits/{submission}', [AuditReviewController::class, 'update'])->
 Route::post('/audits/{submission}/render', [AuditReviewController::class, 'render'])->whereUuid('submission')->name('render');
 Route::get('/audits/{submission}/pdf', [AuditReviewController::class, 'pdf'])->whereUuid('submission')->name('pdf');
 Route::post('/audits/{submission}/delete-link', [AuditReviewController::class, 'deleteLink'])->whereUuid('submission')->name('delete-link');
+
+Route::get('/previews', [PreviewController::class, 'index'])->name('previews.index');
+Route::post('/previews/{entry}/link', [PreviewController::class, 'newLink'])->whereNumber('entry')->name('previews.link');
+Route::post('/previews/{entry}/password', [PreviewController::class, 'newPassword'])->whereNumber('entry')->name('previews.password');

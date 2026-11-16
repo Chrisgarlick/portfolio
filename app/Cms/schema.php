@@ -332,4 +332,34 @@ return [
         ])
         ->promote(['sector', 'funnel_stage']),
 
+    /*
+    |---------------------------------------------------------------------------
+    | preview: a client's design preview on preview.chrisgarlick.com.
+    |---------------------------------------------------------------------------
+    |
+    | No route, so it never has a public page, never reaches the page cache or
+    | the sitemap, and only shows in the admin. Published is the on switch:
+    | unpublish it and the client's link stops working at once. The slug is
+    | the address: preview.chrisgarlick.com/<slug>.
+    |
+    | The link's token and the password are not fields. Fields are shown in
+    | full and copied into revisions; those live encrypted in preview_access
+    | (App\Models\PreviewAccess) and are shown in the studio, /studio/previews.
+    |
+    */
+
+    Collection::make('preview')
+        ->label('Client previews')
+        ->fields([
+            Field::text('title')->required()->maxLength(120)
+                ->help('The client, as they would say it: "Acme Landscaping".'),
+            Field::slug('slug')->from('title'),
+            Field::datetime('expires_at')->nullable()
+                ->help('Optional. The link stops working after this.'),
+            Field::text('design_file')->nullable()
+                ->help('The Design file id, for reference.'),
+            Field::textarea('notes')->nullable()
+                ->help('Private: who it is for and what was sent.'),
+        ]),
+
 ];
