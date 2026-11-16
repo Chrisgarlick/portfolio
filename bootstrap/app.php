@@ -1,12 +1,18 @@
 <?php
 
+use App\Http\Middleware\ServePreviewHost;
+use Cg\Cms\Http\Middleware\AuthenticateAdmin;
 use Cg\Cms\Http\Middleware\CachePage;
 use Cg\Cms\Http\Middleware\ForcedRedirects;
+use Illuminate\Cookie\Middleware\AddQueuedCookiesToResponse;
+use Illuminate\Cookie\Middleware\EncryptCookies;
 use Illuminate\Foundation\Application;
 use Illuminate\Foundation\Configuration\Exceptions;
 use Illuminate\Foundation\Configuration\Middleware;
 use Illuminate\Http\Request;
+use Illuminate\Session\Middleware\StartSession;
 use Illuminate\Support\Facades\Route;
+use Illuminate\View\Middleware\ShareErrorsFromSession;
 
 return Application::configure(basePath: dirname(__DIR__))
     ->withRouting(
@@ -25,7 +31,7 @@ return Application::configure(basePath: dirname(__DIR__))
             // Internal tools, behind the CMS admin's session and sign-in.
             Route::middleware([
                 ...(array) config('cg-cms.admin.middleware', []),
-                \Cg\Cms\Http\Middleware\AuthenticateAdmin::class,
+                AuthenticateAdmin::class,
             ])
                 ->prefix('studio')
                 ->name('studio.')
@@ -36,6 +42,10 @@ return Application::configure(basePath: dirname(__DIR__))
         },
     )
     ->withMiddleware(function (Middleware $middleware): void {
+        // The preview host answers everything itself, before routing, so no
+        // route (the admin, /studio, the site) can be reached through it.
+        $middleware->prepend(ServePreviewHost::class);
+
         /*
         |----------------------------------------------------------------------
         | The `public` group
@@ -75,10 +85,10 @@ return Application::configure(basePath: dirname(__DIR__))
         |
         */
         $middleware->group('form', [
-            \Illuminate\Cookie\Middleware\EncryptCookies::class,
-            \Illuminate\Cookie\Middleware\AddQueuedCookiesToResponse::class,
-            \Illuminate\Session\Middleware\StartSession::class,
-            \Illuminate\View\Middleware\ShareErrorsFromSession::class,
+            EncryptCookies::class,
+            AddQueuedCookiesToResponse::class,
+            StartSession::class,
+            ShareErrorsFromSession::class,
         ]);
     })
     ->withExceptions(function (Exceptions $exceptions): void {

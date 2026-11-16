@@ -1,0 +1,21 @@
+/* The preview host's login page, served by PreviewGateController at /_preview.css. Not built by Vite. */
+*, *::before, *::after { box-sizing: border-box; }
+html, body { margin: 0; }
+body {
+  min-height: 100vh; display: grid; place-items: center; padding: 24px 16px;
+  font: 16px/1.5 system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  background: #f3f4f6; color: #111827;
+}
+.gate { width: 100%; max-width: 400px; padding: 32px; background: #fff; border: 1px solid #e5e7eb; border-radius: 12px; box-shadow: 0 12px 40px rgb(0 0 0 / 0.06); }
+.gate-from { margin: 0 0 4px; font-size: 13px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: #4b5563; }
+h1 { margin: 0 0 12px; font-size: 26px; line-height: 1.2; }
+.gate-message { margin: 0 0 20px; color: #374151; }
+.gate-message.is-error { color: #b91c1c; }
+.gate-form { display: grid; gap: 8px; margin: 0 0 20px; }
+.gate-form label { font-weight: 600; font-size: 14px; }
+.gate-form input { font: inherit; padding: 10px 12px; border: 1px solid #9ca3af; border-radius: 8px; }
+.gate-form button { font: inherit; font-weight: 600; margin-top: 8px; padding: 11px 16px; border: 0; border-radius: 8px; background: #111827; color: #fff; cursor: pointer; }
+.gate-form button:hover { background: #374151; }
+:focus-visible { outline: 3px solid #2563eb; outline-offset: 2px; }
+.gate-help { margin: 0; font-size: 14px; color: #4b5563; }
+.gate-help a { color: #1d4ed8; }

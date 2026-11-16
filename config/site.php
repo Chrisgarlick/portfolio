@@ -277,6 +277,12 @@ return [
     // bundle from Design, uploaded to storage/previews/<slug>/current.
     'previews' => [
         'host' => env('PREVIEW_HOST', 'preview.chrisgarlick.com'),
+        'path' => storage_path('previews'),
+        // On the server nginx sends the files (X-Accel-Redirect to
+        // /_previews/); without it, PHP streams them.
+        'accel' => (bool) env('PREVIEW_ACCEL', false),
+        // How long a client stays signed in, at most.
+        'days' => 30,
     ],
 
 ];
