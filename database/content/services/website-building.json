@@ -147,7 +147,7 @@
         "link_label": "WordPress development",
         "link_url": "/services/wordpress",
         "media": "card",
-        "background": "tinted",
+        "background": "plain",
         "swap": false,
         "panel": "accent",
         "card_label": "The recommendation",

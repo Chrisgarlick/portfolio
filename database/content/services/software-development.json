@@ -140,7 +140,7 @@
         "link_label": "Read the cg-cms story",
         "link_url": "/work/cg-cms",
         "media": "card",
-        "background": "tinted",
+        "background": "plain",
         "swap": true,
         "panel": "accent",
         "card_label": "cg-cms · this site, live 1GB server",

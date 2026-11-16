@@ -88,6 +88,9 @@ it('shows Laravel\'s stage figure, its proof card and the caching card', functio
         ->assertOk()
         ->assertSee('<section class="kit-section-figure" data-tone="plain">', false)
         ->assertSee('alt="The cg-cms admin dashboard', false)
+        // The WebP variant, not the PNG (a tenth of the weight).
+        ->assertSee('/hero.webp"', false)
+        ->assertDontSee('/hero.png"', false)
         ->assertSee('Fig. 01 · cg-cms admin, my own CMS')
         ->assertSee('<p class="kit-figure-proof-value">0.4 ms</p>', false)
         ->assertSee('data-media="card"', false)
