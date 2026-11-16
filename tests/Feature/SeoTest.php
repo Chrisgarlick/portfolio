@@ -285,6 +285,39 @@ it('emits the SearchAction once a search URL exists', function (): void {
         ->toBe(config('cg-cms.site.domain').'/search?q={search_term_string}');
 });
 
+it('describes the organisation, how to reach it, and the person\'s photo', function (): void {
+    config()->set('cg-cms.site.contact_email', 'hello@example.com');
+    config()->set('cg-cms.seo.description', 'One developer from the first call to handover.');
+    config()->set('cg-cms.seo.organization.contact_url', '/contact');
+    config()->set('cg-cms.seo.person.image', '/images/chris-garlick.jpg');
+    app()->forgetInstance(JsonLd::class);
+
+    $graph = collect(app(JsonLd::class)->graph(app(SeoResolver::class)->forPage('Home', path: '/'), isHome: true)['@graph']);
+    $domain = config('cg-cms.site.domain');
+    $organization = $graph->firstWhere('@type', 'Organization');
+
+    expect($organization['description'])->toBe('One developer from the first call to handover.')
+        ->and($organization['contactPoint'])->toMatchArray([
+            '@type' => 'ContactPoint',
+            'email' => 'hello@example.com',
+            'url' => $domain.'/contact',
+        ])
+        ->and($graph->firstWhere('@type', 'Person')['image'])->toBe($domain.'/images/chris-garlick.jpg')
+        ->and($graph->firstWhere('@type', 'WebSite')['description'])->toBe('One developer from the first call to handover.');
+});
+
+it('leaves out the contact point and photo when the site has none', function (): void {
+    config()->set('cg-cms.site.contact_email', null);
+    config()->set('cg-cms.seo.organization.contact_url', null);
+    config()->set('cg-cms.seo.person.image', null);
+    app()->forgetInstance(JsonLd::class);
+
+    $graph = collect(app(JsonLd::class)->graph(app(SeoResolver::class)->forPage('Home', path: '/'), isHome: true)['@graph']);
+
+    expect($graph->firstWhere('@type', 'Organization'))->not->toHaveKey('contactPoint')
+        ->and($graph->firstWhere('@type', 'Person'))->not->toHaveKey('image');
+});
+
 /*
 | Listings have no entry behind them and must still be complete.
 */

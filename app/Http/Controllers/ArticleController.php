@@ -56,6 +56,7 @@ final class ArticleController extends Controller
                     'excerpt' => (string) $entry->value('excerpt', ''),
                     'date' => $entry->published_at?->format('j F Y'),
                     'date_short' => $entry->published_at?->format('j M Y'),
+                    'published' => $entry->published_at?->toAtomString(),
                     'year' => $entry->published_at?->year ?? (int) now()->year,
                     'topics' => array_values(array_filter((array) $entry->value('services', []), 'is_string')),
                 ])
@@ -101,7 +102,7 @@ final class ArticleController extends Controller
                 'featured' => $rows[0] ?? null,
                 'articles' => array_slice($rows, 1),
                 'topics' => array_intersect_key($labels, array_flip($used)),
-                'jsonLd' => (array) config('site.pages.article.json_ld', []),
+                'jsonLd' => [...(array) config('site.pages.article.json_ld', []), $this->blog($rows)],
             ]);
         }
 
@@ -110,6 +111,34 @@ final class ArticleController extends Controller
             'years' => $years,
             'topics' => array_filter($topics, fn (string $slug): bool => in_array($slug, $used, true), ARRAY_FILTER_USE_KEY),
         ]);
+    }
+
+    /**
+     * The writing as a Blog with its posts, beside the page's CollectionPage,
+     * so the listing says what it lists. Authored by the site's Person node.
+     *
+     * @param  array<int, array<string, mixed>>  $rows
+     * @return array<string, mixed>
+     */
+    private function blog(array $rows): array
+    {
+        $domain = rtrim((string) config('cg-cms.site.domain'), '/');
+
+        return [
+            '@type' => 'Blog',
+            '@id' => $domain.'/article#blog',
+            'name' => 'Writing by '.config('cg-cms.site.name'),
+            'url' => $domain.'/article',
+            'inLanguage' => 'en-GB',
+            'author' => ['@id' => $domain.'/#person'],
+            'blogPost' => array_map(fn (array $row): array => array_filter([
+                '@type' => 'BlogPosting',
+                'headline' => $row['title'],
+                'url' => $domain.'/article/'.$row['slug'],
+                'datePublished' => $row['published'] ?? null,
+                'author' => ['@id' => $domain.'/#person'],
+            ], fn (mixed $value): bool => $value !== null), $rows),
+        ];
     }
 
     public function show(string $slug): View

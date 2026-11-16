@@ -129,7 +129,11 @@ it('serves /article as a kit page: opener, the newest featured, every article li
         ->assertSee('Check my site')
         ->assertSee('kit-section-footer', false)
         ->assertSee('<link rel="canonical" href="'.$domain.'/article"', false)
-        ->assertSee('"@type":"CollectionPage"', false);
+        ->assertSee('"@type":"CollectionPage"', false)
+        // The writing as a Blog listing its published posts, not the draft.
+        ->assertSee('"@type":"Blog"', false)
+        ->assertSee('"@type":"BlogPosting","headline":"An older article","url":"'.$domain.'/article/older-article"', false)
+        ->assertDontSee('"headline":"A draft article"', false);
 });
 
 it('keeps the old listing at /article without a published article page', function (): void {
