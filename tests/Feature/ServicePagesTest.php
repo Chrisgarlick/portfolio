@@ -91,6 +91,10 @@ it('shows Laravel\'s stage figure, its proof card and the caching card', functio
         // The WebP variant, not the PNG (a tenth of the weight).
         ->assertSee('/hero.webp"', false)
         ->assertDontSee('/hero.png"', false)
+        // And its smaller widths, so a phone takes a smaller file.
+        ->assertSee('-800w.webp 800w, ', false)
+        ->assertSee('-1200w.webp 1200w, ', false)
+        ->assertSee('/hero.webp 1600w" sizes="100vw"', false)
         ->assertSee('Fig. 01 · cg-cms admin, my own CMS')
         ->assertSee('<p class="kit-figure-proof-value">0.4 ms</p>', false)
         ->assertSee('data-media="card"', false)
@@ -101,4 +105,14 @@ it('marks the AI checklist\'s last point as not included', function (): void {
     $this->get('/services/ai')
         ->assertOk()
         ->assertSee('<li data-excluded><span class="kit-vh">Not included: </span>', false);
+});
+
+it('serves a listed smaller width of an image, and 404s one that isn\'t listed', function (): void {
+    $html = $this->get('/services/laravel')->assertOk()->getContent();
+    preg_match('#(/media-test/[0-9a-f-]{36})/hero-800w\.webp#', $html, $m);
+
+    expect($m)->not->toBeEmpty();
+
+    $this->get($m[1].'/hero-800w.webp')->assertOk()->assertHeader('Content-Type', 'image/webp');
+    $this->get($m[1].'/hero-700w.webp')->assertNotFound();
 });
