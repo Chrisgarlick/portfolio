@@ -61,7 +61,7 @@ The cg mark in the header and footer is `alt="" aria-hidden="true"`. Correct for
 Status 16 Nov: live (3e58775, kit a377ca0, nginx patched on the server).
 - 2.1 done: one stylesheet (resources/css/kit-site.css) plus app.css; was 11 to 14.
 - 2.2 and 2.3 done: cached pages max-age=0 with ETag, /kit-blocks/ a week, /media/ one header, all via `expires` so the security headers stay.
-- 2.4 partly: kit images use cg-cms's WebP variant (case study hero 1.1 MB to 74 KB). Still to do: srcset (needs kit to print several widths in all three renderers). The server's GD cannot write AVIF.
+- 2.4 done: kit images use cg-cms's WebP variant (case study hero 1.1 MB to 74 KB), and since 40003fe a srcset of smaller widths (cg-cms bd837ba, kit 570425a) on figure, hero, split and prose: a phone at 2x loads the 800px WebP (about 20 KB). Card images (fixed crops) keep one size. The server's GD cannot write AVIF.
 
 ### 2.1 Render-blocking and too many stylesheets (328 + 13)
 Each kit section pushes its own `style.css` onto the `kit-styles` stack, so pages load 11 to 14 blocking stylesheets.
