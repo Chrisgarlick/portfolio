@@ -46,14 +46,12 @@
     @include('partials.font-preload')
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 
-    {{-- kit's sections: its base stylesheet, the CSS of each section on the
-         page (pushed by its block), then the Nightfolio theme over both, so a
-         theme rule beats a section's own rule of the same weight. --}}
-    <link rel="stylesheet" href="{{ rtrim((string) config('kit-blocks.url', '/kit-blocks'), '/') }}/kit/kit.css">
-    @stack('kit-styles')
-    @vite(['resources/css/kit-theme-nightfolio.css'])
-    {{-- The site's own forms on kit pages (/start, /contact). --}}
-    @vite(['resources/css/kit-theme-forms.css'])
+    {{-- kit's sections in one file (resources/css/kit-site.css): its base
+         stylesheet, every section, then the Nightfolio and forms themes over
+         them, so a theme rule beats a section's own rule of the same weight.
+         What blocks push onto kit-styles is for the admin's block preview;
+         the page has it all already. --}}
+    @vite(['resources/css/kit-site.css'])
 </head>
 @if (! empty($kitMode))
 <body class="kit-page">

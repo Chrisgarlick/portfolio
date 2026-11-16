@@ -1,0 +1,39 @@
+/*
+    Every kit page's styles in one file: kit's base, every section, then the
+    Nightfolio theme and the forms theme, in that order (the order the layout
+    used to print them as separate links, which blocked rendering 11 to 14
+    times a page). One hashed file from /build, cached for a year.
+
+    Every section is here, not only those a page uses: each one's rules are
+    scoped to its own .kit-section-*, so order between them never matters, and
+    a section added in the admin is styled without a rebuild.
+    tests/Feature/KitStylesBundleTest.php fails if `make sync` brings in a
+    section that is missing here.
+*/
+@import "../../kit-blocks/kit/kit.css";
+@import "../../kit-blocks/sections/announcement-bar/style.css";
+@import "../../kit-blocks/sections/basket-drawer/style.css";
+@import "../../kit-blocks/sections/cta/style.css";
+@import "../../kit-blocks/sections/figure/style.css";
+@import "../../kit-blocks/sections/footer/style.css";
+@import "../../kit-blocks/sections/gallery/style.css";
+@import "../../kit-blocks/sections/header/style.css";
+@import "../../kit-blocks/sections/hero-collage/style.css";
+@import "../../kit-blocks/sections/hero/style.css";
+@import "../../kit-blocks/sections/marquee/style.css";
+@import "../../kit-blocks/sections/pill-row/style.css";
+@import "../../kit-blocks/sections/pricing/style.css";
+@import "../../kit-blocks/sections/process/style.css";
+@import "../../kit-blocks/sections/product-grid/style.css";
+@import "../../kit-blocks/sections/product-page/style.css";
+@import "../../kit-blocks/sections/prose/style.css";
+@import "../../kit-blocks/sections/quote-stats/style.css";
+@import "../../kit-blocks/sections/reviews/style.css";
+@import "../../kit-blocks/sections/ruled-list/style.css";
+@import "../../kit-blocks/sections/services/style.css";
+@import "../../kit-blocks/sections/split/style.css";
+@import "../../kit-blocks/sections/stats/style.css";
+@import "../../kit-blocks/sections/text-block/style.css";
+@import "../../kit-blocks/sections/trust-strip/style.css";
+@import "./kit-theme-nightfolio.css";
+@import "./kit-theme-forms.css";
