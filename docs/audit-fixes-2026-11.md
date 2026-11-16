@@ -86,6 +86,8 @@ HTML is served `no-cache, private`. Kritano reports it as missing.
 
 ## Phase 3: structured data (124 moderate)
 
+Status 16 Nov: live (b0ccd7e, cg-cms 04c5da2). Organization: description, logo, ContactPoint, sameAs. Person: image, LinkedIn and GitHub. WebSite: description. /article: a Blog with every published BlogPosting. Server env set with deploy/set-env.sh (CG_SEO_ORG_DESCRIPTION, CG_SEO_CONTACT_URL, CG_SEO_PERSON_IMAGE, CG_SEO_DESCRIPTION).
+
 ### 3.1 Server settings [Chris runs one command]
 LinkedIn and the organisation logo come from env vars on the server. `deploy/set-env.sh` replaces or adds the keys and re-caches config, without printing the file:
 ```
