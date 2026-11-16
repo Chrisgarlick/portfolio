@@ -1,0 +1,297 @@
+{
+  "mode": "night",
+  "content": [
+    {
+      "type": "kit-header",
+      "data": {
+        "brand_name": "Chris Garlick",
+        "home_url": "/",
+        "numbered": true,
+        "links": [
+          {
+            "label": "Services",
+            "url": "/services"
+          },
+          {
+            "label": "Work",
+            "url": "/work"
+          },
+          {
+            "label": "How I work",
+            "url": "/how-i-work"
+          },
+          {
+            "label": "Writing",
+            "url": "/article"
+          },
+          {
+            "label": "About",
+            "url": "/about"
+          }
+        ],
+        "secondary_label": "Free site audit",
+        "secondary_url": "/tools/site-audit",
+        "action_label": "Start a project",
+        "action_url": "/start",
+        "tone": "plain"
+      }
+    },
+    {
+      "type": "kit-hero",
+      "data": {
+        "variant": "text",
+        "eyebrow": "Services 05 · Website building",
+        "title": "WEBSITES\nYOU CAN\n*edit yourself.*",
+        "title_size": "large",
+        "lede": "Fast, accessible websites built around your content, on a CMS you can edit without calling a developer. No page builder, and no monthly platform fee to keep it online.",
+        "actions": [
+          {
+            "label": "Start a website project",
+            "url": "/start",
+            "style": "primary"
+          },
+          {
+            "label": "Check my site first",
+            "url": "/tools/site-audit",
+            "style": "secondary"
+          }
+        ],
+        "heading_level": "1",
+        "secondary_style": "button"
+      }
+    },
+    {
+      "type": "kit-figure",
+      "data": {
+        "image": {
+          "file": "media/cg-cms-editor-preview.png",
+          "alt": "The cg-cms editor showing this site's home page in its live preview: the Fraunces headline, Chris's portrait and the Kritano section beneath"
+        },
+        "caption_left": "Fig. 01 · Editing this site's home page",
+        "caption_right": "What you see is what goes live",
+        "tone": "plain",
+        "frame": "browser",
+        "frame_url": "chrisgarlick.com"
+      }
+    },
+    {
+      "type": "kit-services",
+      "data": {
+        "title": "WHAT\n*you get*",
+        "heading_level": "2",
+        "lede": "Built around what the site is for, and measured before it launches.",
+        "rule": true,
+        "columns": "2",
+        "services": [
+          {
+            "number": "01 · Design",
+            "title": "Design",
+            "subtitle": "*and build*",
+            "text": "Around your content and what the site is for, not a template.",
+            "icon": "palette"
+          },
+          {
+            "number": "02 · Editing",
+            "title": "A CMS",
+            "subtitle": "*you can edit*",
+            "text": "Text, images and pages, edited without touching code.",
+            "icon": "file-pen-line"
+          },
+          {
+            "number": "03 · Speed",
+            "title": "Speed,",
+            "subtitle": "*measured*",
+            "text": "Checked with Core Web Vitals before launch, so it holds up on real phones.",
+            "icon": "gauge"
+          },
+          {
+            "number": "04 · Found",
+            "title": "SEO and",
+            "subtitle": "*accessibility*",
+            "text": "Done properly from the start, not bolted on later.",
+            "icon": "search-check"
+          }
+        ],
+        "background": "tinted"
+      }
+    },
+    {
+      "type": "kit-stats",
+      "data": {
+        "stats": [
+          {
+            "value": "79",
+            "label": "URLs kept when I rebuilt this site: every live URL still works",
+            "link_label": "Read the rebuild",
+            "link_url": "/work/chrisgarlick-com"
+          },
+          {
+            "value": "< 2 s",
+            "label": "Largest contentful paint after the rebuild, down from about 3 seconds in lab tests"
+          },
+          {
+            "value": "0",
+            "label": "Page builders and monthly platform fees"
+          }
+        ],
+        "tone": "plain"
+      }
+    },
+    {
+      "type": "kit-split",
+      "data": {
+        "eyebrow": "Which CMS",
+        "title": "WORDPRESS\nOR *cg-cms?*",
+        "heading_level": "2",
+        "body": "WordPress when you want a familiar editor that many developers know, and everything yours to take elsewhere.\n\ncg-cms, my own Laravel CMS, when you want something leaner: it renders each page once, when you save it, and serves it from disk. It relies on me for CMS updates, and the scope says so up front.",
+        "link_label": "WordPress development",
+        "link_url": "/services/wordpress",
+        "media": "card",
+        "background": "tinted",
+        "swap": false,
+        "panel": "accent",
+        "card_label": "The recommendation",
+        "card_title": "Whichever suits the site.\nNot whichever I'd rather build."
+      }
+    },
+    {
+      "type": "kit-split",
+      "data": {
+        "title": "BEFORE\n*you ask*",
+        "heading_level": "2",
+        "media": "questions",
+        "numbered": true,
+        "questions": [
+          {
+            "question": "Can I edit the site myself?",
+            "answer": "Yes, that's the point. Text, images and pages are edited in the CMS, without touching code, and the templates are built around your content so editing stays simple."
+          },
+          {
+            "question": "Will a new site hurt my search rankings?",
+            "answer": "A planned move keeps that risk low. Every URL that changes gets a redirect, and I check the live URLs before switching over. When I rebuilt this site, all 79 URLs kept working."
+          },
+          {
+            "question": "Do you use page builders?",
+            "answer": "No. Page builders add weight, and that slows pages down on real phones. I build templates around your content instead, so pages stay light."
+          },
+          {
+            "question": "Do I own the site?",
+            "answer": "Your content, design and accounts are yours, and there's no platform fee to keep it online. On WordPress the code is yours too. On cg-cms, CMS updates come from me, and the scope says so."
+          },
+          {
+            "question": "What if I need more than a website?",
+            "answer": "If what you need is closer to an application, with logins, workflows or integrations, Laravel development is the better route."
+          }
+        ],
+        "background": "plain"
+      }
+    },
+    {
+      "type": "kit-cta",
+      "data": {
+        "title": "START WITH\n*an audit.*",
+        "heading_level": "2",
+        "lede": "If you have a site already, I audit it first, so we know what to keep and what to fix. Then a written scope.",
+        "action_label": "Start a website project",
+        "action_url": "/start",
+        "secondary_label": "Check my site first",
+        "secondary_url": "/tools/site-audit"
+      }
+    },
+    {
+      "type": "kit-footer",
+      "data": {
+        "brand_name": "Chris Garlick",
+        "blurb": "Got something to build, or fix?",
+        "columns": [
+          {
+            "heading": "Services",
+            "links": [
+              {
+                "label": "Laravel",
+                "url": "/services/laravel"
+              },
+              {
+                "label": "WordPress",
+                "url": "/services/wordpress"
+              },
+              {
+                "label": "AI implementation",
+                "url": "/services/ai"
+              },
+              {
+                "label": "Software development",
+                "url": "/services/software-development"
+              },
+              {
+                "label": "Website building",
+                "url": "/services/website-building"
+              }
+            ]
+          },
+          {
+            "heading": "Work with me",
+            "links": [
+              {
+                "label": "Services",
+                "url": "/services"
+              },
+              {
+                "label": "Work",
+                "url": "/work"
+              },
+              {
+                "label": "How I work",
+                "url": "/how-i-work"
+              },
+              {
+                "label": "Writing",
+                "url": "/article"
+              }
+            ]
+          },
+          {
+            "heading": "More",
+            "links": [
+              {
+                "label": "About",
+                "url": "/about"
+              },
+              {
+                "label": "Free site audit",
+                "url": "/tools/site-audit"
+              },
+              {
+                "label": "Start a project",
+                "url": "/start"
+              },
+              {
+                "label": "Contact",
+                "url": "/contact"
+              }
+            ]
+          }
+        ],
+        "social": [
+          {
+            "network": "linkedin",
+            "url": "https://www.linkedin.com/in/chris-garlick-59a8bb91/"
+          }
+        ],
+        "small_print": "© 2026 Chris Garlick",
+        "legal": [
+          {
+            "label": "Privacy",
+            "url": "/privacy"
+          },
+          {
+            "label": "Terms",
+            "url": "/terms"
+          }
+        ],
+        "wordmark": "CHRIS GARLICK",
+        "cookie_label": "Cookie preferences"
+      }
+    }
+  ]
+}

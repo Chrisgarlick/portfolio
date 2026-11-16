@@ -89,13 +89,12 @@ return [
             'json_ld' => [[
                 '@type' => 'ProfessionalService',
                 'name' => 'Chris Garlick',
-                'description' => 'AI implementation partner for law firms, agencies, and accountancy practices. Audit, build, maintain.',
+                'description' => 'Laravel applications, WordPress sites and AI implementation, built by one UK developer from the first call to handover: a written scope, automated tests and documentation you keep.',
                 'url' => 'https://chrisgarlick.com',
-                'founder' => ['@type' => 'Person', 'name' => 'Chris Garlick', 'jobTitle' => 'Software Developer', 'url' => 'https://chrisgarlick.com/about'],
+                'founder' => ['@type' => 'Person', 'name' => 'Chris Garlick', 'jobTitle' => 'Web developer', 'url' => 'https://chrisgarlick.com/about'],
                 'areaServed' => ['@type' => 'Country', 'name' => 'United Kingdom'],
-                'serviceType' => ['Software Development', 'Business Automation', 'Operations Software'],
-                'priceRange' => '£5,000 - £8,000',
-                'sameAs' => ['https://www.linkedin.com/in/chrisgarlick', 'https://github.com/Kritano'],
+                'serviceType' => ['Laravel development', 'WordPress development', 'AI implementation', 'Software development', 'Website building'],
+                'sameAs' => ['https://www.linkedin.com/in/chris-garlick-59a8bb91', 'https://github.com/Chrisgarlick'],
             ]],
         ],
 
@@ -104,10 +103,10 @@ return [
             'json_ld' => [[
                 '@type' => 'Person',
                 'name' => 'Chris Garlick',
-                'jobTitle' => 'Software Developer',
+                'jobTitle' => 'Web developer',
                 'url' => 'https://chrisgarlick.com/about',
-                'knowsAbout' => ['Artificial Intelligence', 'Workflow Automation', 'Legal Technology', 'Accounting Technology'],
-                'sameAs' => ['https://www.linkedin.com/in/chrisgarlick', 'https://github.com/Kritano'],
+                'knowsAbout' => ['Laravel', 'PHP', 'WordPress', 'Web performance', 'Web accessibility', 'Technical SEO', 'Artificial intelligence'],
+                'sameAs' => ['https://www.linkedin.com/in/chris-garlick-59a8bb91', 'https://github.com/Chrisgarlick'],
             ]],
         ],
 
@@ -124,11 +123,11 @@ return [
             'path' => '/services',
             'json_ld' => [[
                 '@type' => 'Service',
-                'name' => 'AI Implementation Services',
+                'name' => 'Laravel, WordPress and AI implementation',
                 'url' => 'https://chrisgarlick.com/services',
                 'provider' => ['@type' => 'Person', 'name' => 'Chris Garlick', 'url' => 'https://chrisgarlick.com/about'],
                 'areaServed' => ['@type' => 'Country', 'name' => 'United Kingdom'],
-                'serviceType' => ['AI Implementation', 'Workflow Automation', 'Business Process Automation'],
+                'serviceType' => ['Laravel development', 'WordPress development', 'AI implementation', 'Software development', 'Website building'],
             ]],
         ],
 

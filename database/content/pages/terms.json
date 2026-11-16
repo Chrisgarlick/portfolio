@@ -1,7 +1,7 @@
 {
   "title": "Terms",
   "mode": "day",
-  "seo_title": "Terms of use | Chris Garlick",
+  "seo_title": "Terms of use for chrisgarlick.com | Chris Garlick",
   "seo_description": "The terms for using chrisgarlick.com. Short on purpose: work I do for you is covered by its own written scope and agreement.",
   "content": [
     {
@@ -161,6 +161,31 @@
         "brand_name": "Chris Garlick",
         "blurb": "Got something to build, or fix?",
         "columns": [
+          {
+            "heading": "Services",
+            "links": [
+              {
+                "label": "Laravel",
+                "url": "/services/laravel"
+              },
+              {
+                "label": "WordPress",
+                "url": "/services/wordpress"
+              },
+              {
+                "label": "AI implementation",
+                "url": "/services/ai"
+              },
+              {
+                "label": "Software development",
+                "url": "/services/software-development"
+              },
+              {
+                "label": "Website building",
+                "url": "/services/website-building"
+              }
+            ]
+          },
           {
             "heading": "Work with me",
             "links": [

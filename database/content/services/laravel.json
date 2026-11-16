@@ -139,8 +139,8 @@
           {
             "value": "0.4 ms",
             "label": "To serve a cached page on cg-cms, live 1GB server",
-            "link_label": "How I measured",
-            "link_url": "/article/caching-pages-to-disk-laravel"
+            "link_label": "See cg-cms",
+            "link_url": "/work/cg-cms"
           },
           {
             "value": "79",
@@ -160,9 +160,9 @@
         "eyebrow": "Edit 01 · how I measure",
         "title": "CACHING PAGES\nTO DISK.\n*0.4 ms a page.*",
         "heading_level": "2",
-        "body": "In cg-cms, saving a page writes it to disk, so on the live 1GB server a cached page starts arriving in 0.4 ms and the server handles 6,300 requests a second, with no PHP involved. The write-up shows how I measured it.",
-        "link_label": "Read the write-up",
-        "link_url": "/article/caching-pages-to-disk-laravel",
+        "body": "In cg-cms, saving a page writes it to disk, so on the live 1GB server a cached page starts arriving in 0.4 ms and the server handles 6,300 requests a second, with no PHP involved. The cg-cms case study shows how it works.",
+        "link_label": "Read the cg-cms story",
+        "link_url": "/work/cg-cms",
         "media": "card",
         "background": "plain",
         "swap": false,
@@ -217,6 +217,31 @@
         "brand_name": "Chris Garlick",
         "blurb": "Got something to build, or fix?",
         "columns": [
+          {
+            "heading": "Services",
+            "links": [
+              {
+                "label": "Laravel",
+                "url": "/services/laravel"
+              },
+              {
+                "label": "WordPress",
+                "url": "/services/wordpress"
+              },
+              {
+                "label": "AI implementation",
+                "url": "/services/ai"
+              },
+              {
+                "label": "Software development",
+                "url": "/services/software-development"
+              },
+              {
+                "label": "Website building",
+                "url": "/services/website-building"
+              }
+            ]
+          },
           {
             "heading": "Work with me",
             "links": [

@@ -1,7 +1,7 @@
 {
   "title": "Services",
   "mode": "night",
-  "seo_title": "Services: Laravel, WordPress and AI implementation | Chris Garlick",
+  "seo_title": "Laravel, WordPress and AI services | Chris Garlick",
   "seo_description": "Three kinds of work, all from one developer. Every project starts with an audit and a written scope.",
   "content": [
     {
@@ -104,6 +104,38 @@
       }
     },
     {
+      "type": "kit-services",
+      "data": {
+        "eyebrow": "02 · By the job",
+        "title": "OR START\n*from the job*",
+        "heading_level": "2",
+        "lede": "Not sure which of the three fits? Start from the job and I'll pick the stack.",
+        "rule": true,
+        "columns": "2",
+        "background": "plain",
+        "services": [
+          {
+            "number": "04 · Software",
+            "title": "SOFTWARE",
+            "subtitle": "*Tools for how you work*",
+            "text": "Internal tools, integrations and automation for the processes no product quite fits.",
+            "link_label": "Software development",
+            "link_url": "/services/software-development",
+            "icon": "blocks"
+          },
+          {
+            "number": "05 · Websites",
+            "title": "WEBSITES",
+            "subtitle": "*You can edit yourself*",
+            "text": "Fast, accessible sites on a CMS you can edit, with no monthly platform fee.",
+            "link_label": "Website building",
+            "link_url": "/services/website-building",
+            "icon": "layout-template"
+          }
+        ]
+      }
+    },
+    {
       "type": "kit-process",
       "data": {
         "eyebrow": "Edit 01 · how I work",
@@ -195,6 +227,31 @@
         "brand_name": "Chris Garlick",
         "blurb": "Got something to build, or fix?",
         "columns": [
+          {
+            "heading": "Services",
+            "links": [
+              {
+                "label": "Laravel",
+                "url": "/services/laravel"
+              },
+              {
+                "label": "WordPress",
+                "url": "/services/wordpress"
+              },
+              {
+                "label": "AI implementation",
+                "url": "/services/ai"
+              },
+              {
+                "label": "Software development",
+                "url": "/services/software-development"
+              },
+              {
+                "label": "Website building",
+                "url": "/services/website-building"
+              }
+            ]
+          },
           {
             "heading": "Work with me",
             "links": [

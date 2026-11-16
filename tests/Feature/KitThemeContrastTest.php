@@ -114,11 +114,21 @@ it('uses the night values checked in Design', function (): void {
     expect($night['kit-bg'])->toBe('#182720')
         ->and($night['kit-surface'])->toBe('#1B3F31')
         ->and($night['kit-accent'])->toBe('#DDE7DF')
-        ->and($night['nf-wordmark'])->toBe('#287659');
+        ->and($night['nf-wordmark'])->toBe('#318A68');
 });
 
 it('puts paper on the house green in a night accent panel (Edit 01)', function (): void {
     $panel = nightfolioTokens('[data-mode="night"] .kit-section-split[data-panel="accent"] .kit-split-text');
 
     expect(nightfolioFailures($panel, ['kit-accent-fg' => ['kit-accent']]))->toBe([]);
+});
+
+it('keeps the footer wordmark at 3:1 on the dark footer, day and night', function (): void {
+    $day = nightfolioTokens(':root:root');
+    $night = [...$day, ...nightfolioTokens(':root:root[data-mode="night"]')];
+
+    // The footer is always on the inverse background. The name is decorative
+    // and aria-hidden, so 3:1 (large text), not 4.5:1.
+    expect(nightfolioContrast($day['nf-wordmark'], $day['kit-inverse-bg']))->toBeGreaterThanOrEqual(3.0)
+        ->and(nightfolioContrast($night['nf-wordmark'], $night['kit-inverse-bg']))->toBeGreaterThanOrEqual(3.0);
 });

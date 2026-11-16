@@ -170,7 +170,7 @@
 
   /* Nightfolio's own */
   --nf-lit: #1F5C45;          /* measured numbers: house green on day */
-  --nf-wordmark: #1F5C45;     /* the footer's cropped name: decorative */
+  --nf-wordmark: #318A68;     /* the footer's name, on the dark footer: decorative, kept at 3:1 */
 }
 
 /*
@@ -228,7 +228,7 @@
   --kit-section-pad-y: clamp(4.5rem, 9vw, 7.5rem); /* 120px on night */
 
   --nf-lit: #DDE7DF;
-  --nf-wordmark: #287659;
+  --nf-wordmark: #318A68;
 }
 
 /*
@@ -387,6 +387,11 @@ body.kit-page::before {
 .kit-shop-heading {
   font-size: clamp(3.5rem, 0.5rem + 7.8vw, 7.5rem);
   line-height: 0.88;
+}
+/* At 0.88 an italic descender ("you get") hangs below the line box into the
+   lede; this gives it room. */
+.kit-section-head-title {
+  padding-block-end: 0.14em;
 }
 .kit-process-title {
   font-size: clamp(2.5rem, 1rem + 3.9vw, 4.5rem);
@@ -1331,6 +1336,8 @@ body.kit-page::before {
     margin: 0;
     padding-inline: 2.5rem;
     background: var(--kit-accent-soft);
+    /* Secondary text in mint on the house green: 6.2:1 (the grey is 3.96). */
+    --kit-fg-2: #DDE7DF;
   }
   [data-mode="night"] .kit-section-text-block[data-background="plain"]:has(.kit-text-block-body):has(.kit-text-block-points) .kit-text-block > :first-child {
     padding-block-start: 3rem;

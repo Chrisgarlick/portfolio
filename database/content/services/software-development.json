@@ -1,0 +1,286 @@
+{
+  "mode": "night",
+  "content": [
+    {
+      "type": "kit-header",
+      "data": {
+        "brand_name": "Chris Garlick",
+        "home_url": "/",
+        "numbered": true,
+        "links": [
+          {
+            "label": "Services",
+            "url": "/services"
+          },
+          {
+            "label": "Work",
+            "url": "/work"
+          },
+          {
+            "label": "How I work",
+            "url": "/how-i-work"
+          },
+          {
+            "label": "Writing",
+            "url": "/article"
+          },
+          {
+            "label": "About",
+            "url": "/about"
+          }
+        ],
+        "secondary_label": "Free site audit",
+        "secondary_url": "/tools/site-audit",
+        "action_label": "Start a project",
+        "action_url": "/start",
+        "tone": "plain"
+      }
+    },
+    {
+      "type": "kit-hero",
+      "data": {
+        "variant": "text",
+        "eyebrow": "Services 04 · Software development",
+        "title": "SOFTWARE\nFOR HOW\n*you actually work.*",
+        "title_size": "large",
+        "lede": "Internal tools, integrations and automation for the processes no off-the-shelf product quite fits. Built in Laravel, tested from the first day, and handed over documented.",
+        "actions": [
+          {
+            "label": "Start a project",
+            "url": "/start",
+            "style": "primary"
+          },
+          {
+            "label": "See cg-cms",
+            "url": "/work/cg-cms",
+            "style": "secondary"
+          }
+        ],
+        "heading_level": "1",
+        "secondary_style": "button"
+      }
+    },
+    {
+      "type": "kit-figure",
+      "data": {
+        "image": {
+          "file": "media/cg-cms-admin-dashboard.png",
+          "alt": "The cg-cms admin dashboard: two alerts (a lead that was never emailed, one blocking SEO issue), published and draft counts, leads this week, page cache warmth and recent articles"
+        },
+        "caption_left": "Fig. 01 · cg-cms admin, software I built and run",
+        "caption_right": "Leads, SEO and cache in one place",
+        "tone": "plain",
+        "frame": "browser",
+        "frame_url": "chrisgarlick.com"
+      }
+    },
+    {
+      "type": "kit-services",
+      "data": {
+        "title": "WHAT I\n*build*",
+        "heading_level": "2",
+        "lede": "Laravel and PHP, with TypeScript and Node.js where they fit better.",
+        "rule": true,
+        "columns": "2",
+        "services": [
+          {
+            "number": "01 · Internal tools",
+            "title": "Internal",
+            "subtitle": "*tools*",
+            "text": "For the jobs your team does in spreadsheets and email today.",
+            "icon": "layout-dashboard"
+          },
+          {
+            "number": "02 · Integrations",
+            "title": "Systems that",
+            "subtitle": "*talk to each other*",
+            "text": "So nobody copies data from one screen to another.",
+            "icon": "plug"
+          },
+          {
+            "number": "03 · Services",
+            "title": "Services",
+            "subtitle": "*and APIs*",
+            "text": "Software other software relies on, such as document rendering or data processing.",
+            "icon": "code-xml"
+          },
+          {
+            "number": "04 · Automation",
+            "title": "Scheduled",
+            "subtitle": "*automation*",
+            "text": "The repetitive work that keeps a business running, done on time without anyone remembering.",
+            "icon": "clock"
+          }
+        ],
+        "background": "tinted"
+      }
+    },
+    {
+      "type": "kit-split",
+      "data": {
+        "eyebrow": "Who it suits",
+        "title": "A PROCESS\nNO PRODUCT\n*quite fits.*",
+        "heading_level": "2",
+        "body": "Spreadsheets passed around by email, or the same data typed into two systems. If your team has built workarounds to get through the week, there is usually a tool worth building.\n\nIf a product already does the job, I'll say so. Buying is often the better choice.",
+        "media": "card",
+        "background": "plain",
+        "swap": false,
+        "panel": "accent",
+        "card_label": "The first call",
+        "card_title": "Your process first.\nSoftware second."
+      }
+    },
+    {
+      "type": "kit-split",
+      "data": {
+        "eyebrow": "Edit 01 · proof",
+        "title": "CG-CMS.\n*A whole CMS as a Laravel library.*",
+        "heading_level": "2",
+        "body": "Generators for new content types, a page cache that serves from disk, and a command line that lets tools like Claude Code draft content under the same rules as the editor. This site runs on it.",
+        "link_label": "Read the cg-cms story",
+        "link_url": "/work/cg-cms",
+        "media": "card",
+        "background": "tinted",
+        "swap": true,
+        "panel": "accent",
+        "card_label": "cg-cms · this site, live 1GB server",
+        "card_title": "0.4 ms a page\nfrom disk"
+      }
+    },
+    {
+      "type": "kit-split",
+      "data": {
+        "title": "BEFORE\n*you ask*",
+        "heading_level": "2",
+        "media": "questions",
+        "numbered": true,
+        "questions": [
+          {
+            "question": "Can you connect it to the systems we already use?",
+            "answer": "Yes. Integrations are a big part of this work: Microsoft 365, Google Workspace, Xero, HubSpot, Notion. It's direct API work, not no-code glue."
+          },
+          {
+            "question": "Do I own the code?",
+            "answer": "Yes. You get the code, the documentation and the accounts at handover. Nothing is locked to me, so another developer could pick it up and carry on."
+          },
+          {
+            "question": "Why Laravel?",
+            "answer": "It's what I know best, and it suits business systems well: data, users, queues and integrations. Where TypeScript and Node.js fit the job better, I use those instead."
+          },
+          {
+            "question": "What if the scope changes during the build?",
+            "answer": "It often does, once people start using the first release. The work lands in small releases, so we adjust the next one rather than unpick a finished build, and the change goes into the written scope."
+          }
+        ],
+        "background": "plain"
+      }
+    },
+    {
+      "type": "kit-cta",
+      "data": {
+        "title": "START WITH\n*the process.*",
+        "heading_level": "2",
+        "lede": "The first call is about who does what and where it slows down. Then a written scope, so we both know what done looks like.",
+        "action_label": "Start a project",
+        "action_url": "/start",
+        "secondary_label": "Laravel development",
+        "secondary_url": "/services/laravel"
+      }
+    },
+    {
+      "type": "kit-footer",
+      "data": {
+        "brand_name": "Chris Garlick",
+        "blurb": "Got something to build, or fix?",
+        "columns": [
+          {
+            "heading": "Services",
+            "links": [
+              {
+                "label": "Laravel",
+                "url": "/services/laravel"
+              },
+              {
+                "label": "WordPress",
+                "url": "/services/wordpress"
+              },
+              {
+                "label": "AI implementation",
+                "url": "/services/ai"
+              },
+              {
+                "label": "Software development",
+                "url": "/services/software-development"
+              },
+              {
+                "label": "Website building",
+                "url": "/services/website-building"
+              }
+            ]
+          },
+          {
+            "heading": "Work with me",
+            "links": [
+              {
+                "label": "Services",
+                "url": "/services"
+              },
+              {
+                "label": "Work",
+                "url": "/work"
+              },
+              {
+                "label": "How I work",
+                "url": "/how-i-work"
+              },
+              {
+                "label": "Writing",
+                "url": "/article"
+              }
+            ]
+          },
+          {
+            "heading": "More",
+            "links": [
+              {
+                "label": "About",
+                "url": "/about"
+              },
+              {
+                "label": "Free site audit",
+                "url": "/tools/site-audit"
+              },
+              {
+                "label": "Start a project",
+                "url": "/start"
+              },
+              {
+                "label": "Contact",
+                "url": "/contact"
+              }
+            ]
+          }
+        ],
+        "social": [
+          {
+            "network": "linkedin",
+            "url": "https://www.linkedin.com/in/chris-garlick-59a8bb91/"
+          }
+        ],
+        "small_print": "© 2026 Chris Garlick",
+        "legal": [
+          {
+            "label": "Privacy",
+            "url": "/privacy"
+          },
+          {
+            "label": "Terms",
+            "url": "/terms"
+          }
+        ],
+        "wordmark": "CHRIS GARLICK",
+        "cookie_label": "Cookie preferences"
+      }
+    }
+  ]
+}

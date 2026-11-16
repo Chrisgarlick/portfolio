@@ -1,7 +1,7 @@
 {
   "title": "Writing",
   "mode": "night",
-  "seo_title": "Writing on Laravel, WordPress, AI and performance | Chris Garlick",
+  "seo_title": "Writing on Laravel, WordPress and AI | Chris Garlick",
   "seo_description": "What I built, measured and learned, on Laravel, WordPress, AI and performance. Notes from real projects, with the numbers.",
   "content": [
     {
@@ -66,6 +66,31 @@
         "brand_name": "Chris Garlick",
         "blurb": "Got something to build, or fix?",
         "columns": [
+          {
+            "heading": "Services",
+            "links": [
+              {
+                "label": "Laravel",
+                "url": "/services/laravel"
+              },
+              {
+                "label": "WordPress",
+                "url": "/services/wordpress"
+              },
+              {
+                "label": "AI implementation",
+                "url": "/services/ai"
+              },
+              {
+                "label": "Software development",
+                "url": "/services/software-development"
+              },
+              {
+                "label": "Website building",
+                "url": "/services/website-building"
+              }
+            ]
+          },
           {
             "heading": "Work with me",
             "links": [

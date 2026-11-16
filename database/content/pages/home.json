@@ -135,8 +135,8 @@
           {
             "value": "0.4 ms",
             "label": "To serve a cached page on cg-cms, live 1GB server",
-            "link_label": "How I measured",
-            "link_url": "/article/caching-pages-to-disk-laravel"
+            "link_label": "See cg-cms",
+            "link_url": "/work/cg-cms"
           },
           {
             "value": "270",
@@ -209,25 +209,25 @@
         "sort_options": [],
         "products": [
           {
-            "name": "Caching pages to disk: how cg-cms serves pages in under a millisecond",
-            "url": "/article/caching-pages-to-disk-laravel",
+            "name": "Law firm client intake automation with AI",
+            "url": "/article/ai-client-intake-law-firms",
             "image": null,
-            "label": "01 · Laravel",
-            "description": "How cg-cms writes each Laravel page to disk on save, lets nginx serve it without PHP, and purges only the pages a change affects."
+            "label": "01 · AI",
+            "description": "How UK law firms automate client intake with AI, from enquiry to matter open, with a fee-earner checking every step."
           },
           {
-            "name": "How chrisgarlick.com's LCP went from 3 seconds to under 2",
-            "url": "/article/chrisgarlick-com-lcp-3-seconds-to-under-2",
+            "name": "Zapier vs custom AI automation: where each breaks",
+            "url": "/article/zapier-vs-custom-ai",
             "image": null,
-            "label": "02 · Performance",
-            "description": "What moved this site's largest contentful paint from about 3 seconds to under 2 in Lighthouse, and the checks you can run on your own site."
+            "label": "02 · AI",
+            "description": "Where Zapier stops coping, what each costs at scale, and how a UK small business can decide between them."
           },
           {
-            "name": "Taking over a WordPress site: what I check in the first hour",
-            "url": "/article/taking-over-a-wordpress-site",
+            "name": "How to automate client intake without custom software",
+            "url": "/article/automate-client-intake-without-custom-software",
             "image": null,
-            "label": "03 · WordPress",
-            "description": "What I check in the first hour with an inherited WordPress site: backups, versions, plugins, logins, hosting and speed. Most you can run yourself."
+            "label": "03 · Automation",
+            "description": "A three-tool stack that takes eight manual intake steps down to two, without a custom build."
           }
         ],
         "background": "tinted"
@@ -270,6 +270,31 @@
         "brand_name": "Chris Garlick",
         "blurb": "Got something to build, or fix?",
         "columns": [
+          {
+            "heading": "Services",
+            "links": [
+              {
+                "label": "Laravel",
+                "url": "/services/laravel"
+              },
+              {
+                "label": "WordPress",
+                "url": "/services/wordpress"
+              },
+              {
+                "label": "AI implementation",
+                "url": "/services/ai"
+              },
+              {
+                "label": "Software development",
+                "url": "/services/software-development"
+              },
+              {
+                "label": "Website building",
+                "url": "/services/website-building"
+              }
+            ]
+          },
           {
             "heading": "Work with me",
             "links": [
