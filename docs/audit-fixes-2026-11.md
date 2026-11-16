@@ -111,6 +111,8 @@ This fixes "no author sameAs" (41 pages) and part of the Organization finding.
 - [me] Publish, put the homepage and /services/laravel links back (undoing 1.1), flush and warm.
 
 ### 4.2 Article template [me]
+
+Status 16 Nov: live. Table of contents for articles with 4+ sections, author block with credentials and profile links (0560d0b). Calls to action in the 15 old article bodies cut per docs/article-cta-edits.md (approved by Chris): now 0 to 4 per article, was up to 18. Backups of each body on the server in storage/app/backups/article-cta-edits/.
 - **Too many CTAs (15 articles, 8 to 11 each):** count where they come from (inline links in the old article bodies, the related cards, the next band, the footer). Cut to one closing CTA plus related reading.
 - **Table of contents (10 long articles):** an automatic ToC in the article template when an article has four or more H2s. One change covers all ten.
 - **Author credentials (41) and bio:** add a line of credentials to the article's author block (years building, founder of Kritano, what I've shipped) with visible LinkedIn and GitHub links, matching the Person schema.
