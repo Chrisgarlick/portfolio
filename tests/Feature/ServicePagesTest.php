@@ -8,7 +8,7 @@ use Illuminate\Foundation\Testing\RefreshDatabase;
 uses(RefreshDatabase::class);
 
 /*
-| The services hub (database/content/pages/services.json) and the three
+| The services hub (database/content/pages/services.json) and the five
 | service pages, built from kit's sections: the hub is a `page` like home, the
 | three are `service` entries whose kit sections sit in a JSON file beside
 | their markdown (services/laravel.json for laravel.md).
@@ -66,9 +66,17 @@ it('renders the three service pages from kit sections, keeping their SEO', funct
     ['laravel', 'LARAVEL APPS', 'Can you take over an existing Laravel app?'],
     ['wordpress', 'WORDPRESS SITES', 'Do you use page builders?'],
     ['ai', 'AI THAT DOES', 'What if it gets something wrong?'],
+    ['software-development', 'SOFTWARE', 'Can you connect it to the systems we already use?'],
+    ['website-building', 'WEBSITES', 'Will a new site hurt my search rankings?'],
 ]);
 
 it('keeps the structured template for a service without kit sections', function (): void {
+    // Every service has kit sections now; take them off one to see the fallback.
+    $entry = Entry::query()->where('collection', 'service')->where('slug', 'software-development')->firstOrFail();
+    $data = (array) $entry->data;
+    unset($data['content']);
+    $entry->update(['data' => $data]);
+
     $this->get('/services/software-development')
         ->assertOk()
         ->assertDontSee('data-mode="night"', false)
