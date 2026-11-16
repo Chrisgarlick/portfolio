@@ -12,45 +12,45 @@ Legend: **[me]** I do it. **[Chris]** needs you (a decision, writing, or a serve
 
 ## Phase 1: launch regressions (one deploy)
 
-Status 16 Nov: all done locally, tests and axe pass. Waiting on commits (kit, portfolio) and the deploy.
+Status 16 Nov: live (deployed 025e1ca, 21 entries published, kit 2a72e5b).
 - The footer wordmark fix is on the day token (`--nf-wordmark: #318A68`): the footer always sits on `--kit-inverse-bg`, so it has no `data-tone`. Tested in `KitThemeContrastTest`.
 - `ContentLinksTest` fails if any published content links to a `status: draft` file.
-- The accountancy article's source moved and changed: the link now points to the new URL, and "£49,400" is corrected to the source's £40,363 (salary, NI and pension). The body is ready in the scratchpad; apply on live with `cms:entry:update --set body=...` then `cms:entry:publish`.
+- The accountancy article's source moved and changed: the link now points to the new URL, and "£49,400" is corrected to the source's £40,363 (salary, NI and pension). Applied on live by restoring revision 103 and editing the stored TipTap JSON (`cms:entry:update` takes markdown, not HTML).
 
-### 1.1 Broken links to unpublished drafts (4 serious) [done locally 16 Nov]
+### 1.1 Broken links to unpublished drafts (4 serious) [live 16 Nov]
 The homepage and /services/laravel link to the three article drafts, which return 404.
 - [me] `database/content/pages/home.json` lines 139, 213, 220, 227: swap the three cards for published articles until the drafts go live (4.1 puts them back).
 - [me] `database/content/services/laravel.json` lines 143, 165: same for the caching article.
 - [me] Add a test that every internal `url`/`link_url` in `database/content/**` points at a published entry or a route, so a draft link can't ship again.
 
-### 1.2 Contrast (45 serious, 23 pages) [done locally 16 Nov]
+### 1.2 Contrast (45 serious, 23 pages) [live 16 Nov]
 - **Footer wordmark on day pages** (articles, privacy, terms): `#1F5C45` on `#182720` is 1.98:1, needs 3:1. The dark footer on a day page keeps the day `--nf-wordmark`.
   - [me] `resources/css/kit-theme-nightfolio.css`: set `--nf-wordmark` in the `[data-tone="dark"]` override (around line 238) and in night mode (line 231, currently `#287659` at 2.83:1, also under) to `#318A68` (3.68:1). Check it still reads as "quiet green" on a render.
 - **How I work panel**: `--kit-fg-2` (`#B6B9B4`) on the house-green panel is 3.96:1, needs 4.5:1.
   - [me] Same file, the text-block panel rules (around lines 1320 to 1345): text inside the panel uses `--kit-fg` (7.4:1).
 - The 68 "info / needs review" contrast items are axe's manual checks (ratio 0.00, background can't be determined over images or overlaps). [me] Spot-check them in the axe run in 5.1; no change expected.
 
-### 1.3 Empty alt on the logo (80 minor) [done locally 16 Nov]
+### 1.3 Empty alt on the logo (80 minor) [live 16 Nov]
 The cg mark in the header and footer is `alt="" aria-hidden="true"`. Correct for WCAG, but Kritano wants `role="presentation"`.
 - [me] kit header and footer sections: add `role="presentation"` to the logo `<img>`, `kit build-cgcms`, parity tests (Go, PHP, Blade), copy `kit-blocks/` into the portfolio.
 
-### 1.4 Two service pages still in the old design [done locally 16 Nov]
+### 1.4 Two service pages still in the old design [live 16 Nov]
 /services/software-development and /services/website-building had only the old markdown, no kit layout.
 - [me] Done locally: both rebuilt in the kit design (`services/*.json`), the ownership answer on Website building now says cg-cms relies on me for CMS updates (matches the Laravel FAQ).
 - [me] Linked: a "Services" column (all five) at the front of the footer on every page, and a "By the job" row on /services. The kit header has no dropdowns, so the top nav stays at five links; a dropdown would be a kit gap.
 - [me] Publish both on live with the phase 1 deploy.
 
-### 1.5 Stale structured data on the homepage and About [done locally 16 Nov]
+### 1.5 Stale structured data on the homepage and About [live 16 Nov]
 `config/site.php` `pages.home.json_ld` still has the old positioning.
 - [me] ProfessionalService: rewrite `description` to the current line (Laravel, WordPress, AI where it earns its place), **remove `priceRange` (£5,000 to £8,000; breaks the no-prices rule)**, update `serviceType`, set founder `jobTitle` to match the graph ("Web developer").
 - [me] `pages.about.json_ld` Person: same `jobTitle`, current `knowsAbout`.
 - [me] GitHub link: use `github.com/Chrisgarlick` everywhere (Chris, 16 Nov); drop `github.com/Kritano` from the JSON-LD.
 
-### 1.6 Titles (3 moderate) [done locally 16 Nov]
+### 1.6 Titles (3 moderate) [live 16 Nov]
 - [me] `database/content/pages/services.json` (66 chars) and `pages/article.json` (65 chars): bring under 60.
 - [me] `pages/terms.json` (28 chars): lengthen to 30+, e.g. "Terms of use for this website | Chris Garlick".
 
-### 1.7 External links (2) [done locally 16 Nov]
+### 1.7 External links (2) [live 16 Nov]
 - [me] /article/ai-vs-hiring-accountancy: the togetheraccounting.co.uk source is a 404. Find the moved page or a better source; remove if neither.
 - [me] /article/ai-consultant-vs-agency-uk: ico.org.uk timed out. Recheck; almost certainly a one-off, no change expected.
 
