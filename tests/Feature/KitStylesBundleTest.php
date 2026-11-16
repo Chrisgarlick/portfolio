@@ -13,6 +13,8 @@ declare(strict_types=1);
 |
 */
 
+uses(Illuminate\Foundation\Testing\RefreshDatabase::class);
+
 it('imports every kit section, after kit.css and before the themes', function (): void {
     $css = (string) file_get_contents(resource_path('css/kit-site.css'));
     preg_match_all('/@import\s+"([^"]+)";/', $css, $m);
@@ -37,4 +39,4 @@ it('loads no per-section stylesheet on a kit page', function (): void {
         ->assertSee('kit-site', false)
         ->assertDontSee('/kit-blocks/sections/', false)
         ->assertDontSee('/kit-blocks/kit/kit.css', false);
-})->uses(Illuminate\Foundation\Testing\RefreshDatabase::class);
+});
