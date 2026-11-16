@@ -1767,8 +1767,80 @@ body.kit-page::before {
   line-height: 1.5;
   color: var(--kit-fg-2);
 }
+.kit-article-author-text a,
+.kit-article-author-links a {
+  color: var(--kit-accent);
+  text-decoration: underline;
+  text-underline-offset: 0.18em;
+}
+.kit-article-author-text a:hover,
+.kit-article-author-links a:hover {
+  color: var(--kit-fg);
+}
+.kit-article-author-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem 1.25rem;
+  margin: 0.75rem 0 0;
+  font-family: var(--kit-font-mono);
+  font-size: 0.75rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
 .kit-article-download {
   padding-block-end: 4rem;
+}
+
+/* The table of contents above a long article's body: its sections in the
+   reading column, numbered as the headings are. */
+.kit-article-toc {
+  max-inline-size: 45rem;
+  margin: 0 auto 3rem;
+  padding-block: 1.25rem;
+  border-block: 1px solid var(--kit-line);
+}
+.kit-article-toc-title {
+  margin: 0 0 0.75rem;
+  font-family: var(--kit-font-mono);
+  font-size: 0.75rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--kit-fg-2);
+}
+.kit-article-toc ol {
+  display: grid;
+  gap: 0.5rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.kit-article-toc a {
+  display: flex;
+  gap: 0.875rem;
+  color: var(--kit-fg);
+  text-decoration: none;
+  line-height: 1.4;
+}
+.kit-article-toc a:hover {
+  color: var(--kit-accent);
+  text-decoration: underline;
+  text-underline-offset: 0.18em;
+}
+.kit-article-toc a:focus-visible {
+  outline: 2px solid var(--kit-focus-ring);
+  outline-offset: 2px;
+}
+.kit-article-toc-number {
+  flex: none;
+  min-inline-size: 1.5rem;
+  padding-block-start: 0.2em;
+  font-family: var(--kit-font-mono);
+  font-size: 0.75rem;
+  color: var(--kit-fg-2);
+}
+/* A section jumped to from the contents clears the top of the window. */
+.kit-article-body .kit-prose-heading[id] {
+  scroll-margin-block-start: 2rem;
 }
 
 /* The next article: the case studies' green band, on a day page too. */

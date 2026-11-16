@@ -14,7 +14,8 @@ use DOMXPath;
  * quotes, code, tables, figures), so every article, old or new, reads like
  * the Nightfolio article without anyone rebuilding it from blocks.
  *
- * Each h2 gets a mono number above it (01, 02…), as in Design's article.
+ * Each h2 gets a mono number above it (01, 02…), as in Design's article,
+ * and an id from its words, so contents() can link to it.
  */
 final class ArticleProse
 {
@@ -38,6 +39,7 @@ final class ArticleProse
 
         $xpath = new DOMXPath($doc);
         $number = 0;
+        $ids = [];
 
         foreach (iterator_to_array($root->childNodes) as $node) {
             if (! $node instanceof DOMElement) {
@@ -46,6 +48,10 @@ final class ArticleProse
 
             switch ($node->tagName) {
                 case 'h2':
+                    if (! $node->hasAttribute('id')) {
+                        $node->setAttribute('id', self::headingId($node->textContent, $ids));
+                    }
+                    $ids[] = $node->getAttribute('id');
                     $span = $doc->createElement('span', sprintf('%02d', ++$number));
                     $span->setAttribute('class', 'kit-prose-number');
                     $node->insertBefore($span, $node->firstChild);
@@ -105,6 +111,64 @@ final class ArticleProse
         }
 
         return $out;
+    }
+
+    /**
+     * The h2s of a body html() has dressed, for a table of contents: each
+     * one's id and its words, without the number html() put in front.
+     *
+     * @return array<int, array{id: string, text: string}>
+     */
+    public static function contents(string $html): array
+    {
+        if (trim($html) === '') {
+            return [];
+        }
+
+        $doc = new DOMDocument('1.0', 'UTF-8');
+        $previous = libxml_use_internal_errors(true);
+        $doc->loadHTML('<?xml encoding="UTF-8"><div>'.$html.'</div>', LIBXML_HTML_NOIMPLIED | LIBXML_HTML_NODEFDTD);
+        libxml_clear_errors();
+        libxml_use_internal_errors($previous);
+
+        $contents = [];
+
+        foreach ((new DOMXPath($doc))->query('/div/h2[@id]') ?: [] as $heading) {
+            if (! $heading instanceof DOMElement) {
+                continue;
+            }
+
+            foreach (iterator_to_array($heading->childNodes) as $child) {
+                if ($child instanceof DOMElement && str_contains(' '.$child->getAttribute('class').' ', ' kit-prose-number ')) {
+                    $heading->removeChild($child);
+                }
+            }
+
+            $contents[] = [
+                'id' => $heading->getAttribute('id'),
+                'text' => trim((string) preg_replace('/\s+/u', ' ', $heading->textContent)),
+            ];
+        }
+
+        return $contents;
+    }
+
+    /**
+     * A heading's id from its words ("Who it suits?" → "who-it-suits"),
+     * numbered when two headings say the same thing.
+     *
+     * @param  array<int, string>  $taken
+     */
+    private static function headingId(string $text, array $taken): string
+    {
+        $base = \Illuminate\Support\Str::slug($text) ?: 'section';
+        $id = $base;
+
+        for ($n = 2; in_array($id, $taken, true); $n++) {
+            $id = $base.'-'.$n;
+        }
+
+        return $id;
     }
 
     /**

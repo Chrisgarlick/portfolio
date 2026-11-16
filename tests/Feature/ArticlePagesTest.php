@@ -35,7 +35,13 @@ it('renders an article as a kit page with its body, Article JSON-LD and canonica
         ->assertSee('Writing 01 · AI')
         ->assertSee('min read')
         ->assertSee('<div class="kit-prose">', false)
-        ->assertSee('<h2 class="kit-prose-heading"><span class="kit-prose-number">01</span> What intake looks like today</h2>', false)
+        ->assertSee('<h2 id="what-intake-looks-like-today" class="kit-prose-heading"><span class="kit-prose-number">01</span> What intake looks like today</h2>', false)
+        // A long read lists its sections first, linking to each heading.
+        ->assertSee('<nav class="kit-article-toc" aria-labelledby="article-contents">', false)
+        ->assertSee('<a href="#what-intake-looks-like-today"><span class="kit-article-toc-number" aria-hidden="true">01</span>What intake looks like today</a>', false)
+        // The author, with credentials and a way to find out more.
+        ->assertSee('I founded <a href="/work/kritano-website-audits">Kritano</a>', false)
+        ->assertSee('<a href="/about">More about me</a>', false)
         ->assertSee('<ul class="kit-prose-list">', false)
         ->assertSee('Client intake is one of the most repetitive jobs in a law firm.')
         ->assertSee('"@type":"Article"', false)
@@ -71,6 +77,8 @@ it('renders a legacy rich text article and links the next one along', function (
         ->assertSee('Writing 02 · Laravel')
         ->assertSee('Legacy body copy.')
         ->assertSee('<span class="kit-prose-number">01</span> A heading', false)
+        // One section: no table of contents.
+        ->assertDontSee('kit-article-toc', false)
         ->assertSee('<figure class="kit-prose-code"><pre tabindex="0">', false)
         ->assertSee('<a href="/article/ai-client-intake-law-firms">', false);
 });

@@ -2,7 +2,8 @@
     An article in the Nightfolio day (paper) layout (Design nf_article): the
     kit home page's masthead and footer, kit's hero as the opener (folio,
     title, standfirst) with the byline under it, the body as stored in kit's
-    prose (App\Content\ArticleProse), the author, then the next article as a
+    prose (App\Content\ArticleProse), with a table of contents when it has
+    four or more sections, the author, then the next article as a
     one-row ruled list, its title fitted to one line (fit-wordmark.js).
 
     Works for every article: nothing here is built per article.
@@ -13,6 +14,16 @@
     $kitMode = 'day';
     $excerpt = (string) $article->value('excerpt', '');
     $body = \App\Content\ArticleProse::html($article->html('body'));
+    // A long read gets its sections listed up front; a short one doesn't need it.
+    $contents = \App\Content\ArticleProse::contents($body);
+    $contents = count($contents) >= 4 ? $contents : [];
+    $profiles = collect(config('cg-cms.seo.person.same_as', []))->mapWithKeys(fn (string $url): array => [
+        $url => match (true) {
+            str_contains($url, 'linkedin.') => 'LinkedIn',
+            str_contains($url, 'github.') => 'GitHub',
+            default => (string) parse_url($url, PHP_URL_HOST),
+        },
+    ]);
     $folio = 'Writing '.$number.($topic ? ' · '.$topic : '');
 @endphp
 
@@ -64,6 +75,16 @@
             @endonce
             <section class="kit-section-prose kit-article-body" data-background="plain" data-width="normal">
                 <div class="kit-container">
+                    @if ($contents)
+                        <nav class="kit-article-toc" aria-labelledby="article-contents">
+                            <p id="article-contents" class="kit-article-toc-title">In this article</p>
+                            <ol role="list">
+                                @foreach ($contents as $i => $section)
+                                    <li><a href="#{{ $section['id'] }}"><span class="kit-article-toc-number" aria-hidden="true">{{ sprintf('%02d', $i + 1) }}</span>{{ $section['text'] }}</a></li>
+                                @endforeach
+                            </ol>
+                        </nav>
+                    @endif
                     <div class="kit-prose">{!! $body !!}</div>
                 </div>
             </section>
@@ -73,7 +94,13 @@
             <aside class="kit-article-author" aria-label="About the author">
                 <div>
                     <p class="kit-article-author-name">Chris Garlick</p>
-                    <p class="kit-article-author-text">I build Laravel apps and WordPress sites that stay fast. If your site is slow, I'll find out why.</p>
+                    <p class="kit-article-author-text">I'm a web developer in the UK. I founded <a href="/work/kritano-website-audits">Kritano</a>, a website auditing platform, and built <a href="/work/cg-cms">cg-cms</a>, the Laravel CMS this site runs on. I build Laravel apps and WordPress sites that stay fast.</p>
+                    <p class="kit-article-author-links">
+                        <a href="/about">More about me</a>
+                        @foreach ($profiles as $url => $label)
+                            <a href="{{ $url }}" rel="me noopener">{{ $label }}</a>
+                        @endforeach
+                    </p>
                 </div>
                 <a class="kit-button" data-variant="primary" href="/start">Start a project</a>
             </aside>
