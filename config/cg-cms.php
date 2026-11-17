@@ -16,7 +16,7 @@ declare(strict_types=1);
 return [
 
     // kit's site details (phone, logo, socials, small print), edited under
-    // Settings > Site details. See kit-blocks/ and ~/dev/cg-cms/KIT-BLOCKS.md.
+    // Settings > Site details. See kit-blocks/ and ~/dev/chris/cg-cms/KIT-BLOCKS.md.
     'site_schema' => env('CG_SITE_SCHEMA', base_path('kit-blocks/kit/site.schema.json')),
 
     // kit's base stylesheet for the admin's block previews. Each kit block

@@ -29,7 +29,7 @@ fi
 [[ "$(git branch --show-current)" == "main" ]] || { echo "Deploy from main."; exit 1; }
 [[ -z "$(git status --porcelain)" ]] || { echo "Commit or stash your changes first: the server deploys what is on GitHub."; git status --short; exit 1; }
 
-# cg-cms ships at the commit in composer.lock, not what is in ~/dev/cg-cms.
+# cg-cms ships at the commit in composer.lock, not what is in ~/dev/chris/cg-cms.
 LOCKED="$(php -r '
     foreach (json_decode(file_get_contents("composer.lock"), true)["packages"] as $p) {
         if ($p["name"] === "chrisgarlick/cg-cms") { echo $p["source"]["reference"]; }
@@ -39,9 +39,9 @@ echo "cg-cms: shipping ${LOCKED:0:7}"
 if [[ -n "$REMOTE" && "$REMOTE" != "$LOCKED" ]]; then
     echo "  WARNING: GitHub main is ${REMOTE:0:7}. Run 'composer update chrisgarlick/cg-cms' to ship it."
 fi
-LOCAL_CMS="../../dev/cg-cms"
+LOCAL_CMS="../../dev/chris/cg-cms"
 if [[ -d "$LOCAL_CMS/.git" ]] && [[ -n "$(git -C "$LOCAL_CMS" status --porcelain)" || "$(git -C "$LOCAL_CMS" rev-parse HEAD)" != "$LOCKED" ]]; then
-    echo "  WARNING: ~/dev/cg-cms differs from the locked commit; its changes will not ship."
+    echo "  WARNING: ~/dev/chris/cg-cms differs from the locked commit; its changes will not ship."
 fi
 
 # The tests run on the server's PHP version: Herd's `php` follows the site's
