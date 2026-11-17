@@ -283,6 +283,13 @@ return [
         'accel' => (bool) env('PREVIEW_ACCEL', false),
         // How long a client stays signed in, at most.
         'days' => 30,
+        // Publishing from the studio: the server fetches the preview bundle
+        // from Design with an export-only token (design admin token create
+        // --name portfolio --scope export), kept in .env by hand.
+        'design_url' => env('DESIGN_URL', 'https://design.kritano.com'),
+        'design_token' => env('DESIGN_PREVIEW_TOKEN'),
+        // Versions kept on the server, so a bad publish can be rolled back.
+        'keep' => 3,
     ],
 
 ];

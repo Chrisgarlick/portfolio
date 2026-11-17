@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Http\Controllers\Studio;
 
 use App\Http\Controllers\Controller;
+use App\Jobs\PublishPreview;
 use App\Models\PreviewAccess;
 use App\Models\PreviewView;
 use Carbon\CarbonImmutable;
@@ -54,6 +55,25 @@ final class PreviewController extends Controller
         $this->preview($entry)->update(['password' => PreviewAccess::newPassword()]);
 
         return back()->with('success', "New password for {$entry->title}.");
+    }
+
+    /**
+     * Fetch the preview's Design file and put it live, on the queue (a big
+     * bundle takes a minute or two). The page shows how it went.
+     */
+    public function publish(Entry $entry): RedirectResponse
+    {
+        $access = $this->preview($entry);
+        if (blank($entry->value('design_file'))) {
+            return back()->with('error', "{$entry->title} has no Design file yet: add its id in the admin.");
+        }
+        if (blank(config('site.previews.design_token'))) {
+            return back()->with('error', 'Publishing needs DESIGN_PREVIEW_TOKEN on the server (an export-only Design token).');
+        }
+        $access->update(['publish_status' => 'queued', 'publish_error' => null]);
+        PublishPreview::dispatch($entry->id);
+
+        return back()->with('success', "Publishing {$entry->title} from Design. Reload in a minute or two to see it done; the link stays the same.");
     }
 
     private function preview(Entry $entry): PreviewAccess

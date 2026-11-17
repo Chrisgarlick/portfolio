@@ -357,7 +357,9 @@ return [
             Field::datetime('expires_at')->nullable()
                 ->help('Optional. The link stops working after this.'),
             Field::text('design_file')->nullable()
-                ->help('The Design file id, for reference.'),
+                ->help('The Design file to publish (the id in its address: design.kritano.com/files/<id>).'),
+            Field::textarea('frames')->nullable()
+                ->help('Optional: the Design frames to show, in order, separated by commas or new lines (e.g. home, home_mobile, product, product_mobile). Empty: every web page in the file, in file order.'),
             Field::textarea('notes')->nullable()
                 ->help('Private: who it is for and what was sent.'),
         ]),

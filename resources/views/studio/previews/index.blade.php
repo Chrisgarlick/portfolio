@@ -13,7 +13,8 @@
         .preview-secret { font-family: var(--font-mono, ui-monospace, monospace); font-size: 12px; padding: 0.5rem 0.75rem; }
         .preview-actions { display: flex; gap: 0.5rem; flex-wrap: wrap; }
         .preview-actions form { margin: 0; }
-        .preview-actions button { padding: 0.4rem 0.75rem; font-size: 11px; }
+        .preview-actions button, .preview-actions a { padding: 0.4rem 0.75rem; font-size: 11px; }
+        .preview-actions button:disabled { opacity: 0.5; cursor: wait; }
         .studio-status-badge[data-status="on"] { background: #E8F4EA; color: #2d7d46; }
         .studio-status-badge[data-status="expired"] { background: #FBE9E7; color: #6B6560; }
         .preview-row td { vertical-align: top; }
@@ -45,7 +46,7 @@
                     <table class="w-full text-left text-[13px]">
                         <thead class="border-b border-border bg-bg-muted">
                             <tr>
-                                @foreach (['Client', 'Status', 'Link and password', 'Views', ''] as $heading)
+                                @foreach (['Client', 'Status', 'Link and password', 'Design', 'Views', ''] as $heading)
                                     <th class="px-4 py-3 font-body text-[11px] tracking-widest text-text-tertiary uppercase">{{ $heading }}</th>
                                 @endforeach
                             </tr>
@@ -74,6 +75,28 @@
                                             <summary>Show password</summary>
                                             <p class="preview-secret mt-1">{{ $access->password }}</p>
                                         </details>
+                                    </td>
+                                    <td style="min-width: 190px;">
+                                        @php($file = $entry->value('design_file'))
+                                        @if ($access->publish_status === 'published')
+                                            <div class="text-[13px] text-text-primary">Published {{ $access->published_at?->timezone('Europe/London')->format('j M, H:i') }}</div>
+                                        @elseif (in_array($access->publish_status, ['queued', 'publishing'], true))
+                                            <div class="text-[13px] text-text-primary">Publishing…</div>
+                                            <div class="text-[12px] text-text-tertiary">Reload in a minute</div>
+                                        @elseif ($access->publish_status === 'failed')
+                                            <div class="text-[13px]" style="color: var(--color-destructive);">Failed: {{ $access->publish_error }}</div>
+                                        @else
+                                            <div class="text-[12px] text-text-tertiary">{{ filled($file) ? 'Not published from here yet' : 'No Design file set' }}</div>
+                                        @endif
+                                        @if (filled($file))
+                                            <div class="preview-actions mt-2">
+                                                <form method="post" action="{{ route('studio.previews.publish', $entry->id) }}">
+                                                    @csrf
+                                                    <button type="submit" class="studio-btn-primary" @disabled(in_array($access->publish_status, ['queued', 'publishing'], true))>Publish from Design</button>
+                                                </form>
+                                                <a class="studio-btn-secondary" href="{{ rtrim(config('site.previews.design_url'), '/') }}/files/{{ $file }}" target="_blank" rel="noopener">Open in Design</a>
+                                            </div>
+                                        @endif
                                     </td>
                                     <td class="text-text-secondary">
                                         {{ $preview['views'] }}

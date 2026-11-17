@@ -23,6 +23,10 @@ use Illuminate\Support\Str;
  * @property string $token
  * @property string $password
  * @property CarbonImmutable|null $last_viewed_at
+ * @property string|null $publish_status queued, publishing, published or failed
+ * @property string|null $publish_error
+ * @property string|null $published_version
+ * @property CarbonImmutable|null $published_at
  */
 final class PreviewAccess extends Model
 {
@@ -38,6 +42,7 @@ final class PreviewAccess extends Model
             'token' => 'encrypted',
             'password' => 'encrypted',
             'last_viewed_at' => 'immutable_datetime',
+            'published_at' => 'immutable_datetime',
         ];
     }
 

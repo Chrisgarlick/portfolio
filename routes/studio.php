@@ -27,3 +27,4 @@ Route::post('/audits/{submission}/delete-link', [AuditReviewController::class, '
 Route::get('/previews', [PreviewController::class, 'index'])->name('previews.index');
 Route::post('/previews/{entry}/link', [PreviewController::class, 'newLink'])->whereNumber('entry')->name('previews.link');
 Route::post('/previews/{entry}/password', [PreviewController::class, 'newPassword'])->whereNumber('entry')->name('previews.password');
+Route::post('/previews/{entry}/publish', [PreviewController::class, 'publish'])->whereNumber('entry')->name('previews.publish');
