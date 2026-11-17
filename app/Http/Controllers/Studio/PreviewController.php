@@ -73,7 +73,7 @@ final class PreviewController extends Controller
         $access->update(['publish_status' => 'queued', 'publish_error' => null]);
         PublishPreview::dispatch($entry->id);
 
-        return back()->with('success', "Publishing {$entry->title} from Design. Reload in a minute or two to see it done; the link stays the same.");
+        return back()->with('success', "Publishing {$entry->title} from Design. It shows here as it goes (you can also watch or stop it in Design's Exports panel); the link stays the same.");
     }
 
     private function preview(Entry $entry): PreviewAccess

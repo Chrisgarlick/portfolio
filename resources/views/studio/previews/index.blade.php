@@ -81,8 +81,8 @@
                                         @if ($access->publish_status === 'published')
                                             <div class="text-[13px] text-text-primary">Published {{ $access->published_at?->timezone('Europe/London')->format('j M, H:i') }}</div>
                                         @elseif (in_array($access->publish_status, ['queued', 'publishing'], true))
-                                            <div class="text-[13px] text-text-primary">Publishing…</div>
-                                            <div class="text-[12px] text-text-tertiary">Reload in a minute</div>
+                                            <div class="text-[13px] text-text-primary">Publishing…{{ $access->publish_progress ? ' '.$access->publish_progress : '' }}</div>
+                                            <div class="text-[12px] text-text-tertiary">Design is rendering it: reload to check, or watch it in Design's Exports panel</div>
                                         @elseif ($access->publish_status === 'failed')
                                             <div class="text-[13px]" style="color: var(--color-destructive);">Failed: {{ $access->publish_error }}</div>
                                         @else

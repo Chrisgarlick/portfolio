@@ -41,8 +41,8 @@ return [
             'table' => env('DB_QUEUE_TABLE', 'jobs'),
             'queue' => env('DB_QUEUE', 'default'),
             // Longer than the longest job's timeout, or a job still running is
-            // handed out again: PublishPreview waits up to 10 minutes on Design.
-            'retry_after' => (int) env('DB_QUEUE_RETRY_AFTER', 900),
+            // handed out again: PublishPreview waits up to 20 minutes on Design.
+            'retry_after' => (int) env('DB_QUEUE_RETRY_AFTER', 1800),
             'after_commit' => false,
         ],
 

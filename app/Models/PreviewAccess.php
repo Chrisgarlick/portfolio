@@ -27,6 +27,9 @@ use Illuminate\Support\Str;
  * @property string|null $publish_error
  * @property string|null $published_version
  * @property CarbonImmutable|null $published_at
+ * @property string|null $export_id Design's export job while publishing
+ * @property string|null $publish_progress e.g. "7 / 16"
+ * @property CarbonImmutable|null $publish_started_at
  */
 final class PreviewAccess extends Model
 {
@@ -43,6 +46,7 @@ final class PreviewAccess extends Model
             'password' => 'encrypted',
             'last_viewed_at' => 'immutable_datetime',
             'published_at' => 'immutable_datetime',
+            'publish_started_at' => 'immutable_datetime',
         ];
     }
 
