@@ -5,7 +5,7 @@
 # nginx's fastcgi_pass 127.0.0.1:9083.
 services:
   php:
-    image: site-php:8.3.36
+    image: site-php:8.3.37
     container_name: site-php
     network_mode: host
     restart: unless-stopped
@@ -13,7 +13,7 @@ services:
       - /var/www/site:/var/www/site
 
   queue:
-    image: site-php:8.3.36
+    image: site-php:8.3.37
     container_name: site-queue
     network_mode: host
     restart: unless-stopped
