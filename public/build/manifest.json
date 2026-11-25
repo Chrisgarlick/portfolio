@@ -26,7 +26,7 @@
     ]
   },
   "resources/css/kit-site.css": {
-    "file": "assets/kit-site-B99KxBv5.css",
+    "file": "assets/kit-site-DtqW_DEj.css",
     "name": "kit-site",
     "names": [
       "kit-site.css"
@@ -53,7 +53,7 @@
     "isEntry": true
   },
   "resources/css/kit-theme-nightfolio.css": {
-    "file": "assets/kit-theme-nightfolio-CMfBGDv_.css",
+    "file": "assets/kit-theme-nightfolio-CyFM24xm.css",
     "name": "kit-theme-nightfolio",
     "names": [
       "kit-theme-nightfolio.css"
@@ -92,7 +92,7 @@
     "src": "resources/fonts/jetbrains-mono-latin-wght-normal.woff2"
   },
   "resources/js/app.js": {
-    "file": "assets/app-ByoREIyd.js",
+    "file": "assets/app-BTCtOXxW.js",
     "name": "app",
     "src": "resources/js/app.js",
     "isEntry": true
