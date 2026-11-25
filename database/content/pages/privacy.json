@@ -312,7 +312,7 @@
           },
           {
             "kind": "paragraph",
-            "text": "CG Analytics, which counts visits, sets no cookies and doesn't ask first. The law allows that for counting visits only to make statistics about this site (the statistics exception in the Privacy and Electronic Communications Regulations, added by the Data (Use and Access) Act 2025), as long as you can object simply and for free. You can, with the button below: it stops your visits being counted on this browser. If you opt out, I store one setting in your browser to remember it (cg_optout, in its local storage), until you clear it or opt back in."
+            "text": "CG Analytics, which counts visits, sets no cookies and doesn't ask first. The law allows that for counting visits only to make statistics about this site (the statistics exception in the Privacy and Electronic Communications Regulations, added by the Data (Use and Access) Act 2025), as long as you can object simply and for free. You can, with the button below: it stops your visits being counted on this browser. If you opt out, I store one setting in your browser to remember it (cg_optout, in its local storage), until you clear it or opt back in. Some browsers, such as Safari, clear it themselves if you don't visit for a while, so you may need to press the button again. If your browser sends a Global Privacy Control or Do Not Track signal, your visits are never counted, and that signal doesn't wear off."
           }
         ]
       }
@@ -369,7 +369,7 @@
           },
           {
             "kind": "paragraph",
-            "text": "If anything changes I'll update this page and its date. The version you agreed to is stored with each brief or signup, so you can always see what applied at the time."
+            "text": "If anything changes, I'll update this page and the date at the top. If a change affects information you've already sent me, I'll email you about it first. When you ask for a site audit, I keep a note of which version of this page was live at the time."
           }
         ]
       }
