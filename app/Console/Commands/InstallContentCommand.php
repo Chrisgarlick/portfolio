@@ -33,13 +33,16 @@ use Symfony\Component\Yaml\Yaml;
  * page's slug: a list of blocks, or an object of the page's fields (`content`
  * for the blocks, `mode`, `seo_title`, `seo_description`, `seo_noindex`) when it sets more.
  * Images come along as files under database/content/media (see withMedia()).
+ * --slug limits it to named entries: `--only=pages --slug=privacy` proposes
+ * the privacy page alone, leaving admin edits to other pages untouched.
  */
 final class InstallContentCommand extends Command
 {
     protected $signature = 'site:install-content
         {--publish : Apply and publish everything, rather than leaving drafts and proposals}
         {--dry-run : List what would be created or changed}
-        {--only=* : Limit to these folders (services, work, articles, tools, pages)}';
+        {--only=* : Limit to these folders (services, work, articles, tools, pages)}
+        {--slug=* : Limit to these entries (their slugs), so one page can change without touching the rest}';
 
     protected $description = 'Create or update the redesign content from database/content';
 
@@ -59,6 +62,7 @@ final class InstallContentCommand extends Command
         $failed = 0;
         $rows = [];
         $only = array_filter((array) $this->option('only'));
+        $slugs = array_filter((array) $this->option('slug'));
         $unknown = array_diff($only, array_keys(self::FOLDERS));
 
         if ($unknown !== []) {
@@ -84,6 +88,11 @@ final class InstallContentCommand extends Command
                     $keepDraft = ($input['status'] ?? null) === 'draft';
                     unset($input['status']);
                     $slug = (string) ($input['slug'] ?? pathinfo($file, PATHINFO_FILENAME));
+
+                    if ($slugs !== [] && ! in_array($slug, $slugs, true)) {
+                        continue;
+                    }
+
                     $entry = Entry::query()->collection($collection)->where('slug', $slug)->first();
 
                     if ($dry) {

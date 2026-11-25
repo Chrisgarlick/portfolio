@@ -272,6 +272,15 @@ return [
     // Google Tag Manager, loaded only after cookie consent.
     'gtm_id' => env('GTM_ID', 'GTM-N6FD4K8Z'),
 
+    // CG Analytics (~/dev/chris/analytics): cookieless, so no consent banner
+    // (PECR's statistics exception; the privacy page has the wording and the
+    // opt-out). The site id from `cga site add`; empty leaves the script out.
+    // public/cga.js is analytics' script/cga.min.js (`make cga` copies it);
+    // it's a file, not inline, because the CSP allows no inline script.
+    // Events go to /_cg/e on this domain, which nginx hands to the daemon on
+    // the same server (deploy/server/nginx/chrisgarlick.com.conf).
+    'cga_site_id' => env('CGA_SITE_ID'),
+
     // Client previews: design previews sent to prospects, behind a login on
     // their own host. `preview` entries are the clients; the files are a
     // bundle from Design, uploaded to storage/previews/<slug>/current.

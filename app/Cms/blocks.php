@@ -40,6 +40,15 @@ return [
         Field::text('note')->label('Note under the form')->maxLength(120)->default('The link works for 24 hours.'),
     ])->view('blocks.site-data-deletion'),
 
+    // The privacy page's CG Analytics opt-out: PECR's statistics exception
+    // needs a simple, free way to object (analytics' legal/privacy-wording.md).
+    Block::make('site-analytics-optout', 'Analytics opt-out button')->fields([
+        Field::text('button_out')->label('Button to opt out')->maxLength(60)->default("Don't count my visits on this browser"),
+        Field::text('button_in')->label('Button to opt back in')->maxLength(60)->default('Count my visits again'),
+        Field::text('state_out')->label('Note once opted out')->maxLength(120)->default("Your visits aren't counted on this browser."),
+        Field::text('no_script')->label('Note without JavaScript')->maxLength(120)->default("With JavaScript off, your visits aren't counted."),
+    ])->view('blocks.site-analytics-optout'),
+
     // The /start brief: three fieldsets (Design nf_start). The fields are the
     // `start` form definition in app/Cms/forms.php; only the words around them are here.
     Block::make('site-start-brief', 'Start a project brief')->fields([

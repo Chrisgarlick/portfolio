@@ -47,7 +47,7 @@
         "title": "PRIVACY AND\n*your data.*",
         "title_size": "large",
         "heading_level": "1",
-        "proof": "Last updated: 12 November 2026",
+        "proof": "Last updated: 25 November 2026",
         "proof_icon": "calendar"
       }
     },
@@ -87,6 +87,14 @@
           {
             "kind": "paragraph",
             "text": "**Data deletion requests (/data/delete).** I keep the email address you ask about, the request and the date I completed it, as a record that it was done."
+          },
+          {
+            "kind": "paragraph",
+            "text": "**Counting visits (CG Analytics).** I count visits to this site with CG Analytics, which I built and run myself, on the same server as the site. It doesn't use cookies or store anything on your device. When you open a page, your browser sends the page address, the website that linked to it, your IP address and browser details, your screen size range (such as \"phone\"), and when you leave the page, how long it was open, how far you scrolled and how fast it loaded. Your IP address is used for under a second to work out your country and region and to tell people apart for that day only, and is never stored. A temporary code for your visits that day is deleted at the end of the day, after which nobody, including me, can tell that the visits were yours. Totals are never shown for fewer than five people. The data is processed in the UK and never shared or used for advertising. If your browser sends a Global Privacy Control or Do Not Track signal, your visits aren't counted at all, and you can opt out on this browser under Cookies below."
+          },
+          {
+            "kind": "paragraph",
+            "text": "**Security and server logs.** When you visit this site, the web server records your IP address, the page you asked for, the time, and your browser's user agent. I use this only to keep the site secure and working, for example to spot and block attacks and abuse, and to count visits. Full IP addresses are kept for up to 7 days, or up to 30 days when linked to a security event; an address blocked for repeated attacks is kept while the block lasts and for 30 days after. Visit counts made from these logs are totals only and can't identify you. I don't share this information or use it for marketing. The server is run by me, Chris Garlick, and hosted by DigitalOcean in London."
           },
           {
             "kind": "paragraph",
@@ -168,6 +176,32 @@
               {
                 "cells": [
                   {
+                    "text": "Counting visits (CG Analytics)"
+                  },
+                  {
+                    "text": "To see which pages are read and how people find them, so I can improve the site"
+                  },
+                  {
+                    "text": "Legitimate interest, Article 6(1)(f)"
+                  }
+                ]
+              },
+              {
+                "cells": [
+                  {
+                    "text": "Security and server logs"
+                  },
+                  {
+                    "text": "To keep the site and its visitors safe: spotting and blocking attacks and abuse, and counting visits"
+                  },
+                  {
+                    "text": "Legitimate interest, Article 6(1)(f)"
+                  }
+                ]
+              },
+              {
+                "cells": [
+                  {
                     "text": "Site audit records"
                   },
                   {
@@ -210,7 +244,7 @@
                 "text": "**Resend:** sends the emails (replies to your brief, audit results, the monthly email). US-based, under Standard Contractual Clauses."
               },
               {
-                "text": "**DigitalOcean:** hosts the site and its database in the UK or EU. Server logs may hold IP addresses."
+                "text": "**DigitalOcean:** hosts the site, its database, CG Analytics and the server's logs in London. The server's logs hold IP addresses (see Security and server logs above)."
               },
               {
                 "text": "**Google (Analytics 4 and Tag Manager):** pseudonymous visit data, only if you accept cookies. May be processed in the US under Google's Data Processing Addendum."
@@ -238,6 +272,12 @@
               },
               {
                 "text": "**The monthly email:** until you unsubscribe. After that I keep only your email address on a \"do not email\" list, so you're never added back by mistake."
+              },
+              {
+                "text": "**Visit counts (CG Analytics):** your IP address is never stored, and the day's visitor code is deleted at the end of each day. Individual page views, with nothing linking them to you or to each other, 35 days; totals (such as page views per country), 25 months."
+              },
+              {
+                "text": "**Security and server logs:** full IP addresses up to 7 days, or 30 days when linked to a security event; an address blocked for repeated attacks while the block lasts and 30 days after."
               },
               {
                 "text": "**Site audit records:** 12 months."
@@ -270,6 +310,29 @@
             "kind": "paragraph",
             "text": "Nothing is set until you choose in the cookie banner. If you accept, Google Analytics 4 sets its standard _ga cookies to count visits. If you reject, no analytics cookies are set. Cookies here are never used for advertising, retargeting or personalisation. You can change your mind any time with \"Cookie preferences\" in the footer; withdrawing clears any analytics cookies already set."
           },
+          {
+            "kind": "paragraph",
+            "text": "CG Analytics, which counts visits, sets no cookies and doesn't ask first. The law allows that for counting visits only to make statistics about this site (the statistics exception in the Privacy and Electronic Communications Regulations, added by the Data (Use and Access) Act 2025), as long as you can object simply and for free. You can, with the button below: it stops your visits being counted on this browser. If you opt out, I store one setting in your browser to remember it (cg_optout, in its local storage), until you clear it or opt back in."
+          }
+        ]
+      }
+    },
+    {
+      "type": "site-analytics-optout",
+      "data": {
+        "button_out": "Don't count my visits on this browser",
+        "button_in": "Count my visits again",
+        "state_out": "Your visits aren't counted on this browser.",
+        "no_script": "With JavaScript off, your visits aren't counted."
+      }
+    },
+    {
+      "type": "kit-prose",
+      "data": {
+        "variant": "default",
+        "width": "normal",
+        "background": "plain",
+        "blocks": [
           {
             "kind": "heading",
             "number": "06",

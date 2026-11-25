@@ -23,7 +23,7 @@
                 <p class="site-form-step-lede">{{ $success }}</p>
             </div>
         @else
-            <form class="site-form" method="POST" action="{{ route('contact.submit', [], false) }}" data-form-source>
+            <form class="site-form" name="contact" method="POST" action="{{ route('contact.submit', [], false) }}" data-form-source>
                 @foreach ($guardFields as $name => $value)
                     <input type="hidden" name="{{ $name }}" value="{{ $value }}">
                 @endforeach

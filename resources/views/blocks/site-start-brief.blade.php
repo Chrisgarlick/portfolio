@@ -29,7 +29,7 @@
 @endphp
 <section class="site-form-band" id="brief" aria-label="Your brief">
     <div class="kit-container">
-        <form class="site-form" method="POST" action="{{ route('start.submit', [], false) }}" data-form-source>
+        <form class="site-form" name="start" method="POST" action="{{ route('start.submit', [], false) }}" data-form-source>
             @foreach ($guardFields as $name => $value)
                 <input type="hidden" name="{{ $name }}" value="{{ $value }}">
             @endforeach

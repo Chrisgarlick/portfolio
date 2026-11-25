@@ -1531,6 +1531,39 @@ body.kit-page::before {
   color: var(--kit-bad);
 }
 
+/* The privacy page's CG Analytics opt-out, in the prose column, between
+   two prose sections like the deletion form. */
+.site-analytics-optout + .kit-section-prose {
+  padding-block-start: 3rem;
+}
+.kit-section-prose:has(+ .site-analytics-optout) {
+  padding-block-end: 1.5rem;
+}
+.site-analytics-optout-row {
+  max-inline-size: 45rem;
+  margin-inline: auto;
+}
+.site-analytics-optout-row .kit-button {
+  min-block-size: 3.5rem;
+  border-radius: 0;
+  border-color: var(--kit-fg);
+  background: var(--kit-fg);
+  color: var(--kit-bg);
+  font-family: var(--kit-font-mono);
+  font-size: 0.8125rem;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+.site-analytics-optout-status {
+  margin: 0.75rem 0 0;
+  font-size: 0.875rem;
+  color: var(--kit-fg-2);
+}
+.site-analytics-optout-status:empty {
+  display: none;
+}
+
 /* The free site audit (the site-audit-tool block), in Nightfolio: its own
    colour names (the old theme's) point at kit's, so the tool, its loading
    line and its results read on the night canvas. One large field joined to

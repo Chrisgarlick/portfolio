@@ -68,6 +68,21 @@ it('puts the deletion form on the privacy page, posting to the deletion flow', f
         ->assertSee('Lawful basis (UK GDPR)');
 });
 
+it('says what CG Analytics and the server logs keep, with the opt-out, on the privacy page', function (): void {
+    $this->get('/privacy')
+        ->assertOk()
+        ->assertSee('Counting visits (CG Analytics)', false)
+        ->assertSee('statistics exception', false)
+        ->assertSee('Security and server logs', false)
+        ->assertSee('hosted by DigitalOcean in London', false)
+        ->assertSee('id="analytics-opt-out"', false)
+        ->assertSee('data-analytics-optout', false)
+        ->assertSee('data-out="Don&#039;t count my visits on this browser"', false)
+        ->assertSee('data-in="Count my visits again"', false)
+        // The opt-out sits before the deletion form, both between prose.
+        ->assertSeeInOrder(['id="analytics-opt-out"', 'id="delete-your-data"'], false);
+});
+
 it('falls back to the privacy and terms templates without a published page', function (): void {
     Entry::query()->collection('page')->whereIn('slug', ['privacy', 'terms'])->delete();
 

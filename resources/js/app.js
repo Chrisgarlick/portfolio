@@ -20,6 +20,7 @@ import { initReadingProgress } from './site/reading-progress';
 import { initStudioAudit } from './site/studio-audit';
 import { initFitWordmark } from './site/fit-wordmark';
 import { initFormSource } from './site/form-source';
+import { initAnalyticsOptout } from './site/analytics-optout';
 
 initNav();
 initCookieConsent();
@@ -36,3 +37,4 @@ initReadingProgress();
 initStudioAudit();
 initFitWordmark();
 initFormSource();
+initAnalyticsOptout();

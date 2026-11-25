@@ -15,6 +15,7 @@
                 (App\Content\KitPage): the page's blocks bring their own
                 header and footer, so the site's navigation and footer are
                 left out, and the Nightfolio theme takes the page's mode.
+      $cga404   true on the 404 page, so CG Analytics counts it as one.
 
     Every template supplies the `head` section by rendering <x-cms-seo>. One
     that forgets still gets the site default, because missing meta fails
@@ -44,6 +45,17 @@
           href="/{{ ltrim((string) config('cg-cms.seo.files.rss', 'article/rss.xml'), '/') }}">
 
     @include('partials.font-preload')
+
+    {{-- CG Analytics: cookieless, so it runs without the cookie banner. Files
+         rather than inline script, which the CSP refuses. Before app.js, so
+         the privacy page's opt-out finds window.cga. --}}
+    @if (filled(config('site.cga_site_id')))
+        @if ($cga404 ?? false)
+            <script defer src="/cga-404.js"></script>
+        @endif
+        <script defer src="/cga.js" data-site="{{ config('site.cga_site_id') }}" data-api="/_cg/e"></script>
+    @endif
+
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 
     {{-- kit's sections in one file (resources/css/kit-site.css): its base

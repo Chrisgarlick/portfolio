@@ -1,6 +1,8 @@
 {{-- Ported from 404.astro. Never page-cached: CachePage only writes 200s. --}}
 @extends('layouts.base')
 
+@php($cga404 = true)
+
 @section('head')
     <x-cms-seo title="Page Not Found" description="That page does not exist." :noindex="true" />
 @endsection

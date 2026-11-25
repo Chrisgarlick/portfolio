@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 use Cg\Cms\Models\Entry;
 use Cg\Cms\Models\EntryRevision;
+use Cg\Cms\Models\Media;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Facades\Storage;
 
@@ -86,6 +87,15 @@ it('limits itself to the folders given with --only', function (): void {
     $this->artisan('site:install-content', ['--only' => ['nope']])->assertFailed();
 });
 
+it('limits itself to the entries given with --slug, so one live page can be proposed alone', function (): void {
+    $about = liveAboutPage();
+
+    $this->artisan('site:install-content', ['--only' => ['pages'], '--slug' => ['privacy']])->assertSuccessful();
+
+    expect(Entry::query()->collection('page')->pluck('slug')->sort()->values()->all())->toBe(['about', 'privacy'])
+        ->and(EntryRevision::query()->where('entry_id', $about->id)->where('label', 'proposed')->exists())->toBeFalse();
+});
+
 it('proposes the kit home page for a live home page, with its mode, rather than replacing it', function (): void {
     $home = Entry::query()->create([
         'collection' => 'page',
@@ -115,10 +125,10 @@ it('puts the images a page brings in the media library once and stores them as m
 
     expect($hero)->toHaveKeys(['id', 'alt'])
         ->and($hero)->not->toHaveKey('file')
-        ->and(\Cg\Cms\Models\Media::query()->where('uuid', $hero['id'])->exists())->toBeTrue();
+        ->and(Media::query()->where('uuid', $hero['id'])->exists())->toBeTrue();
 
-    $count = \Cg\Cms\Models\Media::query()->count();
+    $count = Media::query()->count();
     $this->artisan('site:install-content', ['--only' => ['pages'], '--publish' => true])->assertSuccessful();
 
-    expect(\Cg\Cms\Models\Media::query()->count())->toBe($count);
+    expect(Media::query()->count())->toBe($count);
 });

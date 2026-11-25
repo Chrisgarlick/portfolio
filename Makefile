@@ -12,7 +12,13 @@
 KIT ?= $(HOME)/dev/kit
 KIT_BIN := $(KIT)/bin/kit
 
-.PHONY: sync check kit
+.PHONY: sync check kit cga
+
+# CG Analytics' script, served as public/cga.js (config/site.php cga_site_id).
+ANALYTICS ?= $(HOME)/dev/chris/analytics
+
+cga:
+	cp $(ANALYTICS)/script/cga.min.js public/cga.js
 
 kit:
 	cd $(KIT) && go build -o bin/kit ./cmd/kit
