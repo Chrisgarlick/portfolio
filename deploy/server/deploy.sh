@@ -29,6 +29,16 @@ PREVIOUS_FILE="$SITE/storage/app/deploy-previous"
 
 as_web() { sudo -u www-data -H "$@"; }
 artisan() { docker exec -u www-data -w "$SITE" "$PHP_CONTAINER" php artisan "$@"; }
+# Composer runs in the container too: the host has no PHP (removed 19 Nov
+# 2026). The host's composer.phar is copied into the mounted site for the run.
+composer() {
+    install -o www-data -g www-data -m 0644 /usr/local/bin/composer "$SITE/storage/composer.phar"
+    local rc=0
+    docker exec -u www-data -w "$SITE" -e COMPOSER_HOME=/tmp/composer "$PHP_CONTAINER" \
+        php -d memory_limit=512M storage/composer.phar "$@" || rc=$?
+    rm -f "$SITE/storage/composer.phar"
+    return $rc
+}
 
 cd "$SITE"
 [[ -f .env ]] || { echo "Missing $SITE/.env. Run provision.sh and fill it in first."; exit 1; }
@@ -39,7 +49,7 @@ current="$(as_web git rev-parse HEAD)"
 # Composer has, and no app key until one is generated.
 if [[ ! -f vendor/autoload.php ]]; then
     echo "First deploy: installing dependencies"
-    as_web composer install --no-dev --no-interaction --no-progress --prefer-dist --optimize-autoloader --quiet
+    composer install --no-dev --no-interaction --no-progress --prefer-dist --optimize-autoloader --quiet
 fi
 # Only a real key counts: a blank value, or one with just a comment after
 # it, still needs generating.
@@ -73,7 +83,7 @@ as_web git reset --quiet --hard "$target"
 [[ "$target" != "$current" ]] && echo "$current" > "$PREVIOUS_FILE" && chown www-data:www-data "$PREVIOUS_FILE"
 
 echo "Installing PHP dependencies (from composer.lock, nothing resolved)"
-as_web composer install --no-dev --no-interaction --no-progress --prefer-dist \
+composer install --no-dev --no-interaction --no-progress --prefer-dist \
     --optimize-autoloader --classmap-authoritative --quiet
 
 echo "Publishing the admin assets, migrating, caching"
