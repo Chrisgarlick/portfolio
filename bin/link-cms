@@ -15,7 +15,7 @@ set -euo pipefail
 
 cd "$(dirname "$0")/.."
 VENDOR="vendor/chrisgarlick/cg-cms"
-LOCAL="$(cd ../../dev/chris/cg-cms && pwd)"
+LOCAL="$(cd "$HOME/dev/chris/cg-cms" && pwd)"
 
 if [[ "${1:-}" == "--unlink" ]]; then
     [[ -L "$VENDOR" ]] && rm "$VENDOR"

@@ -1,6 +1,6 @@
 # kit's sections as cg-cms blocks (kit-blocks/, public/kit-blocks/).
 #
-#   make sync    rebuild kit-blocks/ from ~/dev/kit and copy its CSS and fonts to public/
+#   make sync    rebuild kit-blocks/ from ~/dev/chris/kit and copy its CSS and fonts to public/
 #   make check   fail if kit-blocks/ or public/kit-blocks/ is out of date with kit
 #
 # tests/fixtures/kit-blocks.json is every kit demo with kit's own HTML, for
@@ -9,7 +9,7 @@
 # Both are committed: the server never runs kit or copies assets (deploy/ship.sh).
 # KIT points at the kit checkout; the binary is built from it each time.
 
-KIT ?= $(HOME)/dev/kit
+KIT ?= $(HOME)/dev/chris/kit
 KIT_BIN := $(KIT)/bin/kit
 
 .PHONY: sync check kit cga

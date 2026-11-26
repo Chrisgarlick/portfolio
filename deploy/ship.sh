@@ -39,7 +39,7 @@ echo "cg-cms: shipping ${LOCKED:0:7}"
 if [[ -n "$REMOTE" && "$REMOTE" != "$LOCKED" ]]; then
     echo "  WARNING: GitHub main is ${REMOTE:0:7}. Run 'composer update chrisgarlick/cg-cms' to ship it."
 fi
-LOCAL_CMS="../../dev/chris/cg-cms"
+LOCAL_CMS="$HOME/dev/chris/cg-cms"
 if [[ -d "$LOCAL_CMS/.git" ]] && [[ -n "$(git -C "$LOCAL_CMS" status --porcelain)" || "$(git -C "$LOCAL_CMS" rev-parse HEAD)" != "$LOCKED" ]]; then
     echo "  WARNING: ~/dev/chris/cg-cms differs from the locked commit; its changes will not ship."
 fi
